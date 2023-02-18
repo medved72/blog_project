@@ -1,0 +1,108 @@
+name: CI/CD Pipeline
+run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+jobs:
+  install_modules:
+    runs-on: ubuntu-latest
+    steps:
+     - uses: actions/checkout@v3
+     - uses: actions/cache@v3
+       with:
+         path: '**/node_modules'
+         key: ${{ runner.os }}-modules-${{ hashFiles('**/package-lock.json') }}
+
+     - name: Setup node
+       uses: actions/setup-node@v3
+       with:
+         node-version-file: '.nvmrc'
+
+     - name: install modules
+       run: npm ci
+  build:
+    needs: install_modules
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup node
+        uses: actions/setup-node@v3
+        with:
+          node-version-file: '.nvmrc'
+
+      - uses: actions/cache@v3
+        with:
+          path: '**/node_modules'
+          key: ${{ runner.os }}-modules-${{ hashFiles('**/package-lock.json') }}
+
+      - name: build production project
+        run: npm run build:prod
+
+  lint:
+    needs: install_modules
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup node
+        uses: actions/setup-node@v3
+        with:
+          node-version-file: '.nvmrc'
+
+      - uses: actions/cache@v3
+        with:
+          path: '**/node_modules'
+          key: ${{ runner.os }}-modules-${{ hashFiles('**/package-lock.json') }}
+
+      - name: linting typescript
+        run: npm run lint:ts
+
+      - name: linting css
+        run: npm run lint:css
+
+  unit-test:
+    needs: install_modules
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup node
+        uses: actions/setup-node@v3
+        with:
+          node-version-file: '.nvmrc'
+
+      - uses: actions/cache@v3
+        with:
+          path: '**/node_modules'
+          key: ${{ runner.os }}-modules-${{ hashFiles('**/package-lock.json') }}
+
+      - name: unit testing
+        run: npm run test:unit
+
+  screenshot-test:
+    needs: install_modules
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup node
+        uses: actions/setup-node@v3
+        with:
+          node-version-file: '.nvmrc'
+
+      - uses: actions/cache@v3
+        with:
+          path: '**/node_modules'
+          key: ${{ runner.os }}-modules-${{ hashFiles('**/package-lock.json') }}
+
+      - name: unit testing
+        run: npm run test:unit
+
+      - name: build storybook
+        run: npm run storybook:build
+
+      - name: screenshot testing
+        run: npm run test:ui:ci

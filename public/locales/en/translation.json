@@ -1,0 +1,12 @@
+{
+  "changeLanguage": "Translate",
+  "errorBoundary": "An unexpected error has occurred",
+  "language": "English",
+  "language_short": "En",
+  "linkToAboutUs": "About us",
+  "linkToMain": "Main",
+  "mainPage": "Main",
+  "pageNotFound": "Page not found",
+  "reloadPage": "Reload page",
+  "throw error": "Throw error"
+}
