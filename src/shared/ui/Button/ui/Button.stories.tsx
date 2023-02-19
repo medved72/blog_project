@@ -18,7 +18,7 @@ const Template: ButtonStory = (args) => {
 export const Primary = Template.bind({})
 Primary.args = { children: 'Text' }
 
-const themes = ['background', 'backgroundInverted', 'clear', 'outline'] as const
+const themes = ['background', 'backgroundInverted', 'clear', 'outline', 'clearInverted'] as const
 const sizes = ['l', 'm', 'xl'] as const
 
 type ThemeKeys = (typeof themes)[number]
@@ -107,6 +107,9 @@ export const {
   clearLSquare,
   clearXl,
   clearXlSquare,
+  clearInvertedM,
+  clearInvertedL,
+  clearInvertedXl,
   outlineM,
   outlineMSquare,
   outlineL,
@@ -132,6 +135,9 @@ export const {
   clearLSquareDark,
   clearXlDark,
   clearXlSquareDark,
+  clearInvertedMDark,
+  clearInvertedLDark,
+  clearInvertedXlDark,
   outlineDark,
   outlineMSquareDark,
   outlineLDark,

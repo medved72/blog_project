@@ -6,6 +6,7 @@ import classes from './Button.module.scss'
 const BUTTON_THEME = {
   none: '',
   clear: classes.clear,
+  clearInverted: classes.clearInverted,
   outline: classes.outline,
   background: classes.background,
   backgroundInverted: classes.backgroundInverted
