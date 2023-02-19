@@ -9,12 +9,13 @@ export interface ModalProps {
   className?: string
   isOpen?: boolean
   onClose?: () => void
+  getModalContainer?: () => HTMLElement
 }
 
 const ANIMATION_DELAY = 300
 
 export const Modal: FC<PropsWithChildren<ModalProps>> = memo((props) => {
-  const { className, children, isOpen, onClose } = props
+  const { className, children, isOpen, onClose, getModalContainer } = props
   const timerRef = useRef<ReturnType<typeof setTimeout>>()
   const [isClosing, setIsClosing] = useState(false)
   const { theme } = useTheme()
@@ -56,7 +57,7 @@ export const Modal: FC<PropsWithChildren<ModalProps>> = memo((props) => {
     }, [className, `${theme}Theme`])
   }, [className, isClosing, isOpen, theme])
 
-  return <Portal>
+  return <Portal element={getModalContainer?.()}>
     <div className={rootClassname}>
       <div className={classes.overlay} onClick={handleClose}>
         <div className={classes.content} onClick={handleContentClick}>

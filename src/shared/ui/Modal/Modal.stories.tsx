@@ -15,8 +15,16 @@ const Template: ModalStory = (args) => {
 }
 
 export const Primary = Template.bind({})
-Primary.args = { children: 'Text', isOpen: true }
+Primary.args = {
+  children: 'Text',
+  isOpen: true,
+  getModalContainer: () => document.querySelector('.sb-main-padded #root')!
+}
 
 export const PrimaryDark = Template.bind({})
-PrimaryDark.args = { children: 'Text', isOpen: true }
+PrimaryDark.args = {
+  children: 'Text',
+  isOpen: true,
+  getModalContainer: () => document.querySelector('.sb-main-padded #root')!
+}
 PrimaryDark.decorators = [ThemeDecorator(THEME.DARK)]
