@@ -8,14 +8,20 @@ import DarkIcon from 'shared/assets/icons/theme-dark.svg'
 import LightIcon from 'shared/assets/icons/theme-light.svg'
 
 export interface SwitchThemeProps {
-  className?: string
+    className?: string
 }
 
 export const ThemeSwitcher: FC<SwitchThemeProps> = memo(({ className }) => {
-  const { theme, toggleTheme } = useTheme()
+    const { theme, toggleTheme } = useTheme()
 
-  return <Button className={classNames('', {}, [className])} theme="clear" onClick={toggleTheme}>
-    {theme === THEME.DARK ? <DarkIcon /> : <LightIcon />}
-  </Button>
+    return (
+        <Button
+            className={classNames('', {}, [className])}
+            theme="clear"
+            onClick={toggleTheme}
+        >
+            {theme === THEME.DARK ? <DarkIcon /> : <LightIcon />}
+        </Button>
+    )
 })
 ThemeSwitcher.displayName = 'ThemeSwitcher'

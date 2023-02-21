@@ -4,15 +4,17 @@ import { classNames } from 'shared/lib/classNames'
 import classes from './DotsSpinner.module.scss'
 
 export interface DotsSpinnerProps {
-  className?: string
+    className?: string
 }
 
 export const DotsSpinner: FC<DotsSpinnerProps> = memo(({ className }) => {
-  return <div className={classNames(classes.ldsEllipsis, {}, [className])}>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-    </div>
+    return (
+        <div className={classNames(classes.ldsEllipsis, {}, [className])}>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    )
 })
 DotsSpinner.displayName = 'DotsSpinner'

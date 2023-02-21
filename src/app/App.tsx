@@ -13,17 +13,17 @@ import { AppRouter } from './router'
 import classes from './App.module.scss'
 
 export const App: FC = withProviders(() => {
-  const { theme } = useTheme()
+    const { theme } = useTheme()
 
-  return (
-    <div className={classNames(classes.app, {}, [`${theme}Theme`])}>
-      <AppNavbar />
-      <div className={classes.pageContent}>
-        <Sidebar />
-        <div className={classes.pageWrapper}>
-          <AppRouter />
+    return (
+        <div className={classNames(classes.app, {}, [`${theme}Theme`])}>
+            <AppNavbar />
+            <div className={classes.pageContent}>
+                <Sidebar />
+                <div className={classes.pageWrapper}>
+                    <AppRouter />
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-  )
+    )
 })

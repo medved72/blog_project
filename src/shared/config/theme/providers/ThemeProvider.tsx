@@ -3,22 +3,24 @@ import { LOCAL_STORAGE_THEME_KEY, THEME } from '../config'
 import { ThemeContext } from '../model/ThemeContext'
 
 const defaultTheme =
-  (localStorage.getItem(LOCAL_STORAGE_THEME_KEY) as THEME) || THEME.LIGHT
+    (localStorage.getItem(LOCAL_STORAGE_THEME_KEY) as THEME) || THEME.LIGHT
 
 export const ThemeProvider: FC<PropsWithChildren<{ defaultTheme?: THEME }>> = ({
-  defaultTheme: defaultThemeFromProps,
-  children
+    defaultTheme: defaultThemeFromProps,
+    children,
 }) => {
-  const [theme, setTheme] = useState<THEME>(defaultThemeFromProps ?? defaultTheme)
+    const [theme, setTheme] = useState<THEME>(
+        defaultThemeFromProps ?? defaultTheme
+    )
 
-  return (
-    <ThemeContext.Provider
-      value={{
-        theme,
-        setTheme
-      }}
-    >
-      {children}
-    </ThemeContext.Provider>
-  )
+    return (
+        <ThemeContext.Provider
+            value={{
+                theme,
+                setTheme,
+            }}
+        >
+            {children}
+        </ThemeContext.Provider>
+    )
 }

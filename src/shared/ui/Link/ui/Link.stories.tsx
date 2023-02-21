@@ -4,14 +4,14 @@ import { ThemeDecorator } from 'shared/config/storybook/ThemeDecorator'
 import { THEME } from 'shared/config/theme'
 
 const meta: ComponentMeta<typeof Link> = {
-  title: 'shared/Link',
-  component: Link,
-  args: { to: '/' }
+    title: 'shared/Link',
+    component: Link,
+    args: { to: '/' },
 }
 export default meta
 
 const Template: ComponentStory<typeof Link> = (args) => {
-  return <Link {...args}/>
+    return <Link {...args} />
 }
 
 export const Primary = Template.bind({})

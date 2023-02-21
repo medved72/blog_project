@@ -4,13 +4,13 @@ import { ThemeProviderDecorator } from 'shared/config/storybook/ThemeProviderDec
 import { THEME } from 'shared/config/theme'
 
 const meta: ComponentMeta<typeof ThemeSwitcher> = {
-  title: 'features/ThemeSwitcher',
-  component: ThemeSwitcher
+    title: 'features/ThemeSwitcher',
+    component: ThemeSwitcher,
 }
 export default meta
 
 const Template: ComponentStory<typeof ThemeSwitcher> = (args) => {
-  return <ThemeSwitcher {...args}/>
+    return <ThemeSwitcher {...args} />
 }
 
 export const Primary = Template.bind({})

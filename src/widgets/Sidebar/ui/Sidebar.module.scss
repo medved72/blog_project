@@ -1,57 +1,57 @@
 .sidebar {
-  --primary-color: var(--inverted-primary-color);
+    --primary-color: var(--inverted-primary-color);
 
-  position: relative;
-  width: var(--sidebar-width);
-  height: calc(100vh - var(--navbar-height));
-  background: var(--inverted-bg-color);
-  transition: width 150ms;
+    position: relative;
+    width: var(--sidebar-width);
+    height: calc(100vh - var(--navbar-height));
+    background: var(--inverted-bg-color);
+    transition: width 150ms;
 }
 
 .switchers {
-  position: absolute;
-  bottom: 20px;
-  display: flex;
-  width: 100%;
-  justify-content: center;
-  gap: 20px;
+    position: absolute;
+    bottom: 20px;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    gap: 20px;
 }
 
 .collapsedButton {
-  position: absolute;
-  right: -32px;
-  bottom: 40px;
+    position: absolute;
+    right: -32px;
+    bottom: 40px;
 }
 
 .items {
-  display: flex;
-  flex-direction: column;
-  margin-top: 20px;
-  margin-left: 30px;
-  gap: 10px;
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+    margin-left: 30px;
+    gap: 10px;
 }
 
 .icon {
-  fill: var(--inverted-primary-color);
+    fill: var(--inverted-primary-color);
 }
 
 .link {
-  display: flex;
-  flex-wrap: nowrap;
-  align-items: center;
-  gap: 10px;
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    gap: 10px;
 }
 
 .collapsed {
-  width: var(--sidebar-width-collapsed);
+    width: var(--sidebar-width-collapsed);
 
-  .switchers {
-    flex-direction: column;
-  }
+    .switchers {
+        flex-direction: column;
+    }
 
-  .link span {
-    width: 0;
-    opacity: 0;
-    transition: display 0.2s, opacity 0.2s;
-  }
+    .link span {
+        width: 0;
+        opacity: 0;
+        transition: display 0.2s, opacity 0.2s;
+    }
 }

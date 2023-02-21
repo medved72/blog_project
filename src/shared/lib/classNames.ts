@@ -3,23 +3,23 @@ type Mods = Record<string, string | boolean | undefined>
 type AdditionalItem = false | string | undefined
 
 export const classNames = (
-  root: string,
-  mods: Mods = {},
-  additional: AdditionalItem[] = []
+    root: string,
+    mods: Mods = {},
+    additional: AdditionalItem[] = []
 ): string => {
-  const classes = [root]
+    const classes = [root]
 
-  Object.entries(mods).forEach(([modClass, condition]) => {
-    if (condition) {
-      classes.push(modClass)
-    }
-  })
+    Object.entries(mods).forEach(([modClass, condition]) => {
+        if (condition) {
+            classes.push(modClass)
+        }
+    })
 
-  additional.forEach((className) => {
-    if (className) {
-      classes.push(className)
-    }
-  })
+    additional.forEach((className) => {
+        if (className) {
+            classes.push(className)
+        }
+    })
 
-  return classes.join(' ')
+    return classes.join(' ')
 }

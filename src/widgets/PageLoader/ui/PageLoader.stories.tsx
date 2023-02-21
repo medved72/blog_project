@@ -4,18 +4,17 @@ import { ThemeDecorator } from 'shared/config/storybook/ThemeDecorator'
 import { THEME } from 'shared/config/theme'
 
 const meta: ComponentMeta<typeof PageLoader> = {
-  title: 'widgets/PageLoader',
-  component: PageLoader
+    title: 'widgets/PageLoader',
+    component: PageLoader,
 }
 export default meta
 
 const Template: ComponentStory<typeof PageLoader> = (args) => {
-  return <PageLoader {...args}/>
+    return <PageLoader {...args} />
 }
 
 export const Primary = Template.bind({})
-Primary.args = {
-}
+Primary.args = {}
 
 export const Dark = Template.bind({})
 Dark.args = {}
