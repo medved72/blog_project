@@ -21,6 +21,7 @@ export default ({
     config.module?.rules?.push(buildCssLoader(true))
     // @ts-expect-error undefined
     config.module.rules = config.module.rules.map(
+        // @ts-expect-error undexpected
         (rule: webpack.RuleSetRule) => {
             // eslint-disable-next-line
             if (/svg/.test(rule.test as string)) {
