@@ -1,6 +1,6 @@
 {
   "": "",
-  "authForm": "authForm",
+  "authForm": "Login",
   "changeLanguage": "Translate",
   "errorBoundary": "An unexpected error has occurred",
   "language": "English",
@@ -16,5 +16,6 @@
   "typeLogin": "Enter login >",
   "typePassword": "Enter password >",
   "Введите логин": "Введите логин",
-  "Введите пароль": "Введите пароль"
+  "Введите пароль": "Введите пароль",
+  "ERROR_INCORRECT_USERNAME_OR_PASSWORD": "Incorrect username or password"
 }
