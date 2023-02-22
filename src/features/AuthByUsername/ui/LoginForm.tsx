@@ -15,6 +15,7 @@ interface LoginFormProps {
     className?: string
     onLoginSuccess: () => void
 }
+
 export const LoginForm: FC<LoginFormProps> = memo((props) => {
     const { className, onLoginSuccess } = props
     const { t } = useTranslation()

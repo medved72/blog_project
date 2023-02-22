@@ -39,9 +39,9 @@ export const Modal: FC<PropsWithChildren<ModalProps>> = memo((props) => {
 
     const [isOpenInProgress, setIsOpenInProgress] = useState(true)
 
-    const closeTimerRef = useRef<ReturnType<typeof setTimeout>>()
-
     const [isClosing, setIsClosing] = useState(false)
+
+    const closeTimerRef = useRef<ReturnType<typeof setTimeout>>()
 
     const { theme } = useTheme()
 
@@ -52,10 +52,10 @@ export const Modal: FC<PropsWithChildren<ModalProps>> = memo((props) => {
     }, [isOpen])
 
     useEffect(() => {
-        if (isOpen) {
+        if (isOpen && isWasMounted) {
             setIsOpenInProgress(false)
         }
-    }, [isOpen])
+    }, [isOpen, isWasMounted])
 
     const handleClose = useCallback(() => {
         if (!onClose) return
