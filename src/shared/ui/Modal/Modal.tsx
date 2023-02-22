@@ -20,7 +20,7 @@ export interface ModalProps {
     onClose?: () => void
     getModalContainer?: () => HTMLElement
     lazy?: boolean
-    remountOnClose?: boolean
+    destroyOnClose?: boolean
 }
 
 const ANIMATION_DELAY = 300
@@ -33,24 +33,36 @@ export const Modal: FC<PropsWithChildren<ModalProps>> = memo((props) => {
         onClose,
         getModalContainer,
         lazy,
-        remountOnClose,
+        destroyOnClose,
     } = props
-    const [isMounted, setIsMounted] = useState(false)
-    const timerRef = useRef<ReturnType<typeof setTimeout>>()
+    const [isWasMounted, setIsWasMounted] = useState(false)
+
+    const [isOpenInProgress, setIsOpenInProgress] = useState(true)
+
+    const closeTimerRef = useRef<ReturnType<typeof setTimeout>>()
+
     const [isClosing, setIsClosing] = useState(false)
+
     const { theme } = useTheme()
 
     useEffect(() => {
         if (isOpen) {
-            setIsMounted(true)
+            setIsWasMounted(true)
+        }
+    }, [isOpen])
+
+    useEffect(() => {
+        if (isOpen) {
+            setIsOpenInProgress(false)
         }
     }, [isOpen])
 
     const handleClose = useCallback(() => {
         if (!onClose) return
         setIsClosing(true)
-        timerRef.current = setTimeout(() => {
+        closeTimerRef.current = setTimeout(() => {
             onClose()
+            setIsOpenInProgress(true)
             setIsClosing(false)
         }, ANIMATION_DELAY)
     }, [onClose])
@@ -74,27 +86,28 @@ export const Modal: FC<PropsWithChildren<ModalProps>> = memo((props) => {
         }
 
         return () => {
-            clearTimeout(timerRef.current)
+            clearTimeout(closeTimerRef.current)
             window.removeEventListener('keydown', handleGlobalKeyDown)
         }
     }, [handleGlobalKeyDown, isOpen])
 
     const rootClassname = useMemo(() => {
+        const opened = !isOpenInProgress && isOpen
         return classNames(
             classes.modal,
             {
-                [classes.opened]: isOpen,
+                [classes.opened]: opened,
                 [classes.isClosing]: isClosing,
             },
             [className, `${theme}Theme`]
         )
-    }, [className, isClosing, isOpen, theme])
+    }, [className, isClosing, isOpen, isOpenInProgress, theme])
 
-    if (remountOnClose && !isOpen) {
+    if (destroyOnClose && !isOpen) {
         return null
     }
 
-    if (lazy && !isMounted) {
+    if (lazy && !isWasMounted) {
         return null
     }
 

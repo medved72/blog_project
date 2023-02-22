@@ -1,10 +1,13 @@
 {
+  "": "",
+  "authForm": "authForm",
   "changeLanguage": "Translate",
   "errorBoundary": "An unexpected error has occurred",
   "language": "English",
   "language_short": "En",
   "linkToAboutUs": "About us",
   "linkToMain": "Main",
+  "logout": "Logout",
   "mainPage": "Main",
   "pageNotFound": "Page not found",
   "reloadPage": "Reload page",

@@ -1,10 +1,13 @@
 {
+  "": "",
+  "authForm": "authForm",
   "changeLanguage": "Перевод",
   "errorBoundary": "Произошла непредвиденная ошибка",
   "language": "Русский",
   "language_short": "Ру",
   "linkToAboutUs": "О нас",
   "linkToMain": "Главная",
+  "logout": "Выйти",
   "mainPage": "Главная страница",
   "pageNotFound": "Страница не найдена",
   "reloadPage": "Обновить страницу",

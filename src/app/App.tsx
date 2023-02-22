@@ -1,5 +1,5 @@
 import './styles/index.scss'
-import { type FC } from 'react'
+import { type FC, useEffect } from 'react'
 
 import { AppNavbar } from 'widgets/Navbar'
 import { Sidebar } from 'widgets/Sidebar'
@@ -11,9 +11,16 @@ import { withProviders } from './providers'
 import { AppRouter } from './router'
 
 import classes from './App.module.scss'
+import { useDispatch } from 'react-redux'
+import { actions as userActions } from 'entities/User'
 
 export const App: FC = withProviders(() => {
     const { theme } = useTheme()
+    const dispatch = useDispatch()
+
+    useEffect(() => {
+        dispatch(userActions.initAuthData())
+    }, [dispatch])
 
     return (
         <div className={classNames(classes.app, {}, [`${theme}Theme`])}>

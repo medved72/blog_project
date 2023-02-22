@@ -40,6 +40,7 @@ export const Button: FC<PropsWithChildren<ButtonProps>> = memo(
         size = 'm',
         children,
         square,
+        disabled,
         ...restProps
     }) => {
         const rootClassname = useMemo(() => {
@@ -47,13 +48,18 @@ export const Button: FC<PropsWithChildren<ButtonProps>> = memo(
                 classes.button,
                 {
                     [classes.square]: square,
+                    [classes.disabled]: disabled,
                 },
                 [className, BUTTON_THEME[theme], BUTTON_SIZE[size]]
             )
-        }, [className, size, square, theme])
+        }, [className, disabled, size, square, theme])
 
         return (
-            <button {...restProps} className={rootClassname}>
+            <button
+                {...restProps}
+                className={rootClassname}
+                disabled={disabled}
+            >
                 {children}
             </button>
         )

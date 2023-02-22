@@ -18,6 +18,15 @@ const Template: ButtonStory = (args) => {
 export const Primary = Template.bind({})
 Primary.args = { children: 'Text' }
 
+export const Disabled = Template.bind({})
+Disabled.args = {
+    children: '*',
+    theme: 'outline',
+    square: true,
+    size: 'xl',
+    disabled: true,
+}
+
 const themes = [
     'background',
     'backgroundInverted',
