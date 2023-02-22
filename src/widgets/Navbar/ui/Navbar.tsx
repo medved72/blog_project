@@ -37,6 +37,7 @@ export const Navbar: FC<NavbarProps> = memo(({ className }) => {
 
     const handleLogout = useCallback(() => {
         dispatch(userActions.logout())
+        setIsLoggedIn(false)
     }, [dispatch])
 
     const handleLoginSuccess = useCallback(() => {

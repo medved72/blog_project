@@ -29,12 +29,14 @@ export const Modal: FC<PropsWithChildren<ModalProps>> = memo((props) => {
     const {
         className,
         children,
-        isOpen,
+        isOpen: isOpenFromProps,
         onClose,
         getModalContainer,
         lazy,
         destroyOnClose,
     } = props
+    const [isOpen, setIsOpen] = useState(isOpenFromProps)
+
     const [isWasMounted, setIsWasMounted] = useState(false)
 
     const [isOpenInProgress, setIsOpenInProgress] = useState(true)
@@ -64,8 +66,17 @@ export const Modal: FC<PropsWithChildren<ModalProps>> = memo((props) => {
             onClose()
             setIsOpenInProgress(true)
             setIsClosing(false)
+            setIsOpen(false)
         }, ANIMATION_DELAY)
     }, [onClose])
+
+    useEffect(() => {
+        if (isOpenFromProps) {
+            setIsOpen(isOpenFromProps)
+        } else {
+            handleClose()
+        }
+    }, [handleClose, isOpenFromProps])
 
     const handleGlobalKeyDown = useCallback(
         (e: KeyboardEvent) => {
