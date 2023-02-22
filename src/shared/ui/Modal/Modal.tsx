@@ -19,15 +19,32 @@ export interface ModalProps {
     isOpen?: boolean
     onClose?: () => void
     getModalContainer?: () => HTMLElement
+    lazy?: boolean
+    remountOnClose?: boolean
 }
 
 const ANIMATION_DELAY = 300
 
 export const Modal: FC<PropsWithChildren<ModalProps>> = memo((props) => {
-    const { className, children, isOpen, onClose, getModalContainer } = props
+    const {
+        className,
+        children,
+        isOpen,
+        onClose,
+        getModalContainer,
+        lazy,
+        remountOnClose,
+    } = props
+    const [isMounted, setIsMounted] = useState(false)
     const timerRef = useRef<ReturnType<typeof setTimeout>>()
     const [isClosing, setIsClosing] = useState(false)
     const { theme } = useTheme()
+
+    useEffect(() => {
+        if (isOpen) {
+            setIsMounted(true)
+        }
+    }, [isOpen])
 
     const handleClose = useCallback(() => {
         if (!onClose) return
@@ -72,6 +89,14 @@ export const Modal: FC<PropsWithChildren<ModalProps>> = memo((props) => {
             [className, `${theme}Theme`]
         )
     }, [className, isClosing, isOpen, theme])
+
+    if (remountOnClose && !isOpen) {
+        return null
+    }
+
+    if (lazy && !isMounted) {
+        return null
+    }
 
     return (
         <Portal element={getModalContainer?.()}>
