@@ -25,8 +25,6 @@ export const Navbar: FC<NavbarProps> = memo(({ className }) => {
 
     const [isAuthModalOpen, setIsAuthModalOpen] = useState(false)
 
-    const [isLoggedIn, setIsLoggedIn] = useState(!!authData)
-
     const handleAuthModalOpen = useCallback(() => {
         setIsAuthModalOpen(true)
     }, [setIsAuthModalOpen])
@@ -37,17 +35,15 @@ export const Navbar: FC<NavbarProps> = memo(({ className }) => {
 
     const handleLogout = useCallback(() => {
         dispatch(userActions.logout())
-        setIsLoggedIn(false)
     }, [dispatch])
 
     const handleLoginSuccess = useCallback(() => {
-        setIsLoggedIn(true)
-        setIsAuthModalOpen(false)
-    }, [])
+        handleAuthModalClose()
+    }, [handleAuthModalClose])
 
     return (
         <>
-            {isLoggedIn ? (
+            {authData ? (
                 <div className={classNames(classes.navbar, {}, [className])}>
                     <div className={classes.links}>
                         <Button theme="clearInverted" onClick={handleLogout}>

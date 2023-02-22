@@ -1,4 +1,4 @@
-import { type FC, memo, useCallback } from 'react'
+import { type FC, type FormEventHandler, memo, useCallback } from 'react'
 import { useSelector } from 'react-redux'
 import { classNames } from 'shared/lib/classNames'
 import classes from './LoginForm.module.scss'
@@ -36,15 +36,25 @@ export const LoginForm: FC<LoginFormProps> = memo((props) => {
         [dispatch]
     )
 
-    const handleLoginClick = useCallback(async () => {
-        const result = await dispatch(loginByUsername({ username, password }))
-        if (result.meta.requestStatus === 'fulfilled') {
-            onLoginSuccess()
-        }
-    }, [dispatch, onLoginSuccess, password, username])
+    const handleSubmit: FormEventHandler<HTMLFormElement> = useCallback(
+        async (event) => {
+            event.preventDefault()
+            event.stopPropagation()
+            const result = await dispatch(
+                loginByUsername({ username, password })
+            )
+            if (result.meta.requestStatus === 'fulfilled') {
+                onLoginSuccess()
+            }
+        },
+        [dispatch, onLoginSuccess, password, username]
+    )
 
     return (
-        <div className={classNames(classes.loginForm, {}, [className])}>
+        <form
+            onSubmit={handleSubmit}
+            className={classNames(classes.loginForm, {}, [className])}
+        >
             <Text title={t('authForm')!} />
             {error && <Text text={t(error)!} theme="error" />}
             <Input
@@ -65,12 +75,12 @@ export const LoginForm: FC<LoginFormProps> = memo((props) => {
             <Button
                 theme="outline"
                 className={classes.button}
-                onClick={handleLoginClick}
                 disabled={isLoading}
+                type="submit"
             >
                 {t('signIn')}
             </Button>
-        </div>
+        </form>
     )
 })
 LoginForm.displayName = 'LoginForm'
