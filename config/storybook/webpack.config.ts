@@ -16,9 +16,10 @@ export default ({
         src: path.resolve(__dirname, '..', '..', 'src'),
     }
 
-    config.resolve?.modules?.push(paths.src)
+    config.resolve?.modules?.unshift(paths.src)
     config.resolve?.extensions?.push('.ts', '.tsx')
     config.module?.rules?.push(buildCssLoader(true))
+
     // @ts-expect-error undefined
     config.module.rules = config.module.rules.map(
         // @ts-expect-error undexpected
