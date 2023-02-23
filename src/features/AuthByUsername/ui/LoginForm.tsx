@@ -55,9 +55,16 @@ export const LoginForm: FC<LoginFormProps> = memo((props) => {
             onSubmit={handleSubmit}
             className={classNames(classes.loginForm, {}, [className])}
         >
-            <Text title={t('authForm')!} />
-            {error && <Text text={t(error)!} theme="error" />}
+            <Text data-testid="loginForm.title" title={t('authForm')!} />
+            {error && (
+                <Text
+                    data-testid="loginForm.error"
+                    text={t(error)!}
+                    theme="error"
+                />
+            )}
             <Input
+                data-testid="loginForm.username"
                 className={classes.input}
                 type="text"
                 placeholder={t('typeLogin')!}
@@ -66,6 +73,7 @@ export const LoginForm: FC<LoginFormProps> = memo((props) => {
                 autoFocus
             />
             <Input
+                data-testid="loginForm.password"
                 className={classes.input}
                 type="text"
                 placeholder={t('typePassword')!}
@@ -73,6 +81,7 @@ export const LoginForm: FC<LoginFormProps> = memo((props) => {
                 value={password}
             />
             <Button
+                data-testid="loginForm.submit"
                 theme="outline"
                 className={classes.button}
                 disabled={isLoading}

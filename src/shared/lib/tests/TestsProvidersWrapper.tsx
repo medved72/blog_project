@@ -11,14 +11,16 @@ initI18nForTests().catch(console.log)
 export interface TestsProvidersWrapperFactoryProps {
     route?: string
     initialState?: DeepPartial<RootState>
+    language?: 'ru' | 'en'
 }
 
 export function TestsProvidersWrapperFactory(
     options: TestsProvidersWrapperFactoryProps = {}
 ): FC<PropsWithChildren> {
-    const { route = '/', initialState } = options
+    const { route = '/', initialState, language = 'ru' } = options
+    i18n.changeLanguage(language).catch(console.log)
 
-    const TestsProvidersWrapper: FC<PropsWithChildren> = ({ children }) => {
+    return function TestsProvidersWrapper({ children }) {
         return (
             <StoreProvider initialState={initialState as RootState}>
                 <MemoryRouter initialEntries={[route]}>
@@ -27,5 +29,4 @@ export function TestsProvidersWrapperFactory(
             </StoreProvider>
         )
     }
-    return TestsProvidersWrapper
 }

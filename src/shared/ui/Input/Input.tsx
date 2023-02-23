@@ -19,6 +19,7 @@ interface InputProps extends HTMLInputProps {
     value?: string
     onChange?: (value: string) => void
     inputClassName?: string
+    'data-testid'?: string
 }
 
 export const Input: FC<InputProps> = memo((props) => {
@@ -34,6 +35,7 @@ export const Input: FC<InputProps> = memo((props) => {
         autoFocus,
         ...restProps
     } = props
+
     const [isFocused, setIsFocused] = useState(autoFocus)
     const [caretPosition, setCaretPosition] = useState(0)
 
@@ -70,14 +72,20 @@ export const Input: FC<InputProps> = memo((props) => {
     )
 
     return (
-        <div className={classNames(classes.wrapper, {}, [className])}>
+        <div
+            className={classNames(classes.wrapper, {}, [className])}
+            data-testid={restProps['data-testid']}
+        >
             {placeholder && (
-                <div className={classes.placeholder}>{placeholder}</div>
+                <div className={classes.placeholder} data-testid="placeholder">
+                    {placeholder}
+                </div>
             )}
 
             <div className={classes.caretWrapper}>
                 <input
                     {...restProps}
+                    data-testid="input"
                     className={classNames(classes.input, {}, [inputClassName])}
                     autoFocus={autoFocus}
                     value={value}

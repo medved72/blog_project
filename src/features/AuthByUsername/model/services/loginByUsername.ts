@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
 import axios from 'axios'
 import { actions, type User } from 'entities/User'
-import { USER_LOCALSTORAGE_KEY } from '../../../../shared/const/localStorege'
+import { USER_LOCALSTORAGE_KEY } from 'shared/const/localStorage'
 
 interface LoginByUsernameBody {
     username: string
