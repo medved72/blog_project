@@ -8,10 +8,14 @@ interface LoginByUsernameBody {
     password: string
 }
 
+type RejectValue =
+    | 'ERROR_INCORRECT_USERNAME_OR_PASSWORD'
+    | 'ERROR_UNKNOWN_ERROR'
+
 export const loginByUsername = createAsyncThunk<
     User,
     LoginByUsernameBody,
-    { rejectValue: string }
+    { rejectValue: RejectValue }
 >('login/loginByUsername', async (body, thunkAPI) => {
     try {
         const response = await axios.post<User>(
@@ -20,7 +24,7 @@ export const loginByUsername = createAsyncThunk<
         )
 
         if (!response.data) {
-            return thunkAPI.rejectWithValue('error')
+            return thunkAPI.rejectWithValue('ERROR_UNKNOWN_ERROR')
         }
 
         localStorage.setItem(

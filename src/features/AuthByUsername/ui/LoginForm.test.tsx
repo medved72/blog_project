@@ -166,6 +166,22 @@ describe('LoginForm', () => {
         })
         expect(successSubmitMock).toHaveBeenCalled()
     })
+
+    it('should get error if empty backend data', async () => {
+        mock.onPost('http://localhost:8000/login').reply(200)
+        renderWithProviders(<LoginForm onLoginSuccess={jest.fn} />)
+
+        await userEvent.type(getUsernameInput(), 'username')
+        await userEvent.type(getPasswordInput(), 'password')
+        await userEvent.click(getSubmit())
+
+        expect(mock.history.post[0].url).toEqual('http://localhost:8000/login')
+        expect(JSON.parse(mock.history.post[0].data)).toEqual({
+            username: 'username',
+            password: 'password',
+        })
+        expect(getError()).toHaveTextContent('Произошла неизвестная ошибка')
+    })
 })
 
 function getError() {
