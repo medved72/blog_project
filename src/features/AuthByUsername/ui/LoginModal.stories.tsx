@@ -20,6 +20,7 @@ Primary.args = {
     isOpen: true,
     onClose: action('onClose'),
     onLoginSuccess: action('onLoginSuccess'),
+    getModalContainer: () => document.querySelector('.sb-main-padded #root')!,
 }
 Primary.decorators = [StoreDecorator({})]
 
@@ -28,5 +29,6 @@ Dark.args = {
     isOpen: true,
     onClose: action('onClose'),
     onLoginSuccess: action('onLoginSuccess'),
+    getModalContainer: () => document.querySelector('.sb-main-padded #root')!,
 }
 Dark.decorators = [StoreDecorator({}), ThemeDecorator(THEME.DARK)]

@@ -8,15 +8,18 @@ interface LoginModalProps {
     isOpen: boolean
     onClose: () => void
     onLoginSuccess: () => void
+    getModalContainer?: () => HTMLElement
 }
 export const LoginModal: FC<LoginModalProps> = memo((props) => {
-    const { className, isOpen, onClose, onLoginSuccess } = props
+    const { className, isOpen, onClose, onLoginSuccess, getModalContainer } =
+        props
 
     return (
         <Modal
             className={classNames('', {}, [className])}
             isOpen={isOpen}
             onClose={onClose}
+            getModalContainer={getModalContainer}
             destroyOnClose
         >
             <LoginForm onLoginSuccess={onLoginSuccess} />

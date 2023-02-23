@@ -52,6 +52,7 @@ export const LoginForm: FC<LoginFormProps> = memo((props) => {
 
     return (
         <form
+            data-testid="loginForm"
             onSubmit={handleSubmit}
             className={classNames(classes.loginForm, {}, [className])}
         >
