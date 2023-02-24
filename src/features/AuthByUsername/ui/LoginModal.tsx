@@ -20,7 +20,7 @@ export const LoginModal: FC<LoginModalProps> = memo((props) => {
             isOpen={isOpen}
             onClose={onClose}
             getModalContainer={getModalContainer}
-            destroyOnClose
+            renderMode="destroyOnclose"
         >
             <LoginForm onLoginSuccess={onLoginSuccess} />
         </Modal>

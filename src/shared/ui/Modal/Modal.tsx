@@ -9,74 +9,66 @@ import React, {
     useState,
 } from 'react'
 import { classNames } from 'shared/lib/classNames'
-
-import classes from './Modal.module.scss'
 import { Portal } from 'shared/ui/Portal'
 import { useTheme } from 'shared/config/theme'
+
+import classes from './Modal.module.scss'
+
+type RenderMode = 'default' | 'lazy' | 'destroyOnclose'
 
 export interface ModalProps {
     className?: string
     isOpen?: boolean
     onClose?: () => void
     getModalContainer?: () => HTMLElement
-    lazy?: boolean
-    destroyOnClose?: boolean
+    renderMode?: RenderMode
 }
 
 const ANIMATION_DELAY = 300
+
+type ModalStatus =
+    | 'idle'
+    | 'closed'
+    | 'opened'
+    | 'open-in-progress'
+    | 'close-in-progress'
 
 export const Modal: FC<PropsWithChildren<ModalProps>> = memo((props) => {
     const {
         className,
         children,
-        isOpen: isOpenFromProps,
+        isOpen,
         onClose,
         getModalContainer,
-        lazy,
-        destroyOnClose,
+        renderMode = 'default',
     } = props
-    const [isOpen, setIsOpen] = useState(isOpenFromProps)
+    const [status, setStatus] = useState<ModalStatus>('idle')
 
-    const [isWasMounted, setIsWasMounted] = useState(false)
-
-    const [isOpenInProgress, setIsOpenInProgress] = useState(true)
-
-    const [isClosing, setIsClosing] = useState(false)
-
+    const openTimerRef = useRef<ReturnType<typeof setTimeout>>()
     const closeTimerRef = useRef<ReturnType<typeof setTimeout>>()
 
     const { theme } = useTheme()
 
-    useEffect(() => {
-        if (isOpen) {
-            setIsWasMounted(true)
-        }
-    }, [isOpen])
-
-    useEffect(() => {
-        if (isOpen && isWasMounted) {
-            setIsOpenInProgress(false)
-        }
-    }, [isOpen, isWasMounted])
+    const handleOpen = useCallback(() => {
+        setStatus('open-in-progress')
+        openTimerRef.current = setTimeout(() => {
+            setStatus('opened')
+        })
+    }, [])
 
     const handleClose = useCallback(() => {
-        if (!onClose) return
-        setIsClosing(true)
+        setStatus('close-in-progress')
         closeTimerRef.current = setTimeout(() => {
-            onClose()
-            setIsOpenInProgress(true)
-            setIsClosing(false)
-            setIsOpen(false)
+            setStatus('closed')
+            onClose?.()
         }, ANIMATION_DELAY)
     }, [onClose])
 
     useEffect(() => {
-        if (isOpenFromProps) {
-            setIsOpen(isOpenFromProps)
-        } else {
-            handleClose()
+        if (isOpen) {
+            handleOpen()
         }
-    }, [handleClose, isOpenFromProps])
+    }, [handleClose, handleOpen, isOpen])
 
     const handleGlobalKeyDown = useCallback(
         (e: KeyboardEvent) => {
@@ -92,39 +84,45 @@ export const Modal: FC<PropsWithChildren<ModalProps>> = memo((props) => {
     }, [])
 
     useEffect(() => {
-        if (isOpen) {
+        if (status === 'opened') {
             window.addEventListener('keydown', handleGlobalKeyDown)
         }
 
         return () => {
-            clearTimeout(closeTimerRef.current)
             window.removeEventListener('keydown', handleGlobalKeyDown)
         }
-    }, [handleGlobalKeyDown, isOpen])
+    }, [handleGlobalKeyDown, status])
+
+    useEffect(() => {
+        return () => {
+            clearTimeout(openTimerRef.current)
+            clearTimeout(closeTimerRef.current)
+        }
+    }, [])
 
     const rootClassname = useMemo(() => {
-        const opened = !isOpenInProgress && isOpen
+        const opened = status === 'opened' || status === 'close-in-progress'
         return classNames(
             classes.modal,
             {
                 [classes.opened]: opened,
-                [classes.isClosing]: isClosing,
+                [classes.isClosing]: status === 'close-in-progress',
             },
             [className, `${theme}Theme`]
         )
-    }, [className, isClosing, isOpen, isOpenInProgress, theme])
+    }, [className, status, theme])
 
-    if (destroyOnClose && !isOpen) {
+    if (renderMode === 'destroyOnclose' && status === 'closed') {
         return null
     }
 
-    if (lazy && !isWasMounted) {
+    if (renderMode === 'lazy' && status === 'idle') {
         return null
     }
 
     return (
         <Portal element={getModalContainer?.()}>
-            <div className={rootClassname}>
+            <div data-testid="modal" className={rootClassname}>
                 <div className={classes.overlay} onClick={handleClose}>
                     <div
                         className={classes.content}
