@@ -126,7 +126,11 @@ export const Modal: FC<PropsWithChildren<ModalProps>> = memo((props) => {
     return (
         <Portal element={getModalContainer?.()}>
             <div data-testid="modal" className={rootClassname}>
-                <div className={classes.overlay} onClick={handleClose}>
+                <div
+                    data-testid="modal.overlay"
+                    className={classes.overlay}
+                    onClick={handleClose}
+                >
                     <div
                         className={classes.content}
                         onClick={handleContentClick}
