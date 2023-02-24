@@ -27,7 +27,7 @@ describe('LoginModal', () => {
         expect(screen.getByTestId('loginForm')).toBeInTheDocument()
     })
 
-    it('should be closed', () => {
+    it('should be closed', async () => {
         renderWithProviders(
             <LoginModal
                 isOpen={false}

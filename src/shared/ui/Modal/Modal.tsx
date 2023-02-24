@@ -112,7 +112,10 @@ export const Modal: FC<PropsWithChildren<ModalProps>> = memo((props) => {
         )
     }, [className, status, theme])
 
-    if (renderMode === 'destroyOnclose' && status === 'closed') {
+    if (
+        renderMode === 'destroyOnclose' &&
+        (status === 'closed' || status === 'idle')
+    ) {
         return null
     }
 
