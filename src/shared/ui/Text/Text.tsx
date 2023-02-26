@@ -16,11 +16,20 @@ export const Text: FC<TextProps> = memo((props) => {
 
     return (
         <div
+            data-testid="text"
             {...restProps}
             className={classNames('', {}, [className, classes[theme]])}
         >
-            {title && <p className={classes.title}>{title}</p>}
-            {text && <p className={classes.text}>{text}</p>}
+            {title && (
+                <p data-testid="text.title" className={classes.title}>
+                    {title}
+                </p>
+            )}
+            {text && (
+                <p data-testid="text.text" className={classes.text}>
+                    {text}
+                </p>
+            )}
         </div>
     )
 })
