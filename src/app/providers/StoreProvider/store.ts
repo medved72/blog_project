@@ -1,9 +1,30 @@
-import { configureStore } from '@reduxjs/toolkit'
-import { rootReducer } from './reducer'
+import { configureStore, type ReducersMapObject } from '@reduxjs/toolkit'
+import { createReducerManager } from './reducerManager'
+import { type AppState, type StoreWithReducerManager } from './types'
 
-export const setupStore = (initialState?: ReturnType<typeof rootReducer>) =>
-    configureStore({
-        reducer: rootReducer,
-        devTools: _IS_DEV_,
-        preloadedState: initialState,
-    })
+import { reducer as user } from 'entities/User'
+import { reducer as counter } from 'entities/Counter'
+
+export const setupStore = (
+    initialState?: AppState,
+    asyncReducers?: ReducersMapObject<AppState>
+) => {
+    const reducerMap: ReducersMapObject<AppState> = {
+        ...asyncReducers,
+        user,
+        counter,
+    }
+
+    const reducerManager = createReducerManager(reducerMap)
+
+    const store: StoreWithReducerManager = {
+        ...configureStore<AppState>({
+            reducer: reducerManager.reduce,
+            devTools: _IS_DEV_,
+            preloadedState: initialState,
+        }),
+        reducerManager,
+    }
+
+    return store
+}

@@ -8,7 +8,7 @@ import React, {
     useRef,
     useState,
 } from 'react'
-import { classNames } from 'shared/lib/classNames'
+import { classNames } from 'shared/lib/classNames/classNames'
 import { Portal } from 'shared/ui/Portal'
 import { useTheme } from 'shared/config/theme'
 

@@ -1,1 +1,1 @@
-export const getUserAuthData = (state: RootState) => state.user.authData
+export const getUserAuthData = (state: AppState) => state.user.authData

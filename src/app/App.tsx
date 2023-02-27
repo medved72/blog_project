@@ -5,7 +5,7 @@ import { AppNavbar } from 'widgets/Navbar'
 import { Sidebar } from 'widgets/Sidebar'
 
 import { useTheme } from 'shared/config/theme'
-import { classNames } from 'shared/lib/classNames'
+import { classNames } from 'shared/lib/classNames/classNames'
 
 import { withProviders } from './providers'
 import { AppRouter } from './router'

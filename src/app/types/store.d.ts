@@ -1,7 +1,7 @@
-declare type RootState = ReturnType<
-    typeof import('../providers/StoreProvider/reducer').rootReducer
->
+declare type AppState = import('../providers/StoreProvider/types').AppState
 
-declare type AppDispatch = ReturnType<
-    typeof import('../providers/StoreProvider/store').setupStore
->['dispatch']
+declare type AppDispatch =
+    import('../providers/StoreProvider/types').AppDispatch
+
+declare type AppStore =
+    import('../providers/StoreProvider/types').StoreWithReducerManager

@@ -1,7 +1,7 @@
 import { type DecoratorFn } from '@storybook/react'
 import { Suspense, useEffect } from 'react'
 import { I18nextProvider } from 'react-i18next'
-import { i18nInitStorybook } from 'shared/config/i18n/i18nInitStorybook'
+import { i18nInitStorybook } from './i18nInitStorybook'
 import i18n from 'i18next'
 
 i18nInitStorybook().catch(console.error)

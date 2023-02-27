@@ -8,7 +8,7 @@ import { Button } from 'shared/ui/Button'
 import { AppLink } from 'shared/ui/Link'
 
 import { ROUTES } from 'shared/config/routes'
-import { classNames } from 'shared/lib/classNames'
+import { classNames } from 'shared/lib/classNames/classNames'
 
 import MainIcon from 'shared/assets/icons/main-20-20.svg'
 import AboutIcon from 'shared/assets/icons/about-20-20.svg'

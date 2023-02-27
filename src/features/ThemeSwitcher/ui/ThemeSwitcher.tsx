@@ -2,7 +2,7 @@ import { type FC, memo } from 'react'
 
 import { Button } from 'shared/ui/Button'
 import { THEME, useTheme } from 'shared/config/theme'
-import { classNames } from 'shared/lib/classNames'
+import { classNames } from 'shared/lib/classNames/classNames'
 
 import DarkIcon from 'shared/assets/icons/theme-dark.svg'
 import LightIcon from 'shared/assets/icons/theme-light.svg'

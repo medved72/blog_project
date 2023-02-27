@@ -3,11 +3,11 @@ import { StoreProvider } from 'app/providers/StoreProvider'
 import { type DeepPartial } from '@reduxjs/toolkit'
 
 export const StoreDecorator = (
-    initialState: DeepPartial<RootState>
+    initialState: DeepPartial<AppState>
 ): DecoratorFn => {
     return function StoreDecorator(StoryComponent) {
         return (
-            <StoreProvider initialState={initialState as RootState}>
+            <StoreProvider initialState={initialState as AppState}>
                 <StoryComponent />
             </StoreProvider>
         )

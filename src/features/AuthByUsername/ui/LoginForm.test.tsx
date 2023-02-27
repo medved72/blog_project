@@ -1,6 +1,6 @@
 import { screen, within } from '@testing-library/react'
 import { renderWithProviders } from 'shared/lib/tests'
-import { LoginForm } from './LoginForm'
+import LoginForm from './LoginForm'
 import userEvent from '@testing-library/user-event'
 import axios from 'axios'
 import MockAdapter from 'axios-mock-adapter'
@@ -94,6 +94,7 @@ describe('LoginForm', () => {
                 loginForm: {
                     username: 'usernameFromRedux',
                     password: 'passwordFromRedux',
+                    isLoading: false,
                 },
             },
         })
@@ -109,6 +110,7 @@ describe('LoginForm', () => {
                     username: '',
                     password: '',
                     error: 'ERROR_INCORRECT_USERNAME_OR_PASSWORD',
+                    isLoading: false,
                 },
             },
         })
@@ -124,6 +126,7 @@ describe('LoginForm', () => {
                     username: '',
                     password: '',
                     error: 'ERROR_INCORRECT_USERNAME_OR_PASSWORD',
+                    isLoading: false,
                 },
             },
         })

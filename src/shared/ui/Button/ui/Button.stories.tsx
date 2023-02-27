@@ -2,7 +2,7 @@ import { type ComponentMeta, type ComponentStory } from '@storybook/react'
 import { Button } from './Button'
 import { ThemeDecorator } from 'shared/config/storybook/ThemeDecorator'
 import { THEME } from 'shared/config/theme'
-import { capitalize } from 'shared/lib/capitalize'
+import { capitalize } from 'shared/lib/capitalize/capitalize'
 
 const meta: ComponentMeta<typeof Button> = {
     title: 'shared/Button',

@@ -1,9 +1,10 @@
 import { type FC, memo, type PropsWithChildren, useMemo } from 'react'
 import { Provider } from 'react-redux'
 import { setupStore } from './store'
+import { type AppState } from './types'
 
 interface StoreProviderProps {
-    initialState?: RootState
+    initialState?: AppState
 }
 
 export const StoreProvider: FC<PropsWithChildren<StoreProviderProps>> = memo(

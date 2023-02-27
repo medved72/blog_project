@@ -1,26 +1,29 @@
 import { type FC, type FormEventHandler, memo, useCallback } from 'react'
 import { useSelector } from 'react-redux'
-import { classNames } from 'shared/lib/classNames'
+import { classNames } from 'shared/lib/classNames/classNames'
 import classes from './LoginForm.module.scss'
 import { useTranslation } from 'react-i18next'
 import { Button } from 'shared/ui/Button'
 import { Input } from 'shared/ui/Input'
-import { actions } from '../model'
-import { getLoginState } from '../model/selectors'
+import { actions, reducer, selectors } from '../model'
 import { loginByUsername } from '../model/services/loginByUsername'
 import { Text } from 'shared/ui/Text'
 import { useAppDispatch } from 'shared/hooks/useAppDispatch'
+import { withDynamicModuleLoader } from 'shared/lib/components'
 
 interface LoginFormProps {
     className?: string
     onLoginSuccess: () => void
 }
 
-export const LoginForm: FC<LoginFormProps> = memo((props) => {
+const LoginFormPlain: FC<LoginFormProps> = memo((props) => {
     const { className, onLoginSuccess } = props
     const { t } = useTranslation()
     const dispatch = useAppDispatch()
-    const { username, password, error, isLoading } = useSelector(getLoginState)
+    const username = useSelector(selectors.getUsername)
+    const password = useSelector(selectors.getPassword)
+    const error = useSelector(selectors.getError)
+    const isLoading = useSelector(selectors.getLoading)
 
     const handleChangeUsername = useCallback(
         (username: string): void => {
@@ -93,4 +96,10 @@ export const LoginForm: FC<LoginFormProps> = memo((props) => {
         </form>
     )
 })
-LoginForm.displayName = 'LoginForm'
+LoginFormPlain.displayName = 'LoginForm'
+
+const LoginForm = withDynamicModuleLoader(LoginFormPlain, {
+    reducers: { loginForm: reducer },
+})
+
+export default LoginForm

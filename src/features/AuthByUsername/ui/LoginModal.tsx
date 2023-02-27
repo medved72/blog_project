@@ -1,7 +1,8 @@
-import { type FC, memo } from 'react'
-import { classNames } from 'shared/lib/classNames'
+import { type FC, memo, Suspense } from 'react'
+import { classNames } from 'shared/lib/classNames/classNames'
 import { Modal } from 'shared/ui/Modal'
-import { LoginForm } from './LoginForm'
+import { LoginFormAsync as LoginForm } from './LoginForm.async'
+import { DotsSpinner } from 'shared/ui/Spinner'
 
 interface LoginModalProps {
     className?: string
@@ -22,7 +23,9 @@ export const LoginModal: FC<LoginModalProps> = memo((props) => {
             getModalContainer={getModalContainer}
             renderMode="destroyOnclose"
         >
-            <LoginForm onLoginSuccess={onLoginSuccess} />
+            <Suspense fallback={<DotsSpinner />}>
+                <LoginForm onLoginSuccess={onLoginSuccess} />
+            </Suspense>
         </Modal>
     )
 })

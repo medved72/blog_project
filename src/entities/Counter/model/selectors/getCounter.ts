@@ -1,1 +1,1 @@
-export const getCounter = (state: RootState) => state.counter
+export const getCounter = (state: AppState) => state.counter

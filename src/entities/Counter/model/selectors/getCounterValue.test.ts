@@ -3,8 +3,8 @@ import { getCounterValue } from './getCounterValue'
 
 describe('getCounterValue', () => {
     it('should return counter value', () => {
-        const state = { counter: { value: 1 } } satisfies DeepPartial<RootState>
+        const state = { counter: { value: 1 } } satisfies DeepPartial<AppState>
 
-        expect(getCounterValue(state as RootState)).toEqual(1)
+        expect(getCounterValue(state as AppState)).toEqual(1)
     })
 })
