@@ -4,6 +4,7 @@ import { THEME } from 'shared/config/theme'
 import { ThemeDecorator } from 'shared/config/storybook/ThemeDecorator'
 import { StoreDecorator } from 'shared/config/storybook/StoreDecorator'
 import { action } from '@storybook/addon-actions'
+import createAsyncCallback from '@loki/create-async-callback'
 
 const meta: ComponentMeta<typeof LoginModal> = {
     title: 'features/LoginModal',
@@ -12,6 +13,12 @@ const meta: ComponentMeta<typeof LoginModal> = {
 export default meta
 
 const Template: ComponentStory<typeof LoginModal> = (args) => {
+    const resolve = createAsyncCallback()
+
+    setTimeout(() => {
+        resolve()
+    }, 3000)
+
     return <LoginModal {...args} />
 }
 
