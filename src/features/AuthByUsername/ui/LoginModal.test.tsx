@@ -15,7 +15,7 @@ describe('LoginModal', () => {
         expect(baseElement).toBeTruthy()
     })
 
-    it('should render LoginForm', () => {
+    it('should render LoginForm', async () => {
         renderWithProviders(
             <LoginModal
                 isOpen={true}
@@ -24,7 +24,9 @@ describe('LoginModal', () => {
             />
         )
 
-        expect(screen.getByTestId('loginForm')).toBeInTheDocument()
+        expect(
+            await screen.findByTestId('loginForm', {}, { timeout: 2000 })
+        ).toBeInTheDocument()
     })
 
     it('should be closed', async () => {

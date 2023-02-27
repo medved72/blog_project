@@ -4,6 +4,7 @@ import LoginForm from './LoginForm'
 import userEvent from '@testing-library/user-event'
 import axios from 'axios'
 import MockAdapter from 'axios-mock-adapter'
+import { reducer } from '../model'
 
 describe('LoginForm', () => {
     let mock: MockAdapter
@@ -97,6 +98,7 @@ describe('LoginForm', () => {
                     isLoading: false,
                 },
             },
+            asyncReducers: { loginForm: reducer },
         })
 
         expect(getUsernameInput()).toHaveValue('usernameFromRedux')
@@ -113,6 +115,7 @@ describe('LoginForm', () => {
                     isLoading: false,
                 },
             },
+            asyncReducers: { loginForm: reducer },
         })
 
         expect(getError()).toHaveTextContent('Неправильный логин или пароль')
@@ -129,6 +132,7 @@ describe('LoginForm', () => {
                     isLoading: false,
                 },
             },
+            asyncReducers: { loginForm: reducer },
         })
 
         expect(getError()).toHaveTextContent('Incorrect username or password')
