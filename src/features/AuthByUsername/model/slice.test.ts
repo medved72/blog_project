@@ -6,7 +6,9 @@ describe('slice', () => {
     it('testSetUsername', () => {
         const state: DeepPartial<Required<LoginState>> = { username: 'idle' }
 
-        expect(reducer(state, actions.setUsername('expected'))).toEqual({
+        expect(
+            reducer(state as LoginState, actions.setUsername('expected'))
+        ).toEqual({
             username: 'expected',
         })
     })
@@ -14,7 +16,9 @@ describe('slice', () => {
     it('testSetPassword', () => {
         const state: DeepPartial<Required<LoginState>> = { password: 'idle' }
 
-        expect(reducer(state, actions.setPassword('expected'))).toEqual({
+        expect(
+            reducer(state as LoginState, actions.setPassword('expected'))
+        ).toEqual({
             password: 'expected',
         })
     })
