@@ -11,14 +11,15 @@ interface ProfilePageProps {
 const ProfilePage: FC<ProfilePageProps> = memo((props) => {
     const { className } = props
     return (
-        <div className={classNames(classes.profilePage, {}, [className])}></div>
+        <div className={classNames(classes.profilePage, {}, [className])}>
+            {/* eslint-disable-next-line i18next/no-literal-string */}
+            <p>ProfilePage</p>
+        </div>
     )
 })
 ProfilePage.displayName = 'ProfilePage'
 
 export default withDynamicModuleLoader(ProfilePage, {
-    reducers: {
-        profile,
-    },
+    reducers: { profile },
     removeAfterUnmount: true,
 })
