@@ -41,5 +41,11 @@ module.exports = {
                 '@typescript-eslint/consistent-type-imports': ['off'],
             },
         },
+        {
+            files: '**/**.test.ts',
+            rules: {
+                'prefer-promise-reject-errors': ['off'],
+            },
+        },
     ],
 }
