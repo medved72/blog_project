@@ -1,5 +1,5 @@
 import { screen } from '@testing-library/react'
-import { Sidebar } from 'widgets/Sidebar'
+import { Sidebar } from './Sidebar'
 import { renderWithProviders } from 'shared/lib/tests'
 import userEvent from '@testing-library/user-event'
 

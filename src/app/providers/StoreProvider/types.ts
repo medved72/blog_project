@@ -7,14 +7,16 @@ import {
     type ThunkMiddleware,
 } from '@reduxjs/toolkit'
 import { type ToolkitStore } from '@reduxjs/toolkit/dist/configureStore'
-import { type LoginSchema } from 'features/AuthByUsername'
+import { type LoginState } from 'features/AuthByUsername'
 import { type CounterState } from 'entities/Counter'
-import { type UserSchema } from 'entities/User'
+import { type UserState } from 'entities/User'
+import { type ProfileState } from 'entities/Profile'
 
 export interface AppState {
-    user: UserSchema
+    user: UserState
     counter: CounterState
-    loginForm?: LoginSchema
+    loginForm?: LoginState
+    profile?: ProfileState
 }
 
 export type AppDispatch = ReturnType<typeof setupStore>['dispatch']

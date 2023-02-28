@@ -1,0 +1,20 @@
+.sidebarItem {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    gap: 10px;
+}
+
+.icon {
+    fill: var(--inverted-primary-color);
+}
+
+.collapsed {
+    width: var(--sidebar-width-collapsed);
+
+    span {
+        width: 0;
+        opacity: 0;
+        transition: display 0.2s, opacity 0.2s;
+    }
+}

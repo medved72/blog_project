@@ -1,17 +1,13 @@
 import { type FC, memo, useCallback, useState } from 'react'
-import { useTranslation } from 'react-i18next'
-import { generatePath } from 'react-router-dom'
 
 import { ThemeSwitcher } from 'features/ThemeSwitcher'
 import { LanguageSwitcher } from 'features/LanguageSwitcher'
 import { Button } from 'shared/ui/Button'
-import { AppLink } from 'shared/ui/Link'
 
-import { ROUTES } from 'shared/config/routes'
 import { classNames } from 'shared/lib/classNames/classNames'
 
-import MainIcon from 'shared/assets/icons/main-20-20.svg'
-import AboutIcon from 'shared/assets/icons/about-20-20.svg'
+import { itemsList } from '../../model/items'
+import { SidebarItem } from '../SidebarItem'
 
 import classes from './Sidebar.module.scss'
 
@@ -21,7 +17,6 @@ export interface SidebarProps {
 
 export const Sidebar: FC<SidebarProps> = memo(({ className }) => {
     const [collapsed, setCollapsed] = useState(false)
-    const { t } = useTranslation()
 
     const toggle = useCallback(() => {
         setCollapsed((prev) => !prev)
@@ -47,22 +42,15 @@ export const Sidebar: FC<SidebarProps> = memo(({ className }) => {
                 {collapsed ? '>' : '<'}
             </Button>
             <div className={classes.items}>
-                <AppLink
-                    className={classes.link}
-                    theme="invertedPrimary"
-                    to={generatePath(ROUTES.MAIN, {})}
-                >
-                    <MainIcon className={classes.icon} />
-                    <span>{t('linkToMain')}</span>
-                </AppLink>
-                <AppLink
-                    className={classes.link}
-                    theme="invertedPrimary"
-                    to={generatePath(ROUTES.ABOUT, {})}
-                >
-                    <AboutIcon className={classes.icon} />
-                    <span>{t('linkToAboutUs')}</span>
-                </AppLink>
+                {itemsList.map((item) => {
+                    return (
+                        <SidebarItem
+                            key={item.path}
+                            item={item}
+                            collapsed={collapsed}
+                        />
+                    )
+                })}
             </div>
             <div className={classes.switchers}>
                 <ThemeSwitcher />

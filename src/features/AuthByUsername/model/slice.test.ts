@@ -1,21 +1,21 @@
 import { type DeepPartial } from '@reduxjs/toolkit'
-import { type LoginSchema } from './types'
+import { type LoginState } from './types'
 import { actions, reducer } from './slice'
 
 describe('slice', () => {
     it('testSetUsername', () => {
-        const state: DeepPartial<Required<LoginSchema>> = { username: 'idle' }
+        const state: DeepPartial<Required<LoginState>> = { username: 'idle' }
 
-        expect(
-            reducer(state as LoginSchema, actions.setUsername('expected'))
-        ).toEqual({ username: 'expected' })
+        expect(reducer(state, actions.setUsername('expected'))).toEqual({
+            username: 'expected',
+        })
     })
 
     it('testSetPassword', () => {
-        const state: DeepPartial<Required<LoginSchema>> = { password: 'idle' }
+        const state: DeepPartial<Required<LoginState>> = { password: 'idle' }
 
-        expect(
-            reducer(state as LoginSchema, actions.setPassword('expected'))
-        ).toEqual({ password: 'expected' })
+        expect(reducer(state, actions.setPassword('expected'))).toEqual({
+            password: 'expected',
+        })
     })
 })
