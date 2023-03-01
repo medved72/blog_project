@@ -1,1 +1,2 @@
-export const getPassword = (state: AppState) => state.loginForm?.password ?? ''
+export const getPassword = (state: GlbAppState) =>
+    state.loginForm?.password ?? ''

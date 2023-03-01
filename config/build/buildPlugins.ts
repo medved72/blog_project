@@ -9,6 +9,7 @@ export function buildPlugins({
     isDev,
     paths,
     analyzerMode = 'disabled',
+    apiUrl,
 }: BuildConfigOptions): webpack.WebpackPluginInstance[] {
     const plugins: webpack.WebpackPluginInstance[] = [
         new HtmlWebpackPlugin({ template: paths.html }),
@@ -17,7 +18,10 @@ export function buildPlugins({
             filename: 'css/[name].[contenthash:8].css',
             chunkFilename: 'css/[name].[contenthash:8].css',
         }),
-        new webpack.DefinePlugin({ _IS_DEV_: isDev }),
+        new webpack.DefinePlugin({
+            _IS_DEV_: isDev,
+            _API_: JSON.stringify(apiUrl),
+        }),
         new BundleAnalyzerPlugin({ analyzerMode }),
     ]
     if (isDev) {

@@ -1,23 +1,18 @@
-import axios from 'axios'
+import { TestAsyncThunk } from 'shared/lib/tests'
 import { loginByUsername } from './loginByUsername'
 import { actions } from 'entities/User'
-import { TestAsyncThunk } from 'shared/lib/tests'
-
-jest.mock('axios')
-
-const mockedAxios = jest.mocked(axios)
 
 describe('loginByUsername', () => {
     it('success login', async () => {
         const thunk = new TestAsyncThunk(loginByUsername)
         const user = { id: '1', username: 'username' }
-        mockedAxios.post.mockReturnValue(Promise.resolve({ data: user }))
+        thunk.api.post.mockResolvedValue({ data: user })
 
         const result = await thunk.callThunk({
             username: 'username',
             password: 'password',
         })
-        expect(mockedAxios.post).toHaveBeenCalled()
+        expect(thunk.api.post).toHaveBeenCalled()
         expect(result.meta.requestStatus).toBe('fulfilled')
         expect(result.payload).toEqual(user)
         expect(thunk.dispatch).toHaveBeenCalledWith(actions.setAuthData(user))
@@ -26,13 +21,13 @@ describe('loginByUsername', () => {
 
     it('error login', async () => {
         const thunk = new TestAsyncThunk(loginByUsername)
-        mockedAxios.post.mockReturnValue(Promise.reject())
+        thunk.api.post.mockRejectedValue({})
 
         const result = await thunk.callThunk({
             username: 'username',
             password: 'password',
         })
-        expect(mockedAxios.post).toHaveBeenCalled()
+        expect(thunk.api.post).toHaveBeenCalled()
         expect(result.meta.requestStatus).toBe('rejected')
         expect(result.payload).toBe('ERROR_INCORRECT_USERNAME_OR_PASSWORD')
         expect(thunk.dispatch).toHaveBeenCalledTimes(2)
@@ -40,13 +35,13 @@ describe('loginByUsername', () => {
 
     it('error no data', async () => {
         const thunk = new TestAsyncThunk(loginByUsername)
-        mockedAxios.post.mockReturnValue(Promise.resolve({}))
+        thunk.api.post.mockResolvedValue({})
 
         const result = await thunk.callThunk({
             username: 'username',
             password: 'password',
         })
-        expect(mockedAxios.post).toHaveBeenCalled()
+        expect(thunk.api.post).toHaveBeenCalled()
         expect(result.meta.requestStatus).toBe('rejected')
         expect(result.payload).toBe('ERROR_UNKNOWN_ERROR')
         expect(thunk.dispatch).toHaveBeenCalledTimes(2)

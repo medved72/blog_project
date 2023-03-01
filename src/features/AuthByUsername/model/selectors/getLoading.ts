@@ -1,2 +1,2 @@
-export const getLoading = (state: AppState) =>
+export const getLoading = (state: GlbAppState) =>
     state.loginForm?.isLoading ?? false

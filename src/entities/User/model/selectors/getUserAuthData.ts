@@ -1,1 +1,1 @@
-export const getUserAuthData = (state: AppState) => state.user.authData
+export const getUserAuthData = (state: GlbAppState) => state.user.authData

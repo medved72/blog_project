@@ -1,1 +1,2 @@
-export const getUsername = (state: AppState) => state.loginForm?.username ?? ''
+export const getUsername = (state: GlbAppState) =>
+    state.loginForm?.username ?? ''

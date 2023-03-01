@@ -4,13 +4,13 @@ import {
     type CombinedState,
     type Reducer,
     type ReducersMapObject,
-    type ThunkMiddleware,
 } from '@reduxjs/toolkit'
-import { type ToolkitStore } from '@reduxjs/toolkit/dist/configureStore'
 import { type LoginState } from 'features/AuthByUsername'
 import { type CounterState } from 'entities/Counter'
 import { type UserState } from 'entities/User'
 import { type ProfileState } from 'entities/Profile'
+import { type AxiosInstance } from 'axios'
+import { type NavigateFunction } from 'react-router-dom'
 
 export interface AppState {
     user: UserState
@@ -31,8 +31,14 @@ export interface ReducerManager {
     remove: (key: keyof AppState) => void
 }
 
-export type StoreWithReducerManager = ToolkitStore<
-    AppState,
-    AnyAction,
-    [ThunkMiddleware<AppState, AnyAction, undefined>]
-> & { reducerManager: ReducerManager }
+export type StoreWithReducerManager = ReturnType<typeof setupStore>
+
+export interface ThunkExtraArg {
+    api: AxiosInstance
+    navigate?: NavigateFunction
+}
+
+export interface ThunkConfig<T> {
+    rejectValue: T
+    extra: ThunkExtraArg
+}

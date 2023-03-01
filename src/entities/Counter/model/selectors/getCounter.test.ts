@@ -3,7 +3,9 @@ import { getCounter } from './getCounter'
 
 describe('getCounter', () => {
     it('should return counter state', () => {
-        const state = { counter: { value: 1 } } satisfies DeepPartial<AppState>
-        expect(getCounter(state as AppState)).toEqual({ value: 1 })
+        const state = {
+            counter: { value: 1 },
+        } satisfies DeepPartial<GlbAppState>
+        expect(getCounter(state as GlbAppState)).toEqual({ value: 1 })
     })
 })

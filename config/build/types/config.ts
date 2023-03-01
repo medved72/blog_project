@@ -6,6 +6,8 @@ export interface BuildConfigEnv {
     port: number
     mode: BuildConfigMode
     analyzer: BundleAnalyzerPlugin.Options['analyzerMode']
+
+    apiUrl: string
 }
 
 export interface BuildConfigPaths {
@@ -21,4 +23,5 @@ export interface BuildConfigOptions {
     port: number
     isDev: boolean
     analyzerMode: BundleAnalyzerPlugin.Options['analyzerMode']
+    apiUrl: string
 }

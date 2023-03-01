@@ -6,8 +6,8 @@ import { StoreProvider } from './StoreProvider'
 
 export const AppProvider: FC<PropsWithChildren> = ({ children }) => {
     return (
-        <StoreProvider>
-            <BrowserRouter>
+        <BrowserRouter>
+            <StoreProvider>
                 <ErrorBoundary>
                     <ThemeProvider>
                         <Suspense fallback={'... LOADING ...'}>
@@ -15,7 +15,7 @@ export const AppProvider: FC<PropsWithChildren> = ({ children }) => {
                         </Suspense>
                     </ThemeProvider>
                 </ErrorBoundary>
-            </BrowserRouter>
-        </StoreProvider>
+            </StoreProvider>
+        </BrowserRouter>
     )
 }

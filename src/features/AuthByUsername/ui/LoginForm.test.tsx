@@ -1,27 +1,17 @@
 import { screen, within } from '@testing-library/react'
-import { renderWithProviders } from 'shared/lib/tests'
-import LoginForm from './LoginForm'
+import {
+    renderWithProviders,
+    mockedAxios,
+} from 'shared/lib/tests/renderWithProviders'
 import userEvent from '@testing-library/user-event'
-import axios from 'axios'
-import MockAdapter from 'axios-mock-adapter'
 import { reducer } from '../model'
+import LoginForm from './LoginForm'
 
 describe('LoginForm', () => {
-    let mock: MockAdapter
-
-    beforeAll(() => {
-        mock = new MockAdapter(axios)
-    })
-
-    afterEach(() => {
-        mock.reset()
-    })
-
     it('should render', () => {
         const { baseElement } = renderWithProviders(
             <LoginForm onLoginSuccess={jest.fn} />
         )
-
         expect(baseElement).toBeTruthy()
     })
 
@@ -139,54 +129,55 @@ describe('LoginForm', () => {
     })
 
     it('should get error while submit', async () => {
-        mock.onPost('http://localhost:8000/login').reply(403, 'Auth error')
+        mockedAxios.post.mockRejectedValue({})
         renderWithProviders(<LoginForm onLoginSuccess={jest.fn} />)
 
         await userEvent.type(getUsernameInput(), 'username')
         await userEvent.type(getPasswordInput(), 'password')
         await userEvent.click(getSubmit())
-
-        expect(mock.history.post[0].url).toEqual('http://localhost:8000/login')
-        expect(JSON.parse(mock.history.post[0].data)).toEqual({
-            username: 'username',
-            password: 'password',
-        })
+        const [call] = mockedAxios.post.mock.calls
+        expect(call).toEqual([
+            '/login',
+            {
+                username: 'username',
+                password: 'password',
+            },
+        ])
         expect(getError()).toHaveTextContent('Неправильный логин или пароль')
     })
 
     it('should success submit', async () => {
-        mock.onPost('http://localhost:8000/login').reply(200, {
-            id: '1',
-            username: 'username',
+        mockedAxios.post.mockResolvedValue({
+            data: { id: '1', username: 'username' },
         })
+
         const successSubmitMock = jest.fn()
         renderWithProviders(<LoginForm onLoginSuccess={successSubmitMock} />)
 
-        await userEvent.type(getUsernameInput(), 'username')
-        await userEvent.type(getPasswordInput(), 'password')
+        await userEvent.type(getUsernameInput(), 'username_success')
+        await userEvent.type(getPasswordInput(), 'password_success')
         await userEvent.click(getSubmit())
 
-        expect(mock.history.post[0].url).toEqual('http://localhost:8000/login')
-        expect(JSON.parse(mock.history.post[0].data)).toEqual({
-            username: 'username',
-            password: 'password',
-        })
+        const [call] = mockedAxios.post.mock.calls
+        expect(call).toEqual([
+            '/login',
+            { username: 'username_success', password: 'password_success' },
+        ])
         expect(successSubmitMock).toHaveBeenCalled()
     })
 
     it('should get error if empty backend data', async () => {
-        mock.onPost('http://localhost:8000/login').reply(200)
+        mockedAxios.post.mockResolvedValue({})
         renderWithProviders(<LoginForm onLoginSuccess={jest.fn} />)
 
         await userEvent.type(getUsernameInput(), 'username')
         await userEvent.type(getPasswordInput(), 'password')
         await userEvent.click(getSubmit())
-
-        expect(mock.history.post[0].url).toEqual('http://localhost:8000/login')
-        expect(JSON.parse(mock.history.post[0].data)).toEqual({
-            username: 'username',
-            password: 'password',
-        })
+        const [call] = mockedAxios.post.mock.calls
+        expect(call).toEqual([
+            '/login',
+            { username: 'username', password: 'password' },
+        ])
         expect(getError()).toHaveTextContent('Произошла неизвестная ошибка')
     })
 })

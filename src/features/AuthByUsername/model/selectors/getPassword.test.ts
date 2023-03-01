@@ -3,15 +3,15 @@ import { getPassword } from './getPassword'
 
 describe('getPassword', () => {
     it('should return error', () => {
-        const state: DeepPartial<Required<AppState>> = {
+        const state: DeepPartial<Required<GlbAppState>> = {
             loginForm: { password: 'password' },
         }
 
-        expect(getPassword(state as AppState)).toEqual('password')
+        expect(getPassword(state as GlbAppState)).toEqual('password')
     })
 
     it('should work with empty state', () => {
-        const state: DeepPartial<Required<AppState>> = {}
-        expect(getPassword(state as AppState)).toEqual('')
+        const state: DeepPartial<Required<GlbAppState>> = {}
+        expect(getPassword(state as GlbAppState)).toEqual('')
     })
 })

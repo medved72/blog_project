@@ -1,3 +1,3 @@
 import { useStore } from 'react-redux'
 
-export const useAppStore = (): AppStore => useStore() as AppStore
+export const useAppStore = (): GlbAppStore => useStore() as GlbAppStore

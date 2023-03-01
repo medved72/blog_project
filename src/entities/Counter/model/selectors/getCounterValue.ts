@@ -1,1 +1,1 @@
-export const getCounterValue = (state: AppState) => state.counter.value
+export const getCounterValue = (state: GlbAppState) => state.counter.value

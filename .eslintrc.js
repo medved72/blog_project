@@ -42,7 +42,7 @@ module.exports = {
             },
         },
         {
-            files: '**/**.test.ts',
+            files: ['**/**.test.ts', '**/**.test.tsx'],
             rules: {
                 'prefer-promise-reject-errors': ['off'],
             },

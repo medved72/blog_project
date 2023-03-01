@@ -1,5 +1,4 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
-import axios from 'axios'
 import { actions, type User } from 'entities/User'
 import { USER_LOCALSTORAGE_KEY } from 'shared/const/localStorage'
 
@@ -15,13 +14,10 @@ type RejectValue =
 export const loginByUsername = createAsyncThunk<
     User,
     LoginByUsernameBody,
-    { rejectValue: RejectValue }
+    GlbThunkConfig<RejectValue>
 >('login/loginByUsername', async (body, thunkAPI) => {
     try {
-        const response = await axios.post<User>(
-            'http://localhost:8000/login',
-            body
-        )
+        const response = await thunkAPI.extra.api.post<User>('/login', body)
 
         if (!response.data) {
             return thunkAPI.rejectWithValue('ERROR_UNKNOWN_ERROR')

@@ -1,1 +1,1 @@
-export const getCounter = (state: AppState) => state.counter
+export const getCounter = (state: GlbAppState) => state.counter

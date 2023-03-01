@@ -68,7 +68,18 @@ export const Modal: FC<PropsWithChildren<ModalProps>> = memo((props) => {
         if (isOpen) {
             handleOpen()
         }
-    }, [handleClose, handleOpen, isOpen])
+    }, [handleOpen, isOpen])
+
+    useEffect(() => {
+        if (
+            !isOpen &&
+            status !== 'idle' &&
+            status !== 'close-in-progress' &&
+            status !== 'closed'
+        ) {
+            handleClose()
+        }
+    }, [handleClose, isOpen, status])
 
     const handleGlobalKeyDown = useCallback(
         (e: KeyboardEvent) => {

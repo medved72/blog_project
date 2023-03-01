@@ -4,7 +4,7 @@ import { useAppStore } from 'shared/hooks/useAppStore'
 import { useAppDispatch } from 'shared/hooks/useAppDispatch'
 
 type ReducersList = {
-    [name in keyof AppState]?: Reducer<NonNullable<AppState[name]>>
+    [name in keyof GlbAppState]?: Reducer<NonNullable<GlbAppState[name]>>
 }
 
 interface DynamicModuleLoaderProps {
@@ -20,14 +20,14 @@ export const DynamicModuleLoader: FC<
 
     useEffect(() => {
         Object.entries(reducers).forEach(([name, reducer]) => {
-            store.reducerManager.add(name as keyof AppState, reducer)
+            store.reducerManager.add(name as keyof GlbAppState, reducer)
             dispatch({ type: `@INIT ${name} reducer` })
         })
 
         return () => {
             if (removeAfterUnmount) {
                 Object.entries(reducers).forEach(([name]) => {
-                    store.reducerManager.remove(name as keyof AppState)
+                    store.reducerManager.remove(name as keyof GlbAppState)
                     dispatch({ type: `@DESTROY ${name} reducer` })
                 })
             }

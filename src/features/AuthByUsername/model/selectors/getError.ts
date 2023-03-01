@@ -1,1 +1,1 @@
-export const getError = (state: AppState) => state.loginForm?.error
+export const getError = (state: GlbAppState) => state.loginForm?.error

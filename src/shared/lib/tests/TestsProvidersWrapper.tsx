@@ -1,18 +1,16 @@
-import React, { type FC, type PropsWithChildren } from 'react'
+import React, { type FC, type PropsWithChildren, useEffect } from 'react'
 import { I18nextProvider } from 'react-i18next'
 import i18n from 'i18next'
 import { MemoryRouter } from 'react-router-dom'
 import { StoreProvider } from 'app/providers/StoreProvider'
 import { type DeepPartial, type ReducersMapObject } from '@reduxjs/toolkit'
-import { initI18nForTests } from '../../config/tests/i18nForTests'
-
-initI18nForTests().catch(console.log)
+import { initI18nForTests } from 'shared/config/tests/i18nForTests'
 
 export interface TestsProvidersWrapperFactoryProps {
     route?: string
-    initialState?: DeepPartial<AppState>
+    initialState?: DeepPartial<GlbAppState>
     language?: 'ru' | 'en'
-    asyncReducers?: Partial<ReducersMapObject<Required<AppState>>>
+    asyncReducers?: Partial<ReducersMapObject<Required<GlbAppState>>>
 }
 
 export function TestsProvidersWrapperFactory(
@@ -24,18 +22,25 @@ export function TestsProvidersWrapperFactory(
         language = 'ru',
         asyncReducers,
     } = options
-    i18n.changeLanguage(language).catch(console.log)
+
+    initI18nForTests().catch(console.log)
 
     return function TestsProvidersWrapper({ children }) {
+        useEffect(() => {
+            i18n.changeLanguage(language).catch(console.log)
+        }, [])
+
         return (
-            <StoreProvider
-                initialState={initialState as AppState}
-                asyncReducers={asyncReducers as ReducersMapObject<AppState>}
-            >
-                <MemoryRouter initialEntries={[route]}>
+            <MemoryRouter initialEntries={[route]}>
+                <StoreProvider
+                    initialState={initialState as GlbAppState}
+                    asyncReducers={
+                        asyncReducers as ReducersMapObject<GlbAppState>
+                    }
+                >
                     <I18nextProvider i18n={i18n}>{children}</I18nextProvider>
-                </MemoryRouter>
-            </StoreProvider>
+                </StoreProvider>
+            </MemoryRouter>
         )
     }
 }

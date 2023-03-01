@@ -18,5 +18,6 @@ export default {
     },
     globals: {
         _IS_DEV_: true,
+        _API_: '',
     },
 }

@@ -38,6 +38,7 @@ export default ({
     config.plugins?.push(
         new webpack.DefinePlugin({
             _IS_DEV_: true,
+            _API_: '',
         })
     )
 

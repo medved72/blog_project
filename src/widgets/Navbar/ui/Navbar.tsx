@@ -6,11 +6,12 @@ import { Button } from 'shared/ui/Button'
 import { classNames } from 'shared/lib/classNames/classNames'
 
 import classes from './Navbar.module.scss'
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 import {
     selectors as userSelectors,
     actions as userActions,
 } from 'entities/User'
+import { useAppDispatch } from 'shared/hooks/useAppDispatch'
 
 export interface NavbarProps {
     className?: string
@@ -19,7 +20,7 @@ export interface NavbarProps {
 export const Navbar: FC<NavbarProps> = memo(({ className }) => {
     const { t } = useTranslation()
 
-    const dispatch = useDispatch()
+    const dispatch = useAppDispatch()
 
     const authData = useSelector(userSelectors.getUserAuthData)
 

@@ -1,11 +1,12 @@
 import { type FC, memo, useCallback } from 'react'
 import { Button } from 'shared/ui/Button'
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 import { selectors, actions } from '../model'
+import { useAppDispatch } from 'shared/hooks/useAppDispatch'
 
 export const Counter: FC = memo(() => {
     const value = useSelector(selectors.value)
-    const dispatch = useDispatch()
+    const dispatch = useAppDispatch()
 
     const handleIncrement = useCallback(() => {
         dispatch(actions.increment())
