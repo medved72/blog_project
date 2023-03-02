@@ -20,9 +20,8 @@ export default ({
     config.resolve?.extensions?.push('.ts', '.tsx')
     config.module?.rules?.push(buildCssLoader(true))
 
-    // @ts-expect-profile undefined
-    config.module.rules = config.module.rules.map(
-        // @ts-expect-profile undexpected
+    config.module!.rules = config.module!.rules!.map(
+        // @ts-expect-error error
         (rule: webpack.RuleSetRule) => {
             // eslint-disable-next-line
             if (/svg/.test(rule.test as string)) {
