@@ -5,7 +5,10 @@ jest.mock('axios')
 const mockedAxios = jest.mocked(axios)
 
 jest.mock('shared/api/api', () => {
-    return { $api: mockedAxios }
+    return {
+        __esModule: true,
+        $api: mockedAxios,
+    }
 })
 const mockedApi = jest.mocked(api)
 
