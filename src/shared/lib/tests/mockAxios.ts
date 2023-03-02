@@ -1,11 +1,13 @@
-import * as api from 'shared/api/api'
 import axios from 'axios'
-
-jest.mock('shared/api/api')
-const mockedApi = jest.mocked(api)
+import * as api from 'shared/api/api'
 
 jest.mock('axios')
 const mockedAxios = jest.mocked(axios)
+
+jest.mock('shared/api/api', () => {
+    return { $api: mockedAxios }
+})
+const mockedApi = jest.mocked(api)
 
 mockedApi.$api = mockedAxios
 

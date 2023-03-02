@@ -5,6 +5,7 @@ export const $api = axios.create({
     baseURL: _API_,
 })
 
+console.log($api)
 $api.interceptors.request.use(
     (request) => {
         request.headers.set(

@@ -18,8 +18,6 @@ export const ProfileCard: FC<ProfileCardProps> = memo((props) => {
 
     const profileData = useSelector(selectors.profile)
 
-    console.log({ profileData })
-
     return (
         <div className={classNames(classes.profileCard, {}, [className])}>
             <div className={classes.header}>
