@@ -28,6 +28,7 @@ module.exports = {
         '@typescript-eslint/consistent-type-assertions': ['off'],
         'i18next/no-literal-string': ['error'],
         '@typescript-eslint/explicit-function-return-type': ['off'],
+        '@typescript-eslint/no-invalid-void-type': ['off'],
     },
     settings: {
         react: {

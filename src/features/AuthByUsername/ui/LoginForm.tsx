@@ -62,7 +62,7 @@ const LoginFormPlain: FC<LoginFormProps> = memo((props) => {
             <Text data-testid="loginForm.title" title={t('authForm')!} />
             {error && (
                 <Text
-                    data-testid="loginForm.error"
+                    data-testid="loginForm.profile"
                     text={t(error)!}
                     theme="error"
                 />

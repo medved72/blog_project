@@ -2,7 +2,7 @@ import { type DeepPartial } from '@reduxjs/toolkit'
 import { getLoading } from './getLoading'
 
 describe('getLoading', () => {
-    it('should return error', () => {
+    it('should return profile', () => {
         const state: DeepPartial<Required<GlbAppState>> = {
             loginForm: { isLoading: true },
         }

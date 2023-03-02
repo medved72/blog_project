@@ -2,7 +2,7 @@ import { type DeepPartial } from '@reduxjs/toolkit'
 import { getError } from './getError'
 
 describe('getError', () => {
-    it('should return error', () => {
+    it('should return profile', () => {
         const state: DeepPartial<Required<GlbAppState>> = {
             loginForm: { error: 'error' },
         }

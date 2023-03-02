@@ -3,6 +3,7 @@
   "ERROR_UNKNOWN_ERROR": "Произошла неизвестная ошибка",
   "authForm": "Авторизация",
   "changeLanguage": "Перевод",
+  "edit": "Редактировать",
   "errorBoundary": "Произошла непредвиденная ошибка",
   "language": "Русский",
   "language_short": "Ру",
@@ -15,6 +16,7 @@
   "reloadPage": "Обновить страницу",
   "signIn": "Войти",
   "throw error": "Выкинуть ошибку",
+  "throw profile": "throw profile",
   "typeLogin": "Введите логин >",
   "typePassword": "Введите пароль >"
 }

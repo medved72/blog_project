@@ -2,7 +2,7 @@ import { type DeepPartial } from '@reduxjs/toolkit'
 import { getPassword } from './getPassword'
 
 describe('getPassword', () => {
-    it('should return error', () => {
+    it('should return profile', () => {
         const state: DeepPartial<Required<GlbAppState>> = {
             loginForm: { password: 'password' },
         }

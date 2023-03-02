@@ -95,7 +95,7 @@ describe('LoginForm', () => {
         expect(getPasswordInput()).toHaveValue('passwordFromRedux')
     })
 
-    it('should render with predefined ru error', () => {
+    it('should render with predefined ru profile', () => {
         renderWithProviders(<LoginForm onLoginSuccess={jest.fn} />, {
             initialState: {
                 loginForm: {
@@ -111,7 +111,7 @@ describe('LoginForm', () => {
         expect(getError()).toHaveTextContent('Неправильный логин или пароль')
     })
 
-    it('should render with predefined en error', () => {
+    it('should render with predefined en profile', () => {
         renderWithProviders(<LoginForm onLoginSuccess={jest.fn} />, {
             language: 'en',
             initialState: {
@@ -128,7 +128,7 @@ describe('LoginForm', () => {
         expect(getError()).toHaveTextContent('Incorrect username or password')
     })
 
-    it('should get error while submit', async () => {
+    it('should get profile while submit', async () => {
         mockedAxios.post.mockRejectedValue({})
         renderWithProviders(<LoginForm onLoginSuccess={jest.fn} />)
 
@@ -166,7 +166,7 @@ describe('LoginForm', () => {
         expect(successSubmitMock).toHaveBeenCalled()
     })
 
-    it('should get error if empty backend data', async () => {
+    it('should get profile if empty backend data', async () => {
         mockedAxios.post.mockResolvedValue({})
         renderWithProviders(<LoginForm onLoginSuccess={jest.fn} />)
 
@@ -183,7 +183,7 @@ describe('LoginForm', () => {
 })
 
 function getError() {
-    return screen.getByTestId('loginForm.error')
+    return screen.getByTestId('loginForm.profile')
 }
 
 function getSubmit() {

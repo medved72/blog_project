@@ -16,6 +16,6 @@ export const BugButton: FC = memo(() => {
         }
     }, [hasError])
 
-    return <Button onClick={toggleError}>{t('throw error')}</Button>
+    return <Button onClick={toggleError}>{t('throw profile')}</Button>
 })
 BugButton.displayName = 'BugButton'

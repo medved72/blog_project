@@ -3,6 +3,7 @@
   "ERROR_UNKNOWN_ERROR": "Unknown error",
   "authForm": "Login",
   "changeLanguage": "Translate",
+  "edit": "Edit",
   "errorBoundary": "An unexpected error has occurred",
   "language": "English",
   "language_short": "En",
@@ -15,6 +16,7 @@
   "reloadPage": "Reload page",
   "signIn": "Sign In",
   "throw error": "Throw error",
+  "throw profile": "throw profile",
   "typeLogin": "Enter login >",
   "typePassword": "Enter password >"
 }

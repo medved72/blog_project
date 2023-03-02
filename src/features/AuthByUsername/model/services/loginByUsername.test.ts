@@ -19,7 +19,7 @@ describe('loginByUsername', () => {
         expect(thunk.dispatch).toHaveBeenCalledTimes(3)
     })
 
-    it('error login', async () => {
+    it('profile login', async () => {
         const thunk = new TestAsyncThunk(loginByUsername)
         thunk.api.post.mockRejectedValue({})
 
@@ -33,7 +33,7 @@ describe('loginByUsername', () => {
         expect(thunk.dispatch).toHaveBeenCalledTimes(2)
     })
 
-    it('error no data', async () => {
+    it('profile no data', async () => {
         const thunk = new TestAsyncThunk(loginByUsername)
         thunk.api.post.mockResolvedValue({})
 
