@@ -5,7 +5,7 @@ import { THEME } from 'shared/config/theme'
 import { itemsList } from '../../model/items'
 
 const meta: ComponentMeta<typeof SidebarItem> = {
-    title: 'pages/SidebarItem',
+    title: 'widgets/SidebarItem',
     component: SidebarItem,
 }
 export default meta

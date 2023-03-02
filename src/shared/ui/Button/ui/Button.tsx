@@ -36,7 +36,7 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 export const Button: FC<PropsWithChildren<ButtonProps>> = memo(
     ({
         className,
-        theme = 'none',
+        theme = 'outline',
         size = 'm',
         children,
         square,
