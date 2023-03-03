@@ -1,4 +1,5 @@
 import i18n from 'i18next'
+import { initReactI18next } from 'react-i18next'
 
 import ru from '../../../../public/locales/ru/translation.json'
 import ru_about from '../../../../public/locales/ru/about.json'
@@ -8,8 +9,8 @@ import en from '../../../../public/locales/en/translation.json'
 import en_about from '../../../../public/locales/en/about.json'
 import en_profile from '../../../../public/locales/en/profile.json'
 
-export const i18nInitStorybook = async (): Promise<void> => {
-    await i18n.init({
+i18n.use(initReactI18next)
+    .init({
         fallbackLng: 'ru',
         lng: 'ru',
         debug: _IS_DEV_,
@@ -30,4 +31,6 @@ export const i18nInitStorybook = async (): Promise<void> => {
             },
         },
     })
-}
+    .catch(console.log)
+
+export { i18n }

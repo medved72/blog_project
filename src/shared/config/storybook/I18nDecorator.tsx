@@ -1,10 +1,7 @@
 import { type DecoratorFn } from '@storybook/react'
 import { Suspense, useEffect } from 'react'
 import { I18nextProvider } from 'react-i18next'
-import { i18nInitStorybook } from './i18nInitStorybook'
-import i18n from 'i18next'
-
-i18nInitStorybook().catch(console.error)
+import { i18n } from 'shared/config/i18n/i18nInit.static'
 
 export const I18nDecorator: DecoratorFn = (Story, context) => {
     const { locale } = context.globals

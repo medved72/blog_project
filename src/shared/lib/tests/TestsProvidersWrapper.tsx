@@ -1,10 +1,9 @@
 import React, { type FC, type PropsWithChildren, useEffect } from 'react'
 import { I18nextProvider } from 'react-i18next'
-import i18n from 'i18next'
 import { MemoryRouter } from 'react-router-dom'
 import { StoreProvider } from 'app/providers/StoreProvider'
 import { type DeepPartial, type ReducersMapObject } from '@reduxjs/toolkit'
-import { initI18nForTests } from 'shared/config/tests/i18nForTests'
+import { i18n } from 'shared/config/i18n/i18nInit.static'
 
 export interface TestsProvidersWrapperFactoryProps {
     route?: string
@@ -22,8 +21,6 @@ export function TestsProvidersWrapperFactory(
         language = 'ru',
         asyncReducers,
     } = options
-
-    initI18nForTests().catch(console.log)
 
     return function TestsProvidersWrapper({ children }) {
         useEffect(() => {
