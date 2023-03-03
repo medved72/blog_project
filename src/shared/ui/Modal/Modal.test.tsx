@@ -1,7 +1,6 @@
 import { renderWithProviders } from 'shared/lib/tests'
 import { Modal } from './Modal'
 import { screen, waitFor } from '@testing-library/react'
-import userEvent from '@testing-library/user-event'
 
 describe('Modal', () => {
     it('should render', () => {
@@ -23,7 +22,7 @@ describe('Modal', () => {
     })
 
     it('should be valid render with renderMode default', async () => {
-        const { rerender } = renderWithProviders(<Modal isOpen={false} />)
+        const { user, rerender } = renderWithProviders(<Modal isOpen={false} />)
         expect(getModal()).toBeInTheDocument()
         expect(getModal()).not.toHaveClass('opened')
 
@@ -35,7 +34,8 @@ describe('Modal', () => {
             expect(getModal()).toHaveClass('opened')
         })
 
-        await userEvent.click(getOverlay())
+        await user.click(getOverlay())
+
         await waitFor(() => {
             expect(getModal()).toHaveClass('isClosing')
         })
@@ -46,7 +46,7 @@ describe('Modal', () => {
     })
 
     it('should be valid render with renderMode destroyOnClose', async () => {
-        const { rerender } = renderWithProviders(
+        const { user, rerender } = renderWithProviders(
             <Modal isOpen={false} renderMode="destroyOnclose" />
         )
         expect(queryModal()).not.toBeInTheDocument()
@@ -59,7 +59,7 @@ describe('Modal', () => {
             expect(getModal()).toHaveClass('opened')
         })
 
-        await userEvent.click(getOverlay())
+        await user.click(getOverlay())
         await waitFor(() => {
             expect(getModal()).toHaveClass('isClosing')
         })
@@ -70,7 +70,7 @@ describe('Modal', () => {
     })
 
     it('should be valid render with renderMode lazy', async () => {
-        const { rerender } = renderWithProviders(
+        const { user, rerender } = renderWithProviders(
             <Modal isOpen={false} renderMode="lazy" />
         )
         expect(queryModal()).not.toBeInTheDocument()
@@ -83,7 +83,7 @@ describe('Modal', () => {
             expect(getModal()).toHaveClass('opened')
         })
 
-        await userEvent.click(getOverlay())
+        await user.click(getOverlay())
         await waitFor(() => {
             expect(getModal()).toHaveClass('isClosing')
         })

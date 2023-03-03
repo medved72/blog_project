@@ -1,7 +1,6 @@
 import { renderWithProviders } from 'shared/lib/tests'
 import { Counter } from './Counter'
 import { screen } from '@testing-library/react'
-import userEvent from '@testing-library/user-event'
 
 describe('Counter', () => {
     it('should render', () => {
@@ -13,18 +12,22 @@ describe('Counter', () => {
     })
 
     it('should increment', async () => {
-        renderWithProviders(<Counter />, {
+        const { user } = renderWithProviders(<Counter />, {
             initialState: { counter: { value: 10 } },
         })
-        await userEvent.click(screen.getByTestId('increment-button'))
+
+        await user.click(screen.getByTestId('increment-button'))
+
         expect(screen.getByTestId('value-title')).toHaveTextContent('11')
     })
 
     it('should decrement', async () => {
-        renderWithProviders(<Counter />, {
+        const { user } = renderWithProviders(<Counter />, {
             initialState: { counter: { value: 10 } },
         })
-        await userEvent.click(screen.getByTestId('decrement-button'))
+
+        await user.click(screen.getByTestId('decrement-button'))
+
         expect(screen.getByTestId('value-title')).toHaveTextContent('9')
     })
 })

@@ -3,7 +3,6 @@ import {
     renderWithProviders,
     mockedAxios,
 } from 'shared/lib/tests/renderWithProviders'
-import userEvent from '@testing-library/user-event'
 import { reducer } from '../model'
 import LoginForm from './LoginForm'
 
@@ -64,17 +63,21 @@ describe('LoginForm', () => {
     })
 
     it('should change username value', async () => {
-        renderWithProviders(<LoginForm onLoginSuccess={jest.fn} />)
+        const { user } = renderWithProviders(
+            <LoginForm onLoginSuccess={jest.fn} />
+        )
 
-        await userEvent.type(getUsernameInput(), 'username')
+        await user.type(getUsernameInput(), 'username')
 
         expect(getUsernameInput()).toHaveValue('username')
     })
 
     it('should change password value', async () => {
-        renderWithProviders(<LoginForm onLoginSuccess={jest.fn} />)
+        const { user } = renderWithProviders(
+            <LoginForm onLoginSuccess={jest.fn} />
+        )
 
-        await userEvent.type(getPasswordInput(), 'password')
+        await user.type(getPasswordInput(), 'password')
 
         expect(getPasswordInput()).toHaveValue('password')
     })
@@ -130,11 +133,13 @@ describe('LoginForm', () => {
 
     it('should get profile while submit', async () => {
         mockedAxios.post.mockRejectedValue({})
-        renderWithProviders(<LoginForm onLoginSuccess={jest.fn} />)
+        const { user } = renderWithProviders(
+            <LoginForm onLoginSuccess={jest.fn} />
+        )
 
-        await userEvent.type(getUsernameInput(), 'username')
-        await userEvent.type(getPasswordInput(), 'password')
-        await userEvent.click(getSubmit())
+        await user.type(getUsernameInput(), 'username')
+        await user.type(getPasswordInput(), 'password')
+        await user.click(getSubmit())
         const [call] = mockedAxios.post.mock.calls
         expect(call).toEqual([
             '/login',
@@ -152,11 +157,13 @@ describe('LoginForm', () => {
         })
 
         const successSubmitMock = jest.fn()
-        renderWithProviders(<LoginForm onLoginSuccess={successSubmitMock} />)
+        const { user } = renderWithProviders(
+            <LoginForm onLoginSuccess={successSubmitMock} />
+        )
 
-        await userEvent.type(getUsernameInput(), 'username_success')
-        await userEvent.type(getPasswordInput(), 'password_success')
-        await userEvent.click(getSubmit())
+        await user.type(getUsernameInput(), 'username_success')
+        await user.type(getPasswordInput(), 'password_success')
+        await user.click(getSubmit())
 
         const [call] = mockedAxios.post.mock.calls
         expect(call).toEqual([
@@ -168,11 +175,13 @@ describe('LoginForm', () => {
 
     it('should get profile if empty backend data', async () => {
         mockedAxios.post.mockResolvedValue({})
-        renderWithProviders(<LoginForm onLoginSuccess={jest.fn} />)
+        const { user } = renderWithProviders(
+            <LoginForm onLoginSuccess={jest.fn} />
+        )
 
-        await userEvent.type(getUsernameInput(), 'username')
-        await userEvent.type(getPasswordInput(), 'password')
-        await userEvent.click(getSubmit())
+        await user.type(getUsernameInput(), 'username')
+        await user.type(getPasswordInput(), 'password')
+        await user.click(getSubmit())
         const [call] = mockedAxios.post.mock.calls
         expect(call).toEqual([
             '/login',
