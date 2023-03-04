@@ -18,8 +18,8 @@ export const PageError: FC<PageErrorProps> = memo(({ className }) => {
 
     return (
         <div className={classNames(classes.pageError, {}, [className])}>
-            <p>{t('errorBoundary')}</p>
-            <Button onClick={reloadPage}>{t('reloadPage')}</Button>
+            <p>{t('Произошла непредвиденная ошибка')}</p>
+            <Button onClick={reloadPage}>{t('Обновить страницу')}</Button>
         </div>
     )
 })

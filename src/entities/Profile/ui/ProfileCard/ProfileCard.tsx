@@ -22,7 +22,7 @@ export const ProfileCard: FC<ProfileCardProps> = memo((props) => {
         <div className={classNames(classes.profileCard, {}, [className])}>
             <div className={classes.header}>
                 <Text className={classes.text} title={t('profile:title')!} />
-                <Button theme="outline">{t('edit')}</Button>
+                <Button theme="outline">{t('Редактировать')}</Button>
             </div>
 
             <div className={classes.data}>

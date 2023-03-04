@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next'
 
 const MainPage: FC = memo(() => {
     const { t } = useTranslation()
-    return <div>{t('mainPage')}</div>
+    return <div>{t('Главная страница')}</div>
 })
 
 MainPage.displayName = 'MainPage'

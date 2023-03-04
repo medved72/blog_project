@@ -59,7 +59,7 @@ const LoginFormPlain: FC<LoginFormProps> = memo((props) => {
             onSubmit={handleSubmit}
             className={classNames(classes.loginForm, {}, [className])}
         >
-            <Text data-testid="loginForm.title" title={t('authForm')!} />
+            <Text data-testid="loginForm.title" title={t('Авторизация')!} />
             {error && (
                 <Text
                     data-testid="loginForm.profile"
@@ -71,7 +71,7 @@ const LoginFormPlain: FC<LoginFormProps> = memo((props) => {
                 data-testid="loginForm.username"
                 className={classes.input}
                 type="text"
-                placeholder={t('typeLogin')!}
+                placeholder={t('Введите логин >')!}
                 onChange={handleChangeUsername}
                 value={username}
                 autoFocus
@@ -80,7 +80,7 @@ const LoginFormPlain: FC<LoginFormProps> = memo((props) => {
                 data-testid="loginForm.password"
                 className={classes.input}
                 type="text"
-                placeholder={t('typePassword')!}
+                placeholder={t('Введите пароль >')!}
                 onChange={handleChangePassword}
                 value={password}
             />
@@ -91,7 +91,7 @@ const LoginFormPlain: FC<LoginFormProps> = memo((props) => {
                 disabled={isLoading}
                 type="submit"
             >
-                {t('signIn')}
+                {t('Войти')}
             </Button>
         </form>
     )

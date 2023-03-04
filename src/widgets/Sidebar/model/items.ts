@@ -14,16 +14,16 @@ export const itemsList: Item[] = [
     {
         path: generatePath(ROUTES.MAIN),
         icon: MainIcon,
-        i18nKey: 'linkToMain',
+        i18nKey: 'Главная',
     },
     {
         path: generatePath(ROUTES.ABOUT),
         icon: AboutIcon,
-        i18nKey: 'linkToAboutUs',
+        i18nKey: 'О нас',
     },
     {
         path: generatePath(ROUTES.PROFILE),
         icon: ProfileIcon,
-        i18nKey: 'linkToProfile',
+        i18nKey: 'Профиль',
     },
 ]

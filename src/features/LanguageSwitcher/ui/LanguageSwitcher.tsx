@@ -23,7 +23,7 @@ export const LanguageSwitcher: FC<SwitchLanguageProps> = memo(
                 theme="clear"
                 onClick={toggleLanguage}
             >
-                {short ? t('language_short') : t('language')}
+                {short ? t('Ру') : t('Русский')}
             </Button>
         )
     }
