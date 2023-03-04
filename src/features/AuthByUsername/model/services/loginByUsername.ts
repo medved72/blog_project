@@ -1,20 +1,17 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
 import { actions, type User } from 'entities/User'
 import { USER_LOCALSTORAGE_KEY } from 'shared/const/localStorage'
+import { type LoginStateError } from '../types'
 
 interface LoginByUsernameBody {
     username: string
     password: string
 }
 
-type RejectValue =
-    | 'ERROR_INCORRECT_USERNAME_OR_PASSWORD'
-    | 'ERROR_UNKNOWN_ERROR'
-
 export const loginByUsername = createAsyncThunk<
     User,
     LoginByUsernameBody,
-    GlbThunkConfig<RejectValue>
+    GlbThunkConfig<LoginStateError>
 >('login/loginByUsername', async (body, thunkAPI) => {
     try {
         const response = await thunkAPI.extra.api.post<User>('/login', body)

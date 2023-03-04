@@ -4,10 +4,10 @@ import { getError } from './getError'
 describe('getError', () => {
     it('should return profile', () => {
         const state: DeepPartial<Required<GlbAppState>> = {
-            loginForm: { error: 'error' },
+            loginForm: { error: 'ERROR_UNKNOWN_ERROR' },
         }
 
-        expect(getError(state as GlbAppState)).toEqual('error')
+        expect(getError(state as GlbAppState)).toEqual('ERROR_UNKNOWN_ERROR')
     })
 
     it('should work with empty state', () => {
