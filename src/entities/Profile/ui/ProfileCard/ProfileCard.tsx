@@ -21,19 +21,19 @@ export const ProfileCard: FC<ProfileCardProps> = memo((props) => {
     return (
         <div className={classNames(classes.profileCard, {}, [className])}>
             <div className={classes.header}>
-                <Text className={classes.text} title={t('profile:title')!} />
+                <Text className={classes.text} title={t('profile:Профиль')!} />
                 <Button theme="outline">{t('Редактировать')}</Button>
             </div>
 
             <div className={classes.data}>
                 <Input
                     value={profileData?.first ?? ''}
-                    placeholder={t('profile:yourName')!}
+                    placeholder={t('profile:Ваше имя')!}
                 />
 
                 <Input
                     value={profileData?.lastname ?? ''}
-                    placeholder={t('profile:yourFamily')!}
+                    placeholder={t('profile:Ваша фамилия')!}
                 />
             </div>
         </div>
