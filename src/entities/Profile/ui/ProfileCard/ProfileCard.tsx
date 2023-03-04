@@ -14,26 +14,30 @@ interface ProfileCardProps {
 
 export const ProfileCard: FC<ProfileCardProps> = memo((props) => {
     const { className } = props
-    const { t } = useTranslation(['translation', 'profile'])
+    const { t } = useTranslation()
+    const { t: tProfile } = useTranslation('profile')
 
     const profileData = useSelector(selectors.profile)
 
     return (
         <div className={classNames(classes.profileCard, {}, [className])}>
             <div className={classes.header}>
-                <Text className={classes.text} title={t('profile:Профиль')!} />
+                <Text
+                    className={classes.text}
+                    title={tProfile('Профиль', { ns: 'profile' })}
+                />
                 <Button theme="outline">{t('Редактировать')}</Button>
             </div>
 
             <div className={classes.data}>
                 <Input
                     value={profileData?.first ?? ''}
-                    placeholder={t('profile:Ваше имя')!}
+                    placeholder={tProfile('Ваше имя', { ns: 'profile' })}
                 />
 
                 <Input
                     value={profileData?.lastname ?? ''}
-                    placeholder={t('profile:Ваша фамилия')!}
+                    placeholder={tProfile('Ваша фамилия', { ns: 'profile' })}
                 />
             </div>
         </div>

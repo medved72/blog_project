@@ -14,6 +14,7 @@ i18n.use(initReactI18next)
         fallbackLng: 'ru',
         lng: 'ru',
         debug: _IS_DEV_,
+        nsSeparator: '~~~',
         interpolation: { escapeValue: false },
         react: {
             useSuspense: false,

@@ -15,6 +15,7 @@
       {
         "outputPath": "public/locales/{{locale}}/{{ns}}.json",
         "keyAsDefaultValue": true,
+        "discardOldKeys": true,
         "locales": [
           "ru",
           "en"
