@@ -6,7 +6,7 @@ import {
     type TestsProvidersWrapperFactoryProps,
 } from './TestsProvidersWrapper'
 import userEvent from '@testing-library/user-event'
-import { act } from 'react-dom/test-utils'
+import { type UserEvent } from '@testing-library/user-event/setup/setup'
 
 export { mockedAxios }
 
@@ -14,19 +14,19 @@ export const renderWithProviders = (
     component: ReactElement,
     options?: TestsProvidersWrapperFactoryProps
 ) => {
-    const user = { ...userEvent.setup() }
+    const user = userEvent.setup()
 
-    const redefinedUserMethods: Pick<typeof user, 'click' | 'type'> = {
-        click: async (...args): Promise<void> => {
-            await act(async () => {
-                await user.click(...args)
-            })
-        },
-        type: async (...args): Promise<void> => {
-            await act(async () => {
-                await user.type(...args)
-            })
-        },
+    const redefinedUserMethods: Partial<UserEvent> = {
+        // click: async (...args): Promise<void> => {
+        //     await act(async () => {
+        //         await user.click(...args)
+        //     })
+        // },
+        // type: async (...args): Promise<void> => {
+        //     await act(async () => {
+        //         await user.type(...args)
+        //     })
+        // },
     }
 
     return {

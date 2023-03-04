@@ -3,7 +3,6 @@ import { createReducerManager } from './reducerManager'
 import { type AppState, type ThunkExtraArg } from './types'
 
 import { reducer as user } from 'entities/User'
-import { reducer as counter } from 'entities/Counter'
 import { $api } from 'shared/api/api'
 import { type NavigateFunction } from 'react-router-dom'
 
@@ -15,7 +14,6 @@ export const setupStore = (
     const reducerMap: ReducersMapObject<AppState> = {
         ...asyncReducers,
         user,
-        counter,
     }
 
     const reducerManager = createReducerManager(reducerMap)

@@ -6,7 +6,6 @@ import {
     type ReducersMapObject,
 } from '@reduxjs/toolkit'
 import { type LoginState } from 'features/AuthByUsername'
-import { type CounterState } from 'entities/Counter'
 import { type UserState } from 'entities/User'
 import { type ProfileState } from 'entities/Profile'
 import { type AxiosInstance } from 'axios'
@@ -14,7 +13,6 @@ import { type NavigateFunction } from 'react-router-dom'
 
 export interface AppState {
     user: UserState
-    counter: CounterState
     loginForm?: LoginState
     profile?: ProfileState
 }

@@ -143,10 +143,7 @@ describe('LoginForm', () => {
         const [call] = mockedAxios.post.mock.calls
         expect(call).toEqual([
             '/login',
-            {
-                username: 'username',
-                password: 'password',
-            },
+            { username: 'username', password: 'password' },
         ])
         expect(getError()).toHaveTextContent('Неправильный логин или пароль')
     })

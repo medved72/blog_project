@@ -17,7 +17,7 @@ export default {
         '\\.svg': path.resolve(__dirname, 'jestEmptyComponent.tsx'),
     },
     globals: {
-        _IS_DEV_: true,
+        _IS_DEV_: false,
         _API_: '',
     },
 }
