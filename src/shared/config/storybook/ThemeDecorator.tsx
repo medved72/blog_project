@@ -3,7 +3,7 @@ import { type THEME, ThemeProvider } from 'shared/config/theme'
 import classes from 'app/App.module.scss'
 
 export const ThemeDecorator = (theme: THEME): DecoratorFn => {
-    const Decorator: DecoratorFn = (StoryComponent) => {
+    return function ThemeDecorator(StoryComponent) {
         return (
             <ThemeProvider defaultTheme={theme}>
                 <div
@@ -15,6 +15,4 @@ export const ThemeDecorator = (theme: THEME): DecoratorFn => {
             </ThemeProvider>
         )
     }
-
-    return Decorator
 }
