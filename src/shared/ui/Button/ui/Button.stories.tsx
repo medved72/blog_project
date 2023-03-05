@@ -1,31 +1,18 @@
-import { type ComponentMeta, type ComponentStory } from '@storybook/react'
+import { type ComponentStory, storiesOf } from '@storybook/react'
 import { Button } from './Button'
 import { ThemeDecorator } from 'shared/config/storybook/ThemeDecorator'
 import { THEME } from 'shared/config/theme'
 import { capitalize } from 'shared/lib/capitalize/capitalize'
 
-const meta: ComponentMeta<typeof Button> = {
-    title: 'shared/Button',
-    component: Button,
-}
-export default meta
+const stories = storiesOf('shared/Button', module)
 
 type ButtonStory = ComponentStory<typeof Button>
 const Template: ButtonStory = (args) => {
     return <Button {...args} />
 }
 
-export const Primary = Template.bind({})
+const Primary = Template.bind({})
 Primary.args = { children: 'Text' }
-
-export const Disabled = Template.bind({})
-Disabled.args = {
-    children: '*',
-    theme: 'outline',
-    square: true,
-    size: 'xl',
-    disabled: true,
-}
 
 const themes = [
     'background',
@@ -34,7 +21,7 @@ const themes = [
     'outline',
     'clearInverted',
 ] as const
-const sizes = ['l', 'm', 'xl'] as const
+const sizes = ['m', 'l', 'xl'] as const
 
 type ThemeKeys = (typeof themes)[number]
 type SizeValues = (typeof sizes)[number]
@@ -116,66 +103,17 @@ const DarkSquareThemeTemplates = themes.reduce((acc, theme) => {
     return acc
 }, {} as Record<DarkSquareThemeTemplatesKeys, ComponentStory<typeof Button>>)
 
-export const {
-    clearM,
-    clearMSquare,
-    clearL,
-    clearLSquare,
-    clearXl,
-    clearXlSquare,
-    clearInvertedM,
-    clearInvertedL,
-    clearInvertedXl,
-    outlineM,
-    outlineMSquare,
-    outlineL,
-    outlineLSquare,
-    outlineXl,
-    outlineXlSquare,
-    backgroundM,
-    backgroundMSquare,
-    backgroundL,
-    backgroundLSquare,
-    backgroundXl,
-    backgroundXlSquare,
-    backgroundInvertedM,
-    backgroundInvertedMSquare,
-    backgroundInvertedL,
-    backgroundInvertedLSquare,
-    backgroundInvertedXl,
-    backgroundInvertedXlSquare,
-
-    clearDark,
-    clearMSquareDark,
-    clearLDark,
-    clearLSquareDark,
-    clearXlDark,
-    clearXlSquareDark,
-    clearInvertedMDark,
-    clearInvertedLDark,
-    clearInvertedXlDark,
-    outlineDark,
-    outlineMSquareDark,
-    outlineLDark,
-    outlineLSquareDark,
-    outlineXlDark,
-    outlineXlSquareDark,
-    backgroundDark,
-    backgroundMSquareDark,
-    backgroundLDark,
-    backgroundLSquareDark,
-    backgroundXlDark,
-    backgroundXlSquareDark,
-    backgroundInvertedDark,
-    backgroundInvertedMSquareDark,
-    backgroundInvertedLDark,
-    backgroundInvertedLSquareDark,
-    backgroundInvertedXlDark,
-    backgroundInvertedXlSquareDark,
-} = {
+const storiesTemplates = {
     ...SizeThemeTemplates,
     ...SquareThemeTemplates,
     ...DarkThemeTemplates,
     ...DarkSizeThemeTemplates,
     ...DarkSquareThemeTemplates,
 }
+
+Object.entries(storiesTemplates).forEach(([key, story]) => {
+    stories.add(capitalize(key), story, {
+        decorators: story.decorators,
+        args: story.args,
+    })
+})
