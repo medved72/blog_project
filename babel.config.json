@@ -8,18 +8,5 @@
         "runtime": "automatic"
       }
     ]
-  ],
-  "plugins": [
-    [
-      "i18next-extract",
-      {
-        "outputPath": "public/locales/{{locale}}/{{ns}}.json",
-        "keyAsDefaultValue": true,
-        "locales": [
-          "ru",
-          "en"
-        ]
-      }
-    ]
   ]
 }

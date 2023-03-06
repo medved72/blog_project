@@ -4,10 +4,12 @@ import { withDynamicModuleLoader } from 'shared/lib/components'
 import {
     actions as profileActions,
     ProfileCard,
-    reducer as profile,
+    reducer as profileReducer,
+    selectors as profileSelectors,
 } from 'entities/Profile'
 import classes from './ProfilePage.module.scss'
 import { useAppDispatch } from 'shared/hooks/useAppDispatch'
+import { useSelector } from 'react-redux'
 
 interface ProfilePageProps {
     className?: string
@@ -16,6 +18,9 @@ interface ProfilePageProps {
 const ProfilePage: FC<ProfilePageProps> = memo((props) => {
     const { className } = props
     const dispatch = useAppDispatch()
+    const profile = useSelector(profileSelectors.profile)
+    const profileLoading = useSelector(profileSelectors.loading)
+    const profileError = useSelector(profileSelectors.error)
 
     useEffect(() => {
         dispatch(profileActions.fetchProfileData()).catch(console.log)
@@ -23,13 +28,17 @@ const ProfilePage: FC<ProfilePageProps> = memo((props) => {
 
     return (
         <div className={classNames(classes.profilePage, {}, [className])}>
-            <ProfileCard />
+            <ProfileCard
+                profile={profile}
+                loading={profileLoading}
+                error={profileError}
+            />
         </div>
     )
 })
 ProfilePage.displayName = 'ProfilePage'
 
 export default withDynamicModuleLoader(ProfilePage, {
-    reducers: { profile },
+    reducers: { profile: profileReducer },
     removeAfterUnmount: true,
 })

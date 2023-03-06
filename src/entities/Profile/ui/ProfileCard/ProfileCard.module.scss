@@ -19,3 +19,11 @@
     flex-direction: column;
     gap: 10px;
 }
+
+.loading,
+.error {
+    display: flex;
+    height: 300px;
+    align-items: center;
+    justify-content: center;
+}

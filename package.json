@@ -66,7 +66,6 @@
     "axios-mock-adapter": "^1.21.2",
     "babel-jest": "^29.4.2",
     "babel-loader": "^9.1.2",
-    "babel-plugin-i18next-extract": "^0.9.0",
     "css-loader": "^6.7.3",
     "eslint": "^8.35.0",
     "eslint-config-prettier": "^8.6.0",

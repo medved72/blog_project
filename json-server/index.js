@@ -18,6 +18,31 @@ server.use(async (req, res, next) => {
     next()
 })
 
+server.post('/locales/add/:lng/:ns', (req, res) => {
+    const { ns } = req.params
+    const locales = ['en', 'ru']
+    for (const lng of locales) {
+        const fileDir = path.resolve('public', 'locales', lng)
+        const fileName = `${ns}.json`
+        const filePath = path.join(fileDir, fileName)
+
+        if (!fs.existsSync(filePath)) {
+            fs.mkdirSync(fileDir, { recursive: true })
+            fs.writeFileSync(filePath, '{}', { flag: 'w' })
+        }
+
+        const fileBuf = fs.readFileSync(filePath)
+        const fileData = JSON.parse(fileBuf.toString())
+
+        fs.writeFileSync(
+            filePath,
+            JSON.stringify({ ...fileData, ...req.body }, null, 4)
+        )
+    }
+
+    return res.json({})
+})
+
 // Эндпоинт для логина
 server.post('/login', (req, res) => {
     try {

@@ -25,16 +25,7 @@ export function buildLoaders({
             loader: 'babel-loader',
             options: {
                 presets: ['@babel/preset-env'],
-                plugins: [
-                    [
-                        'i18next-extract',
-                        {
-                            outputPath: 'public/locales/{{locale}}/{{ns}}.json',
-                            keyAsDefaultValue: true,
-                            locales: ['ru', 'en'],
-                        },
-                    ],
-                ],
+                plugins: [],
             },
         },
     }
