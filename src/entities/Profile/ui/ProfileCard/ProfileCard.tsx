@@ -13,8 +13,10 @@ interface ProfileCardProps {
     loading?: boolean
     error?: ProfileErrors
     readonly?: boolean
-    onChangeFirstName: (value?: string) => void
-    onChangeLastName: (value?: string) => void
+    onChangeFirstName?: (value?: string) => void
+    onChangeLastName?: (value?: string) => void
+    onChangeCity?: (value?: string) => void
+    onChangeAge?: (value?: string) => void
 }
 
 export const ProfileCard: FC<ProfileCardProps> = memo((props) => {
@@ -23,9 +25,11 @@ export const ProfileCard: FC<ProfileCardProps> = memo((props) => {
         profile,
         error,
         loading,
+        readonly,
         onChangeFirstName,
         onChangeLastName,
-        readonly,
+        onChangeCity,
+        onChangeAge,
     } = props
     const { t } = useTranslation('profile')
 
@@ -65,15 +69,29 @@ export const ProfileCard: FC<ProfileCardProps> = memo((props) => {
             <div className={classes.data}>
                 <Input
                     value={profile?.first ?? ''}
-                    placeholder={t('Ваше имя', { ns: 'profile' })}
+                    placeholder={t('Ваше имя') + '>'}
                     onChange={onChangeFirstName}
                     readonly={readonly}
                 />
 
                 <Input
                     value={profile?.lastname ?? ''}
-                    placeholder={t('Ваша фамилия', { ns: 'profile' })}
+                    placeholder={t('Ваша фамилия') + '>'}
                     onChange={onChangeLastName}
+                    readonly={readonly}
+                />
+
+                <Input
+                    value={profile?.age ?? ''}
+                    placeholder={t('Ваш возраст') + '>'}
+                    onChange={onChangeAge}
+                    readonly={readonly}
+                />
+
+                <Input
+                    value={profile?.city?.toString() ?? ''}
+                    placeholder={t('Город') + '>'}
+                    onChange={onChangeCity}
                     readonly={readonly}
                 />
             </div>

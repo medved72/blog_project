@@ -16,6 +16,7 @@ const BUTTON_THEME = {
     outline: classes.outline,
     background: classes.background,
     backgroundInverted: classes.backgroundInverted,
+    outlineRed: classes.outlineRed,
 } as const
 export type ButtonTheme = keyof typeof BUTTON_THEME
 

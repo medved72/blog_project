@@ -1,0 +1,1 @@
+export { updateProfileData } from './updateProfileData'

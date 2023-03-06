@@ -69,3 +69,9 @@
 .disabled {
     opacity: 0.5;
 }
+
+.outlineRed {
+    border: 1px solid var(--red-light);
+    background: none;
+    color: var(--red-light);
+}

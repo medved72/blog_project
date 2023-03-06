@@ -1,5 +1,5 @@
 import { type ComponentStory, storiesOf } from '@storybook/react'
-import { Button } from './Button'
+import { Button, type ButtonTheme } from './Button'
 import { ThemeDecorator } from 'shared/config/storybook/ThemeDecorator'
 import { THEME } from 'shared/config/theme'
 import { capitalize } from 'shared/lib/capitalize/capitalize'
@@ -14,12 +14,13 @@ const Template: ButtonStory = (args) => {
 const Primary = Template.bind({})
 Primary.args = { children: 'Text' }
 
-const themes = [
+const themes: Readonly<ButtonTheme[]> = [
     'outline',
     'background',
     'backgroundInverted',
     'clear',
     'clearInverted',
+    'outlineRed',
 ] as const
 
 const sizes = ['m', 'l', 'xl'] as const

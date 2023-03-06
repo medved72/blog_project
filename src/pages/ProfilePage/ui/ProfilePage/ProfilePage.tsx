@@ -19,10 +19,10 @@ interface ProfilePageProps {
 const ProfilePage: FC<ProfilePageProps> = memo((props) => {
     const { className } = props
     const dispatch = useAppDispatch()
-    const profile = useSelector(profileSelectors.profile)
     const profileLoading = useSelector(profileSelectors.loading)
     const profileError = useSelector(profileSelectors.error)
     const profileReadonly = useSelector(profileSelectors.readOnly)
+    const formProfile = useSelector(profileSelectors.form)
 
     useEffect(() => {
         dispatch(profileActions.fetchProfileData()).catch(console.log)
@@ -42,16 +42,32 @@ const ProfilePage: FC<ProfilePageProps> = memo((props) => {
         [dispatch]
     )
 
+    const handleChangeAge = useCallback(
+        (value?: string) => {
+            dispatch(profileActions.updateProfile({ age: Number(value ?? 0) }))
+        },
+        [dispatch]
+    )
+
+    const handleChangeCity = useCallback(
+        (value?: string) => {
+            dispatch(profileActions.updateProfile({ city: value ?? '' }))
+        },
+        [dispatch]
+    )
+
     return (
         <div className={classNames(classes.profilePage, {}, [className])}>
             <ProfilePageHeader />
             <ProfileCard
-                profile={profile}
+                profile={formProfile}
                 loading={profileLoading}
                 error={profileError}
                 readonly={profileReadonly}
                 onChangeFirstName={handleChangeFirstName}
                 onChangeLastName={handleChangeLastName}
+                onChangeAge={handleChangeAge}
+                onChangeCity={handleChangeCity}
             />
         </div>
     )

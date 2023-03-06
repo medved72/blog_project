@@ -16,6 +16,7 @@ export type ProfileErrors = 'ERROR_UNKNOWN_ERROR'
 export interface ProfileState {
     status: 'idle' | 'loading' | 'fulfilled' | 'error'
     data?: Profile
+    form?: Profile
     error?: ProfileErrors
     readonly?: boolean
 }

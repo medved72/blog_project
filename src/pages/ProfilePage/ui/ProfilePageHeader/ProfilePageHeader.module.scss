@@ -9,3 +9,8 @@
 .text {
     flex-grow: 1;
 }
+
+.actions {
+    display: flex;
+    gap: 10px;
+}

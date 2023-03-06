@@ -26,7 +26,11 @@ export const ProfilePageHeader: FC<ProfilePageHeaderProps> = memo((props) => {
     }, [dispatch])
 
     const handleCancelEdit = useCallback(() => {
-        dispatch(profileActions.setReadOnly(true))
+        dispatch(profileActions.cancelEdit())
+    }, [dispatch])
+
+    const handleSaveEdit = useCallback(async () => {
+        await dispatch(profileActions.updateProfileData())
     }, [dispatch])
 
     return (
@@ -37,15 +41,22 @@ export const ProfilePageHeader: FC<ProfilePageHeaderProps> = memo((props) => {
             ])}
         >
             <Text className={classes.text} title={t('Профиль')} />
-            {readonly ? (
-                <Button theme="outline" onClick={handleEditClick}>
-                    {t('Редактировать')}
-                </Button>
-            ) : (
-                <Button theme="outline" onClick={handleCancelEdit}>
-                    {t('Отменить')}
-                </Button>
-            )}
+            <div className={classes.actions}>
+                {readonly ? (
+                    <Button theme="outline" onClick={handleEditClick}>
+                        {t('Редактировать')}
+                    </Button>
+                ) : (
+                    <>
+                        <Button theme="outlineRed" onClick={handleCancelEdit}>
+                            {t('Отменить')}
+                        </Button>
+                        <Button theme="outline" onClick={handleSaveEdit}>
+                            {t('Сохранить')}
+                        </Button>
+                    </>
+                )}
+            </div>
         </div>
     )
 })
