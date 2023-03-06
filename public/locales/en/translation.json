@@ -11,5 +11,7 @@
     "Введите пароль >": "Введите пароль >",
     "ERROR_INCORRECT_USERNAME_OR_PASSWORD": "ERROR_INCORRECT_USERNAME_OR_PASSWORD",
     "ERROR_UNKNOWN_ERROR": "ERROR_UNKNOWN_ERROR",
-    "Ру": "Ру"
+    "Ру": "Ру",
+    "Обновить страницу": "Обновить страницу",
+    "Произошла непредвиденная ошибка": "Произошла непредвиденная ошибка"
 }
