@@ -9,6 +9,7 @@ export interface Item {
     path: string
     i18nKey: TFuncKey<'translation'>
     icon: FC<SVGAttributes<SVGElement>>
+    authOnly?: boolean
 }
 
 export const itemsList: Item[] = [
@@ -26,5 +27,6 @@ export const itemsList: Item[] = [
         path: generatePath(ROUTES.PROFILE),
         icon: ProfileIcon,
         i18nKey: 'Профиль',
+        authOnly: true,
     },
 ]

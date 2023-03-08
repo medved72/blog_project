@@ -4,8 +4,11 @@ import classes from './ProfileCard.module.scss'
 import { useTranslation } from 'react-i18next'
 import { Text } from 'shared/ui/Text'
 import { Input } from 'shared/ui/Input'
+import { type Currency, CurrencySelect } from 'entities/Currency'
+import { type Country, CountrySelect } from 'entities/Country'
 import { type Profile, type ProfileErrors } from '../../model/types/profile'
 import { DotsSpinner } from 'shared/ui/Spinner'
+import { Avatar } from 'shared/ui/Avatar'
 
 interface ProfileCardProps {
     className?: string
@@ -17,6 +20,10 @@ interface ProfileCardProps {
     onChangeLastName?: (value?: string) => void
     onChangeCity?: (value?: string) => void
     onChangeAge?: (value?: string) => void
+    onChangeUsername?: (value?: string) => void
+    onChangeAvatar?: (value?: string) => void
+    onChangeCurrency?: (value?: Currency) => void
+    onChangeCountry?: (value?: Country) => void
 }
 
 export const ProfileCard: FC<ProfileCardProps> = memo((props) => {
@@ -30,6 +37,10 @@ export const ProfileCard: FC<ProfileCardProps> = memo((props) => {
         onChangeLastName,
         onChangeCity,
         onChangeAge,
+        onChangeUsername,
+        onChangeAvatar,
+        onChangeCurrency,
+        onChangeCountry,
     } = props
     const { t } = useTranslation('profile')
 
@@ -65,8 +76,21 @@ export const ProfileCard: FC<ProfileCardProps> = memo((props) => {
     }
 
     return (
-        <div className={classNames(classes.profileCard, {}, [className])}>
+        <div
+            className={classNames(
+                classes.profileCard,
+                { [classes.edit]: !readonly },
+                [className]
+            )}
+        >
             <div className={classes.data}>
+                {profile?.avatar && (
+                    <Avatar
+                        className={classes.avatar}
+                        src={profile.avatar}
+                        alt=""
+                    />
+                )}
                 <Input
                     value={profile?.first ?? ''}
                     placeholder={t('Ваше имя') + '>'}
@@ -89,9 +113,35 @@ export const ProfileCard: FC<ProfileCardProps> = memo((props) => {
                 />
 
                 <Input
-                    value={profile?.city?.toString() ?? ''}
+                    value={profile?.city ?? ''}
                     placeholder={t('Город') + '>'}
                     onChange={onChangeCity}
+                    readonly={readonly}
+                />
+
+                <Input
+                    value={profile?.username ?? ''}
+                    placeholder={t('Введите имя пользователя') + '>'}
+                    onChange={onChangeUsername}
+                    readonly={readonly}
+                />
+
+                <Input
+                    value={profile?.avatar ?? ''}
+                    placeholder={t('Введите ссылку на аватар') + '>'}
+                    onChange={onChangeAvatar}
+                    readonly={readonly}
+                />
+
+                <CurrencySelect
+                    value={profile?.currency}
+                    onChange={onChangeCurrency}
+                    readonly={readonly}
+                />
+
+                <CountrySelect
+                    value={profile?.country}
+                    onChange={onChangeCountry}
                     readonly={readonly}
                 />
             </div>
