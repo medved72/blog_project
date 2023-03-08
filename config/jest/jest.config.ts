@@ -15,6 +15,7 @@ export default {
         'entities/(.*)': '<rootDir>src/entities/$1',
         '^.+\\.(css|scss)$': 'identity-obj-proxy',
         '\\.svg': path.resolve(__dirname, 'jestEmptyComponent.tsx'),
+        '\\.jpg': path.resolve(__dirname, 'jestRandomString.tsx'),
     },
     globals: {
         _IS_DEV_: false,

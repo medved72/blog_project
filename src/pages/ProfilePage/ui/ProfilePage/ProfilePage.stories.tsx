@@ -1,8 +1,8 @@
 import { type ComponentMeta, type ComponentStory } from '@storybook/react'
-import ProfilePage from './ProfilePage'
+import { StoreDecorator } from 'shared/config/storybook/StoreDecorator'
 import { ThemeDecorator } from 'shared/config/storybook/ThemeDecorator'
 import { THEME } from 'shared/config/theme'
-import { StoreDecorator } from 'shared/config/storybook/StoreDecorator'
+import ProfilePage from './ProfilePage'
 
 const meta: ComponentMeta<typeof ProfilePage> = {
     title: 'pages/ProfilePage',
@@ -40,6 +40,6 @@ export const Primary = Template.bind({})
 Primary.args = {}
 Primary.decorators = [StoreDecorator({})]
 
-export const Dark = Template.bind({})
-Dark.args = {}
-Dark.decorators = [StoreDecorator({}), ThemeDecorator(THEME.DARK)]
+export const PrimaryDark = Template.bind({})
+PrimaryDark.args = {}
+PrimaryDark.decorators = [StoreDecorator({}), ThemeDecorator(THEME.DARK)]

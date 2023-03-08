@@ -11,7 +11,6 @@ export const updateProfileData = createAsyncThunk<
     try {
         const formData = selectors.form(thunkAPI.getState())
         const errors = validateProfileData(formData)
-
         if (errors.length) {
             return thunkAPI.rejectWithValue(errors)
         }
@@ -22,6 +21,6 @@ export const updateProfileData = createAsyncThunk<
         )
         return response.data
     } catch (e) {
-        return thunkAPI.rejectWithValue('ERROR_UNKNOWN_ERROR')
+        return thunkAPI.rejectWithValue(['SERVER_ERROR'])
     }
 })
