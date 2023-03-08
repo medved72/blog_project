@@ -3,7 +3,6 @@ import { ProfileCard } from './ProfileCard'
 import { StoreDecorator } from 'shared/config/storybook/StoreDecorator'
 import { Currency } from 'entities/Currency'
 import { Country } from 'entities/Country'
-import avatar from 'shared/assets/tests/avatar.jpg'
 import { ThemeDecorator } from 'shared/config/storybook/ThemeDecorator'
 import { THEME } from 'shared/config/theme'
 
@@ -16,6 +15,11 @@ export default meta
 const Template: ComponentStory<typeof ProfileCard> = (args) => {
     return <ProfileCard {...args} />
 }
+
+const avatar =
+    'https://media.istockphoto.com/id/1305665241/vector/' +
+    'anonymous-gender-neutral-face-avatar-incognito-head-silhouette-stock-illustration.jpg?' +
+    's=170667a&w=0&k=20&c=hdSlOI6dkmjABHFBYK2ZsA0_-iSENg7k9u_Sa4R9GxY='
 
 export const Primary = Template.bind({})
 Primary.args = {
@@ -35,32 +39,12 @@ Primary.decorators = [StoreDecorator({})]
 export const WithError = Template.bind({})
 WithError.args = {
     error: ['SERVER_ERROR'],
-    profile: {
-        first: 'Дмитрий',
-        lastname: 'Бобырев',
-        age: 24,
-        currency: Currency.RUB,
-        country: Country.Russia,
-        city: 'Tyumen',
-        username: 'admin',
-        avatar,
-    },
 }
 WithError.decorators = [StoreDecorator({})]
 
 export const WithLoading = Template.bind({})
 WithLoading.args = {
     loading: true,
-    profile: {
-        first: 'Дмитрий',
-        lastname: 'Бобырев',
-        age: 24,
-        currency: Currency.RUB,
-        country: Country.Russia,
-        city: 'Tyumen',
-        username: 'admin',
-        avatar,
-    },
 }
 WithLoading.decorators = [StoreDecorator({})]
 
@@ -82,31 +66,11 @@ PrimaryDark.decorators = [StoreDecorator({}), ThemeDecorator(THEME.DARK)]
 export const WithErrorDark = Template.bind({})
 WithErrorDark.args = {
     error: ['SERVER_ERROR'],
-    profile: {
-        first: 'Дмитрий',
-        lastname: 'Бобырев',
-        age: 24,
-        currency: Currency.RUB,
-        country: Country.Russia,
-        city: 'Tyumen',
-        username: 'admin',
-        avatar,
-    },
 }
 WithErrorDark.decorators = [StoreDecorator({}), ThemeDecorator(THEME.DARK)]
 
 export const WithLoadingDark = Template.bind({})
 WithLoadingDark.args = {
     loading: true,
-    profile: {
-        first: 'Дмитрий',
-        lastname: 'Бобырев',
-        age: 24,
-        currency: Currency.RUB,
-        country: Country.Russia,
-        city: 'Tyumen',
-        username: 'admin',
-        avatar,
-    },
 }
 WithLoadingDark.decorators = [StoreDecorator({}), ThemeDecorator(THEME.DARK)]
