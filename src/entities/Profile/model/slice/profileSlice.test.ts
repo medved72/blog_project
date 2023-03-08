@@ -15,7 +15,7 @@ const profile = {
     avatar,
 } as Profile
 
-describe.only('profileSlice', () => {
+describe('profileSlice', () => {
     it('setReadOnly', () => {
         const state: DeepPartial<Required<ProfileState>> = { readonly: false }
 
