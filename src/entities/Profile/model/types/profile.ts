@@ -1,6 +1,13 @@
 import { type Currency } from 'entities/Currency'
 import { type Country } from 'entities/Country'
 
+export type ValidateProfileError =
+    | 'NO_DATA'
+    | 'INCORRECT_USER_DATA'
+    | 'INCORRECT_AGE'
+    | 'INCORRECT_COUNTRY'
+    | 'SERVER_ERROR'
+
 export interface Profile {
     first?: string
     lastname?: string
@@ -12,7 +19,7 @@ export interface Profile {
     avatar?: string
 }
 
-export type ProfileErrors = 'ERROR_UNKNOWN_ERROR'
+export type ProfileErrors = ValidateProfileError[]
 
 export interface ProfileState {
     status: 'idle' | 'loading' | 'fulfilled' | 'error'
@@ -20,4 +27,5 @@ export interface ProfileState {
     form?: Profile
     error?: ProfileErrors
     readonly?: boolean
+    validateError: ValidateProfileError[]
 }

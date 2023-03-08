@@ -1,4 +1,4 @@
-import { type FC, memo, useCallback, useEffect } from 'react'
+import { type FC, memo, useCallback, useEffect, useMemo } from 'react'
 import { classNames } from 'shared/lib/classNames'
 import { withDynamicModuleLoader } from 'shared/lib/components'
 import {
@@ -13,6 +13,9 @@ import { useSelector } from 'react-redux'
 import { ProfilePageHeader } from '../ProfilePageHeader'
 import { type Currency } from 'entities/Currency'
 import { type Country } from 'entities/Country'
+import { Text } from 'shared/ui/Text'
+import { useTranslation } from 'react-i18next'
+import { type ValidateProfileError } from '../../../../entities/Profile/model/types/profile'
 
 interface ProfilePageProps {
     className?: string
@@ -20,15 +23,31 @@ interface ProfilePageProps {
 
 const ProfilePage: FC<ProfilePageProps> = memo((props) => {
     const { className } = props
+    const { t } = useTranslation('profile')
     const dispatch = useAppDispatch()
     const profileLoading = useSelector(profileSelectors.loading)
     const profileError = useSelector(profileSelectors.error)
     const profileReadonly = useSelector(profileSelectors.readOnly)
     const formProfile = useSelector(profileSelectors.form)
+    const profileValidationErrors = useSelector(
+        profileSelectors.getProfileValidationErrors
+    )
 
     useEffect(() => {
         dispatch(profileActions.fetchProfileData()).catch(console.log)
     }, [dispatch])
+
+    const validateErrorTranslates = useMemo<
+        Record<ValidateProfileError, string>
+    >(() => {
+        return {
+            SERVER_ERROR: t('Серверная ошибка при сохранении'),
+            INCORRECT_AGE: t('Некорректный возраст'),
+            INCORRECT_COUNTRY: t('Некорректный регион'),
+            INCORRECT_USER_DATA: t('Имя и фамилия обязательны'),
+            NO_DATA: t('Данные не указаны'),
+        }
+    }, [t])
 
     const handleChangeFirstName = useCallback(
         (value?: string) => {
@@ -89,6 +108,16 @@ const ProfilePage: FC<ProfilePageProps> = memo((props) => {
     return (
         <div className={classNames(classes.profilePage, {}, [className])}>
             <ProfilePageHeader />
+            {!!profileValidationErrors?.length &&
+                profileValidationErrors.map((err) => {
+                    return (
+                        <Text
+                            key={err}
+                            theme="error"
+                            text={validateErrorTranslates[err]}
+                        />
+                    )
+                })}
             <ProfileCard
                 profile={formProfile}
                 loading={profileLoading}

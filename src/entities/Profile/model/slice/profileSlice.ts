@@ -6,6 +6,7 @@ import { updateProfileData } from '../services/updateProfileData'
 const initialState: ProfileState = {
     status: 'idle',
     readonly: true,
+    validateError: [],
 }
 
 export const profileSlice = createSlice({
@@ -24,6 +25,7 @@ export const profileSlice = createSlice({
         cancelEdit: (state) => {
             state.readonly = true
             state.form = state.data
+            state.validateError = []
         },
     },
     extraReducers: (builder) =>
@@ -42,7 +44,7 @@ export const profileSlice = createSlice({
                 state.error = payload
             })
             .addCase(updateProfileData.pending, (state) => {
-                state.error = undefined
+                state.validateError = []
                 state.status = 'loading'
             })
             .addCase(updateProfileData.fulfilled, (state, { payload }) => {
@@ -50,10 +52,11 @@ export const profileSlice = createSlice({
                 state.data = payload
                 state.form = payload
                 state.readonly = true
+                state.validateError = []
             })
             .addCase(updateProfileData.rejected, (state, { payload }) => {
                 state.status = 'error'
-                state.error = payload
+                state.validateError = payload ?? []
             }),
 })
 
