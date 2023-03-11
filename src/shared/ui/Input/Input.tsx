@@ -5,7 +5,6 @@ import React, {
     memo,
     type SyntheticEvent,
     useCallback,
-    useRef,
     useState,
     type FocusEvent,
 } from 'react'
@@ -41,7 +40,6 @@ export const Input: FC<InputProps> = memo((props) => {
         ...restProps
     } = props
 
-    const ref = useRef<HTMLInputElement>(null)
     const [isFocused, setIsFocused] = useState(autoFocus)
     const [left, setLeft] = useState(0)
     const isCaretVisible = !readonly && isFocused
@@ -114,7 +112,6 @@ export const Input: FC<InputProps> = memo((props) => {
             <div className={classes.caretWrapper}>
                 <input
                     {...restProps}
-                    ref={ref}
                     data-testid="input"
                     className={inputClassName}
                     autoFocus={autoFocus}
