@@ -4,27 +4,11 @@ import classes from './ProfileCard.module.scss'
 import { useTranslation } from 'react-i18next'
 import { Text } from 'shared/ui/Text'
 import { Input } from 'shared/ui/Input'
-import { type Currency, CurrencySelect } from 'entities/Currency'
-import { type Country, CountrySelect } from 'entities/Country'
-import { type Profile, type ProfileErrors } from '../../model/types/profile'
+import { CurrencySelect } from 'shared/ui/CurrencySelect'
+import { CountrySelect } from 'shared/ui/CountrySelect'
 import { DotsSpinner } from 'shared/ui/Spinner'
 import { Avatar } from 'shared/ui/Avatar'
-
-interface ProfileCardProps {
-    className?: string
-    profile?: Profile
-    loading?: boolean
-    error?: ProfileErrors
-    readonly?: boolean
-    onChangeFirstName?: (value?: string) => void
-    onChangeLastName?: (value?: string) => void
-    onChangeCity?: (value?: string) => void
-    onChangeAge?: (value?: string) => void
-    onChangeUsername?: (value?: string) => void
-    onChangeAvatar?: (value?: string) => void
-    onChangeCurrency?: (value?: Currency) => void
-    onChangeCountry?: (value?: Country) => void
-}
+import { type ProfileCardProps } from '../../model/types/ProfileCardProps'
 
 export const ProfileCard: FC<ProfileCardProps> = memo((props) => {
     const {

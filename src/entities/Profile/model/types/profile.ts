@@ -1,5 +1,5 @@
-import { type Currency } from 'entities/Currency'
-import { type Country } from 'entities/Country'
+import { type Currency } from 'shared/const/currency'
+import { type Country } from 'shared/const/country'
 
 export type ValidateProfileError =
     | 'NO_DATA'

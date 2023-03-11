@@ -1,16 +1,16 @@
 import { type ComponentMeta, type ComponentStory } from '@storybook/react'
-import { CurrencySelect } from './CurrencySelect'
+import { CountrySelect } from './CountrySelect'
 import { ThemeDecorator } from 'shared/config/storybook/ThemeDecorator'
 import { THEME } from 'shared/config/theme'
 
-const meta: ComponentMeta<typeof CurrencySelect> = {
-    title: 'entities/CurrencySelect',
-    component: CurrencySelect,
+const meta: ComponentMeta<typeof CountrySelect> = {
+    title: 'shared/CountrySelect',
+    component: CountrySelect,
 }
 export default meta
 
-const Template: ComponentStory<typeof CurrencySelect> = (args) => {
-    return <CurrencySelect {...args} />
+const Template: ComponentStory<typeof CountrySelect> = (args) => {
+    return <CountrySelect {...args} />
 }
 
 export const Primary = Template.bind({})
