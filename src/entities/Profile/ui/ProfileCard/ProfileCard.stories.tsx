@@ -1,8 +1,8 @@
 import { type ComponentMeta, type ComponentStory } from '@storybook/react'
 import { ProfileCard } from './ProfileCard'
 import { StoreDecorator } from 'shared/config/storybook/StoreDecorator'
-import { Currency } from 'entities/Currency'
-import { Country } from 'entities/Country'
+import { Currency } from 'shared/const/currency'
+import { Country } from 'shared/const/country'
 import { ThemeDecorator } from 'shared/config/storybook/ThemeDecorator'
 import { THEME } from 'shared/config/theme'
 
