@@ -3,12 +3,15 @@ import React, {
     type FocusEventHandler,
     type InputHTMLAttributes,
     memo,
-    type ReactEventHandler,
+    type SyntheticEvent,
     useCallback,
+    useRef,
     useState,
+    type FocusEvent,
 } from 'react'
-import { classNames } from 'shared/lib/classNames/classNames'
+import { classNames } from 'shared/lib/classNames'
 import classes from './Input.module.scss'
+import { getTextWidth } from 'shared/lib/getTextWidth'
 
 type HTMLInputProps = Omit<
     InputHTMLAttributes<HTMLInputElement>,
@@ -38,40 +41,57 @@ export const Input: FC<InputProps> = memo((props) => {
         ...restProps
     } = props
 
+    const ref = useRef<HTMLInputElement>(null)
     const [isFocused, setIsFocused] = useState(autoFocus)
-    const [caretPosition, setCaretPosition] = useState(0)
+    const [left, setLeft] = useState(0)
     const isCaretVisible = !readonly && isFocused
+
+    const updateCaretLeft = useCallback(
+        (e: SyntheticEvent<HTMLInputElement>) => {
+            const { value, selectionStart } = e.currentTarget
+            const styles = getComputedStyle(e.currentTarget)
+            const left = getTextWidth(
+                value?.toString().slice(0, selectionStart ?? 0) ?? '',
+                {
+                    size: Number(styles.fontSize.replace('px', '')),
+                    name: styles.fontFamily,
+                }
+            )
+            setLeft(left)
+        },
+        []
+    )
 
     const handleChangeValue = useCallback(
         (e: React.ChangeEvent<HTMLInputElement>) => {
             onChange?.(e.target.value)
-            setCaretPosition(e.target.value.length)
+            updateCaretLeft(e)
         },
-        [onChange]
+        [onChange, updateCaretLeft]
     )
 
     const handleBlur: FocusEventHandler<HTMLInputElement> = useCallback(
-        (e) => {
+        (e: FocusEvent<HTMLInputElement>) => {
             setIsFocused(false)
             onBlur?.(e)
         },
         [onBlur]
     )
 
-    const handleFocus: FocusEventHandler<HTMLInputElement> = useCallback(
-        (e) => {
+    const handleFocus = useCallback(
+        (e: FocusEvent<HTMLInputElement>) => {
             setIsFocused(true)
             onFocus?.(e)
         },
         [onFocus]
     )
 
-    const handleSelect: ReactEventHandler<HTMLInputElement> = useCallback(
-        (event) => {
+    const handleSelect = useCallback(
+        (event: SyntheticEvent<HTMLInputElement>) => {
             onSelect?.(event)
-            setCaretPosition(event?.currentTarget?.selectionStart ?? 0)
+            updateCaretLeft(event)
         },
-        [onSelect]
+        [onSelect, updateCaretLeft]
     )
 
     const inputClassName = classNames(
@@ -94,6 +114,7 @@ export const Input: FC<InputProps> = memo((props) => {
             <div className={classes.caretWrapper}>
                 <input
                     {...restProps}
+                    ref={ref}
                     data-testid="input"
                     className={inputClassName}
                     autoFocus={autoFocus}
@@ -106,10 +127,7 @@ export const Input: FC<InputProps> = memo((props) => {
                 />
 
                 {isCaretVisible && (
-                    <span
-                        className={classes.caret}
-                        style={{ left: caretPosition * 9 }}
-                    />
+                    <span className={classes.caret} style={{ left }} />
                 )}
             </div>
         </div>
