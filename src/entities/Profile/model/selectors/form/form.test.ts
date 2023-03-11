@@ -1,7 +1,7 @@
 import { type DeepPartial } from '@reduxjs/toolkit'
 import { form } from './form'
-import { Currency } from 'entities/Currency'
-import { Country } from 'entities/Country'
+import { Currency } from 'shared/const/currency'
+import { Country } from 'shared/const/country'
 import avatar from 'shared/assets/tests/avatar.jpg'
 
 describe('form', () => {
