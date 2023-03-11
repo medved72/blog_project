@@ -1,1 +1,0 @@
-export { getTextWidth } from './getTextWidth'

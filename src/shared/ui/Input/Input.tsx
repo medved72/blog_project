@@ -11,7 +11,7 @@ import React, {
 } from 'react'
 import { classNames } from 'shared/lib/classNames'
 import classes from './Input.module.scss'
-import { getTextWidth } from 'shared/lib/getTextWidth'
+import { computeTextWidth } from 'shared/lib/computeTextWidth'
 
 type HTMLInputProps = Omit<
     InputHTMLAttributes<HTMLInputElement>,
@@ -50,7 +50,7 @@ export const Input: FC<InputProps> = memo((props) => {
         (e: SyntheticEvent<HTMLInputElement>) => {
             const { value, selectionStart } = e.currentTarget
             const styles = getComputedStyle(e.currentTarget)
-            const left = getTextWidth(
+            const left = computeTextWidth(
                 value?.toString().slice(0, selectionStart ?? 0) ?? '',
                 {
                     size: Number(styles.fontSize.replace('px', '')),

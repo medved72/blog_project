@@ -1,0 +1,1 @@
+export { computeTextWidth } from './computeTextWidth'

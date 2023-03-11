@@ -1,4 +1,4 @@
-export function getTextWidth(
+export function computeTextWidth(
     text: string,
     font: { size: number; name: string }
 ): number {
