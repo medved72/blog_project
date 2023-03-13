@@ -14,6 +14,8 @@ import { PageLoader } from 'widgets/PageLoader'
 import { ROUTES } from 'shared/config/routes'
 import { useSelector } from 'react-redux'
 import { selectors } from 'entities/User'
+import { ArticlePage } from 'pages/ArticlePage'
+import { ArticleDetailsPage } from 'pages/ArticleDetailsPage'
 
 const ProtectedAuthRoute: FC<PropsWithChildren> = memo(({ children }) => {
     const authData = useSelector(selectors.getUserAuthData)
@@ -45,6 +47,22 @@ export const AppRouter: FC = memo(() => {
                 element: (
                     <ProtectedAuthRoute>
                         <ProfilePage />
+                    </ProtectedAuthRoute>
+                ),
+            },
+            {
+                path: ROUTES.ARTICLES,
+                element: (
+                    <ProtectedAuthRoute>
+                        <ArticlePage />
+                    </ProtectedAuthRoute>
+                ),
+            },
+            {
+                path: ROUTES.ARTICLE_DETAILS,
+                element: (
+                    <ProtectedAuthRoute>
+                        <ArticleDetailsPage />
                     </ProtectedAuthRoute>
                 ),
             },

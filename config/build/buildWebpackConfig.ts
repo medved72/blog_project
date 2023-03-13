@@ -16,6 +16,7 @@ export function buildWebpackConfig(
             path: paths.build,
             filename: '[name].[contenthash].bundle.js',
             clean: true,
+            publicPath: '/',
         },
         plugins: buildPlugins(options),
         module: {
