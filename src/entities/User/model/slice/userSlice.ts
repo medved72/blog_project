@@ -16,6 +16,7 @@ export const userSlice = createSlice({
             if (user) {
                 state.authData = JSON.parse(user)
             }
+            state.__initialized = true
         },
         logout: (state) => {
             localStorage.removeItem(USER_LOCALSTORAGE_KEY)

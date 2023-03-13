@@ -5,4 +5,5 @@ export interface User {
 
 export interface UserState {
     authData?: User
+    __initialized?: boolean
 }

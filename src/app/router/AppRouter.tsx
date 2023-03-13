@@ -1,5 +1,11 @@
 import { type FC, memo, type PropsWithChildren, Suspense, useMemo } from 'react'
-import { useRoutes, type RouteObject } from 'react-router-dom'
+import {
+    useRoutes,
+    type RouteObject,
+    Navigate,
+    generatePath,
+    useLocation,
+} from 'react-router-dom'
 import { AboutPage } from 'pages/AboutPage'
 import { MainPage } from 'pages/MainPage'
 import { NotFound } from 'pages/NotFound'
@@ -11,9 +17,16 @@ import { selectors } from 'entities/User'
 
 const ProtectedAuthRoute: FC<PropsWithChildren> = memo(({ children }) => {
     const authData = useSelector(selectors.getUserAuthData)
+    const location = useLocation()
 
     if (!authData) {
-        return <NotFound />
+        return (
+            <Navigate
+                to={generatePath(ROUTES.MAIN)}
+                state={{ from: location }}
+                replace
+            />
+        )
     }
 
     return <>{children}</>
@@ -21,6 +34,8 @@ const ProtectedAuthRoute: FC<PropsWithChildren> = memo(({ children }) => {
 ProtectedAuthRoute.displayName = 'ProtectedAuthRoute'
 
 export const AppRouter: FC = memo(() => {
+    const userInitialized = useSelector(selectors.getUserInitialized)
+
     const routesConfig: RouteObject[] = useMemo(() => {
         return [
             { path: ROUTES.MAIN, element: <MainPage /> },
@@ -39,7 +54,11 @@ export const AppRouter: FC = memo(() => {
 
     const routes = useRoutes(routesConfig)
 
-    return <Suspense fallback={<PageLoader />}>{routes}</Suspense>
+    return (
+        <Suspense fallback={<PageLoader />}>
+            {userInitialized && routes}
+        </Suspense>
+    )
 })
 
 AppRouter.displayName = 'AppRouter'
