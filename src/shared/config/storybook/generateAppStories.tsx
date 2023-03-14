@@ -1,4 +1,8 @@
-import { type ComponentStory, storiesOf } from '@storybook/react'
+import {
+    type ComponentStory,
+    type Parameters as SbParameters,
+    storiesOf,
+} from '@storybook/react'
 import { type FC } from 'react'
 import { capitalize } from 'shared/lib/capitalize'
 import { ThemeDecorator } from './ThemeDecorator'
@@ -13,9 +17,15 @@ export interface AppStoryItem<T extends Record<string, any>> {
 export const generateAppStories = <T extends Record<string, any>>(
     kind: Parameters<typeof storiesOf>[0],
     Component: FC<T>,
-    stories: Array<AppStoryItem<T>>
+    stories: Array<AppStoryItem<T>>,
+    options: { parameters?: SbParameters } = {}
 ) => {
     const storiesKind = storiesOf(kind, module)
+
+    if (options.parameters) {
+        storiesKind.addParameters(options.parameters)
+    }
+
     const Template: ComponentStory<typeof Component> = (args) => (
         <Component {...args} />
     )

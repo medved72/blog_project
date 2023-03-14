@@ -1,19 +1,33 @@
-import { type FC, memo, type PropsWithChildren } from 'react'
+import { type FC, memo, useCallback, useRef } from 'react'
 import { classNames } from 'shared/lib/classNames'
 import classes from './Code.module.scss'
-import { Button } from '../Button'
+import { Button } from 'shared/ui/Button'
+import { Icon } from 'shared/ui/Icon'
+import CopyIcon from 'shared/assets/icons/copy-20-20.svg'
 
 interface CodeProps {
     className?: string
+    children: string
 }
 
-export const Code: FC<PropsWithChildren<CodeProps>> = memo((props) => {
+export const Code: FC<CodeProps> = memo((props) => {
     const { className, children } = props
+    const codeRef = useRef<HTMLElement>(null)
+
+    const handleCopy = useCallback(() => {
+        navigator?.clipboard.writeText(children).catch(console.error)
+    }, [children])
+
     return (
         <pre className={classNames(classes.code, {}, [className])}>
-            {/* eslint-disable-next-line i18next/no-literal-string */}
-            <Button className={classes.copyButton}>Копировать</Button>
-            <code>{children}</code>
+            <Button
+                className={classes.copyButton}
+                theme="clear"
+                onClick={handleCopy}
+            >
+                <Icon Svg={CopyIcon} stroke />
+            </Button>
+            <code ref={codeRef}>{children}</code>
         </pre>
     )
 })

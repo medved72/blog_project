@@ -1,21 +1,28 @@
-import { type ComponentMeta, type ComponentStory } from '@storybook/react'
 import { ArticleDetails } from './ArticleDetails'
-import { ThemeDecorator } from 'shared/config/storybook/ThemeDecorator'
-import { THEME } from 'shared/config/theme'
+import { generateAppStories } from 'shared/config/storybook/generateAppStories'
+import { StoreDecorator } from 'shared/config/storybook/StoreDecorator'
+import { articles } from '../../../../../json-server/db.json'
 
-const meta: ComponentMeta<typeof ArticleDetails> = {
-    title: 'entities/ArticleDetails',
-    component: ArticleDetails,
-}
-export default meta
-
-const Template: ComponentStory<typeof ArticleDetails> = (args) => {
-    return <ArticleDetails {...args} />
-}
-
-export const Primary = Template.bind({})
-Primary.args = {}
-
-export const Dark = Template.bind({})
-Dark.args = {}
-Dark.decorators = [ThemeDecorator(THEME.DARK)]
+generateAppStories(
+    'entities/ArticleDetails',
+    ArticleDetails,
+    [
+        {
+            key: 'primary',
+            args: { id: '1' },
+            decorators: [StoreDecorator({})],
+        },
+    ],
+    {
+        parameters: {
+            mockData: [
+                {
+                    url: '/articles/1',
+                    method: 'GET',
+                    status: 200,
+                    response: articles[0],
+                },
+            ],
+        },
+    }
+)
