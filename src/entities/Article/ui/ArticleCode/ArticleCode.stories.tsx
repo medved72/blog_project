@@ -1,16 +1,16 @@
 import { type ComponentMeta, type ComponentStory } from '@storybook/react'
-import ArticleDetailsPage from './ArticleDetailsPage'
+import { ArticleCode } from './ArticleCode'
 import { ThemeDecorator } from 'shared/config/storybook/ThemeDecorator'
 import { THEME } from 'shared/config/theme'
 
-const meta: ComponentMeta<typeof ArticleDetailsPage> = {
-    title: 'pages/ArticleDetailsPage',
-    component: ArticleDetailsPage,
+const meta: ComponentMeta<typeof ArticleCode> = {
+    title: 'entities/ArticleCode',
+    component: ArticleCode,
 }
 export default meta
 
-const Template: ComponentStory<typeof ArticleDetailsPage> = (args) => {
-    return <ArticleDetailsPage {...args} />
+const Template: ComponentStory<typeof ArticleCode> = (args) => {
+    return <ArticleCode {...args} />
 }
 
 export const Primary = Template.bind({})

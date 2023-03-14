@@ -8,6 +8,7 @@ import {
 import { type LoginState } from 'features/AuthByUsername'
 import { type UserState } from 'entities/User'
 import { type ProfileState } from 'entities/Profile'
+import { type ArticleDetailsState } from 'entities/Article'
 import { type AxiosInstance } from 'axios'
 import { type NavigateFunction } from 'react-router-dom'
 
@@ -15,6 +16,7 @@ export interface AppState {
     user: UserState
     loginForm?: LoginState
     profile?: ProfileState
+    articleDetails?: ArticleDetailsState
 }
 
 export type AppDispatch = ReturnType<typeof setupStore>['dispatch']
