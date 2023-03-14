@@ -1,5 +1,5 @@
 import { type Reducer } from '@reduxjs/toolkit'
-import { type FC, memo, type PropsWithChildren, useEffect } from 'react'
+import { type FC, memo, type PropsWithChildren, useLayoutEffect } from 'react'
 import { useAppStore } from 'shared/hooks/useAppStore'
 import { useAppDispatch } from 'shared/hooks/useAppDispatch'
 
@@ -18,7 +18,7 @@ export const DynamicModuleLoader: FC<
     const store = useAppStore()
     const dispatch = useAppDispatch()
 
-    useEffect(() => {
+    useLayoutEffect(() => {
         Object.entries(reducers).forEach(([name, reducer]) => {
             store.reducerManager.add(name as keyof GlbAppState, reducer)
             dispatch({ type: `@INIT ${name} reducer` })
@@ -42,11 +42,11 @@ export const withDynamicModuleLoader = <T extends object>(
     Component: FC<T>,
     options: DynamicModuleLoaderProps
 ): FC<T> => {
-    return memo<T>(function WithDynamicModuleLoader(props) {
+    return function WithDynamicModuleLoader(props) {
         return (
             <DynamicModuleLoader {...options}>
                 <Component {...props} />
             </DynamicModuleLoader>
         )
-    })
+    }
 }

@@ -2,8 +2,8 @@ import { addDecorator } from '@storybook/react'
 import { StyleDecorator } from '../../src/shared/config/storybook/StyleDecorator'
 import { ThemeDecorator } from '../../src/shared/config/storybook/ThemeDecorator'
 import { THEME } from '../../src/shared/config/theme'
-import { RouterDecorator } from '../../src/shared/config/storybook/RouterDecorator'
 import { I18nDecorator } from '../../src/shared/config/storybook/I18nDecorator'
+import { withRouter } from 'storybook-addon-react-router-v6'
 
 export const parameters = {
     actions: { argTypesRegex: '^on[A-Z].*' },
@@ -30,7 +30,7 @@ export const globalTypes = {
     },
 }
 
+addDecorator(withRouter)
 addDecorator(I18nDecorator)
 addDecorator(StyleDecorator)
 addDecorator(ThemeDecorator(THEME.LIGHT))
-addDecorator(RouterDecorator)

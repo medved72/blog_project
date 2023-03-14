@@ -4,12 +4,14 @@ import classes from './Text.module.scss'
 
 type TextTheme = 'primary' | 'error'
 type TextAlign = 'right' | 'left' | 'center'
+type TextSize = 'M' | 'L'
 
 interface TextProps {
     className?: string
     title?: string
-    text?: string
+    text?: string | number
     theme?: TextTheme
+    size?: TextSize
     align?: TextAlign
     'data-testid'?: string
 }
@@ -18,6 +20,7 @@ export const Text: FC<TextProps> = memo((props) => {
         className,
         text,
         title,
+        size = 'M',
         theme = 'primary',
         align = 'left',
         ...restProps
@@ -31,6 +34,7 @@ export const Text: FC<TextProps> = memo((props) => {
                 className,
                 classes[theme],
                 classes[align],
+                classes[`size${size}`],
             ])}
         >
             {title && (

@@ -1,5 +1,5 @@
 import { renderWithProviders } from 'shared/lib/tests'
-import { ArticlePage } from './ArticlePage'
+import ArticlePage from './ArticlePage'
 
 describe('ArticlePage', () => {
     it('should render', () => {

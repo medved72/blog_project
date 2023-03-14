@@ -1,21 +1,9 @@
-import { type ComponentMeta, type ComponentStory } from '@storybook/react'
-import { ArticlePage } from './ArticlePage'
-import { ThemeDecorator } from 'shared/config/storybook/ThemeDecorator'
-import { THEME } from 'shared/config/theme'
+import { generateAppStories } from 'shared/config/storybook/generateAppStories'
+import ArticlePage from './ArticlePage'
 
-const meta: ComponentMeta<typeof ArticlePage> = {
-    title: 'pages/ArticlePage',
-    component: ArticlePage,
-}
-export default meta
-
-const Template: ComponentStory<typeof ArticlePage> = (args) => {
-    return <ArticlePage {...args} />
-}
-
-export const Primary = Template.bind({})
-Primary.args = {}
-
-export const Dark = Template.bind({})
-Dark.args = {}
-Dark.decorators = [ThemeDecorator(THEME.DARK)]
+generateAppStories('pages/ArticlePage', ArticlePage, [
+    {
+        key: 'primary',
+        args: {},
+    },
+])

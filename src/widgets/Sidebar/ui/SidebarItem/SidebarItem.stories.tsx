@@ -3,7 +3,7 @@ import { SidebarItem } from './SidebarItem'
 import { ThemeDecorator } from 'shared/config/storybook/ThemeDecorator'
 import { THEME } from 'shared/config/theme'
 import { itemsList } from '../../model/items'
-import { StoreDecorator } from '../../../../shared/config/storybook/StoreDecorator'
+import { StoreDecorator } from 'shared/config/storybook/StoreDecorator'
 
 const meta: ComponentMeta<typeof SidebarItem> = {
     title: 'widgets/SidebarItem',
