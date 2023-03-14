@@ -4,10 +4,16 @@ import { capitalize } from 'shared/lib/capitalize'
 import { ThemeDecorator } from './ThemeDecorator'
 import { THEME } from 'shared/config/theme'
 
-export const generateAppStories = <T extends Record<string, unknown>>(
+export interface AppStoryItem<T extends Record<string, any>> {
+    key: string
+    args: T
+    decorators?: any[]
+}
+
+export const generateAppStories = <T extends Record<string, any>>(
     kind: Parameters<typeof storiesOf>[0],
     Component: FC<T>,
-    stories: Array<{ key: string; args: T; decorators?: any[] }>
+    stories: Array<AppStoryItem<T>>
 ) => {
     const storiesKind = storiesOf(kind, module)
     const Template: ComponentStory<typeof Component> = (args) => (
@@ -27,4 +33,6 @@ export const generateAppStories = <T extends Record<string, unknown>>(
             decorators: [ThemeDecorator(THEME.DARK), ...decorators],
         })
     })
+
+    return storiesKind
 }
