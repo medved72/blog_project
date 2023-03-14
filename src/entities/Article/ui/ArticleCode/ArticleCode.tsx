@@ -2,6 +2,7 @@ import { type FC, memo } from 'react'
 import { classNames } from 'shared/lib/classNames'
 import classes from './ArticleCode.module.scss'
 import { type ArticleCodeBlock } from '../../model'
+import { Code } from 'shared/ui/Code'
 
 interface ArticleCodeProps {
     className?: string
@@ -9,11 +10,10 @@ interface ArticleCodeProps {
 }
 
 export const ArticleCode: FC<ArticleCodeProps> = memo((props) => {
-    const { className } = props
+    const { className, block } = props
     return (
         <div className={classNames(classes.articleCode, {}, [className])}>
-            {/* eslint-disable-next-line i18next/no-literal-string */}
-            <p>ArticleCode</p>
+            <Code>{block.code}</Code>
         </div>
     )
 })

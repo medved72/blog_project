@@ -32,6 +32,12 @@ export const generateAppStories = <T extends Record<string, any>>(
             args,
             decorators: [ThemeDecorator(THEME.DARK), ...decorators],
         })
+
+        // @ts-expect-error invalid template.bind type
+        storiesKind.add(capitalize(`${key}Orange`), Template.bind({}), {
+            args,
+            decorators: [ThemeDecorator(THEME.ORANGE), ...decorators],
+        })
     })
 
     return storiesKind
