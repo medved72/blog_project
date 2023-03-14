@@ -4,7 +4,7 @@ import classes from './CommentCard.module.scss'
 import { type Comment } from '../../model/types/comment'
 import { Avatar } from 'shared/ui/Avatar'
 import { Text } from 'shared/ui/Text'
-import { Skeleton } from '../../../../shared/ui/Skeleton'
+import { Skeleton } from 'shared/ui/Skeleton'
 
 interface CommentCardProps {
     className?: string

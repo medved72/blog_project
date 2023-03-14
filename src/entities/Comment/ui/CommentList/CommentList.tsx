@@ -12,9 +12,43 @@ interface CommentListProps {
     isLoading?: boolean
 }
 
+const emptyComments: Comment[] = [
+    {
+        id: '',
+        text: '',
+        user: { id: '', username: '' },
+    },
+    {
+        id: '',
+        text: '',
+        user: { id: '', username: '' },
+    },
+    {
+        id: '',
+        text: '',
+        user: { id: '', username: '' },
+    },
+]
+
 export const CommentList: FC<CommentListProps> = memo((props) => {
     const { className, comments, isLoading } = props
     const { t } = useTranslation()
+
+    if (isLoading && !comments?.length) {
+        return (
+            <>
+                {emptyComments.map((comment, index) => {
+                    return (
+                        <CommentCard
+                            key={index}
+                            comment={comment}
+                            isLoading={isLoading}
+                        />
+                    )
+                })}
+            </>
+        )
+    }
 
     return (
         <div className={classNames(classes.commentList, {}, [className])}>
