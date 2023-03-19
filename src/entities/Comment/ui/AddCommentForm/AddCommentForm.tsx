@@ -43,6 +43,7 @@ export const AddCommentForm: FC<AddCommentFormProps> = memo((props) => {
                 placeholder={t('input.placeholder.addNewComment') + '>'}
                 value={value}
                 onChange={handleCommentTextChange}
+                disabled={sending}
             />
             <Button theme="outline" type="submit" disabled={sending}>
                 {t('button.text.send')}

@@ -11,4 +11,13 @@ generateAppStories('entities/Comment/AddCommentForm', AddCommentForm, [
             value: 'value',
         },
     },
+    {
+        key: 'sending',
+        args: {
+            onSendClick: action('onSendClick'),
+            onCommentTextChange: action('onCommentTextChange'),
+            value: 'value',
+            sending: true,
+        },
+    },
 ])

@@ -1,7 +1,7 @@
 import { CommentList } from './CommentList'
 import { generateAppStories } from 'shared/config/storybook/generateAppStories'
 
-generateAppStories('entities/CommentList', CommentList, [
+generateAppStories('entities/Comment/CommentList', CommentList, [
     {
         key: 'primary',
         args: {
