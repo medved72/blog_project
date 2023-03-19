@@ -1,9 +1,9 @@
 import { renderWithProviders } from 'shared/lib/tests'
-import AddCommentForm from './AddArticleCommentForm'
+import { AddArticleCommentForm } from './AddArticleCommentForm'
 
 describe('AddCommentForm', () => {
     it('should render', () => {
-        const { baseElement } = renderWithProviders(<AddCommentForm />)
+        const { baseElement } = renderWithProviders(<AddArticleCommentForm />)
         expect(baseElement).toBeInTheDocument()
     })
 })

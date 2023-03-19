@@ -22,7 +22,6 @@ generateAppStories(
             mockData: [
                 {
                     url: '/comments?articleId=1&_expand=true',
-                    // searchParamKeys: ['articleId', '_expand'],
                     method: 'GET',
                     status: 200,
                     response: [

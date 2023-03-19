@@ -5,4 +5,4 @@ export const ROUTES = {
     ARTICLES: '/articles',
     ARTICLE_DETAILS: '/articles/:articleId',
     NOT_FOUND: '*',
-} satisfies Record<string, string>
+} satisfies Readonly<Record<string, Readonly<string>>>

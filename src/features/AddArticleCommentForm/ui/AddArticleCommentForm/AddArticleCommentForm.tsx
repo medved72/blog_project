@@ -18,7 +18,7 @@ interface AddCommentFormProps {
     onCommentAdded?: () => void
 }
 
-const AddArticleCommentForm: FC<AddCommentFormProps> = memo((props) => {
+const AddArticleCommentFormPlain: FC<AddCommentFormProps> = memo((props) => {
     const { className, onCommentAdded } = props
 
     const dispatch = useAppDispatch()
@@ -56,8 +56,11 @@ const AddArticleCommentForm: FC<AddCommentFormProps> = memo((props) => {
         />
     )
 })
-AddArticleCommentForm.displayName = 'AddArticleCommentForm'
+AddArticleCommentFormPlain.displayName = 'AddArticleCommentFormPlain'
 
-export default withDynamicModuleLoader(AddArticleCommentForm, {
-    reducers: { addArticleCommentForm: addArticleCommentFormReducer },
-})
+export const AddArticleCommentForm = withDynamicModuleLoader(
+    AddArticleCommentFormPlain,
+    {
+        reducers: { addArticleCommentForm: addArticleCommentFormReducer },
+    }
+)

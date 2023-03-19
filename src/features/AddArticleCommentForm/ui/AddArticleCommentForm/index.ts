@@ -1,1 +1,1 @@
-export { AddArticleCommentFormAsync as AddArticleCommentForm } from './AddArticleCommentForm.async'
+export { AddArticleCommentForm } from './AddArticleCommentForm'

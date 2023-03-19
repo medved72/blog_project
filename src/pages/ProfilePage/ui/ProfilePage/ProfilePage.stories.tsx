@@ -1,6 +1,7 @@
 import { StoreDecorator } from 'shared/config/storybook/StoreDecorator'
 import ProfilePage from './ProfilePage'
 import { generateAppStories } from 'shared/config/storybook/generateAppStories'
+import { ROUTES } from '../../../../shared/config/routes'
 
 generateAppStories(
     'pages/ProfilePage',
@@ -14,9 +15,13 @@ generateAppStories(
     ],
     {
         parameters: {
+            reactRouter: {
+                routePath: ROUTES.PROFILE,
+                routeParams: { id: '1' },
+            },
             mockData: [
                 {
-                    url: '/profile',
+                    url: '/profile/1',
                     method: 'GET',
                     status: 200,
                     response: {
