@@ -3,11 +3,11 @@ import { type Profile, type ProfileErrors } from '../../types/profile'
 
 export const fetchProfileData = createAsyncThunk<
     Profile,
-    void,
+    string,
     GlbThunkConfig<ProfileErrors>
->('profile/fetchProfileData', async (_, thunkAPI) => {
+>('profile/fetchProfileData', async (id, thunkAPI) => {
     try {
-        const response = await thunkAPI.extra.api.get('/profile')
+        const response = await thunkAPI.extra.api.get(`/profile/${id}`)
         return response.data
     } catch (e) {
         return thunkAPI.rejectWithValue(['SERVER_ERROR'])

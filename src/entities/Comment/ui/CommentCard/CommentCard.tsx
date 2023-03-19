@@ -5,10 +5,13 @@ import { type Comment } from '../../model/types/comment'
 import { Avatar } from 'shared/ui/Avatar'
 import { Text } from 'shared/ui/Text'
 import { Skeleton } from 'shared/ui/Skeleton'
+import { AppLink } from '../../../../shared/ui/Link'
+import { generatePath } from 'react-router-dom'
+import { ROUTES } from '../../../../shared/config/routes'
 
 interface CommentCardProps {
     className?: string
-    comment: Comment
+    comment?: Comment
     isLoading?: boolean
 }
 
@@ -27,14 +30,21 @@ export const CommentCard: FC<CommentCardProps> = memo((props) => {
         )
     }
 
+    if (!comment) {
+        return null
+    }
+
     return (
         <div className={classNames(classes.commentCard, {}, [className])}>
-            <div className={classes.header}>
+            <AppLink
+                className={classes.header}
+                to={generatePath(ROUTES.PROFILE, { id: comment.user.id })}
+            >
                 {comment.user.avatar && (
                     <Avatar size={30} src={comment.user.avatar} />
                 )}
                 <Text title={comment.user.username} />
-            </div>
+            </AppLink>
             <Text text={comment.text} />
         </div>
     )

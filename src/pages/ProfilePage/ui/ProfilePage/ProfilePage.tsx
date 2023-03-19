@@ -11,11 +11,13 @@ import classes from './ProfilePage.module.scss'
 import { useAppDispatch } from 'shared/hooks/useAppDispatch'
 import { useSelector } from 'react-redux'
 import { ProfilePageHeader } from '../ProfilePageHeader'
-import { type Currency } from 'entities/Currency'
-import { type Country } from 'entities/Country'
 import { Text } from 'shared/ui/Text'
 import { useTranslation } from 'react-i18next'
-import { type ValidateProfileError } from '../../../../entities/Profile/model/types/profile'
+import { type ValidateProfileError } from 'entities/Profile/model/types/profile'
+import { type Currency } from 'shared/const/currency'
+import { type Country } from 'shared/const/country'
+import { useParams } from 'react-router-dom'
+import { getUserAuthData } from 'entities/User'
 
 interface ProfilePageProps {
     className?: string
@@ -24,18 +26,25 @@ interface ProfilePageProps {
 const ProfilePage: FC<ProfilePageProps> = memo((props) => {
     const { className } = props
     const { t } = useTranslation('profile')
+    const { id } = useParams<{ id: string }>()
     const dispatch = useAppDispatch()
     const profileLoading = useSelector(profileSelectors.loading)
     const profileError = useSelector(profileSelectors.error)
     const profileReadonly = useSelector(profileSelectors.readOnly)
     const formProfile = useSelector(profileSelectors.form)
+    const user = useSelector(getUserAuthData)
     const profileValidationErrors = useSelector(
         profileSelectors.getProfileValidationErrors
     )
+    const userFetchId = id ?? user?.id
 
     useEffect(() => {
-        dispatch(profileActions.fetchProfileData()).catch(console.log)
-    }, [dispatch])
+        if (userFetchId) {
+            dispatch(profileActions.fetchProfileData(userFetchId)).catch(
+                console.log
+            )
+        }
+    }, [dispatch, userFetchId])
 
     const validateErrorTranslates = useMemo<
         Record<ValidateProfileError, string>

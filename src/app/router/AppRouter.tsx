@@ -13,12 +13,12 @@ import { ProfilePage } from 'pages/ProfilePage'
 import { PageLoader } from 'widgets/PageLoader'
 import { ROUTES } from 'shared/config/routes'
 import { useSelector } from 'react-redux'
-import { selectors } from 'entities/User'
 import { ArticlePage } from 'pages/ArticlePage'
 import { ArticleDetailsPage } from 'pages/ArticleDetailsPage'
+import { getUserAuthData, getUserInitialized } from 'entities/User'
 
 const ProtectedAuthRoute: FC<PropsWithChildren> = memo(({ children }) => {
-    const authData = useSelector(selectors.getUserAuthData)
+    const authData = useSelector(getUserAuthData)
     const location = useLocation()
 
     if (!authData) {
@@ -36,7 +36,7 @@ const ProtectedAuthRoute: FC<PropsWithChildren> = memo(({ children }) => {
 ProtectedAuthRoute.displayName = 'ProtectedAuthRoute'
 
 export const AppRouter: FC = memo(() => {
-    const userInitialized = useSelector(selectors.getUserInitialized)
+    const userInitialized = useSelector(getUserInitialized)
 
     const routesConfig: RouteObject[] = useMemo(() => {
         return [

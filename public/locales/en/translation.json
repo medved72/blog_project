@@ -18,5 +18,7 @@
     "Укажите валюту": "Укажите валюту",
     "Укажите страну": "Укажите страну",
     "Статьи": "Статьи",
-    "comments.empty": "comments.empty"
+    "comments.empty": "comments.empty",
+    "input.placeholder.addNewComment": "input.placeholder.addNewComment",
+    "button.text.send": "button.text.send"
 }

@@ -93,15 +93,75 @@
     },
     {
       "id": "2",
-      "text": "some comment",
+      "text": "some comment 2",
       "articleId": "1",
       "userId": "1"
     },
     {
       "id": "3",
-      "text": "some comment",
+      "text": "some comment 3",
       "articleId": "1",
       "userId": "1"
+    },
+    {
+      "articleId": "1",
+      "userId": "1",
+      "text": "123",
+      "id": "yjgx8M8"
+    },
+    {
+      "articleId": "1",
+      "userId": "2",
+      "text": "123",
+      "id": "FHXx-Ot"
+    },
+    {
+      "articleId": "1",
+      "userId": "1",
+      "text": "new comment",
+      "id": "h2sg1lU"
+    },
+    {
+      "articleId": "1",
+      "userId": "1",
+      "text": "new comment2",
+      "id": "tNSLJxA"
+    },
+    {
+      "articleId": "1",
+      "userId": "1",
+      "text": "new comment 3",
+      "id": "Kqyx510"
+    },
+    {
+      "articleId": "1",
+      "userId": "1",
+      "text": "commment 3",
+      "id": "5kPGYkh"
+    },
+    {
+      "articleId": "1",
+      "userId": "2",
+      "text": "new comment from user",
+      "id": "c_AMrrZ"
+    },
+    {
+      "articleId": "1",
+      "userId": "1",
+      "text": "new comment from admmin",
+      "id": "29WQNTu"
+    },
+    {
+      "articleId": "1",
+      "userId": "1",
+      "text": "coommment",
+      "id": "aWa2QBK"
+    },
+    {
+      "articleId": "1",
+      "userId": "1",
+      "text": "qweqweqweq",
+      "id": "oBjXLit"
     }
   ],
   "users": [
@@ -120,14 +180,28 @@
       "avatar": "https://media.istockphoto.com/id/1305665241/vector/anonymous-gender-neutral-face-avatar-incognito-head-silhouette-stock-illustration.jpg?s=170667a&w=0&k=20&c=hdSlOI6dkmjABHFBYK2ZsA0_-iSENg7k9u_Sa4R9GxY="
     }
   ],
-  "profile": {
-    "first": "Дмитрий",
-    "lastname": "Бобырев",
-    "age": 24,
-    "currency": "RUB",
-    "country": "Russia",
-    "city": "Tyumen",
-    "username": "admin",
-    "avatar": "https://media.istockphoto.com/id/1305665241/vector/anonymous-gender-neutral-face-avatar-incognito-head-silhouette-stock-illustration.jpg?s=170667a&w=0&k=20&c=hdSlOI6dkmjABHFBYK2ZsA0_-iSENg7k9u_Sa4R9GxY="
-  }
+  "profile": [
+    {
+      "id": "1",
+      "first": "Дмитрий",
+      "lastname": "Бобырев",
+      "age": 24,
+      "currency": "RUB",
+      "country": "Russia",
+      "city": "Tyumen",
+      "username": "admin",
+      "avatar": "https://media.istockphoto.com/id/1305665241/vector/anonymous-gender-neutral-face-avatar-incognito-head-silhouette-stock-illustration.jpg?s=170667a&w=0&k=20&c=hdSlOI6dkmjABHFBYK2ZsA0_-iSENg7k9u_Sa4R9GxY="
+    },
+    {
+      "id": "2",
+      "first": "Петр",
+      "lastname": "Петров",
+      "age": 24,
+      "currency": "RUB",
+      "country": "Russia",
+      "city": "Tyumen",
+      "username": "user",
+      "avatar": "https://media.istockphoto.com/id/1305665241/vector/anonymous-gender-neutral-face-avatar-incognito-head-silhouette-stock-illustration.jpg?s=170667a&w=0&k=20&c=hdSlOI6dkmjABHFBYK2ZsA0_-iSENg7k9u_Sa4R9GxY="
+    }
+  ]
 }

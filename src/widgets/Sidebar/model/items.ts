@@ -26,7 +26,7 @@ export const itemsList: Item[] = [
         i18nKey: 'О нас',
     },
     {
-        path: generatePath(ROUTES.PROFILE),
+        path: generatePath(ROUTES.PROFILE, { id: '' }),
         icon: ProfileIcon,
         i18nKey: 'Профиль',
         authOnly: true,
