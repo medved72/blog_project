@@ -7,10 +7,7 @@ import { classNames } from 'shared/lib/classNames/classNames'
 
 import classes from './Navbar.module.scss'
 import { useSelector } from 'react-redux'
-import {
-    selectors as userSelectors,
-    actions as userActions,
-} from 'entities/User'
+import { actions as userActions, getUserAuthData } from 'entities/User'
 import { useAppDispatch } from 'shared/hooks/useAppDispatch'
 
 export interface NavbarProps {
@@ -22,7 +19,7 @@ export const Navbar: FC<NavbarProps> = memo(({ className }) => {
 
     const dispatch = useAppDispatch()
 
-    const authData = useSelector(userSelectors.getUserAuthData)
+    const authData = useSelector(getUserAuthData)
 
     const [isAuthModalOpen, setIsAuthModalOpen] = useState(false)
 

@@ -5,7 +5,7 @@ import { classNames } from 'shared/lib/classNames'
 import classes from './SidebarItem.module.scss'
 import { type Item } from '../../model/items'
 import { useSelector } from 'react-redux'
-import { selectors } from 'entities/User'
+import { getUserAuthData } from 'entities/User'
 
 interface SidebarItemProps {
     className?: string
@@ -16,7 +16,7 @@ interface SidebarItemProps {
 export const SidebarItem: FC<SidebarItemProps> = memo((props) => {
     const { className, item, collapsed } = props
     const { t } = useTranslation()
-    const authData = useSelector(selectors.getUserAuthData)
+    const authData = useSelector(getUserAuthData)
     const { icon: Icon } = item
 
     if (item.authOnly && !authData) {

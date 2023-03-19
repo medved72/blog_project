@@ -10,7 +10,7 @@ import {
     selectors as profileSelectors,
 } from 'entities/Profile'
 import { useAppDispatch } from 'shared/hooks/useAppDispatch'
-
+import { getUserAuthData } from 'entities/User'
 interface ProfilePageHeaderProps {
     className?: string
 }
@@ -19,7 +19,11 @@ export const ProfilePageHeader: FC<ProfilePageHeaderProps> = memo((props) => {
     const { className } = props
     const { t } = useTranslation('profile')
     const readonly = useSelector(profileSelectors.readOnly)
+    const profileData = useSelector(profileSelectors.profile)
+
     const dispatch = useAppDispatch()
+    const authData = useSelector(getUserAuthData)
+    const canEdit = authData?.id === profileData?.id
 
     const handleEditClick = useCallback(() => {
         dispatch(profileActions.setReadOnly(false))
@@ -41,22 +45,27 @@ export const ProfilePageHeader: FC<ProfilePageHeaderProps> = memo((props) => {
             ])}
         >
             <Text className={classes.text} title={t('Профиль')} />
-            <div className={classes.actions}>
-                {readonly ? (
-                    <Button theme="outline" onClick={handleEditClick}>
-                        {t('Редактировать')}
-                    </Button>
-                ) : (
-                    <>
-                        <Button theme="outlineRed" onClick={handleCancelEdit}>
-                            {t('Отменить')}
+            {canEdit && (
+                <div className={classes.actions}>
+                    {readonly ? (
+                        <Button theme="outline" onClick={handleEditClick}>
+                            {t('Редактировать')}
                         </Button>
-                        <Button theme="outline" onClick={handleSaveEdit}>
-                            {t('Сохранить')}
-                        </Button>
-                    </>
-                )}
-            </div>
+                    ) : (
+                        <>
+                            <Button
+                                theme="outlineRed"
+                                onClick={handleCancelEdit}
+                            >
+                                {t('Отменить')}
+                            </Button>
+                            <Button theme="outline" onClick={handleSaveEdit}>
+                                {t('Сохранить')}
+                            </Button>
+                        </>
+                    )}
+                </div>
+            )}
         </div>
     )
 })

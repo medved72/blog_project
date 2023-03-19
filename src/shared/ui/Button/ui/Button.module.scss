@@ -3,7 +3,7 @@
     color: var(--primary-color);
     cursor: pointer;
 
-    &:hover {
+    &:not(.disabled):hover {
         fill-opacity: 0.8;
         opacity: 0.8;
         stroke-opacity: 0.8;
@@ -73,6 +73,7 @@
 }
 
 .disabled {
+    cursor: not-allowed;
     opacity: 0.5;
 }
 

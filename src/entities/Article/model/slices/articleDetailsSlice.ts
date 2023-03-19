@@ -13,16 +13,16 @@ export const articleDetailsSlice = createSlice({
     extraReducers: (builder) =>
         builder
             .addCase(fetchArticleById.pending, (state) => {
-                state.error = undefined
                 state.isLoading = true
+                state.error = undefined
             })
             .addCase(fetchArticleById.fulfilled, (state, { payload }) => {
-                state.data = payload
                 state.isLoading = false
+                state.data = payload
             })
             .addCase(fetchArticleById.rejected, (state, { payload }) => {
-                state.error = payload
                 state.isLoading = false
+                state.error = payload
             }),
 })
 
