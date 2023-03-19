@@ -10,17 +10,20 @@ export const updateProfileData = createAsyncThunk<
 >('profile/updateProfileData', async (_, thunkAPI) => {
     try {
         const formData = selectors.form(thunkAPI.getState())
-        if (!formData?.id) {
-            return thunkAPI.rejectWithValue(['SERVER_ERROR'])
-        }
 
         const errors = validateProfileData(formData)
         if (errors.length) {
             return thunkAPI.rejectWithValue(errors)
         }
 
+        if (!formData?.id) {
+            return thunkAPI.rejectWithValue(
+                Array.from(new Set([...errors, 'NO_DATA'] as const))
+            )
+        }
+
         const response = await thunkAPI.extra.api.put<Profile>(
-            `/profile/${formData?.id}`,
+            `/profile/${formData.id}`,
             formData
         )
         return response.data

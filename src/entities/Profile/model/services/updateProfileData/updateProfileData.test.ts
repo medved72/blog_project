@@ -4,6 +4,7 @@ import avatar from 'shared/assets/tests/avatar.jpg'
 import { type Profile } from '../../types/profile'
 
 const profile = {
+    id: '1',
     first: 'Дмитрий',
     lastname: 'Бобырев',
     age: 24,
@@ -30,7 +31,7 @@ describe('updateProfileData', () => {
 
     it('reject validation', async () => {
         const thunk = new TestAsyncThunk(updateProfileData, {
-            profile: { form: {} },
+            profile: { form: { id: '1' } },
         })
 
         const result = await thunk.callThunk()
