@@ -17,7 +17,6 @@ import { type ValidateProfileError } from 'entities/Profile/model/types/profile'
 import { type Currency } from 'shared/const/currency'
 import { type Country } from 'shared/const/country'
 import { useParams } from 'react-router-dom'
-import { getUserAuthData } from 'entities/User'
 
 interface ProfilePageProps {
     className?: string
@@ -26,25 +25,23 @@ interface ProfilePageProps {
 const ProfilePage: FC<ProfilePageProps> = memo((props) => {
     const { className } = props
     const { t } = useTranslation('profile')
-    const { id } = useParams<{ id: string }>()
+    const { profileId } = useParams<{ profileId: string }>()
     const dispatch = useAppDispatch()
     const profileLoading = useSelector(profileSelectors.loading)
     const profileError = useSelector(profileSelectors.error)
     const profileReadonly = useSelector(profileSelectors.readOnly)
     const formProfile = useSelector(profileSelectors.form)
-    const user = useSelector(getUserAuthData)
     const profileValidationErrors = useSelector(
         profileSelectors.getProfileValidationErrors
     )
-    const userFetchId = id ?? user?.id
 
     useEffect(() => {
-        if (userFetchId) {
-            dispatch(profileActions.fetchProfileData(userFetchId)).catch(
+        if (profileId) {
+            dispatch(profileActions.fetchProfileData(profileId)).catch(
                 console.log
             )
         }
-    }, [dispatch, userFetchId])
+    }, [dispatch, profileId])
 
     const validateErrorTranslates = useMemo<
         Record<ValidateProfileError, string>

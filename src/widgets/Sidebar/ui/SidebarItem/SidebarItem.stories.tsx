@@ -2,8 +2,16 @@ import { type ComponentMeta, type ComponentStory } from '@storybook/react'
 import { SidebarItem } from './SidebarItem'
 import { ThemeDecorator } from 'shared/config/storybook/ThemeDecorator'
 import { THEME } from 'shared/config/theme'
-import { itemsList } from '../../model/items'
 import { StoreDecorator } from 'shared/config/storybook/StoreDecorator'
+import { generatePath } from 'react-router-dom'
+import { ROUTES } from 'shared/config/routes'
+import MainIcon from 'shared/assets/icons/main-20-20.svg'
+
+const item = {
+    path: generatePath(ROUTES.MAIN),
+    icon: MainIcon,
+    i18nKey: 'Главная',
+} as const
 
 const meta: ComponentMeta<typeof SidebarItem> = {
     title: 'widgets/SidebarItem',
@@ -17,22 +25,22 @@ const Template: ComponentStory<typeof SidebarItem> = (args) => {
 
 export const Primary = Template.bind({})
 Primary.args = {
-    item: itemsList[0],
+    item,
     collapsed: false,
 }
 Primary.decorators = [StoreDecorator({})]
 
 export const PrimaryCollapsed = Template.bind({})
 PrimaryCollapsed.args = {
-    item: itemsList[0],
+    item,
     collapsed: true,
 }
 PrimaryCollapsed.decorators = [StoreDecorator({})]
 
 export const Dark = Template.bind({})
-Dark.args = { item: itemsList[0], collapsed: false }
+Dark.args = { item, collapsed: false }
 Dark.decorators = [ThemeDecorator(THEME.DARK), StoreDecorator({})]
 
 export const DarkCollapsed = Template.bind({})
-DarkCollapsed.args = { item: itemsList[0], collapsed: true }
+DarkCollapsed.args = { item, collapsed: true }
 DarkCollapsed.decorators = [ThemeDecorator(THEME.DARK), StoreDecorator({})]

@@ -38,7 +38,9 @@ export const CommentCard: FC<CommentCardProps> = memo((props) => {
         <div className={classNames(classes.commentCard, {}, [className])}>
             <AppLink
                 className={classes.header}
-                to={generatePath(ROUTES.PROFILE, { id: comment.user.id })}
+                to={generatePath(ROUTES.PROFILE, {
+                    profileId: comment.user.id,
+                })}
             >
                 {comment.user.avatar && (
                     <Avatar size={30} src={comment.user.avatar} />
