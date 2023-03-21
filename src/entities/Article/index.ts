@@ -1,3 +1,3 @@
-export type { Article, ArticleDetailsState } from './model'
+export type { Article, ArticleDetailsState, ArticleListViewMode } from './model'
 export { getArticleDetailsData } from './model/selectors'
-export { ArticleDetails } from './ui'
+export { ArticleDetails, ArticleList } from './ui'

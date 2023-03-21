@@ -1,5 +1,6 @@
 {
     "articleDetails.errors.notFound": "Статья не найдена",
     "articleDetails.errors.UNKNOWN_ERROR": "Произошла ошибка при загрузке статьи",
-    "comments.title": "Комментарии"
+    "comments.title": "Комментарии",
+    "button.text.goToBack": "Назад к списку"
 }

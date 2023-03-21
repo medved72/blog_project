@@ -12,7 +12,7 @@ interface ArticleTextProps {
 export const ArticleText: FC<ArticleTextProps> = memo((props) => {
     const { className, block } = props
     return (
-        <div className={classNames(classes.articleText, {}, [className])}>
+        <div className={classNames('', {}, [className])}>
             {block.title && (
                 <Text className={classes.title} title={block.title} />
             )}

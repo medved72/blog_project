@@ -3,6 +3,7 @@ import translation from '../../../../../public/locales/ru/translation.json'
 import about from '../../../../../public/locales/ru/about.json'
 import profile from '../../../../../public/locales/ru/profile.json'
 import articleDetails from '../../../../../public/locales/ru/articleDetails.json'
+import articleList from '../../../../../public/locales/ru/articleList.json'
 
 declare module 'i18next' {
     interface CustomTypeOptions {
@@ -14,6 +15,7 @@ declare module 'i18next' {
             about: typeof about
             profile: typeof profile
             articleDetails: typeof articleDetails
+            articleList: typeof articleList
         }
     }
 }

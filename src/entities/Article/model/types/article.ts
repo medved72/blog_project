@@ -1,3 +1,5 @@
+import { type User } from 'entities/User'
+
 export type ArticleBlockType = 'TEXT' | 'CODE' | 'IMAGE'
 
 export type ArticleType = 'IT' | 'SCIENCE' | 'ECONOMICS'
@@ -31,6 +33,7 @@ export type ArticleBlock =
 
 export interface Article {
     id: string
+    user: User
     title: string
     subtitle: string
     img: string

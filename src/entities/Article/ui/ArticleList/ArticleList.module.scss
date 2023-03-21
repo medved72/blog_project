@@ -1,0 +1,11 @@
+.tile {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+
+.list {
+    display: grid;
+    gap: 30px;
+    grid-template-columns: 1fr;
+}
