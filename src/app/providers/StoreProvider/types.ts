@@ -12,7 +12,8 @@ import { type ArticleDetailsState } from 'entities/Article'
 import { type AxiosInstance } from 'axios'
 import { type NavigateFunction } from 'react-router-dom'
 import { type ArticleCommentListState } from 'features/ArticleCommentsList'
-import { type AddArticleCommentFormState } from '../../../features/AddArticleCommentForm'
+import { type AddArticleCommentFormState } from 'features/AddArticleCommentForm'
+import { type ArticlesListViewState } from 'features/ArticlesListView'
 
 export interface AppState {
     user: UserState
@@ -21,6 +22,7 @@ export interface AppState {
     articleDetails?: ArticleDetailsState
     articleCommentList?: ArticleCommentListState
     addArticleCommentForm?: AddArticleCommentFormState
+    articlesListView?: ArticlesListViewState
 }
 
 export type AppDispatch = ReturnType<typeof setupStore>['dispatch']

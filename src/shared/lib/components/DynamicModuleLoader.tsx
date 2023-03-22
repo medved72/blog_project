@@ -32,7 +32,8 @@ export const DynamicModuleLoader: FC<
                 })
             }
         }
-    }, [dispatch, reducers, removeAfterUnmount, store.reducerManager])
+        // eslint-disable-next-line
+    }, [])
 
     return <>{children}</>
 })
@@ -42,11 +43,11 @@ export const withDynamicModuleLoader = <T extends object>(
     Component: FC<T>,
     options: DynamicModuleLoaderProps
 ): FC<T> => {
-    return function WithDynamicModuleLoader(props) {
+    return memo(function WithDynamicModuleLoader(props) {
         return (
             <DynamicModuleLoader {...options}>
                 <Component {...props} />
             </DynamicModuleLoader>
         )
-    }
+    })
 }
