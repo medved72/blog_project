@@ -1,7 +1,7 @@
 import { generateAppStories } from 'shared/config/storybook/generateAppStories'
-import ArticlePage from './ArticlePage'
+import ArticlesPage from './ArticlesPage'
 
-generateAppStories('pages/ArticlePage', ArticlePage, [
+generateAppStories('pages/ArticlesPage', ArticlesPage, [
     {
         key: 'primary',
         args: {},

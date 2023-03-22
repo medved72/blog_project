@@ -1,21 +1,21 @@
 import { type FC, memo } from 'react'
 import { classNames } from 'shared/lib/classNames'
-import classes from './ArticlePage.module.scss'
+import classes from './ArticlesPage.module.scss'
 import { ArticleList } from 'entities/Article'
 
-interface ArticlePageProps {
+interface ArticlesPageProps {
     className?: string
 }
 
-const ArticlePage: FC<ArticlePageProps> = memo((props) => {
+const ArticlesPage: FC<ArticlesPageProps> = memo((props) => {
     const { className } = props
 
     return (
-        <div className={classNames(classes.articlePage, {}, [className])}>
+        <div className={classNames(classes.articlesPage, {}, [className])}>
             <ArticleList loading articles={[]} view="tile" />
         </div>
     )
 })
-ArticlePage.displayName = 'ArticlePage'
+ArticlesPage.displayName = 'ArticlesPage'
 
-export default ArticlePage
+export default ArticlesPage

@@ -13,7 +13,7 @@ import { ProfilePage } from 'pages/ProfilePage'
 import { PageLoader } from 'widgets/PageLoader'
 import { ROUTES } from 'shared/config/routes'
 import { useSelector } from 'react-redux'
-import { ArticlePage } from 'pages/ArticlePage'
+import { ArticlesPage } from '../../pages/ArticlesPage'
 import { ArticleDetailsPage } from 'pages/ArticleDetailsPage'
 import { getUserAuthData, getUserInitialized } from 'entities/User'
 
@@ -54,7 +54,7 @@ export const AppRouter: FC = memo(() => {
                 path: ROUTES.ARTICLES,
                 element: (
                     <ProtectedAuthRoute>
-                        <ArticlePage />
+                        <ArticlesPage />
                     </ProtectedAuthRoute>
                 ),
             },

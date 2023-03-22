@@ -1,9 +1,9 @@
 import { renderWithProviders } from 'shared/lib/tests'
-import ArticlePage from './ArticlePage'
+import ArticlesPage from './ArticlesPage'
 
 describe('ArticlePage', () => {
     it('should render', () => {
-        const { baseElement } = renderWithProviders(<ArticlePage />)
+        const { baseElement } = renderWithProviders(<ArticlesPage />)
         expect(baseElement).toBeInTheDocument()
     })
 })
