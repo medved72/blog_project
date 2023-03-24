@@ -1,23 +1,30 @@
 import { type FC, memo, useEffect } from 'react'
 import { classNames } from 'shared/lib/classNames'
 import classes from './ArticlesListView.module.scss'
-import { ArticleList } from 'entities/Article'
+import { ArticleList, type ArticleListViewMode } from 'entities/Article'
 import { withDynamicModuleLoader } from 'shared/lib/components'
 import {
     articlesListViewReducer,
     getArticlesList,
-    initArticleListViewModeState,
+    setArticleListViewMode,
 } from '../../model/slices/articleListView.slice'
 import { useAppDispatch } from 'shared/hooks/useAppDispatch'
-import { fetchArticlesList } from '../../model/services/fetchArticlesList'
 import { useSelector } from 'react-redux'
 import {
     getArticleListViewLoading,
     getArticleListViewMode,
 } from '../../model/selectors'
+import { ARTICLE_VIEW_LOCALSTORAGE_KEY } from 'shared/const/localStorage'
+import { ArticleListInfiniteLoader } from '../ArticleListInfiniteLoader'
 
 interface ArticlesListViewProps {
     className?: string
+}
+
+const isArticleListViewMode = (
+    value: unknown
+): value is ArticleListViewMode => {
+    return value === 'tile' || value === 'list'
 }
 
 const ArticlesListViewPlain: FC<ArticlesListViewProps> = memo((props) => {
@@ -28,17 +35,26 @@ const ArticlesListViewPlain: FC<ArticlesListViewProps> = memo((props) => {
     const viewMode = useSelector(getArticleListViewMode)
 
     useEffect(() => {
-        dispatch(fetchArticlesList()).catch(console.error)
-        dispatch(initArticleListViewModeState())
+        const localStorageViewMode = localStorage.getItem(
+            ARTICLE_VIEW_LOCALSTORAGE_KEY
+        )
+
+        if (isArticleListViewMode(localStorageViewMode)) {
+            dispatch(setArticleListViewMode(localStorageViewMode))
+        }
     }, [dispatch])
 
     return (
-        <ArticleList
-            className={classNames(classes.articlesListView, {}, [className])}
-            loading={loading}
-            articles={articles}
-            view={viewMode}
-        />
+        <ArticleListInfiniteLoader>
+            <ArticleList
+                className={classNames(classes.articlesListView, {}, [
+                    className,
+                ])}
+                loading={loading}
+                articles={articles}
+                view={viewMode}
+            />
+        </ArticleListInfiniteLoader>
     )
 })
 ArticlesListViewPlain.displayName = 'ArticlesListViewPlain'

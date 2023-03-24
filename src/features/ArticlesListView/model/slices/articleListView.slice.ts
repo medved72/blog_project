@@ -22,18 +22,17 @@ const articleListViewSlice = createSlice({
         ids: [],
         entities: {},
         view: 'tile',
+        page: 1,
+        limit: 9,
+        hasMore: true,
     }),
     reducers: {
         setView: (state, action: PayloadAction<ArticleListViewMode>) => {
             state.view = action.payload
             localStorage.setItem(ARTICLE_VIEW_LOCALSTORAGE_KEY, action.payload)
         },
-        initState: (state) => {
-            state.view =
-                (localStorage.getItem(
-                    ARTICLE_VIEW_LOCALSTORAGE_KEY
-                ) as ArticleListViewMode) ??
-                getArticleListViewInitialState().view
+        setPage: (state, action: PayloadAction<number>) => {
+            state.page = action.payload
         },
     },
     extraReducers: (builder) =>
@@ -44,7 +43,8 @@ const articleListViewSlice = createSlice({
             })
             .addCase(fetchArticlesList.fulfilled, (state, action) => {
                 state.loading = false
-                articlesListAdapter.setAll(state, action.payload)
+                articlesListAdapter.addMany(state, action.payload)
+                state.hasMore = action.payload.length > 0
             })
             .addCase(fetchArticlesList.rejected, (state, action) => {
                 state.loading = false
@@ -57,7 +57,7 @@ export const {
     reducer: articlesListViewReducer,
     actions: {
         setView: setArticleListViewMode,
-        initState: initArticleListViewModeState,
+        setPage: setArticleListViewPage,
     },
     getInitialState: getArticleListViewInitialState,
 } = articleListViewSlice
