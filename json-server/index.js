@@ -3,8 +3,8 @@ const jsonServer = require('json-server')
 const path = require('path')
 
 const server = jsonServer.create()
-
-const router = jsonServer.router(path.resolve(__dirname, 'db.json'))
+const dbPath = path.resolve(__dirname, 'db.json')
+const router = jsonServer.router(dbPath)
 
 server.use(jsonServer.defaults({}))
 server.use(jsonServer.bodyParser)

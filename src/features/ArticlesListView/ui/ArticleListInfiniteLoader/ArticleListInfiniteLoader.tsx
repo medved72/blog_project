@@ -6,7 +6,6 @@ import {
     useEffect,
 } from 'react'
 import { classNames } from 'shared/lib/classNames'
-import classes from './ArticleListInfiniteLoader.module.scss'
 import { useIntersectionObserver } from 'shared/hooks/useIntersectionObserver'
 import { useAppDispatch } from 'shared/hooks/useAppDispatch'
 import { fetchNextArticlesPage } from '../../model/services/fetchNextPage'
@@ -44,11 +43,7 @@ export const ArticleListInfiniteLoader: FC<
     }, [articles.length, handleLoadNext, hasMore, intersectionRef])
 
     return (
-        <div
-            className={classNames(classes.articleListInfiniteLoader, {}, [
-                className,
-            ])}
-        >
+        <div className={classNames('', {}, [className])}>
             {children}
             {trigger}
         </div>
