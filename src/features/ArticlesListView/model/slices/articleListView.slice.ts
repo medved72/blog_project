@@ -7,6 +7,7 @@ import { type Article, type ArticleListViewMode } from 'entities/Article'
 import { type ArticlesListViewState } from '../types/ArticlesListViewState'
 import { fetchArticlesList } from '../services/fetchArticlesList'
 import { ARTICLE_VIEW_LOCALSTORAGE_KEY } from 'shared/const/localStorage'
+import { isArticleListViewMode } from '../../lib/IsArticleListViewMode'
 
 const articlesListAdapter = createEntityAdapter<Article>({
     selectId: (article) => article.id,
@@ -25,6 +26,7 @@ const articleListViewSlice = createSlice({
         page: 1,
         limit: 9,
         hasMore: true,
+        _initialized: false,
     }),
     reducers: {
         setView: (state, action: PayloadAction<ArticleListViewMode>) => {
@@ -33,6 +35,17 @@ const articleListViewSlice = createSlice({
         },
         setPage: (state, action: PayloadAction<number>) => {
             state.page = action.payload
+        },
+        initialize: (state) => {
+            const localStorageViewMode = localStorage.getItem(
+                ARTICLE_VIEW_LOCALSTORAGE_KEY
+            )
+
+            if (isArticleListViewMode(localStorageViewMode)) {
+                state.view = localStorageViewMode
+            }
+
+            state._initialized = true
         },
     },
     extraReducers: (builder) =>
@@ -58,6 +71,7 @@ export const {
     actions: {
         setView: setArticleListViewMode,
         setPage: setArticleListViewPage,
+        initialize: initializeArticleListView,
     },
     getInitialState: getArticleListViewInitialState,
 } = articleListViewSlice

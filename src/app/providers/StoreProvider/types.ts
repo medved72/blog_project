@@ -1,4 +1,4 @@
-import { type setupStore } from './store'
+import { type setupStore } from './setupStore'
 import {
     type AnyAction,
     type CombinedState,
@@ -10,7 +10,6 @@ import { type UserState } from 'entities/User'
 import { type ProfileState } from 'entities/Profile'
 import { type ArticleDetailsState } from 'entities/Article'
 import { type AxiosInstance } from 'axios'
-import { type NavigateFunction } from 'react-router-dom'
 import { type ArticleCommentListState } from 'features/ArticleCommentsList'
 import { type AddArticleCommentFormState } from 'features/AddArticleCommentForm'
 import { type ArticlesListViewState } from 'features/ArticlesListView'
@@ -41,7 +40,6 @@ export type StoreWithReducerManager = ReturnType<typeof setupStore>
 
 export interface ThunkExtraArg {
     api: AxiosInstance
-    navigate?: NavigateFunction
 }
 
 export interface ThunkConfig<T> {

@@ -8,7 +8,7 @@ i18n.use(HttpBackend)
         fallbackLng: 'ru',
         lng: 'ru',
         nsSeparator: '~~~',
-        debug: _IS_DEV_,
+        // debug: _IS_DEV_,
         saveMissing: true,
         backend: {
             addPath: 'http://localhost:8000/locales/add/{{lng}}/{{ns}}',

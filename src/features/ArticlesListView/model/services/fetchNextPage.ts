@@ -1,5 +1,4 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
-import { type ThunkConfig } from '../../../../app/providers/StoreProvider/types'
 import { type ArticleListViewErrors } from '../types/ArticlesListViewState'
 import {
     getArticleListViewHasMore,
@@ -12,7 +11,7 @@ import { fetchArticlesList } from './fetchArticlesList'
 export const fetchNextArticlesPage = createAsyncThunk<
     void,
     void,
-    ThunkConfig<ArticleListViewErrors>
+    GlbThunkConfig<ArticleListViewErrors>
 >('articlesPage/fetchNextArticlesPage', async (_, thunkApi) => {
     const { getState, dispatch } = thunkApi
     const hasMore = getArticleListViewHasMore(getState())
