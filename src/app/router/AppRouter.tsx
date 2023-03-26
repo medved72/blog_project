@@ -13,9 +13,10 @@ import { ProfilePage } from 'pages/ProfilePage'
 import { PageLoader } from 'widgets/PageLoader'
 import { ROUTES } from 'shared/config/routes'
 import { useSelector } from 'react-redux'
-import { ArticlesPage } from '../../pages/ArticlesPage'
+import { ArticlesPage } from 'pages/ArticlesPage'
 import { ArticleDetailsPage } from 'pages/ArticleDetailsPage'
 import { getUserAuthData, getUserInitialized } from 'entities/User'
+import { SchemaGenerator } from 'pages/SchemaGenerator'
 
 const ProtectedAuthRoute: FC<PropsWithChildren> = memo(({ children }) => {
     const authData = useSelector(getUserAuthData)
@@ -66,6 +67,7 @@ export const AppRouter: FC = memo(() => {
                     </ProtectedAuthRoute>
                 ),
             },
+            { path: 'schema-generator', element: <SchemaGenerator /> },
             { path: ROUTES.NOT_FOUND, element: <NotFound /> },
         ]
     }, [])

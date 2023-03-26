@@ -9,6 +9,7 @@ export const useIntersectionObserver = ({
 }: UseIntersectionObserverParams) => {
     const triggerRef = useRef<HTMLDivElement>(null)
     const trigger = useMemo(() => <div ref={triggerRef} />, [])
+    const intersectionRef = useRef(false)
 
     useEffect(() => {
         const triggerElement = triggerRef.current
@@ -17,6 +18,7 @@ export const useIntersectionObserver = ({
             if (entry.isIntersecting) {
                 onIntersect()
             }
+            intersectionRef.current = entry.isIntersecting
         }
 
         const options: IntersectionObserverInit = {
@@ -34,5 +36,5 @@ export const useIntersectionObserver = ({
         }
     }, [onIntersect])
 
-    return trigger
+    return { trigger, intersectionRef }
 }
