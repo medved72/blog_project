@@ -30,7 +30,8 @@ module.exports = {
         '@typescript-eslint/explicit-function-return-type': ['off'],
         '@typescript-eslint/no-invalid-void-type': ['off'],
         'storybook/story-exports': ['off'],
-        'storybook/default-exports': ['off']
+        'storybook/default-exports': ['off'],
+        'n/no-callback-literal': ['off'],
     },
     settings: {
         react: {

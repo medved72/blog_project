@@ -13,6 +13,7 @@ import { type AxiosInstance } from 'axios'
 import { type ArticleCommentListState } from 'features/ArticleCommentsList'
 import { type AddArticleCommentFormState } from 'features/AddArticleCommentForm'
 import { type ArticlesListViewState } from 'features/ArticlesListView'
+import { type ScrollRestoreState } from 'features/ScrollRestore'
 
 export interface AppState {
     user: UserState
@@ -22,6 +23,7 @@ export interface AppState {
     articleCommentList?: ArticleCommentListState
     addArticleCommentForm?: AddArticleCommentFormState
     articlesListView?: ArticlesListViewState
+    scrollRestore: ScrollRestoreState
 }
 
 export type AppDispatch = ReturnType<typeof setupStore>['dispatch']

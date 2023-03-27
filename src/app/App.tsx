@@ -13,6 +13,7 @@ import { AppRouter } from './router'
 import classes from './App.module.scss'
 import { useDispatch } from 'react-redux'
 import { actions as userActions } from 'entities/User'
+import { PageWrapper } from '../widgets/PageWrapper'
 
 export const App: FC = withProviders(() => {
     const { theme } = useTheme()
@@ -27,9 +28,9 @@ export const App: FC = withProviders(() => {
             <AppNavbar />
             <div className={classes.pageContent}>
                 <Sidebar />
-                <div className={classes.pageWrapper}>
+                <PageWrapper>
                     <AppRouter />
-                </div>
+                </PageWrapper>
             </div>
         </div>
     )

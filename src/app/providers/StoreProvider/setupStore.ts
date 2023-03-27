@@ -3,6 +3,7 @@ import { createReducerManager } from './createReducerManager'
 import { type AppState, type ThunkExtraArg } from './types'
 
 import { reducer as user } from 'entities/User'
+import { scrollRestoreReducer as scrollRestore } from 'features/ScrollRestore'
 import { $api } from 'shared/api/api'
 
 export const setupStore = (
@@ -12,6 +13,7 @@ export const setupStore = (
     const reducerMap: ReducersMapObject<AppState> = {
         ...asyncReducers,
         user,
+        scrollRestore,
     }
 
     const reducerManager = createReducerManager(reducerMap)
