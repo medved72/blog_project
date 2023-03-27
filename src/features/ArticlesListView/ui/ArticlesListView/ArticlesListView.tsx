@@ -1,6 +1,5 @@
 import { type FC, memo, useEffect } from 'react'
 import { classNames } from 'shared/lib/classNames'
-import classes from './ArticlesListView.module.scss'
 import { ArticleList } from 'entities/Article'
 import { withDynamicModuleLoader } from 'shared/lib/components'
 import {
@@ -38,9 +37,7 @@ const ArticlesListViewPlain: FC<ArticlesListViewProps> = memo((props) => {
     return (
         <ArticleListInfiniteLoader>
             <ArticleList
-                className={classNames(classes.articlesListView, {}, [
-                    className,
-                ])}
+                className={classNames('', {}, [className])}
                 loading={loading}
                 articles={articles}
                 view={viewMode}
