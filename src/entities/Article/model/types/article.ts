@@ -1,4 +1,12 @@
 import { type User } from 'entities/User'
+import { type ValueOf } from 'shared/types'
+
+export const ArticleSortField = {
+    views: 'views',
+    title: 'title',
+    createdAt: 'createdAt',
+} as const
+export type ArticleSortFieldValues = ValueOf<typeof ArticleSortField>
 
 export type ArticleBlockType = 'TEXT' | 'CODE' | 'IMAGE'
 

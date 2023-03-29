@@ -10,11 +10,11 @@ export const generateDb = (): GenerateDbReturn => {
     const profiles = new Array(3).fill(null).map(generateProfile)
     const users = profiles.map(generateUser)
     const userIds = profiles.map(({ id }) => id)
-    const articles = new Array(3)
+    const articles = new Array(100)
         .fill(null)
         .map(() => generateArticle({ userIds }))
     const articleIds = articles.map(({ id }) => id)
-    const comments = new Array(20)
+    const comments = new Array(articles.length * 2)
         .fill(null)
         .map(() => generateComment({ userIds, articleIds }))
 

@@ -32,6 +32,8 @@ module.exports = {
         'storybook/story-exports': ['off'],
         'storybook/default-exports': ['off'],
         'n/no-callback-literal': ['off'],
+        '@typescript-eslint/no-floating-promises': ['off'],
+        '@typescript-eslint/no-redeclare': ['off'],
     },
     settings: {
         react: {

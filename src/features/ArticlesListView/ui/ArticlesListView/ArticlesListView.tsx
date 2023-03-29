@@ -3,9 +3,9 @@ import { classNames } from 'shared/lib/classNames'
 import { ArticleList } from 'entities/Article'
 import { withDynamicModuleLoader } from 'shared/lib/components'
 import {
+    articlesListViewActions,
     articlesListViewReducer,
     getArticlesList,
-    initializeArticleListView,
 } from '../../model/slices/articleListView.slice'
 import { useAppDispatch } from 'shared/hooks/useAppDispatch'
 import { useSelector } from 'react-redux'
@@ -15,6 +15,7 @@ import {
     getArticleListViewMode,
 } from '../../model/selectors'
 import { ArticleListInfiniteLoader } from '../ArticleListInfiniteLoader'
+import { useSearchParams } from 'react-router-dom'
 
 interface ArticlesListViewProps {
     className?: string
@@ -27,12 +28,13 @@ const ArticlesListViewPlain: FC<ArticlesListViewProps> = memo((props) => {
     const loading = useSelector(getArticleListViewLoading)
     const viewMode = useSelector(getArticleListViewMode)
     const initialized = useSelector(getArticleListViewInitialized)
+    const [searchParams] = useSearchParams()
 
     useEffect(() => {
         if (!initialized) {
-            dispatch(initializeArticleListView())
+            dispatch(articlesListViewActions.initialize(searchParams))
         }
-    }, [dispatch, initialized])
+    }, [dispatch, initialized, searchParams])
 
     return (
         <ArticleListInfiniteLoader>

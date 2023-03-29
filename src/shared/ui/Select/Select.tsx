@@ -1,27 +1,27 @@
-import { type ChangeEvent, type FC, memo, useCallback, useMemo } from 'react'
+import { type ChangeEvent, memo, useCallback, useMemo } from 'react'
 import { classNames } from 'shared/lib/classNames'
 import classes from './Select.module.scss'
 
-export interface SelectOption {
-    value: string
+export interface SelectOption<V extends string = string> {
+    value: V
     content: string
 }
 
-interface SelectProps {
+interface SelectProps<T extends string> {
     className?: string
     label?: string
-    options?: SelectOption[]
-    value?: string
-    onChange?: (value: string) => void
+    options?: Array<SelectOption<T>>
+    value?: T
+    onChange?: (value: T) => void
     readonly?: boolean
 }
 
-export const Select: FC<SelectProps> = memo((props) => {
+const SelectPlain = <T extends string>(props: SelectProps<T>) => {
     const { className, label, value, options, onChange, readonly } = props
 
     const handleChange = useCallback(
         (event: ChangeEvent<HTMLSelectElement>) => {
-            onChange?.(event.currentTarget.value)
+            onChange?.(event.currentTarget.value as T)
         },
         [onChange]
     )
@@ -53,5 +53,7 @@ export const Select: FC<SelectProps> = memo((props) => {
             </select>
         </div>
     )
-})
-Select.displayName = 'Select'
+}
+SelectPlain.displayName = 'Select'
+
+export const Select = memo(SelectPlain) as typeof SelectPlain

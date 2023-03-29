@@ -7,7 +7,10 @@ export type {
     ArticleBlockBase,
     ArticleBlock,
     ArticleType,
+    ArticleSortFieldValues,
 } from './types/article'
+
+export { ArticleSortField } from './types/article'
 
 export type { ArticleDetailsState } from './types/articleDetailsState'
 

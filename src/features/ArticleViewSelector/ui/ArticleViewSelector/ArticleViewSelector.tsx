@@ -9,8 +9,8 @@ import classes from './ArticleViewSelector.module.scss'
 import { type ArticleListViewMode } from 'entities/Article'
 import TilledIcon from 'shared/assets/icons/tiled-24-24.svg'
 import ListIcon from 'shared/assets/icons/list-24-24.svg'
-import { Button } from '../../../../shared/ui/Button'
-import { Icon } from '../../../../shared/ui/Icon'
+import { Button } from 'shared/ui/Button'
+import { Icon } from 'shared/ui/Icon'
 
 interface ArticleViewSelectorProps {
     className?: string

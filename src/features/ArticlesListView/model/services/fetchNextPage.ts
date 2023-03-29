@@ -5,7 +5,7 @@ import {
     getArticleListViewLoading,
     getArticleListViewPage,
 } from '../selectors'
-import { setArticleListViewPage } from '../slices/articleListView.slice'
+import { articlesListViewActions } from '../slices/articleListView.slice'
 import { fetchArticlesList } from './fetchArticlesList'
 
 export const fetchNextArticlesPage = createAsyncThunk<
@@ -19,7 +19,7 @@ export const fetchNextArticlesPage = createAsyncThunk<
     const isLoading = getArticleListViewLoading(getState())
 
     if (hasMore && !isLoading) {
-        await dispatch(fetchArticlesList(page + 1))
-        dispatch(setArticleListViewPage(page + 1))
+        await dispatch(fetchArticlesList())
+        dispatch(articlesListViewActions.setPage(page + 1))
     }
 })

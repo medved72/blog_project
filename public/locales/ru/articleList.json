@@ -1,3 +1,11 @@
 {
-    "button.text.readMore": "Читать далее..."
+    "button.text.readMore": "Читать далее...",
+    "select.label.sort": "Сортировать ПО",
+    "input.search.placeholder": "Поиск",
+    "select.label.sortOrder": "по",
+    "sort.order.label.asc": "возрастанию",
+    "sort.order.label.desc": "убыванию",
+    "sort.by.label.title": "названию",
+    "sort.by.label.views": "просмотрам",
+    "sort.by.label.createdAt": "дате создания"
 }

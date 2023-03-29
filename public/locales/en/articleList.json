@@ -1,3 +1,11 @@
 {
-    "button.text.readMore": "button.text.readMore"
+    "button.text.readMore": "button.text.readMore",
+    "select.label.sort": "select.label.sort",
+    "input.search.placeholder": "input.search.placeholder",
+    "select.label.sortOrder": "select.label.sortOrder",
+    "sort.order.label.asc": "sort.order.label.asc",
+    "sort.order.label.desc": "sort.order.label.desc",
+    "sort.by.label.title": "sort.by.label.title",
+    "sort.by.label.views": "sort.by.label.views",
+    "sort.by.label.createdAt": "sort.by.label.createdAt"
 }
