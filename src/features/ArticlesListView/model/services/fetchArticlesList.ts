@@ -7,13 +7,16 @@ import {
     getArticleListViewPage,
     getArticleListViewSearch,
     getArticleListViewSort,
+    getArticleListViewType,
 } from '../selectors'
 import { addQueryParams } from '../../../../shared/lib/url/addQueryParams/addQueryParams'
+import axios, { type CancelTokenSource } from 'axios'
 
 interface FetchArticlesListParams {
     replace?: boolean
 }
 
+let source: CancelTokenSource | undefined
 export const fetchArticlesList = createAsyncThunk<
     Article[],
     FetchArticlesListParams | void,
@@ -24,12 +27,15 @@ export const fetchArticlesList = createAsyncThunk<
     const sortBy = getArticleListViewSort(thunkAPI.getState())
     const sortOrder = getArticleListViewOrder(thunkAPI.getState())
     const search = getArticleListViewSearch(thunkAPI.getState())
-
+    const type = getArticleListViewType(thunkAPI.getState())
     try {
+        source?.cancel()
+        source = axios.CancelToken.source()
         addQueryParams({
             sortBy,
             sortOrder,
             search,
+            type,
         })
         const response = await thunkAPI.extra.api.get<Article[]>(`/articles`, {
             params: {
@@ -39,10 +45,15 @@ export const fetchArticlesList = createAsyncThunk<
                 _sort: sortBy,
                 _order: sortOrder,
                 q: search,
+                type_like: type === 'All' ? undefined : type,
             },
+            cancelToken: source.token,
         })
         return response.data
     } catch (e) {
+        if (e instanceof axios.CanceledError) {
+            return thunkAPI.rejectWithValue('CANCELED_ERROR')
+        }
         return thunkAPI.rejectWithValue('UNKNOWN_ERROR')
     }
 })

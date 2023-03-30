@@ -12,9 +12,11 @@ import { type ArticlesListViewState } from '../types/ArticlesListViewState'
 import { fetchArticlesList } from '../services/fetchArticlesList'
 import { ARTICLE_VIEW_LOCALSTORAGE_KEY } from 'shared/const/localStorage'
 import { isArticleListViewMode } from '../../lib/IsArticleListViewMode'
-import { type SortOrderValues } from '../../../../shared/types'
+import { type SortOrderValues } from 'shared/types'
 import { isSortOrder } from '../../lib/isSortOrder'
 import { isArticleSortField } from '../../lib/isArticleSortField'
+import { type ArticleType } from 'entities/Article/model'
+import { isArticleType } from '../../lib/isArticleType'
 
 const articlesListAdapter = createEntityAdapter<Article>({
     selectId: (article) => article.id,
@@ -37,8 +39,12 @@ const articleListViewSlice = createSlice({
         sort: 'createdAt',
         search: '',
         order: 'asc',
+        type: 'All',
     }),
     reducers: {
+        setType: (state, action: PayloadAction<ArticleType>) => {
+            state.type = action.payload
+        },
         setOrder: (state, action: PayloadAction<SortOrderValues>) => {
             state.order = action.payload
         },
@@ -59,6 +65,7 @@ const articleListViewSlice = createSlice({
             const sortOrder = payload.get('sortOrder')
             const sortBy = payload.get('sortBy')
             const search = payload.get('search')
+            const type = payload.get('type')
 
             if (isSortOrder(sortOrder)) {
                 state.order = sortOrder
@@ -66,6 +73,10 @@ const articleListViewSlice = createSlice({
 
             if (isArticleSortField(sortBy)) {
                 state.sort = sortBy
+            }
+
+            if (isArticleType(type)) {
+                state.type = type
             }
 
             if (search) {
@@ -103,6 +114,7 @@ const articleListViewSlice = createSlice({
                 updateArticlesList(state, action.payload)
             })
             .addCase(fetchArticlesList.rejected, (state, action) => {
+                if (action.payload === 'CANCELED_ERROR') return
                 state.loading = false
                 state.error = action.payload
                 articlesListAdapter.setAll(state, [])

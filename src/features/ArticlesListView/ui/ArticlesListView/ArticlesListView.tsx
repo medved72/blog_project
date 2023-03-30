@@ -16,6 +16,9 @@ import {
 } from '../../model/selectors'
 import { ArticleListInfiniteLoader } from '../ArticleListInfiniteLoader'
 import { useSearchParams } from 'react-router-dom'
+import { Text } from '../../../../shared/ui/Text'
+import { useTranslation } from 'react-i18next'
+import classes from './ArticlesListView.module.scss'
 
 interface ArticlesListViewProps {
     className?: string
@@ -23,6 +26,7 @@ interface ArticlesListViewProps {
 
 const ArticlesListViewPlain: FC<ArticlesListViewProps> = memo((props) => {
     const { className } = props
+    const { t } = useTranslation('articleList')
     const dispatch = useAppDispatch()
     const articles = useSelector(getArticlesList.selectAll)
     const loading = useSelector(getArticleListViewLoading)
@@ -38,8 +42,15 @@ const ArticlesListViewPlain: FC<ArticlesListViewProps> = memo((props) => {
 
     return (
         <ArticleListInfiniteLoader>
+            {!loading && !articles.length && (
+                <Text
+                    className={classes.notFound}
+                    title={t('articles.not_found')}
+                    size="L"
+                />
+            )}
             <ArticleList
-                className={classNames('', {}, [className])}
+                className={classNames(classes.list, {}, [className])}
                 loading={loading}
                 articles={articles}
                 view={viewMode}

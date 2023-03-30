@@ -8,21 +8,23 @@ import {
     articlesListViewActions,
     fetchArticlesList,
     getArticleListViewMode,
+    getArticleListViewOrder,
+    getArticleListViewSearch,
+    getArticleListViewSort,
+    getArticleListViewType,
 } from 'features/ArticlesListView'
 import {
     type ArticleListViewMode,
     type ArticleSortFieldValues,
+    type ArticleType,
 } from 'entities/Article'
 import { ArticleListSorter } from 'features/ArticleListSorter'
 import { Card } from 'shared/ui/Card'
 import { ArticleListSearch } from 'features/ArticleListSearch'
-import {
-    getArticleListViewOrder,
-    getArticleListViewSearch,
-    getArticleListViewSort,
-} from 'features/ArticlesListView/model/selectors'
 import { type SortOrderValues } from 'shared/types'
-import { useDebounce } from '../../../../shared/hooks/useDebounce'
+import { useDebounce } from 'shared/hooks/useDebounce'
+import { ArticleListTabs } from 'features/ArticleListTabs'
+import { type TabItemValue } from 'shared/ui/Tabs'
 
 interface ArticlesListFiltersProps {
     className?: string
@@ -36,19 +38,19 @@ export const ArticlesListFilters: FC<ArticlesListFiltersProps> = memo(
         const sortBy = useSelector(getArticleListViewSort)
         const sortOrder = useSelector(getArticleListViewOrder)
         const search = useSelector(getArticleListViewSearch)
+        const type = useSelector(getArticleListViewType)
 
-        const fetchData = useDebounce(
-            useCallback(async () => {
-                await dispatch(fetchArticlesList({ replace: true }))
-            }, [dispatch]),
-            500
-        )
+        const fetchData = useCallback(async () => {
+            await dispatch(fetchArticlesList({ replace: true }))
+        }, [dispatch])
+
+        const debouncedFetchData = useDebounce(fetchData, 500)
 
         const handleChangeSortBy = useCallback(
             async (value: ArticleSortFieldValues) => {
                 dispatch(articlesListViewActions.setSort(value))
                 dispatch(articlesListViewActions.setPage(1))
-                fetchData()
+                await fetchData()
             },
             [dispatch, fetchData]
         )
@@ -57,7 +59,7 @@ export const ArticlesListFilters: FC<ArticlesListFiltersProps> = memo(
             async (value: SortOrderValues) => {
                 dispatch(articlesListViewActions.setOrder(value))
                 dispatch(articlesListViewActions.setPage(1))
-                fetchData()
+                await fetchData()
             },
             [dispatch, fetchData]
         )
@@ -66,7 +68,16 @@ export const ArticlesListFilters: FC<ArticlesListFiltersProps> = memo(
             async (value: string) => {
                 dispatch(articlesListViewActions.setSearch(value))
                 dispatch(articlesListViewActions.setPage(1))
-                fetchData()
+                debouncedFetchData()
+            },
+            [dispatch, debouncedFetchData]
+        )
+
+        const handleChangeType = useCallback(
+            async (tab: TabItemValue<ArticleType>) => {
+                dispatch(articlesListViewActions.setType(tab.value))
+                dispatch(articlesListViewActions.setPage(1))
+                await fetchData()
             },
             [dispatch, fetchData]
         )
@@ -102,6 +113,11 @@ export const ArticlesListFilters: FC<ArticlesListFiltersProps> = memo(
                         onChange={handleChangeSearch}
                     />
                 </Card>
+                <ArticleListTabs
+                    className={classes.tabs}
+                    value={type}
+                    onTabClick={handleChangeType}
+                />
             </div>
         )
     }

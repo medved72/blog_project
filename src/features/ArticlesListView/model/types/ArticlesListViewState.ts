@@ -5,8 +5,9 @@ import {
     type ArticleSortFieldValues,
 } from 'entities/Article'
 import { type SortOrderValues } from 'shared/types'
+import { type ArticleType } from 'entities/Article/model'
 
-export type ArticleListViewErrors = 'UNKNOWN_ERROR'
+export type ArticleListViewErrors = 'UNKNOWN_ERROR' | 'CANCELED_ERROR'
 
 export interface ArticlesListViewState extends EntityState<Article> {
     loading?: boolean
@@ -23,4 +24,5 @@ export interface ArticlesListViewState extends EntityState<Article> {
     order: SortOrderValues
     sort: ArticleSortFieldValues
     search: string
+    type: ArticleType
 }
