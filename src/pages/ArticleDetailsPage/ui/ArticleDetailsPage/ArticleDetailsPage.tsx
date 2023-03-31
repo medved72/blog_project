@@ -2,7 +2,7 @@ import { type FC, memo, useCallback } from 'react'
 import { classNames } from 'shared/lib/classNames'
 import classes from './ArticleDetailsPage.module.scss'
 import { ArticleDetails } from 'entities/Article'
-import { generatePath, useNavigate, useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { Text } from 'shared/ui/Text'
 import {
@@ -11,9 +11,8 @@ import {
 } from 'features/ArticleCommentsList'
 import { AddArticleCommentForm } from 'features/AddArticleCommentForm'
 import { useAppDispatch } from 'shared/hooks/useAppDispatch'
-import { Button } from 'shared/ui/Button'
-import { ROUTES } from 'shared/config/routes'
 import { ArticleRecommendations } from 'features/ArticleRecomendations'
+import { ArticleDetailsPageHeader } from '../ArticleDetailsPageHeader'
 
 interface ArticleDetailsPageProps {
     className?: string
@@ -22,7 +21,6 @@ interface ArticleDetailsPageProps {
 const ArticleDetailsPage: FC<ArticleDetailsPageProps> = memo((props) => {
     const { className } = props
     const { articleId } = useParams<{ articleId: string }>()
-    const navigate = useNavigate()
     const { t } = useTranslation('articleDetails')
     const dispatch = useAppDispatch()
 
@@ -30,10 +28,6 @@ const ArticleDetailsPage: FC<ArticleDetailsPageProps> = memo((props) => {
         if (!articleId) return
         await dispatch(fetchCommentsListByArticleId(articleId))
     }, [articleId, dispatch])
-
-    const handleBackToList = useCallback(() => {
-        navigate(generatePath(ROUTES.ARTICLES, {}))
-    }, [navigate])
 
     if (!articleId) {
         return (
@@ -51,9 +45,7 @@ const ArticleDetailsPage: FC<ArticleDetailsPageProps> = memo((props) => {
         <div
             className={classNames(classes.articleDetailsPage, {}, [className])}
         >
-            <Button theme="outline" onClick={handleBackToList}>
-                {t('button.text.goToBack')}
-            </Button>
+            <ArticleDetailsPageHeader id={articleId} />
             <ArticleDetails id={articleId} />
             <ArticleRecommendations />
             <Text

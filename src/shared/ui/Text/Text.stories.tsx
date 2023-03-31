@@ -6,7 +6,7 @@ import {
 import { type ComponentProps } from 'react'
 import { capitalize } from 'shared/lib/capitalize'
 
-const themes = ['primary', 'error'] as const
+const themes = ['primary', 'error', 'inverted'] as const
 const aligns = ['right', 'left', 'center'] as const
 const sizes = ['M', 'L'] as const
 

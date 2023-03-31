@@ -8,7 +8,11 @@ export const fetchArticleById = createAsyncThunk<
     GlbThunkConfig<ArticleDetailsStateError>
 >('articleDetails/fetchArticleById', async (id, thunkAPI) => {
     try {
-        const response = await thunkAPI.extra.api.get(`/articles/${id}`)
+        const response = await thunkAPI.extra.api.get(`/articles/${id}`, {
+            params: {
+                _expand: 'user',
+            },
+        })
         return response.data
     } catch (e) {
         return thunkAPI.rejectWithValue('UNKNOWN_ERROR')

@@ -3,5 +3,6 @@
     "articleDetails.errors.UNKNOWN_ERROR": "Произошла ошибка при загрузке статьи",
     "comments.title": "Комментарии",
     "button.text.goToBack": "Назад к списку",
-    "article.recommendations.title.text": "Рекомендуем"
+    "article.recommendations.title.text": "Рекомендуем",
+    "button.edit.text": "Редактировать"
 }

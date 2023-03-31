@@ -20,5 +20,7 @@
     "Статьи": "Статьи",
     "comments.empty": "Комментарии отсутствуют",
     "input.placeholder.addNewComment": "Введите текст комментария",
-    "button.text.send": "Отправить"
+    "button.text.send": "Отправить",
+    "navbar.app.appname.title": "PBlob",
+    "navbar.link.create.text": "Создать статью"
 }

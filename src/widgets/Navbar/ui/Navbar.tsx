@@ -9,6 +9,10 @@ import classes from './Navbar.module.scss'
 import { useSelector } from 'react-redux'
 import { actions as userActions, getUserAuthData } from 'entities/User'
 import { useAppDispatch } from 'shared/hooks/useAppDispatch'
+import { Text } from '../../../shared/ui/Text'
+import { AppLink } from '../../../shared/ui/Link'
+import { generatePath } from 'react-router-dom'
+import { ROUTES } from '../../../shared/config/routes'
 
 export interface NavbarProps {
     className?: string
@@ -42,13 +46,24 @@ export const Navbar: FC<NavbarProps> = memo(({ className }) => {
     return (
         <>
             {authData ? (
-                <div className={classNames(classes.navbar, {}, [className])}>
+                <header className={classNames(classes.navbar, {}, [className])}>
+                    <Text
+                        className={classes.appName}
+                        theme="inverted"
+                        title={t('navbar.app.appname.title')}
+                    />
+                    <AppLink
+                        theme="invertedSecondary"
+                        to={generatePath(ROUTES.ARTICLE_CREATE)}
+                    >
+                        {t('navbar.link.create.text')}
+                    </AppLink>
                     <div className={classes.links}>
                         <Button theme="clearInverted" onClick={handleLogout}>
                             {t('Выйти')}
                         </Button>
                     </div>
-                </div>
+                </header>
             ) : (
                 <div className={classNames(classes.navbar, {}, [className])}>
                     <div className={classes.links}>

@@ -17,6 +17,8 @@ import { ArticlesPage } from 'pages/ArticlesPage'
 import { ArticleDetailsPage } from 'pages/ArticleDetailsPage'
 import { getUserAuthData, getUserInitialized } from 'entities/User'
 import { SchemaGenerator } from 'pages/SchemaGenerator'
+import { ArticleEditPage } from 'pages/ArticleEditPage'
+import { ArticleCreatePage } from 'pages/ArticleCreatePage'
 
 const ProtectedAuthRoute: FC<PropsWithChildren> = memo(({ children }) => {
     const authData = useSelector(getUserAuthData)
@@ -66,6 +68,14 @@ export const AppRouter: FC = memo(() => {
                         <ArticleDetailsPage />
                     </ProtectedAuthRoute>
                 ),
+            },
+            {
+                path: ROUTES.ARTICLE_CREATE,
+                element: <ArticleCreatePage />,
+            },
+            {
+                path: ROUTES.ARTICLE_EDIT,
+                element: <ArticleEditPage />,
             },
             { path: 'schema-generator', element: <SchemaGenerator /> },
             { path: ROUTES.NOT_FOUND, element: <NotFound /> },

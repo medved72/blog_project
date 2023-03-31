@@ -20,5 +20,7 @@
     "Статьи": "Статьи",
     "comments.empty": "comments.empty",
     "input.placeholder.addNewComment": "input.placeholder.addNewComment",
-    "button.text.send": "button.text.send"
+    "button.text.send": "button.text.send",
+    "navbar.app.appname.title": "navbar.app.appname.title",
+    "navbar.link.create.text": "navbar.link.create.text"
 }

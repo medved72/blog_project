@@ -2,7 +2,7 @@ import { type FC, memo } from 'react'
 import { classNames } from 'shared/lib/classNames/classNames'
 import classes from './Text.module.scss'
 
-type TextTheme = 'primary' | 'error'
+type TextTheme = 'primary' | 'error' | 'inverted'
 type TextAlign = 'right' | 'left' | 'center'
 type TextSize = 'M' | 'L'
 
