@@ -10,7 +10,7 @@ const getSkeletons = (view: ArticleListViewMode) =>
         .map((_, index) => <ArticleListItemSkeleton key={index} view={view} />)
 
 export const ArticleList: FC<ArticleListProps> = memo((props) => {
-    const { className, articles, loading, view = 'list' } = props
+    const { className, articles, loading, view = 'tile', target } = props
 
     return (
         <div
@@ -24,6 +24,7 @@ export const ArticleList: FC<ArticleListProps> = memo((props) => {
                       return (
                           <ArticleListItem
                               key={article.id}
+                              target={target}
                               article={article}
                               view={view}
                           />

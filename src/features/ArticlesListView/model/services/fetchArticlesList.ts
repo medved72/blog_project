@@ -31,12 +31,7 @@ export const fetchArticlesList = createAsyncThunk<
     try {
         source?.cancel()
         source = axios.CancelToken.source()
-        addQueryParams({
-            sortBy,
-            sortOrder,
-            search,
-            type,
-        })
+        addQueryParams({ sortBy, sortOrder, search, type })
         const response = await thunkAPI.extra.api.get<Article[]>(`/articles`, {
             params: {
                 _expand: 'user',

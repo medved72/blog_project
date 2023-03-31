@@ -1,5 +1,11 @@
 import { type Reducer } from '@reduxjs/toolkit'
-import { type FC, memo, type PropsWithChildren, useLayoutEffect } from 'react'
+import {
+    type FC,
+    memo,
+    type PropsWithChildren,
+    useEffect,
+    useLayoutEffect,
+} from 'react'
 import { useAppStore } from 'shared/hooks/useAppStore'
 import { useAppDispatch } from 'shared/hooks/useAppDispatch'
 
@@ -23,7 +29,10 @@ export const DynamicModuleLoader: FC<
             store.reducerManager.add(name as keyof GlbAppState, reducer)
             dispatch({ type: `@INIT ${name} reducer` })
         })
+        // eslint-disable-next-line
+    }, [])
 
+    useEffect(() => {
         return () => {
             if (removeAfterUnmount) {
                 Object.entries(reducers).forEach(([name]) => {

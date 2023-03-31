@@ -14,6 +14,7 @@ import { type ArticleCommentListState } from 'features/ArticleCommentsList'
 import { type AddArticleCommentFormState } from 'features/AddArticleCommentForm'
 import { type ArticlesListViewState } from 'features/ArticlesListView'
 import { type ScrollRestoreState } from 'features/ScrollRestore'
+import { type ArticleRecommendationsState } from 'features/ArticleRecomendations'
 
 export interface AppState {
     user: UserState
@@ -24,6 +25,7 @@ export interface AppState {
     addArticleCommentForm?: AddArticleCommentFormState
     articlesListView?: ArticlesListViewState
     scrollRestore: ScrollRestoreState
+    articleRecommendations?: ArticleRecommendationsState
 }
 
 export type AppDispatch = ReturnType<typeof setupStore>['dispatch']

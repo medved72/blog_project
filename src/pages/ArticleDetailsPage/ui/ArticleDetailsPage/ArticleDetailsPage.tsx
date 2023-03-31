@@ -13,6 +13,7 @@ import { AddArticleCommentForm } from 'features/AddArticleCommentForm'
 import { useAppDispatch } from 'shared/hooks/useAppDispatch'
 import { Button } from 'shared/ui/Button'
 import { ROUTES } from 'shared/config/routes'
+import { ArticleRecommendations } from 'features/ArticleRecomendations'
 
 interface ArticleDetailsPageProps {
     className?: string
@@ -54,7 +55,9 @@ const ArticleDetailsPage: FC<ArticleDetailsPageProps> = memo((props) => {
                 {t('button.text.goToBack')}
             </Button>
             <ArticleDetails id={articleId} />
+            <ArticleRecommendations />
             <Text
+                size="L"
                 className={classes.commentTitle}
                 title={t('comments.title')}
             />

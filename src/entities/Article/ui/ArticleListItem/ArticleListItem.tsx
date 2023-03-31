@@ -1,4 +1,4 @@
-import { type FC, memo, useCallback } from 'react'
+import { type FC, type HTMLAttributeAnchorTarget, memo } from 'react'
 import { classNames } from 'shared/lib/classNames'
 import classes from './ArticleListItem.module.scss'
 import { type Article, type ArticleListViewMode } from '../../model'
@@ -10,37 +10,36 @@ import { Avatar } from 'shared/ui/Avatar'
 import { Button } from 'shared/ui/Button'
 import { useTranslation } from 'react-i18next'
 import { ArticleText } from '../ArticleText'
-import { generatePath, useNavigate } from 'react-router-dom'
+import { generatePath } from 'react-router-dom'
 import { ROUTES } from 'shared/config/routes'
+import { AppLink } from 'shared/ui/Link'
 
 interface ArticleListItemProps {
     className?: string
     article: Article
     view: ArticleListViewMode
+    target?: HTMLAttributeAnchorTarget
 }
 
 export const ArticleListItem: FC<ArticleListItemProps> = memo((props) => {
-    const { className, article, view } = props
+    const { className, article, view, target } = props
     const { t } = useTranslation('articleList')
-    const navigate = useNavigate()
     const firstTextBlock = article.blocks.find((block) => block.type === 'TEXT')
-
-    const handleOpenArticle = useCallback(() => {
-        navigate(
-            generatePath(ROUTES.ARTICLE_DETAILS, { articleId: article.id })
-        )
-    }, [article.id, navigate])
 
     switch (view) {
         case 'tile':
             return (
-                <div
+                <AppLink
+                    target={target}
                     className={classNames(classes.articleListItem, {}, [
                         className,
                         classes[view],
                     ])}
+                    to={generatePath(ROUTES.ARTICLE_DETAILS, {
+                        articleId: article.id,
+                    })}
                 >
-                    <Card onClick={handleOpenArticle}>
+                    <Card>
                         <div className={classes.imageWrapper}>
                             <img
                                 className={classes.image}
@@ -65,7 +64,7 @@ export const ArticleListItem: FC<ArticleListItemProps> = memo((props) => {
                         </div>
                         <Text text={article.title} className={classes.title} />
                     </Card>
-                </div>
+                </AppLink>
             )
         case 'list':
             return (
@@ -104,9 +103,16 @@ export const ArticleListItem: FC<ArticleListItemProps> = memo((props) => {
                             />
                         )}
                         <div className={classes.footer}>
-                            <Button theme="outline" onClick={handleOpenArticle}>
-                                {t('button.text.readMore')}
-                            </Button>
+                            <AppLink
+                                target={target}
+                                to={generatePath(ROUTES.ARTICLE_DETAILS, {
+                                    articleId: article.id,
+                                })}
+                            >
+                                <Button theme="outline">
+                                    {t('button.text.readMore')}
+                                </Button>
+                            </AppLink>
                             <Text
                                 className={classes.views}
                                 text={article.views}

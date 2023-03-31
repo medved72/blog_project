@@ -2,5 +2,6 @@
     "articleDetails.errors.notFound": "articleDetails.errors.notFound",
     "articleDetails.errors.UNKNOWN_ERROR": "articleDetails.errors.UNKNOWN_ERROR",
     "comments.title": "comments.title",
-    "button.text.goToBack": "button.text.goToBack"
+    "button.text.goToBack": "button.text.goToBack",
+    "article.recommendations.title.text": "article.recommendations.title.text"
 }

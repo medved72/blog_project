@@ -1,0 +1,1 @@
+export { ArticleRecommendations } from './ArticleRecommendations'
