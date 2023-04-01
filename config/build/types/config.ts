@@ -15,6 +15,8 @@ export interface BuildConfigPaths {
     build: string
     html: string
     src: string
+    locales: string
+    buildLocales: string
 }
 
 export interface BuildConfigOptions {
