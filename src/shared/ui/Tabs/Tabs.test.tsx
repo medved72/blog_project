@@ -1,9 +1,12 @@
 import { renderWithProviders } from 'shared/lib/tests'
-import { Tabs } from './Tabs'
+import { type TabItemValue, Tabs } from './Tabs'
 
 describe('Tabs', () => {
     it('should render', () => {
-        const { baseElement } = renderWithProviders(<Tabs />)
+        const tabs: TabItemValue[] = [{ value: '1', content: '1' }]
+        const { baseElement } = renderWithProviders(
+            <Tabs tabs={tabs} value="1" onTabClick={jest.fn} />
+        )
         expect(baseElement).toBeInTheDocument()
     })
 })
