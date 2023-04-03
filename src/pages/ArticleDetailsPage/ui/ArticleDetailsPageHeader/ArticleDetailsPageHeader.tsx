@@ -4,9 +4,9 @@ import { generatePath, useNavigate } from 'react-router-dom'
 import { classNames } from 'shared/lib/classNames'
 import { Button } from 'shared/ui/Button'
 import { ROUTES } from 'shared/config/routes'
-import classes from './ArticleDetailsPageHeader.module.scss'
 import { useSelector } from 'react-redux'
 import { getCanEditArticle } from '../../model/selectors/getCanEditArticle'
+import { HStack } from 'shared/ui/Stack'
 
 interface ArticleDetailsPageHeaderProps {
     className?: string
@@ -32,10 +32,10 @@ export const ArticleDetailsPageHeader: FC<ArticleDetailsPageHeaderProps> = memo(
         }, [id, navigate])
 
         return (
-            <div
-                className={classNames(classes.articleDetailsPageHeader, {}, [
-                    className,
-                ])}
+            <HStack
+                justify="between"
+                className={classNames('', {}, [className])}
+                fullWidth
             >
                 <Button theme="outline" onClick={handleBackToList}>
                     {t('button.text.goToBack')}
@@ -45,7 +45,7 @@ export const ArticleDetailsPageHeader: FC<ArticleDetailsPageHeaderProps> = memo(
                         {t('button.edit.text')}
                     </Button>
                 )}
-            </div>
+            </HStack>
         )
     }
 )

@@ -4,6 +4,7 @@ import { Input } from 'shared/ui/Input'
 import { Button } from 'shared/ui/Button'
 import { classNames } from 'shared/lib/classNames'
 import classes from './AddCommentForm.module.scss'
+import { HStack } from '../../../../shared/ui/Stack'
 
 interface AddCommentFormProps {
     className?: string
@@ -34,9 +35,11 @@ export const AddCommentForm: FC<AddCommentFormProps> = memo((props) => {
     )
 
     return (
-        <form
+        <HStack
             className={classNames(classes.addCommentForm, {}, [className])}
             onSubmit={handleSendComment}
+            as="form"
+            fullWidth
         >
             <Input
                 className={classes.input}
@@ -48,7 +51,7 @@ export const AddCommentForm: FC<AddCommentFormProps> = memo((props) => {
             <Button theme="outline" type="submit" disabled={sending}>
                 {t('button.text.send')}
             </Button>
-        </form>
+        </HStack>
     )
 })
 AddCommentForm.displayName = 'AddCommentForm'

@@ -1,6 +1,5 @@
 import { type FC, memo, useCallback } from 'react'
 import { classNames } from 'shared/lib/classNames'
-import classes from './ProfilePageHeader.module.scss'
 import { Text } from 'shared/ui/Text'
 import { Button } from 'shared/ui/Button'
 import { useTranslation } from 'react-i18next'
@@ -11,6 +10,7 @@ import {
 } from 'entities/Profile'
 import { useAppDispatch } from 'shared/hooks/useAppDispatch'
 import { getUserAuthData } from 'entities/User'
+import { HStack } from 'shared/ui/Stack/HStack'
 interface ProfilePageHeaderProps {
     className?: string
 }
@@ -38,15 +38,14 @@ export const ProfilePageHeader: FC<ProfilePageHeaderProps> = memo((props) => {
     }, [dispatch])
 
     return (
-        <div
-            className={classNames(classes.profilePageHeader, {}, [
-                className,
-                classes.header,
-            ])}
+        <HStack
+            className={classNames('', {}, [className])}
+            justify="between"
+            fullWidth
         >
-            <Text className={classes.text} title={t('Профиль')} />
+            <Text title={t('Профиль')} />
             {canEdit && (
-                <div className={classes.actions}>
+                <HStack gap="16">
                     {readonly ? (
                         <Button theme="outline" onClick={handleEditClick}>
                             {t('Редактировать')}
@@ -64,9 +63,9 @@ export const ProfilePageHeader: FC<ProfilePageHeaderProps> = memo((props) => {
                             </Button>
                         </>
                     )}
-                </div>
+                </HStack>
             )}
-        </div>
+        </HStack>
     )
 })
 ProfilePageHeader.displayName = 'ProfilePageHeader'

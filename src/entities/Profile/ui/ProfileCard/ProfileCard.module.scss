@@ -1,27 +1,11 @@
 .profileCard {
-    display: flex;
-    flex-direction: column;
     padding: 20px;
     border: 2px solid var(--inverted-bg-color);
-    gap: 30px;
-}
-
-.data {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
 }
 
 .loading,
 .error {
-    display: flex;
     height: 300px;
-    align-items: center;
-    justify-content: center;
-}
-
-.avatar {
-    margin: 0 auto;
 }
 
 .edit {

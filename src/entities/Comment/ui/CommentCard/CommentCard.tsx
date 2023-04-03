@@ -8,6 +8,7 @@ import { Skeleton } from 'shared/ui/Skeleton'
 import { AppLink } from '../../../../shared/ui/Link'
 import { generatePath } from 'react-router-dom'
 import { ROUTES } from '../../../../shared/config/routes'
+import { HStack, VStack } from '../../../../shared/ui/Stack'
 
 interface CommentCardProps {
     className?: string
@@ -20,13 +21,17 @@ export const CommentCard: FC<CommentCardProps> = memo((props) => {
 
     if (isLoading) {
         return (
-            <div className={classNames(classes.commentCard, {}, [className])}>
-                <div className={classes.header}>
+            <VStack
+                className={classNames(classes.commentCard, {}, [className])}
+                gap="8"
+                fullWidth
+            >
+                <HStack className={classes.header} gap="8">
                     <Skeleton width={30} height={30} borderRadius={'50%'} />
                     <Skeleton height={16} width={100} />
-                </div>
+                </HStack>
                 <Skeleton width="100%" height={50} />
-            </div>
+            </VStack>
         )
     }
 
@@ -35,20 +40,26 @@ export const CommentCard: FC<CommentCardProps> = memo((props) => {
     }
 
     return (
-        <div className={classNames(classes.commentCard, {}, [className])}>
+        <VStack
+            className={classNames(classes.commentCard, {}, [className])}
+            gap="8"
+            fullWidth
+        >
             <AppLink
                 className={classes.header}
                 to={generatePath(ROUTES.PROFILE, {
                     profileId: comment.user.id,
                 })}
             >
-                {comment.user.avatar && (
-                    <Avatar size={30} src={comment.user.avatar} />
-                )}
-                <Text title={comment.user.username} />
+                <HStack gap="8">
+                    {comment.user.avatar && (
+                        <Avatar size={30} src={comment.user.avatar} />
+                    )}
+                    <Text title={comment.user.username} />
+                </HStack>
             </AppLink>
             <Text text={comment.text} />
-        </div>
+        </VStack>
     )
 })
 CommentCard.displayName = 'CommentCard'

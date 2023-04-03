@@ -19,6 +19,7 @@ import EyeIcon from 'shared/assets/icons/eye-20-20.svg'
 import CalendarIcon from 'shared/assets/icons/calendar-20-20.svg'
 import { Icon } from 'shared/ui/Icon'
 import { ArticleBlock } from '../ArticleBlock'
+import { HStack, VStack } from 'shared/ui/Stack'
 
 interface ArticleDetailsProps {
     className?: string
@@ -39,8 +40,10 @@ const ArticleDetailsPlain: FC<ArticleDetailsProps> = memo((props) => {
 
     if (loading) {
         return (
-            <div
+            <VStack
                 className={classNames(classes.articleDetails, {}, [className])}
+                gap="32"
+                fullWidth
             >
                 <Skeleton
                     className={classes.avatar}
@@ -48,23 +51,11 @@ const ArticleDetailsPlain: FC<ArticleDetailsProps> = memo((props) => {
                     height={200}
                     borderRadius="50%"
                 />
-                <Skeleton className={classes.title} width={300} height={32} />
-                <Skeleton
-                    className={classes.skeleton}
-                    width={600}
-                    height={24}
-                />
-                <Skeleton
-                    className={classes.skeleton}
-                    width="100%"
-                    height={200}
-                />
-                <Skeleton
-                    className={classes.skeleton}
-                    width="100%"
-                    height={200}
-                />
-            </div>
+                <Skeleton width={300} height={32} />
+                <Skeleton width={600} height={24} />
+                <Skeleton width="100%" height={200} />
+                <Skeleton width="100%" height={200} />
+            </VStack>
         )
     }
 
@@ -95,27 +86,33 @@ const ArticleDetailsPlain: FC<ArticleDetailsProps> = memo((props) => {
     }
 
     return (
-        <div className={classNames(classes.articleDetails, {}, [className])}>
-            <div className={classes.avatarWrapper}>
+        <VStack
+            fullWidth
+            gap="16"
+            className={classNames(classes.articleDetails, {}, [className])}
+        >
+            <HStack justify="center" fullWidth>
                 <Avatar
                     className={classes.avatar}
                     size={200}
                     src={article.img}
                 />
-            </div>
-            <Text title={article.title} text={article.subtitle} size="L" />
-            <div className={classes.articleInfo}>
-                <Icon Svg={EyeIcon} />
-                <Text text={article.views} />
-            </div>
-            <div className={classes.articleInfo}>
-                <Icon Svg={CalendarIcon} />
-                <Text text={article.createdAt} />
-            </div>
+            </HStack>
+            <VStack gap="4">
+                <Text title={article.title} text={article.subtitle} size="L" />
+                <HStack gap="16">
+                    <Icon Svg={EyeIcon} />
+                    <Text text={article.views} />
+                </HStack>
+                <HStack gap="16">
+                    <Icon Svg={CalendarIcon} />
+                    <Text text={article.createdAt} />
+                </HStack>
+            </VStack>
             {article.blocks.map((block) => {
                 return <ArticleBlock key={block.id} block={block} />
             })}
-        </div>
+        </VStack>
     )
 })
 ArticleDetailsPlain.displayName = 'ArticleDetails'

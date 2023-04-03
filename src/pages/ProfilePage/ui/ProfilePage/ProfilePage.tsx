@@ -7,7 +7,6 @@ import {
     reducer as profileReducer,
     selectors as profileSelectors,
 } from 'entities/Profile'
-import classes from './ProfilePage.module.scss'
 import { useAppDispatch } from 'shared/hooks/useAppDispatch'
 import { useSelector } from 'react-redux'
 import { ProfilePageHeader } from '../ProfilePageHeader'
@@ -17,6 +16,7 @@ import { type ValidateProfileError } from 'entities/Profile/model/types/profile'
 import { type Currency } from 'shared/const/currency'
 import { type Country } from 'shared/const/country'
 import { useParams } from 'react-router-dom'
+import { VStack } from 'shared/ui/Stack/VStack'
 
 interface ProfilePageProps {
     className?: string
@@ -112,7 +112,7 @@ const ProfilePage: FC<ProfilePageProps> = memo((props) => {
     )
 
     return (
-        <div className={classNames(classes.profilePage, {}, [className])}>
+        <VStack className={classNames('', {}, [className])} gap="16" fullWidth>
             <ProfilePageHeader />
             {!!profileValidationErrors?.length &&
                 profileValidationErrors.map((err) => {
@@ -138,7 +138,7 @@ const ProfilePage: FC<ProfilePageProps> = memo((props) => {
                 onChangeCurrency={handleChangeCurrency}
                 onChangeCountry={handleChangeCountry}
             />
-        </div>
+        </VStack>
     )
 })
 ProfilePage.displayName = 'ProfilePage'

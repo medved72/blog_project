@@ -1,10 +1,10 @@
 import { type FC, memo } from 'react'
 import { classNames } from 'shared/lib/classNames'
-import classes from './CommentList.module.scss'
 import { type Comment } from '../../model/types/comment'
 import { useTranslation } from 'react-i18next'
 import { Text } from 'shared/ui/Text'
 import { CommentCard } from '../CommentCard'
+import { VStack } from 'shared/ui/Stack'
 
 interface CommentListProps {
     className?: string
@@ -18,16 +18,20 @@ export const CommentList: FC<CommentListProps> = memo((props) => {
 
     if (isLoading && !comments?.length) {
         return (
-            <div className={classNames(classes.commentList, {}, [className])}>
+            <VStack
+                className={classNames('', {}, [className])}
+                gap="16"
+                fullWidth
+            >
                 <CommentCard isLoading />
                 <CommentCard isLoading />
                 <CommentCard isLoading />
-            </div>
+            </VStack>
         )
     }
 
     return (
-        <div className={classNames(classes.commentList, {}, [className])}>
+        <VStack className={classNames('', {}, [className])} gap="16" fullWidth>
             {!comments?.length ? (
                 <Text text={t('comments.empty')} />
             ) : (
@@ -41,7 +45,7 @@ export const CommentList: FC<CommentListProps> = memo((props) => {
                     )
                 })
             )}
-        </div>
+        </VStack>
     )
 })
 CommentList.displayName = 'CommentList'

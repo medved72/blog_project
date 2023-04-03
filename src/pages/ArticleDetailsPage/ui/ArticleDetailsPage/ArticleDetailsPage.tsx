@@ -1,6 +1,5 @@
 import { type FC, memo, useCallback } from 'react'
 import { classNames } from 'shared/lib/classNames'
-import classes from './ArticleDetailsPage.module.scss'
 import { ArticleDetails } from 'entities/Article'
 import { useParams } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
@@ -13,6 +12,7 @@ import { AddArticleCommentForm } from 'features/AddArticleCommentForm'
 import { useAppDispatch } from 'shared/hooks/useAppDispatch'
 import { ArticleRecommendations } from 'features/ArticleRecomendations'
 import { ArticleDetailsPageHeader } from '../ArticleDetailsPageHeader'
+import { VStack } from '../../../../shared/ui/Stack'
 
 interface ArticleDetailsPageProps {
     className?: string
@@ -31,31 +31,21 @@ const ArticleDetailsPage: FC<ArticleDetailsPageProps> = memo((props) => {
 
     if (!articleId) {
         return (
-            <div
-                className={classNames(classes.articleDetailsPage, {}, [
-                    className,
-                ])}
-            >
+            <div className={classNames('', {}, [className])}>
                 {t('articleDetails.errors.notFound')}
             </div>
         )
     }
 
     return (
-        <div
-            className={classNames(classes.articleDetailsPage, {}, [className])}
-        >
+        <VStack gap="16" className={classNames('', {}, [className])} fullWidth>
             <ArticleDetailsPageHeader id={articleId} />
             <ArticleDetails id={articleId} />
             <ArticleRecommendations />
-            <Text
-                size="L"
-                className={classes.commentTitle}
-                title={t('comments.title')}
-            />
+            <Text size="L" className={''} title={t('comments.title')} />
             <AddArticleCommentForm onCommentAdded={handleCommentAdded} />
             <ArticleCommentsList articleId={articleId} />
-        </div>
+        </VStack>
     )
 })
 ArticleDetailsPage.displayName = 'ArticleDetailsPage'
