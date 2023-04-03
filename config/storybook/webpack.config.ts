@@ -14,6 +14,8 @@ export default ({
         html: '',
         entry: '',
         src: path.resolve(__dirname, '..', '..', 'src'),
+        buildLocales: '',
+        locales: '',
     }
 
     config.resolve?.modules?.unshift(paths.src)
