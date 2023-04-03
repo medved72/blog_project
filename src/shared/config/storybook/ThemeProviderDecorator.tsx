@@ -1,5 +1,5 @@
 import { type DecoratorFn } from '@storybook/react'
-import { type THEME, ThemeProvider, useTheme } from 'shared/config/theme'
+import { type THEME, ThemeProvider, useTheme } from '../theme'
 import classes from 'app/App.module.scss'
 import { type FC } from 'react'
 
@@ -15,13 +15,11 @@ export const ThemeProviderDecorator = (theme: THEME): DecoratorFn => {
         )
     }
 
-    const Decorator: DecoratorFn = (StoryComponent) => {
+    return function ThemeProviderDecorator(StoryComponent) {
         return (
             <ThemeProvider defaultTheme={theme}>
                 <Decorated StoryComponent={StoryComponent} />
             </ThemeProvider>
         )
     }
-
-    return Decorator
 }

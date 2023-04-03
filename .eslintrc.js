@@ -17,7 +17,7 @@ module.exports = {
         sourceType: 'module',
         project: ['./tsconfig.json'],
     },
-    plugins: ['react', 'i18next'],
+    plugins: ['react', 'i18next', 'blog-project-plugin'],
     rules: {
         'max-len': ['error', 120],
         'react/react-in-jsx-scope': ['off'],
@@ -34,6 +34,7 @@ module.exports = {
         'n/no-callback-literal': ['off'],
         '@typescript-eslint/no-floating-promises': ['off'],
         '@typescript-eslint/no-redeclare': ['off'],
+        'blog-project-plugin/path-checker': ['error'],
     },
     settings: {
         react: {
@@ -54,4 +55,5 @@ module.exports = {
             },
         },
     ],
+    ignorePatterns: ['config/eslint'],
 }

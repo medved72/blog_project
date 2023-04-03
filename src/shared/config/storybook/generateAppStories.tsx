@@ -6,7 +6,7 @@ import {
 import { type FC } from 'react'
 import { capitalize } from 'shared/lib/capitalize'
 import { ThemeDecorator } from './ThemeDecorator'
-import { THEME } from 'shared/config/theme'
+import { THEME } from '../theme'
 
 export interface AppStoryItem<T extends Record<string, any>> {
     key: string
