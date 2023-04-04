@@ -76,7 +76,7 @@
     "eslint-config-prettier": "^8.7.0",
     "eslint-config-standard-with-typescript": "^34.0.1",
     "eslint-plugin-blog-project-plugin": "file:./config/eslint",
-    "eslint-plugin-i18next": "^6.0.0-6",
+    "eslint-plugin-i18next": "^6.0.0-8",
     "eslint-plugin-import": "^2.27.5",
     "eslint-plugin-n": "^15.6.1",
     "eslint-plugin-promise": "^6.1.1",
