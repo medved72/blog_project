@@ -4,7 +4,7 @@ import classes from './Text.module.scss'
 
 type TextTheme = 'primary' | 'error' | 'inverted'
 type TextAlign = 'right' | 'left' | 'center'
-type TextSize = 'M' | 'L'
+type TextSize = 'M' | 'L' | 'S'
 
 interface TextProps {
     className?: string
@@ -15,6 +15,15 @@ interface TextProps {
     align?: TextAlign
     'data-testid'?: string
 }
+
+type TextHeaderTag = 'h1' | 'h2' | 'h3'
+
+const mapSizeToHeaderTag: Record<TextSize, TextHeaderTag> = {
+    S: 'h3',
+    M: 'h2',
+    L: 'h1',
+}
+
 export const Text: FC<TextProps> = memo((props) => {
     const {
         className,
@@ -25,6 +34,8 @@ export const Text: FC<TextProps> = memo((props) => {
         align = 'left',
         ...restProps
     } = props
+
+    const HeaderTag = mapSizeToHeaderTag[size]
 
     return (
         <div
@@ -38,9 +49,9 @@ export const Text: FC<TextProps> = memo((props) => {
             ])}
         >
             {title && (
-                <p data-testid="text.title" className={classes.title}>
+                <HeaderTag data-testid="text.title" className={classes.title}>
                     {title}
-                </p>
+                </HeaderTag>
             )}
             {text && (
                 <p data-testid="text.text" className={classes.text}>

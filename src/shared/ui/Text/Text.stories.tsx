@@ -8,7 +8,7 @@ import { capitalize } from 'shared/lib/capitalize'
 
 const themes = ['primary', 'error', 'inverted'] as const
 const aligns = ['right', 'left', 'center'] as const
-const sizes = ['M', 'L'] as const
+const sizes = ['S', 'M', 'L'] as const
 
 const stories: Array<AppStoryItem<ComponentProps<typeof Text>>> = []
 themes.forEach((theme) => {

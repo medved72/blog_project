@@ -8,7 +8,7 @@ export type FlexAlign = 'start' | 'center' | 'end'
 export type FlexDirection = 'row' | 'column'
 export type FlexGap = '4' | '8' | '16' | '32'
 
-export type FlexElements = 'div' | 'form'
+export type FlexElements = 'div' | 'form' | 'nav'
 
 type FlexAdditionalProps<Type extends FlexElements | React.ComponentType> =
     Type extends keyof JSX.IntrinsicElements

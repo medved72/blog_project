@@ -65,7 +65,7 @@ export const Navbar: FC<NavbarProps> = memo(({ className }) => {
                     </div>
                 </header>
             ) : (
-                <div className={classNames(classes.navbar, {}, [className])}>
+                <header className={classNames(classes.navbar, {}, [className])}>
                     <div className={classes.links}>
                         <Button
                             theme="clearInverted"
@@ -74,7 +74,7 @@ export const Navbar: FC<NavbarProps> = memo(({ className }) => {
                             {t('Войти')}
                         </Button>
                     </div>
-                </div>
+                </header>
             )}
             <LoginModal
                 isOpen={isAuthModalOpen}
