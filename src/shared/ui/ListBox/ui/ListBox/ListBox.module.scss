@@ -1,0 +1,50 @@
+.listBox {
+    position: relative;
+    width: fit-content;
+}
+
+.trigger {
+    padding: 0;
+    border: none;
+    margin: 0;
+    background: none;
+    outline: none;
+}
+
+.options {
+    position: absolute;
+    z-index: 10000;
+    width: max-content;
+    min-width: 100%;
+    border-radius: 12px;
+    background: var(--listbox-bg);
+    box-shadow: 4px 4px 8px var(--listbox-bg);
+}
+
+.directionTop {
+    bottom: 100%;
+}
+
+.item {
+    padding: 10px 20px;
+    list-style-type: none;
+
+    &:first-of-type {
+        border-top-left-radius: 12px;
+        border-top-right-radius: 12px;
+    }
+
+    &:last-of-type {
+        border-bottom-left-radius: 12px;
+        border-bottom-right-radius: 12px;
+    }
+}
+
+.active {
+    background: var(--inverted-primary-color);
+}
+
+.disabled {
+    cursor: not-allowed;
+    opacity: 0.7;
+}
