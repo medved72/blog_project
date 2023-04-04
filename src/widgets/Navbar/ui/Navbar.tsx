@@ -13,6 +13,8 @@ import { Text } from '../../../shared/ui/Text'
 import { AppLink } from '../../../shared/ui/Link'
 import { generatePath } from 'react-router-dom'
 import { ROUTES } from '../../../shared/config/routes'
+import { Dropdown } from '../../../shared/ui/Dropdown'
+import { Avatar } from '../../../shared/ui/Avatar'
 
 export interface NavbarProps {
     className?: string
@@ -59,9 +61,22 @@ export const Navbar: FC<NavbarProps> = memo(({ className }) => {
                         {t('navbar.link.create.text')}
                     </AppLink>
                     <div className={classes.links}>
-                        <Button theme="clearInverted" onClick={handleLogout}>
-                            {t('Выйти')}
-                        </Button>
+                        <Dropdown
+                            direction="bottomLeft"
+                            trigger={<Avatar size={30} src={authData.avatar} />}
+                            items={[
+                                {
+                                    content: t('navbar.item.profile'),
+                                    href: generatePath(ROUTES.PROFILE, {
+                                        profileId: authData.id,
+                                    }),
+                                },
+                                {
+                                    content: t('Выйти'),
+                                    onClick: handleLogout,
+                                },
+                            ]}
+                        />
                     </div>
                 </header>
             ) : (

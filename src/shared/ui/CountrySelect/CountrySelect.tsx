@@ -32,7 +32,7 @@ export const CountrySelect: FC<CountrySelectProps> = memo((props) => {
             value={value}
             onChange={onChange}
             readonly={readonly}
-            direction="top"
+            direction="topRight"
         />
     )
 })

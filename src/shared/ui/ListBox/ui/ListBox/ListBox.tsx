@@ -5,14 +5,13 @@ import { classNames } from 'shared/lib/classNames'
 import { Button } from '../../../Button'
 import { capitalize } from 'shared/lib/capitalize'
 import { HStack } from '../../../Stack'
+import { type DropdownDirection } from 'shared/types/ui'
 
 export interface ListBoxItem<T extends string> {
     value: T
     content: ReactNode
     disabled?: boolean
 }
-
-type ListBoxDirection = 'top' | 'bottom'
 
 export interface ListBoxProps<T extends string> {
     className?: string
@@ -21,7 +20,7 @@ export interface ListBoxProps<T extends string> {
     defaultValue?: string
     onChange?: (value: T) => void
     readonly?: boolean
-    direction?: ListBoxDirection
+    direction?: DropdownDirection
     label?: string
 }
 
@@ -33,7 +32,7 @@ export const ListBoxPlain = <T extends string>(props: ListBoxProps<T>) => {
         defaultValue,
         onChange,
         readonly,
-        direction = 'bottom',
+        direction = 'bottomRight',
         label,
     } = props
 

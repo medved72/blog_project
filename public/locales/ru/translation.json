@@ -22,5 +22,6 @@
     "input.placeholder.addNewComment": "Введите текст комментария",
     "button.text.send": "Отправить",
     "navbar.app.appname.title": "PBlob",
-    "navbar.link.create.text": "Создать статью"
+    "navbar.link.create.text": "Создать статью",
+    "navbar.item.profile": "Профиль"
 }
