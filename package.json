@@ -25,6 +25,7 @@
     "prepare": "husky install"
   },
   "dependencies": {
+    "@headlessui/react": "^1.7.13",
     "@reduxjs/toolkit": "^1.9.3",
     "axios": "^1.3.4",
     "i18next": "^22.4.11",
@@ -74,6 +75,7 @@
     "eslint": "^8.36.0",
     "eslint-config-prettier": "^8.7.0",
     "eslint-config-standard-with-typescript": "^34.0.1",
+    "eslint-plugin-blog-project-plugin": "file:./config/eslint",
     "eslint-plugin-i18next": "^6.0.0-6",
     "eslint-plugin-import": "^2.27.5",
     "eslint-plugin-n": "^15.6.1",
@@ -81,7 +83,6 @@
     "eslint-plugin-react": "^7.32.2",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-storybook": "^0.6.11",
-    "eslint-plugin-blog-project-plugin": "file:./config/eslint",
     "file-loader": "^6.2.0",
     "html-webpack-plugin": "5.5.0",
     "husky": "^8.0.3",
