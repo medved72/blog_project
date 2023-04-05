@@ -2,10 +2,14 @@ import React, { Fragment, memo, type ReactNode } from 'react'
 import { Listbox as HListbox } from '@headlessui/react'
 import classes from './ListBox.module.scss'
 import { classNames } from 'shared/lib/classNames'
+import {
+    useFloating,
+    flip,
+    offset,
+    type Placement,
+} from '@floating-ui/react-dom'
 import { Button } from '../../../Button'
-import { capitalize } from 'shared/lib/capitalize'
 import { HStack } from '../../../Stack'
-import { type DropdownDirection } from 'shared/types/ui'
 
 export interface ListBoxItem<T extends string> {
     value: T
@@ -20,8 +24,8 @@ export interface ListBoxProps<T extends string> {
     defaultValue?: string
     onChange?: (value: T) => void
     readonly?: boolean
-    direction?: DropdownDirection
     label?: string
+    direction?: Placement
 }
 
 export const ListBoxPlain = <T extends string>(props: ListBoxProps<T>) => {
@@ -32,9 +36,14 @@ export const ListBoxPlain = <T extends string>(props: ListBoxProps<T>) => {
         defaultValue,
         onChange,
         readonly,
-        direction = 'bottomRight',
+        direction,
         label,
     } = props
+
+    const { x, y, strategy, refs } = useFloating({
+        placement: direction,
+        middleware: [offset(10), flip()],
+    })
 
     return (
         <HStack gap="8">
@@ -47,12 +56,21 @@ export const ListBoxPlain = <T extends string>(props: ListBoxProps<T>) => {
                 onChange={onChange}
             >
                 <HListbox.Button className={classes.trigger}>
-                    <Button disabled={readonly}>{value ?? defaultValue}</Button>
+                    <Button ref={refs.setReference} disabled={readonly}>
+                        {value ?? defaultValue}
+                    </Button>
                 </HListbox.Button>
                 <HListbox.Options
+                    ref={refs.setFloating}
                     className={classNames(classes.options, {}, [
-                        classes[`direction${capitalize(direction)}`],
+                        // classes[`direction${capitalize(direction)}`],
                     ])}
+                    style={{
+                        position: strategy,
+                        top: y ?? 0,
+                        left: x ?? 0,
+                        width: 'max-content',
+                    }}
                 >
                     {items.map((item) => (
                         <HListbox.Option
