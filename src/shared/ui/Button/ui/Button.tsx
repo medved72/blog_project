@@ -1,6 +1,6 @@
 import {
     type ButtonHTMLAttributes,
-    type FC,
+    forwardRef,
     memo,
     type PropsWithChildren,
     useMemo,
@@ -34,36 +34,42 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
     square?: boolean
 }
 
-export const Button: FC<PropsWithChildren<ButtonProps>> = memo(
-    ({
-        className,
-        theme = 'outline',
-        size = 'm',
-        children,
-        square,
-        disabled,
-        ...restProps
-    }) => {
-        const rootClassname = useMemo(() => {
-            return classNames(
-                classes.button,
-                {
-                    [classes.square]: square,
-                    [classes.disabled]: disabled,
-                },
-                [className, BUTTON_THEME[theme], BUTTON_SIZE[size]]
-            )
-        }, [className, disabled, size, square, theme])
+export const Button = memo(
+    forwardRef<HTMLButtonElement, PropsWithChildren<ButtonProps>>(
+        (
+            {
+                className,
+                theme = 'outline',
+                size = 'm',
+                children,
+                square,
+                disabled,
+                ...restProps
+            },
+            ref
+        ) => {
+            const rootClassname = useMemo(() => {
+                return classNames(
+                    classes.button,
+                    {
+                        [classes.square]: square,
+                        [classes.disabled]: disabled,
+                    },
+                    [className, BUTTON_THEME[theme], BUTTON_SIZE[size]]
+                )
+            }, [className, disabled, size, square, theme])
 
-        return (
-            <button
-                {...restProps}
-                className={rootClassname}
-                disabled={disabled}
-            >
-                {children}
-            </button>
-        )
-    }
+            return (
+                <button
+                    ref={ref}
+                    {...restProps}
+                    className={rootClassname}
+                    disabled={disabled}
+                >
+                    {children}
+                </button>
+            )
+        }
+    )
 )
 Button.displayName = 'Button'
