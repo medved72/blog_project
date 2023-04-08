@@ -1,6 +1,4 @@
 import { type FC, memo, useEffect } from 'react'
-import { classNames } from 'shared/lib/classNames'
-import classes from './ArticleCommentsList.module.scss'
 import { CommentList } from 'entities/Comment'
 import { withDynamicModuleLoader } from 'shared/lib/components'
 import {
@@ -32,7 +30,7 @@ const ArticleCommentsListPlain: FC<ArticleCommentsListProps> = memo((props) => {
 
     return (
         <CommentList
-            className={classNames(classes.articleCommentsList, {}, [className])}
+            className={className}
             isLoading={loading}
             comments={comments}
         />

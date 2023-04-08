@@ -1,6 +1,4 @@
 import { type FC, memo } from 'react'
-import { classNames } from 'shared/lib/classNames'
-import classes from './ArticleListSearch.module.scss'
 import { Input } from 'shared/ui/Input'
 import { useTranslation } from 'react-i18next'
 
@@ -15,7 +13,7 @@ export const ArticleListSearch: FC<ArticleListSearchProps> = memo((props) => {
     const { t } = useTranslation('articleList')
     return (
         <Input
-            className={classNames(classes.articleListSearch, {}, [className])}
+            className={className}
             value={value}
             onChange={onChange}
             placeholder={t('input.search.placeholder')}

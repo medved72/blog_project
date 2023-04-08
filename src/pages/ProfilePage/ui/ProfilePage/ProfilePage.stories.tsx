@@ -17,7 +17,7 @@ generateAppStories(
         parameters: {
             reactRouter: {
                 routePath: ROUTES.PROFILE,
-                routeParams: { id: '1' },
+                routeParams: { profileId: '1' },
             },
             mockData: [
                 {

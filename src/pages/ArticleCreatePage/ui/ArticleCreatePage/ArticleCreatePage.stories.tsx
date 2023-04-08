@@ -1,4 +1,4 @@
-import { ArticleCreatePage } from './ArticleCreatePage'
+import ArticleCreatePage from './ArticleCreatePage'
 import { generateAppStories } from 'shared/config/storybook/generateAppStories'
 
 generateAppStories('pages/ArticleCreatePage', ArticleCreatePage, [

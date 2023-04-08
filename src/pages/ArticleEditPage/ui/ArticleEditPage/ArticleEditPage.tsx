@@ -9,9 +9,11 @@ interface ArticleEditPageProps {
 const ArticleEditPage: FC<ArticleEditPageProps> = memo((props) => {
     const { className } = props
     return (
-        <div
-            className={classNames(classes.articleEditPage, {}, [className])}
-        ></div>
+        <div className={classNames(classes.articleEditPage, {}, [className])}>
+            {/* eslint-disable-next-line i18next/no-literal-string */}
+            {/* eslint-disable-next-line i18next/no-literal-string */}
+            ArticleEditPage
+        </div>
     )
 })
 ArticleEditPage.displayName = 'ArticleEditPage'

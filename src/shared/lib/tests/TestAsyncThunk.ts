@@ -33,7 +33,6 @@ export class TestAsyncThunk<Returned, ThunkArg, Rejected> {
         const action = this.actionCreator(arg)
         return await action(this.dispatch, this.getState, {
             api: this.api,
-            navigate: this.navigate,
         })
     }
 }

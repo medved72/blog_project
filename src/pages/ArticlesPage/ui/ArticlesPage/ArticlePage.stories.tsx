@@ -1,9 +1,34 @@
 import { generateAppStories } from 'shared/config/storybook/generateAppStories'
 import ArticlesPage from './ArticlesPage'
+import { StoreDecorator } from 'shared/config/storybook/StoreDecorator'
+import { type Article } from 'entities/Article'
+import db from '../../../../../json-server/db.json'
 
-generateAppStories('pages/ArticlesPage', ArticlesPage, [
+const articles = db.articles.slice(0, 8).map(({ userId, ...article }) => ({
+    ...article,
+    user: db.users.find((user) => user.id === userId)!,
+})) as Article[]
+
+generateAppStories(
+    'pages/ArticlesPage',
+    ArticlesPage,
+    [
+        {
+            key: 'primary',
+            args: {},
+            decorators: [StoreDecorator({})],
+        },
+    ],
     {
-        key: 'primary',
-        args: {},
-    },
-])
+        parameters: {
+            mockData: [
+                {
+                    url: '/articles?_expand=user&_page=0&_limit=20&_sort=createdAt&_order=asc&q=',
+                    method: 'GET',
+                    status: 200,
+                    response: articles,
+                },
+            ],
+        },
+    }
+)

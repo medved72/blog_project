@@ -9,9 +9,11 @@ interface ArticleCreatePageProps {
 const ArticleCreatePage: FC<ArticleCreatePageProps> = memo((props) => {
     const { className } = props
     return (
-        <div
-            className={classNames(classes.articleCreatePage, {}, [className])}
-        ></div>
+        <div className={classNames(classes.articleCreatePage, {}, [className])}>
+            {/* eslint-disable-next-line i18next/no-literal-string */}
+            {/* eslint-disable-next-line i18next/no-literal-string */}
+            ArticleCreatePage
+        </div>
     )
 })
 ArticleCreatePage.displayName = 'ArticleCreatePage'

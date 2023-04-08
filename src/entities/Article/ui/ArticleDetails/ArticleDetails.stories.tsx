@@ -17,7 +17,7 @@ generateAppStories(
         parameters: {
             mockData: [
                 {
-                    url: '/articles/1',
+                    url: '/articles/1?_expand=user',
                     method: 'GET',
                     status: 200,
                     response: articles[0],
