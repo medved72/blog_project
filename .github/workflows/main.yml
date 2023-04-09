@@ -85,6 +85,9 @@ jobs:
 
   screenshot-test:
     needs: install_modules
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -103,4 +106,22 @@ jobs:
 
       - name: screenshot testing
         run: npm run test:ui:ci
+
+      - name: generate report
+        run: npm run test:ui:report
+
+      - name: Setup Pages
+        if: always()
+        uses: actions/configure-pages@v2
+
+      - name: Upload artifact
+        if: always()
+        uses: actions/upload-pages-artifact@v1
+        with:
+          path: './.loki'
+
+      - name: Deploy to GitHub Pages
+        if: always()
+        id: deployment
+        uses: actions/deploy-pages@v1
 
