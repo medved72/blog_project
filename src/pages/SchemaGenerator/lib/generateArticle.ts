@@ -31,7 +31,7 @@ const blocksSchema = {
     3: () => ({
         id: faker.datatype.uuid(),
         type: 'IMAGE',
-        src: faker.image.abstract(640, 480, true),
+        src: faker.image.dataUri(640, 480, faker.color.rgb()),
         title: faker.name.jobTitle(),
     }),
 }
@@ -42,7 +42,7 @@ export const generateArticle = ({
     id: faker.datatype.uuid(),
     title: faker.name.jobTitle(),
     subtitle: faker.name.jobDescriptor(),
-    img: faker.image.abstract(640, 480, true),
+    img: faker.image.dataUri(640, 480, faker.color.rgb()),
     views: faker.datatype.number({ min: 10, max: 100 }),
     createdAt: formatDate(faker.datatype.datetime()),
     userId: userIds[faker.datatype.number({ min: 0, max: userIds.length - 1 })],
