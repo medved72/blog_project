@@ -4,6 +4,8 @@ import { ROUTES } from 'shared/config/routes'
 import { StoreDecorator } from 'shared/config/storybook/StoreDecorator'
 import { type Article } from 'entities/Article'
 import { type Comment } from 'entities/Comment'
+import { type ComponentStory } from '@storybook/react'
+import createAsyncCallback from '@loki/create-async-callback'
 import db from '../../../../../json-server/db.json'
 
 const recommendations = db.articles
@@ -22,9 +24,19 @@ const comments = db.comments
         user: db.users.find((user) => user.id === userId),
     })) as Comment[]
 
+const Template: ComponentStory<typeof ArticleDetailsPage> = (args) => {
+    const resolve = createAsyncCallback()
+
+    setTimeout(() => {
+        resolve()
+    }, 10000)
+
+    return <ArticleDetailsPage {...args} />
+}
+
 generateAppStories(
     'pages/ArticleDetailsPage',
-    ArticleDetailsPage,
+    Template,
     [
         {
             key: 'primary',

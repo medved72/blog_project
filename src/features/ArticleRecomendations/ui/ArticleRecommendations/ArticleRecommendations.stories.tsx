@@ -11,7 +11,7 @@ const Template: ComponentStory<typeof ArticleRecommendations> = (args) => {
 
     setTimeout(() => {
         resolve()
-    }, 5000)
+    }, 10000)
 
     return <ArticleRecommendations {...args} />
 }

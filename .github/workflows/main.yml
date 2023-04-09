@@ -88,10 +88,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - uses: actions/cache@v3
-        with:
-          path: '**/.loki'
-          key: ${{ runner.os }}-screenshots-${{ hashFiles('**/.loki') }}
       - name: Setup node
         uses: actions/setup-node@v3
         with:
@@ -108,17 +104,3 @@ jobs:
       - name: screenshot testing
         run: npm run test:ui:ci
 
-      - name: generate html report
-        run: npm run test:ui:report
-
-      - name: Setup Pages
-        uses: actions/configure-pages@v2
-
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v1
-        with:
-          path: '.loki/report.html'
-
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v1
