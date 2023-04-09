@@ -5,6 +5,7 @@ import { type AppState, type ThunkExtraArg } from './types'
 import { reducer as user } from 'entities/User'
 import { scrollRestoreReducer as scrollRestore } from 'features/ScrollRestore'
 import { $api } from 'shared/api/api'
+import { rtkApi } from '../../../shared/api/rtkApi'
 
 export const setupStore = (
     initialState?: AppState,
@@ -14,6 +15,7 @@ export const setupStore = (
         ...asyncReducers,
         user,
         scrollRestore,
+        [rtkApi.reducerPath]: rtkApi.reducer,
     }
 
     const reducerManager = createReducerManager(reducerMap)
@@ -32,7 +34,7 @@ export const setupStore = (
                     thunk: {
                         extraArgument: extraArg,
                     },
-                }),
+                }).concat(rtkApi.middleware),
         }),
         reducerManager,
     }

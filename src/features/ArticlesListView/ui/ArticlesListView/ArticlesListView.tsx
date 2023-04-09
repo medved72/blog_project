@@ -1,5 +1,4 @@
 import { type FC, memo, useEffect } from 'react'
-import { classNames } from 'shared/lib/classNames'
 import { ArticleList } from 'entities/Article'
 import { withDynamicModuleLoader } from 'shared/lib/components'
 import {
@@ -16,9 +15,8 @@ import {
 } from '../../model/selectors'
 import { ArticleListInfiniteLoader } from '../ArticleListInfiniteLoader'
 import { useSearchParams } from 'react-router-dom'
-import { Text } from '../../../../shared/ui/Text'
+import { Text } from 'shared/ui/Text'
 import { useTranslation } from 'react-i18next'
-import classes from './ArticlesListView.module.scss'
 
 interface ArticlesListViewProps {
     className?: string
@@ -43,14 +41,10 @@ const ArticlesListViewPlain: FC<ArticlesListViewProps> = memo((props) => {
     return (
         <ArticleListInfiniteLoader>
             {!loading && !articles.length && (
-                <Text
-                    className={classes.notFound}
-                    title={t('articles.not_found')}
-                    size="L"
-                />
+                <Text title={t('articles.not_found')} size="L" />
             )}
             <ArticleList
-                className={classNames(classes.list, {}, [className])}
+                className={className}
                 loading={loading}
                 articles={articles}
                 view={viewMode}

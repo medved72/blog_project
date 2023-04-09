@@ -7,25 +7,27 @@ import {
 } from '@reduxjs/toolkit'
 import { type LoginState } from 'features/AuthByUsername'
 import { type UserState } from 'entities/User'
-import { type ProfileState } from 'entities/Profile'
 import { type ArticleDetailsState } from 'entities/Article'
 import { type AxiosInstance } from 'axios'
 import { type ArticleCommentListState } from 'features/ArticleCommentsList'
 import { type AddArticleCommentFormState } from 'features/AddArticleCommentForm'
 import { type ArticlesListViewState } from 'features/ArticlesListView'
 import { type ScrollRestoreState } from 'features/ScrollRestore'
-import { type ArticleRecommendationsState } from 'features/ArticleRecomendations'
+import { type EditableProfileCardState } from 'features/EditableProfileCard'
+import { type rtkApi } from 'shared/api/rtkApi'
 
 export interface AppState {
     user: UserState
+    [rtkApi.reducerPath]: ReturnType<typeof rtkApi.reducer>
+    scrollRestore: ScrollRestoreState
+
+    // async state
     loginForm?: LoginState
-    profile?: ProfileState
+    editableProfileCard?: EditableProfileCardState
     articleDetails?: ArticleDetailsState
     articleCommentList?: ArticleCommentListState
     addArticleCommentForm?: AddArticleCommentFormState
     articlesListView?: ArticlesListViewState
-    scrollRestore: ScrollRestoreState
-    articleRecommendations?: ArticleRecommendationsState
 }
 
 export type AppDispatch = ReturnType<typeof setupStore>['dispatch']

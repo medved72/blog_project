@@ -1,21 +1,14 @@
 import { type FC, memo } from 'react'
-import { classNames } from 'shared/lib/classNames'
-import classes from './ArticlesPage.module.scss'
 import { ArticlesListView } from 'features/ArticlesListView'
 import { ArticlesListFilters } from 'widgets/ArticlesListFilters'
+import { VStack } from 'shared/ui/Stack'
 
-interface ArticlesPageProps {
-    className?: string
-}
-
-const ArticlesPage: FC<ArticlesPageProps> = memo((props) => {
-    const { className } = props
-
+const ArticlesPage: FC = memo(() => {
     return (
-        <div className={classNames(classes.articlesPage, {}, [className])}>
+        <VStack gap="16">
             <ArticlesListFilters />
-            <ArticlesListView className={classes.list} />
-        </div>
+            <ArticlesListView />
+        </VStack>
     )
 })
 ArticlesPage.displayName = 'ArticlesPage'

@@ -8,8 +8,8 @@ import { CurrencySelect } from 'shared/ui/CurrencySelect'
 import { CountrySelect } from 'shared/ui/CountrySelect'
 import { DotsSpinner } from 'shared/ui/Spinner'
 import { Avatar } from 'shared/ui/Avatar'
+import { HStack, VStack } from 'shared/ui/Stack'
 import { type ProfileCardProps } from '../../model/types/ProfileCardProps'
-import { HStack, VStack } from '../../../../shared/ui/Stack'
 
 export const ProfileCard: FC<ProfileCardProps> = memo((props) => {
     const {

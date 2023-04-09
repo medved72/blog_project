@@ -1,65 +1,43 @@
-import { type FC, memo, useEffect } from 'react'
-import { classNames } from 'shared/lib/classNames'
-import { withDynamicModuleLoader } from 'shared/lib/components'
-import { articleRecommendationsReducer } from '../../model/slices/articleRecommendations.slice'
-import {
-    getArticleRecommendations,
-    getArticleRecommendationsLoading,
-} from '../../model/selectors'
-import { useSelector } from 'react-redux'
+import { type FC, memo } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Text } from 'shared/ui/Text'
-import classes from './ArticleRecommendations.module.scss'
-import { ArticleList } from 'entities/Article'
-import { useAppDispatch } from 'shared/hooks/useAppDispatch'
-import { fetchArticleRecommendations } from '../../model/services/fetchArticleRecommendations'
+import { type Article, ArticleList } from 'entities/Article'
+import { VStack } from 'shared/ui/Stack'
+import { useArticleRecommendationsListQuery } from '../../api/articleRecommendations.api'
 
 interface ArticleRecommendationsProps {
     className?: string
 }
 
-const ArticleRecommendationsPlain: FC<ArticleRecommendationsProps> = memo(
+const emptyArticles: Article[] = []
+
+export const ArticleRecommendations: FC<ArticleRecommendationsProps> = memo(
     (props) => {
         const { className } = props
-
-        const dispatch = useAppDispatch()
-
         const { t } = useTranslation('articleDetails')
+        const {
+            data: articles,
+            isLoading,
+            error,
+        } = useArticleRecommendationsListQuery(4)
 
-        useEffect(() => {
-            dispatch(fetchArticleRecommendations())
-        }, [dispatch])
-
-        const recommendations = useSelector(getArticleRecommendations.selectAll)
-
-        const loading = useSelector(getArticleRecommendationsLoading)
+        if (isLoading || error) {
+            return null
+        }
 
         return (
-            <div
-                className={classNames(classes.articleRecommendations, {}, [
-                    className,
-                ])}
-            >
+            <VStack className={className}>
                 <Text
                     size="L"
                     title={t('article.recommendations.title.text')}
                 />
                 <ArticleList
-                    loading={loading}
-                    articles={recommendations}
+                    articles={articles ?? emptyArticles}
+                    loading={isLoading}
                     target="_blank"
                 />
-            </div>
+            </VStack>
         )
     }
 )
-ArticleRecommendationsPlain.displayName = 'ArticleRecommendations'
-
-export const ArticleRecommendations = withDynamicModuleLoader(
-    ArticleRecommendationsPlain,
-    {
-        reducers: {
-            articleRecommendations: articleRecommendationsReducer,
-        },
-    }
-)
+ArticleRecommendations.displayName = 'ArticleRecommendations'

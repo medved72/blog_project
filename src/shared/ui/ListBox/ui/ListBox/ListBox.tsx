@@ -36,7 +36,7 @@ export const ListBoxPlain = <T extends string>(props: ListBoxProps<T>) => {
         defaultValue,
         onChange,
         readonly,
-        direction,
+        direction = 'bottom-start',
         label,
     } = props
 

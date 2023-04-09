@@ -1,1 +1,0 @@
-export { firstName } from './firstName'
