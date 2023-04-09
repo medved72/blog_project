@@ -1,9 +1,13 @@
 import { ArticleListTabs } from './ArticleListTabs'
 import { generateAppStories } from 'shared/config/storybook/generateAppStories'
+import { action } from '@storybook/addon-actions'
 
-generateAppStories('feature/ArticleListTabs', ArticleListTabs, [
+generateAppStories('features/ArticleListTabs', ArticleListTabs, [
     {
         key: 'primary',
-        args: {},
+        args: {
+            value: 'All',
+            onTabClick: action('onTabClick'),
+        },
     },
 ])

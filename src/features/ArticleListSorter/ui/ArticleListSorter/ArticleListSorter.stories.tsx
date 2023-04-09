@@ -1,9 +1,15 @@
 import { ArticleListSorter } from './ArticleListSorter'
 import { generateAppStories } from 'shared/config/storybook/generateAppStories'
+import { action } from '@storybook/addon-actions'
 
-generateAppStories('feature/ArticleListSorter', ArticleListSorter, [
+generateAppStories('features/ArticleListSorter', ArticleListSorter, [
     {
         key: 'primary',
-        args: {},
+        args: {
+            order: 'asc',
+            onChangeOrder: action('onChangeOrder'),
+            onChangeSortBy: action('onChangeSortBy'),
+            sortBy: 'title',
+        },
     },
 ])

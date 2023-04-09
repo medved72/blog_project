@@ -64,7 +64,7 @@ generateAppStories(
                     response: article,
                 },
                 {
-                    url: '/articles?_expand=user&_limit=4',
+                    url: `${window.origin}/articles?_expand=user&_limit=4`,
                     method: 'GET',
                     status: 200,
                     response: recommendations,
