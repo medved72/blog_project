@@ -17,6 +17,18 @@ export default {
         '\\.svg': path.resolve(__dirname, 'jestEmptyComponent.tsx'),
         '\\.jpg': path.resolve(__dirname, 'jestRandomString.tsx'),
     },
+    reporters: [
+        'default',
+        [
+            'jest-html-reporters',
+            {
+                publicPath: '<rootDir>/reports/unit',
+                filename: 'report.html',
+                openReport: false,
+                inlineSource: true,
+            },
+        ],
+    ],
     globals: {
         _IS_DEV_: false,
         _API_: '',
