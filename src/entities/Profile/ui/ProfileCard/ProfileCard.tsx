@@ -88,6 +88,7 @@ export const ProfileCard: FC<ProfileCardProps> = memo((props) => {
                 placeholder={t('Ваше имя') + '>'}
                 onChange={onChangeFirstName}
                 readonly={readonly}
+                data-testid="ProfileCard.firstname"
             />
 
             <Input
@@ -95,6 +96,7 @@ export const ProfileCard: FC<ProfileCardProps> = memo((props) => {
                 placeholder={t('Ваша фамилия') + '>'}
                 onChange={onChangeLastName}
                 readonly={readonly}
+                data-testid="ProfileCard.lastname"
             />
 
             <Input
@@ -102,6 +104,7 @@ export const ProfileCard: FC<ProfileCardProps> = memo((props) => {
                 placeholder={t('Ваш возраст') + '>'}
                 onChange={onChangeAge}
                 readonly={readonly}
+                data-testid="ProfileCard.age"
             />
 
             <Input
@@ -109,6 +112,7 @@ export const ProfileCard: FC<ProfileCardProps> = memo((props) => {
                 placeholder={t('Город') + '>'}
                 onChange={onChangeCity}
                 readonly={readonly}
+                data-testid="ProfileCard.city"
             />
 
             <Input
@@ -116,6 +120,7 @@ export const ProfileCard: FC<ProfileCardProps> = memo((props) => {
                 placeholder={t('Введите имя пользователя') + '>'}
                 onChange={onChangeUsername}
                 readonly={readonly}
+                data-testid="ProfileCard.username"
             />
 
             <Input
@@ -123,6 +128,7 @@ export const ProfileCard: FC<ProfileCardProps> = memo((props) => {
                 placeholder={t('Введите ссылку на аватар') + '>'}
                 onChange={onChangeAvatar}
                 readonly={readonly}
+                data-testid="ProfileCard.avatarLink"
             />
 
             <CurrencySelect

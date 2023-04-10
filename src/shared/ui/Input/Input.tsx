@@ -37,6 +37,7 @@ export const Input: FC<InputProps> = memo((props) => {
         onSelect,
         autoFocus,
         readonly,
+        'data-testid': dataTestId = 'Input',
         ...restProps
     } = props
 
@@ -99,12 +100,12 @@ export const Input: FC<InputProps> = memo((props) => {
     )
 
     return (
-        <div
-            className={classNames(classes.wrapper, {}, [className])}
-            data-testid={restProps['data-testid']}
-        >
+        <div className={classNames(classes.wrapper, {}, [className])}>
             {placeholder && (
-                <div className={classes.placeholder} data-testid="placeholder">
+                <div
+                    className={classes.placeholder}
+                    data-testid={`${dataTestId}.placeholder`}
+                >
                     {placeholder}
                 </div>
             )}
@@ -112,7 +113,7 @@ export const Input: FC<InputProps> = memo((props) => {
             <div className={classes.caretWrapper}>
                 <input
                     {...restProps}
-                    data-testid="input"
+                    data-testid={`${dataTestId}.input`}
                     className={inputClassName}
                     autoFocus={autoFocus}
                     value={value}

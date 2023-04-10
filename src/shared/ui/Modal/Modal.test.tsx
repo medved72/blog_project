@@ -22,7 +22,7 @@ describe('Modal', () => {
     })
 
     it('should be valid render with renderMode default', async () => {
-        const { user, rerender } = renderWithProviders(<Modal isOpen={false} />)
+        const { userEvent, rerender } = renderWithProviders(<Modal isOpen={false} />)
         expect(getModal()).toBeInTheDocument()
         expect(getModal()).not.toHaveClass('opened')
 
@@ -34,7 +34,7 @@ describe('Modal', () => {
             expect(getModal()).toHaveClass('opened')
         })
 
-        await user.click(getOverlay())
+        await userEvent.click(getOverlay())
 
         await waitFor(() => {
             expect(getModal()).toHaveClass('isClosing')
@@ -46,7 +46,7 @@ describe('Modal', () => {
     })
 
     it('should be valid render with renderMode destroyOnClose', async () => {
-        const { user, rerender } = renderWithProviders(
+        const { userEvent, rerender } = renderWithProviders(
             <Modal isOpen={false} renderMode="destroyOnclose" />
         )
         expect(queryModal()).not.toBeInTheDocument()
@@ -59,7 +59,7 @@ describe('Modal', () => {
             expect(getModal()).toHaveClass('opened')
         })
 
-        await user.click(getOverlay())
+        await userEvent.click(getOverlay())
         await waitFor(() => {
             expect(getModal()).toHaveClass('isClosing')
         })
@@ -70,7 +70,7 @@ describe('Modal', () => {
     })
 
     it('should be valid render with renderMode lazy', async () => {
-        const { user, rerender } = renderWithProviders(
+        const { userEvent, rerender } = renderWithProviders(
             <Modal isOpen={false} renderMode="lazy" />
         )
         expect(queryModal()).not.toBeInTheDocument()
@@ -83,7 +83,7 @@ describe('Modal', () => {
             expect(getModal()).toHaveClass('opened')
         })
 
-        await user.click(getOverlay())
+        await userEvent.click(getOverlay())
         await waitFor(() => {
             expect(getModal()).toHaveClass('isClosing')
         })

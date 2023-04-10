@@ -9,9 +9,9 @@ describe('Sidebar', () => {
     })
 
     it('toggle', async () => {
-        const { user } = renderWithProviders(<Sidebar />)
+        const { userEvent } = renderWithProviders(<Sidebar />)
 
-        await user.click(screen.getByTestId('sidebar-toggle'))
+        await userEvent.click(screen.getByTestId('sidebar-toggle'))
 
         expect(screen.getByTestId('sidebar')).toHaveClass('collapsed')
     })

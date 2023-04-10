@@ -9,7 +9,10 @@ export interface DotsSpinnerProps {
 
 export const DotsSpinner: FC<DotsSpinnerProps> = memo(({ className }) => {
     return (
-        <div className={classNames(classes.ldsEllipsis, {}, [className])}>
+        <div
+            className={classNames(classes.ldsEllipsis, {}, [className])}
+            data-testid="DotsSpinner"
+        >
             <div></div>
             <div></div>
             <div></div>

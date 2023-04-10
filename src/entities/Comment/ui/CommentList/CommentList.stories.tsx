@@ -7,12 +7,12 @@ generateAppStories('entities/Comment/CommentList', CommentList, [
         args: {
             comments: [
                 {
-                    user: { id: '1', username: 'username' },
+                    userEvent: { id: '1', username: 'username' },
                     id: '1',
                     text: 'comment text 1',
                 },
                 {
-                    user: { id: '1', username: 'username' },
+                    userEvent: { id: '1', username: 'username' },
                     id: '2',
                     text: 'comment text 2',
                 },

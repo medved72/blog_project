@@ -23,6 +23,7 @@ export type FlexProps<T extends FlexElements | React.ComponentType> = {
     gap?: FlexGap
     as?: T
     fullWidth?: boolean
+    'data-testid'?: string
 } & FlexAdditionalProps<T>
 
 export const Flex = <T extends FlexElements | React.ComponentType>(
@@ -37,11 +38,13 @@ export const Flex = <T extends FlexElements | React.ComponentType>(
         gap,
         fullWidth,
         as: RootElement = 'div',
+        'data-testid': dataTestId,
         ...restProps
     } = props
 
     return (
         <RootElement
+            data-testid={dataTestId}
             className={classNames(
                 classes.flex,
                 { [classes.fullWidth]: fullWidth },

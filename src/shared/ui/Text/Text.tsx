@@ -32,6 +32,7 @@ export const Text: FC<TextProps> = memo((props) => {
         size = 'M',
         theme = 'primary',
         align = 'left',
+        'data-testid': dataTestId = 'text',
         ...restProps
     } = props
 
@@ -49,12 +50,15 @@ export const Text: FC<TextProps> = memo((props) => {
             ])}
         >
             {title && (
-                <HeaderTag data-testid="text.title" className={classes.title}>
+                <HeaderTag
+                    data-testid={`${dataTestId}.title`}
+                    className={classes.title}
+                >
                     {title}
                 </HeaderTag>
             )}
             {text && (
-                <p data-testid="text.text" className={classes.text}>
+                <p data-testid={`${dataTestId}.text`} className={classes.text}>
                     {text}
                 </p>
             )}

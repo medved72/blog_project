@@ -49,9 +49,16 @@ export const EditableProfileCardHeader: FC<ProfilePageHeaderProps> = memo(
             >
                 <Text title={t('Профиль')} />
                 {canEdit && (
-                    <HStack gap="16">
+                    <HStack
+                        gap="16"
+                        data-testid="EditableProfileCardHeader.actions"
+                    >
                         {readonly ? (
-                            <Button theme="outline" onClick={handleEditClick}>
+                            <Button
+                                theme="outline"
+                                onClick={handleEditClick}
+                                data-testid="EditableProfileCardHeader.editButton"
+                            >
                                 {t('Редактировать')}
                             </Button>
                         ) : (
@@ -59,12 +66,14 @@ export const EditableProfileCardHeader: FC<ProfilePageHeaderProps> = memo(
                                 <Button
                                     theme="outlineRed"
                                     onClick={handleCancelEdit}
+                                    data-testid="EditableProfileCardHeader.cancelButton"
                                 >
                                     {t('Отменить')}
                                 </Button>
                                 <Button
                                     theme="outline"
                                     onClick={handleSaveEdit}
+                                    data-testid="EditableProfileCardHeader.saveButton"
                                 >
                                     {t('Сохранить')}
                                 </Button>

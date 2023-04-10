@@ -32,6 +32,7 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
     theme?: ButtonTheme
     size?: ButtonSize
     square?: boolean
+    'data-testid'?: string
 }
 
 export const Button = memo(
@@ -44,6 +45,7 @@ export const Button = memo(
                 children,
                 square,
                 disabled,
+                'data-testid': dataTestId,
                 ...restProps
             },
             ref
@@ -65,6 +67,7 @@ export const Button = memo(
                     {...restProps}
                     className={rootClassname}
                     disabled={disabled}
+                    data-testid={dataTestId}
                 >
                     {children}
                 </button>

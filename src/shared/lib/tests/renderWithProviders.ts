@@ -30,7 +30,7 @@ export const renderWithProviders = (
     }
 
     return {
-        user: { ...user, ...redefinedUserMethods },
+        userEvent: { ...user, ...redefinedUserMethods },
         ...render(component, {
             wrapper: TestsProvidersWrapperFactory(options),
         }),

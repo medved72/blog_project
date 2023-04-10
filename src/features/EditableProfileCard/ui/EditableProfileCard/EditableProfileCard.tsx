@@ -146,6 +146,7 @@ const EditableProfileCardPlain: FC<EditableProfileCardProps> = memo((props) => {
                             key={err}
                             theme="error"
                             text={validateErrorTranslates[err]}
+                            data-testid="EditableProfileCard.error"
                         />
                     )
                 })}
