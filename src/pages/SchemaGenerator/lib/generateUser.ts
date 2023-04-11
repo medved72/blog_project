@@ -1,10 +1,12 @@
 import { faker } from '@faker-js/faker'
 import type db from '../../../../json-server/db.json'
 import { type GenerateProfileReturn } from './generateProfile'
+import { type UserRoleDto } from 'entities/User'
 
 export type GenerateUserReturn = (typeof db.users)[number]
 
-const roles = ['ADMIN', 'USER']
+const roles: UserRoleDto[] = ['ADMIN', 'USER', 'MANAGER']
+
 export const generateUser = (
     profile: GenerateProfileReturn
 ): GenerateUserReturn => {
@@ -12,7 +14,9 @@ export const generateUser = (
         id: profile.id,
         username: profile.username,
         password: '123',
-        role: roles[faker.datatype.number({ min: 0, max: roles.length - 1 })],
+        roles: [
+            roles[faker.datatype.number({ min: 0, max: roles.length - 1 })],
+        ],
         avatar: profile.avatar,
     }
 }

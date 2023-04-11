@@ -1,11 +1,5 @@
-import { type FC, memo, type PropsWithChildren, Suspense, useMemo } from 'react'
-import {
-    useRoutes,
-    type RouteObject,
-    Navigate,
-    generatePath,
-    useLocation,
-} from 'react-router-dom'
+import { type FC, memo, Suspense, useMemo } from 'react'
+import { type RouteObject, useRoutes } from 'react-router-dom'
 import { AboutPage } from 'pages/AboutPage'
 import { MainPage } from 'pages/MainPage'
 import { NotFound } from 'pages/NotFound'
@@ -15,28 +9,14 @@ import { ROUTES } from 'shared/config/routes'
 import { useSelector } from 'react-redux'
 import { ArticlesPage } from 'pages/ArticlesPage'
 import { ArticleDetailsPage } from 'pages/ArticleDetailsPage'
-import { getUserAuthData, getUserInitialized } from 'entities/User'
+import { getCanViewAdminPanel, getUserInitialized } from 'entities/User'
 import { SchemaGenerator } from 'pages/SchemaGenerator'
 import { ArticleEditPage } from 'pages/ArticleEditPage'
 import { ArticleCreatePage } from 'pages/ArticleCreatePage'
-
-const ProtectedAuthRoute: FC<PropsWithChildren> = memo(({ children }) => {
-    const authData = useSelector(getUserAuthData)
-    const location = useLocation()
-
-    if (!authData) {
-        return (
-            <Navigate
-                to={generatePath(ROUTES.MAIN)}
-                state={{ from: location }}
-                replace
-            />
-        )
-    }
-
-    return <>{children}</>
-})
-ProtectedAuthRoute.displayName = 'ProtectedAuthRoute'
+import { AdminPanelPage } from 'pages/AdminPanelPage'
+import { ProtectedAuthRoute } from './ProtectedAuthRoute'
+import { ProtectedByRoleRoute } from './ProtectedByRoleRoute'
+import { ForbiddenPage } from 'pages/ForbiddenPage'
 
 export const AppRouter: FC = memo(() => {
     const userInitialized = useSelector(getUserInitialized)
@@ -76,6 +56,26 @@ export const AppRouter: FC = memo(() => {
             {
                 path: ROUTES.ARTICLE_EDIT,
                 element: <ArticleEditPage />,
+            },
+            {
+                path: ROUTES.ADMIN_PANEL,
+                element: (
+                    <ProtectedAuthRoute>
+                        <ProtectedByRoleRoute
+                            canViewSelector={getCanViewAdminPanel}
+                        >
+                            <AdminPanelPage />
+                        </ProtectedByRoleRoute>
+                    </ProtectedAuthRoute>
+                ),
+            },
+            {
+                path: ROUTES.FORBIDDEN,
+                element: (
+                    <ProtectedAuthRoute>
+                        <ForbiddenPage />
+                    </ProtectedAuthRoute>
+                ),
             },
             { path: 'schema-generator', element: <SchemaGenerator /> },
             { path: ROUTES.NOT_FOUND, element: <NotFound /> },

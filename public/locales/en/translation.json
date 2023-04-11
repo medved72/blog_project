@@ -23,5 +23,7 @@
     "button.text.send": "button.text.send",
     "navbar.app.appname.title": "navbar.app.appname.title",
     "navbar.link.create.text": "navbar.link.create.text",
-    "navbar.item.profile": "navbar.item.profile"
+    "navbar.item.profile": "navbar.item.profile",
+    "navbar.item.adminPanel": "navbar.item.adminPanel",
+    "page.error.forbidden": "page.error.forbidden"
 }

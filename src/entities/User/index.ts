@@ -1,3 +1,11 @@
 export { actions, reducer } from './model/slice'
-export type { User, UserState } from './model/types/user'
-export { getUserAuthData, getUserInitialized } from './model/selectors'
+export type { UserDto, UserState, UserRoleDto } from './model/types/user'
+export {
+    getUserAuthData,
+    getUserInitialized,
+    getUserIsUser,
+    getUserIsManager,
+    getUserIsAdmin,
+    getUserRoles,
+    getCanViewAdminPanel,
+} from './model/selectors'

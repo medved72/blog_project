@@ -1,4 +1,4 @@
-import { type User } from 'entities/User'
+import { type UserDto } from 'entities/User'
 import { type ValueOf } from 'shared/types'
 
 export const articleTypes = [
@@ -68,7 +68,7 @@ export type ArticleBlock =
 
 export interface Article {
     id: string
-    user: User
+    user: UserDto
     title: string
     subtitle: string
     img: string

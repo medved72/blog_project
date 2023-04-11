@@ -23,5 +23,7 @@
     "button.text.send": "Отправить",
     "navbar.app.appname.title": "PBlob",
     "navbar.link.create.text": "Создать статью",
-    "navbar.item.profile": "Профиль"
+    "navbar.item.profile": "Профиль",
+    "navbar.item.adminPanel": "Админка",
+    "page.error.forbidden": "У вас нет доступа к этой странице"
 }

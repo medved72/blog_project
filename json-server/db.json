@@ -5432,21 +5432,21 @@
       "id": "5a9ce407-e95d-4308-b2af-1d0c9ae9b2f5",
       "username": "admin",
       "password": "123",
-      "role": "ADMIN",
+      "roles": ["ADMIN"],
       "avatar": "https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/136.jpg"
     },
     {
       "id": "c30ad37d-dbc7-4c8e-b857-0c286fe710f0",
       "username": "user",
       "password": "123",
-      "role": "USER",
+      "roles": ["USER"],
       "avatar": "https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/845.jpg"
     },
     {
       "id": "e1b3cdf9-bc75-458c-9e3d-024ddcbb7553",
       "username": "norwood.wintheiser",
       "password": "123",
-      "role": "USER",
+      "roles": ["USER"],
       "avatar": "https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/335.jpg"
     }
   ],

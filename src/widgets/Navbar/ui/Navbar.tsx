@@ -7,14 +7,18 @@ import { classNames } from 'shared/lib/classNames/classNames'
 
 import classes from './Navbar.module.scss'
 import { useSelector } from 'react-redux'
-import { actions as userActions, getUserAuthData } from 'entities/User'
+import {
+    actions as userActions,
+    getCanViewAdminPanel,
+    getUserAuthData,
+} from 'entities/User'
 import { useAppDispatch } from 'shared/hooks/useAppDispatch'
-import { Text } from '../../../shared/ui/Text'
-import { AppLink } from '../../../shared/ui/Link'
+import { Text } from 'shared/ui/Text'
+import { AppLink } from 'shared/ui/Link'
 import { generatePath } from 'react-router-dom'
-import { ROUTES } from '../../../shared/config/routes'
-import { Dropdown } from '../../../shared/ui/Dropdown'
-import { Avatar } from '../../../shared/ui/Avatar'
+import { ROUTES } from 'shared/config/routes'
+import { Dropdown } from 'shared/ui/Dropdown'
+import { Avatar } from 'shared/ui/Avatar'
 
 export interface NavbarProps {
     className?: string
@@ -22,6 +26,8 @@ export interface NavbarProps {
 
 export const Navbar: FC<NavbarProps> = memo(({ className }) => {
     const { t } = useTranslation()
+
+    const isCanViewAdminPanel = useSelector(getCanViewAdminPanel)
 
     const dispatch = useAppDispatch()
 
@@ -65,6 +71,19 @@ export const Navbar: FC<NavbarProps> = memo(({ className }) => {
                             direction="bottomLeft"
                             trigger={<Avatar size={30} src={authData.avatar} />}
                             items={[
+                                ...(isCanViewAdminPanel
+                                    ? [
+                                          {
+                                              content: t(
+                                                  'navbar.item.adminPanel'
+                                              ),
+                                              href: generatePath(
+                                                  ROUTES.ADMIN_PANEL,
+                                                  {}
+                                              ),
+                                          },
+                                      ]
+                                    : []),
                                 {
                                     content: t('navbar.item.profile'),
                                     href: generatePath(ROUTES.PROFILE, {

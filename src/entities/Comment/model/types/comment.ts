@@ -1,7 +1,7 @@
-import { type User } from 'entities/User'
+import { type UserDto } from 'entities/User'
 
 export interface Comment {
     id: string
-    user: User
+    user: UserDto
     text: string
 }

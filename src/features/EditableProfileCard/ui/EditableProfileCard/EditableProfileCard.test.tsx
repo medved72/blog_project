@@ -8,9 +8,9 @@ import { Currency } from 'shared/const/currency'
 import { Country } from 'shared/const/country'
 import { editableProfileCardReducer } from '../../model/slice/editableProfileCard.slice'
 import { screen, waitFor } from '@testing-library/react'
-import { type User } from 'entities/User'
+import { type UserDto } from 'entities/User'
 
-const user: Required<User> = {
+const user: Required<UserDto> = {
     id: '5a9ce407-e95d-4308-b2af-1d0c9ae9b2f5',
     username: 'admin',
     avatar: 'https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/136.jpg',
