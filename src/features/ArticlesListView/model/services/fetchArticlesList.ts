@@ -9,7 +9,8 @@ import {
     getArticleListViewSort,
     getArticleListViewType,
 } from '../selectors'
-import { addQueryParams } from '../../../../shared/lib/url/addQueryParams/addQueryParams'
+
+import { addQueryParams } from 'shared/lib/url/addQueryParams/addQueryParams'
 import axios, { type CancelTokenSource } from 'axios'
 
 interface FetchArticlesListParams {

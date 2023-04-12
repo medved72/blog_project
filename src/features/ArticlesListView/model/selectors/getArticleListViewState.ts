@@ -1,5 +1,5 @@
-import { getArticleListViewInitialState } from '../slices/articleListView.slice'
 import { type ArticlesListViewState } from '../types/ArticlesListViewState'
+import { getArticleListViewInitialState } from '../slices/getArticleListViewInitialState'
 
 export const getArticleListViewState = (
     state: GlbAppState

@@ -17,6 +17,7 @@ import { isSortOrder } from '../../lib/isSortOrder'
 import { isArticleSortField } from '../../lib/isArticleSortField'
 import { type ArticleType } from 'entities/Article/model'
 import { isArticleType } from '../../lib/isArticleType'
+import { getArticleListViewInitialState } from './getArticleListViewInitialState'
 
 const articlesListAdapter = createEntityAdapter<Article>({
     selectId: (article) => article.id,
@@ -28,19 +29,9 @@ export const getArticlesList = articlesListAdapter.getSelectors<GlbAppState>(
 
 const articleListViewSlice = createSlice({
     name: 'articleListView',
-    initialState: articlesListAdapter.getInitialState<ArticlesListViewState>({
-        ids: [],
-        entities: {},
-        view: 'tile',
-        page: 0,
-        limit: 10,
-        hasMore: true,
-        _initialized: false,
-        sort: 'createdAt',
-        search: '',
-        order: 'asc',
-        type: 'All',
-    }),
+    initialState: articlesListAdapter.getInitialState<ArticlesListViewState>(
+        getArticleListViewInitialState()
+    ),
     reducers: {
         setType: (state, action: PayloadAction<ArticleType>) => {
             state.type = action.payload
@@ -124,5 +115,4 @@ const articleListViewSlice = createSlice({
 export const {
     reducer: articlesListViewReducer,
     actions: articlesListViewActions,
-    getInitialState: getArticleListViewInitialState,
 } = articleListViewSlice
