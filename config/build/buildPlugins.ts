@@ -34,6 +34,8 @@ export function buildPlugins({
             failOnError: true,
         }),
         new ForkTsCheckerWebpackPlugin({
+            async: isDev,
+            devServer: true,
             typescript: {
                 diagnosticOptions: {
                     semantic: true,
