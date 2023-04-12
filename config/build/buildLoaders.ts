@@ -20,9 +20,17 @@ export function buildLoaders(
 
     const svgLoader: webpack.RuleSetRule = buildSvgLoader()
 
-    const babelLoader: webpack.RuleSetRule = buildBabelLoader(options)
+    const codeBabelLoader: webpack.RuleSetRule = buildBabelLoader({
+        ...options,
+        isTSX: false,
+    })
+
+    const tsxBabelLoader: webpack.RuleSetRule = buildBabelLoader({
+        ...options,
+        isTSX: true,
+    })
 
     const cssLoader: webpack.RuleSetRule = buildCssLoader(isDev)
 
-    return [babelLoader, cssLoader, svgLoader, fileLoader]
+    return [codeBabelLoader, tsxBabelLoader, cssLoader, svgLoader, fileLoader]
 }
