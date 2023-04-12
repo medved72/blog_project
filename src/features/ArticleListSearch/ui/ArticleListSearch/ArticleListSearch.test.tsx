@@ -3,7 +3,10 @@ import { ArticleListSearch } from './ArticleListSearch'
 
 describe('ArticleListSearch', () => {
     it('should render', () => {
-        const { baseElement } = renderWithProviders(<ArticleListSearch />)
+        const onChangeMock = jest.fn()
+        const { baseElement } = renderWithProviders(
+            <ArticleListSearch value="" onChange={onChangeMock} />
+        )
         expect(baseElement).toBeInTheDocument()
     })
 })

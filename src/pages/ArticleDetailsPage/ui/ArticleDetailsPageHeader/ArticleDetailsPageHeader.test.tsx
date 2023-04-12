@@ -4,7 +4,7 @@ import { ArticleDetailsPageHeader } from './ArticleDetailsPageHeader'
 describe('ArticleDetailsPageHeader', () => {
     it('should render', () => {
         const { baseElement } = renderWithProviders(
-            <ArticleDetailsPageHeader />
+            <ArticleDetailsPageHeader id="1" />
         )
         expect(baseElement).toBeInTheDocument()
     })

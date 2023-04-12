@@ -1,6 +1,6 @@
 import { type FC, memo } from 'react'
 import { classNames } from 'shared/lib/classNames'
-import { type Comment } from '../../model/types/comment'
+import { type CommentDto } from '../../model/types/comment'
 import { useTranslation } from 'react-i18next'
 import { Text } from 'shared/ui/Text'
 import { CommentCard } from '../CommentCard'
@@ -8,7 +8,7 @@ import { VStack } from 'shared/ui/Stack'
 
 interface CommentListProps {
     className?: string
-    comments?: Comment[]
+    comments?: CommentDto[]
     isLoading?: boolean
 }
 

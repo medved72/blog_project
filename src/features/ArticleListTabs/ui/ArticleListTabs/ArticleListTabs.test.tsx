@@ -3,7 +3,10 @@ import { ArticleListTabs } from './ArticleListTabs'
 
 describe('ArticleListTabs', () => {
     it('should render', () => {
-        const { baseElement } = renderWithProviders(<ArticleListTabs />)
+        const onTabClickMock = jest.fn()
+        const { baseElement } = renderWithProviders(
+            <ArticleListTabs onTabClick={onTabClickMock} value="All" />
+        )
         expect(baseElement).toBeInTheDocument()
     })
 })

@@ -13,7 +13,7 @@ describe('ArticleListItem', () => {
                     id: '1',
                     img: '',
                     blocks: [],
-                    userEvent: { username: '', id: '1' },
+                    user: { username: '', id: '1', roles: ['ADMIN'] },
                     subtitle: '',
                 }}
                 view="tile"

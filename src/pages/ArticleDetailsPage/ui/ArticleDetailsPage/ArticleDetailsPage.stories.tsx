@@ -3,7 +3,7 @@ import ArticleDetailsPage from './ArticleDetailsPage'
 import { ROUTES } from 'shared/config/routes'
 import { StoreDecorator } from 'shared/config/storybook/StoreDecorator'
 import { type Article } from 'entities/Article'
-import { type Comment } from 'entities/Comment'
+import { type CommentDto } from 'entities/Comment'
 import { type ComponentStory } from '@storybook/react'
 import createAsyncCallback from '@loki/create-async-callback'
 import db from '../../../../../json-server/db.json'
@@ -22,7 +22,7 @@ const comments = db.comments
     .map(({ userId, ...restComment }) => ({
         ...restComment,
         user: db.users.find((user) => user.id === userId),
-    })) as Comment[]
+    })) as CommentDto[]
 
 const Template: ComponentStory<typeof ArticleDetailsPage> = (args) => {
     const resolve = createAsyncCallback()

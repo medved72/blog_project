@@ -1,16 +1,16 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
 import { type ArticleCommentListError } from '../types/ArticleCommentListState'
-import { type Comment } from 'entities/Comment'
+import { type CommentDto } from 'entities/Comment'
 
 export const fetchCommentsListByArticleId = createAsyncThunk<
-    Comment[],
+    CommentDto[],
     string,
     GlbThunkConfig<ArticleCommentListError>
 >(
     'articleCommentsList/fetchCommentsListByArticleId',
     async (articleId, thunkAPI) => {
         try {
-            const response = await thunkAPI.extra.api.get<Comment[]>(
+            const response = await thunkAPI.extra.api.get<CommentDto[]>(
                 `/comments`,
                 {
                     params: {

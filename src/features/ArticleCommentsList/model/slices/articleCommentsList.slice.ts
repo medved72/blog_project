@@ -1,9 +1,9 @@
 import { createEntityAdapter, createSlice } from '@reduxjs/toolkit'
-import { type Comment } from 'entities/Comment'
+import { type CommentDto } from 'entities/Comment'
 import { type ArticleCommentListState } from '../types/ArticleCommentListState'
 import { fetchCommentsListByArticleId } from '../services/fetchCommentsListByArticleId'
 
-const commentsAdapter = createEntityAdapter<Comment>({
+const commentsAdapter = createEntityAdapter<CommentDto>({
     selectId: (comment) => comment.id,
 })
 

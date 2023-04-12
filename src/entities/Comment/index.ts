@@ -1,3 +1,3 @@
 export { AddCommentForm } from './ui/AddCommentForm'
 export { CommentList } from './ui/CommentList'
-export type { Comment } from './model/types/comment'
+export type { CommentDto } from './model/types/comment'

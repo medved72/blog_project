@@ -1,7 +1,7 @@
 import { type FC, memo } from 'react'
 import { classNames } from 'shared/lib/classNames'
 import classes from './CommentCard.module.scss'
-import { type Comment } from '../../model/types/comment'
+import { type CommentDto } from '../../model/types/comment'
 import { Avatar } from 'shared/ui/Avatar'
 import { Text } from 'shared/ui/Text'
 import { Skeleton } from 'shared/ui/Skeleton'
@@ -12,7 +12,7 @@ import { HStack, VStack } from '../../../../shared/ui/Stack'
 
 interface CommentCardProps {
     className?: string
-    comment?: Comment
+    comment?: CommentDto
     isLoading?: boolean
 }
 

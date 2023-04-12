@@ -1,11 +1,11 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
 import { getUserAuthData } from 'entities/User/model/selectors'
 import { getArticleDetailsData } from 'entities/Article'
-import { type Comment } from 'entities/Comment'
+import { type CommentDto } from 'entities/Comment'
 import { type AddArticleCommentFormError } from '../types/AddArticleCommentFormState'
 
 export const sendArticleComment = createAsyncThunk<
-    Comment,
+    CommentDto,
     string,
     GlbThunkConfig<AddArticleCommentFormError>
 >('addArticleCommentForm/sendArticleComment', async (text, thunkAPI) => {
@@ -16,11 +16,14 @@ export const sendArticleComment = createAsyncThunk<
     }
 
     try {
-        const response = await thunkAPI.extra.api.post<Comment>('/comments', {
-            articleId: article.id,
-            userId: userData.id,
-            text,
-        })
+        const response = await thunkAPI.extra.api.post<CommentDto>(
+            '/comments',
+            {
+                articleId: article.id,
+                userId: userData.id,
+                text,
+            }
+        )
         return response.data
     } catch (e) {
         return thunkAPI.rejectWithValue('unknown_error')

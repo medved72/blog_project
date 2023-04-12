@@ -14,6 +14,7 @@ const user: Required<UserDto> = {
     id: '5a9ce407-e95d-4308-b2af-1d0c9ae9b2f5',
     username: 'admin',
     avatar: 'https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/136.jpg',
+    roles: ['ADMIN'],
 }
 
 const profile: Required<Profile> = {
