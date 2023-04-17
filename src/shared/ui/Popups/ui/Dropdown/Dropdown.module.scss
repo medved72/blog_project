@@ -31,12 +31,12 @@
     cursor: pointer;
     outline: none;
 
-    &:first-of-type {
+    &:first-child {
         border-top-left-radius: 12px;
         border-top-right-radius: 12px;
     }
 
-    &:last-of-type {
+    &:last-child {
         border-bottom-left-radius: 12px;
         border-bottom-right-radius: 12px;
     }
@@ -44,17 +44,4 @@
 
 .active {
     background: var(--inverted-primary-color);
-}
-
-.directionTopRight {
-    bottom: 100%;
-}
-
-.directionTopLeft {
-    right: 0;
-    bottom: 100%;
-}
-
-.directionBottomLeft {
-    right: 0;
 }

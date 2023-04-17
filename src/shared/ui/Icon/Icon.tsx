@@ -11,15 +11,22 @@ interface IconProps {
     className?: string
     Svg: FunctionComponent<SVGAttributes<SVGElement>>
     stroke?: boolean
+    inverted?: boolean
 }
 
 export const Icon: FC<IconProps> = memo((props) => {
-    const { className, Svg, stroke } = props
+    const { className, Svg, stroke, inverted } = props
     return (
         <Svg
-            className={classNames(classes.icon, { [classes.stroke]: stroke }, [
-                className,
-            ])}
+            className={classNames(
+                classes.icon,
+                {
+                    [classes.inverted]: inverted,
+                    [classes.stroke]: stroke,
+                    [classes.invertedStroke]: stroke && inverted,
+                },
+                [className]
+            )}
         />
     )
 })

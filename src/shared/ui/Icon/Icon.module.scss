@@ -6,3 +6,12 @@
     fill: none;
     stroke: var(--primary-color);
 }
+
+.inverted {
+    fill: var(--inverted-primary-color);
+}
+
+.invertedStroke {
+    fill: none;
+    stroke: var(--inverted-primary-color);
+}

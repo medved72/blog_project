@@ -1,10 +1,10 @@
 import { renderWithProviders } from 'shared/lib/tests'
-import { Dropdown } from './Dropdown'
+import { Popover } from './Popover'
 
-describe('Dropdown', () => {
+describe('Popover', () => {
     it('should render', () => {
         const { baseElement } = renderWithProviders(
-            <Dropdown trigger={<></>} items={[]} />
+            <Popover trigger={'trigger'}>children</Popover>
         )
         expect(baseElement).toBeInTheDocument()
     })

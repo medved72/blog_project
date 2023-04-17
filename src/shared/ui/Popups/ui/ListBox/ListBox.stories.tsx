@@ -1,8 +1,8 @@
 import { ListBox } from './ListBox'
-import { generateAppStories } from 'shared/config/storybook/generateAppStories'
+import { generateAppStories } from '../../../../config/storybook/generateAppStories'
 import { action } from '@storybook/addon-actions'
 
-generateAppStories('shared/ListBox/ListBox', ListBox, [
+generateAppStories('shared/Popups/ListBox', ListBox, [
     {
         key: 'primary',
         args: {

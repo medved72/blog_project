@@ -38,8 +38,8 @@ export interface ReducerManager {
         state: AppState | undefined,
         action: AnyAction
     ) => CombinedState<AppState>
-    add: (key: keyof AppState, reducer: Reducer) => void
-    remove: (key: keyof AppState) => void
+    add: (key: keyof AppState, reducer: Reducer, dispatch: AppDispatch) => void
+    remove: (key: keyof AppState, dispatch: AppDispatch) => void
 }
 
 export type StoreWithReducerManager = ReturnType<typeof setupStore>

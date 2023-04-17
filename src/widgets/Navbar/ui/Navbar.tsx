@@ -7,18 +7,14 @@ import { classNames } from 'shared/lib/classNames/classNames'
 
 import classes from './Navbar.module.scss'
 import { useSelector } from 'react-redux'
-import {
-    actions as userActions,
-    getCanViewAdminPanel,
-    getUserAuthData,
-} from 'entities/User'
-import { useAppDispatch } from 'shared/hooks/useAppDispatch'
+import { getUserAuthData } from 'entities/User'
 import { Text } from 'shared/ui/Text'
 import { AppLink } from 'shared/ui/Link'
 import { generatePath } from 'react-router-dom'
 import { ROUTES } from 'shared/config/routes'
-import { Dropdown } from 'shared/ui/Dropdown'
-import { Avatar } from 'shared/ui/Avatar'
+import { HStack } from 'shared/ui/Stack'
+import { NotificationButton } from 'features/NotificationButton'
+import { AvatarDropdown } from 'features/AvatarDropdown'
 
 export interface NavbarProps {
     className?: string
@@ -26,10 +22,6 @@ export interface NavbarProps {
 
 export const Navbar: FC<NavbarProps> = memo(({ className }) => {
     const { t } = useTranslation()
-
-    const isCanViewAdminPanel = useSelector(getCanViewAdminPanel)
-
-    const dispatch = useAppDispatch()
 
     const authData = useSelector(getUserAuthData)
 
@@ -43,10 +35,6 @@ export const Navbar: FC<NavbarProps> = memo(({ className }) => {
         setIsAuthModalOpen(false)
     }, [setIsAuthModalOpen])
 
-    const handleLogout = useCallback(() => {
-        dispatch(userActions.logout())
-    }, [dispatch])
-
     const handleLoginSuccess = useCallback(() => {
         handleAuthModalClose()
     }, [handleAuthModalClose])
@@ -54,61 +42,47 @@ export const Navbar: FC<NavbarProps> = memo(({ className }) => {
     return (
         <>
             {authData ? (
-                <header className={classNames(classes.navbar, {}, [className])}>
-                    <Text
-                        className={classes.appName}
-                        theme="inverted"
-                        title={t('navbar.app.appname.title')}
-                    />
-                    <AppLink
-                        theme="invertedSecondary"
-                        to={generatePath(ROUTES.ARTICLE_CREATE)}
-                    >
-                        {t('navbar.link.create.text')}
-                    </AppLink>
-                    <div className={classes.links}>
-                        <Dropdown
-                            direction="bottomLeft"
-                            trigger={<Avatar size={30} src={authData.avatar} />}
-                            items={[
-                                ...(isCanViewAdminPanel
-                                    ? [
-                                          {
-                                              content: t(
-                                                  'navbar.item.adminPanel'
-                                              ),
-                                              href: generatePath(
-                                                  ROUTES.ADMIN_PANEL,
-                                                  {}
-                                              ),
-                                          },
-                                      ]
-                                    : []),
-                                {
-                                    content: t('navbar.item.profile'),
-                                    href: generatePath(ROUTES.PROFILE, {
-                                        profileId: authData.id,
-                                    }),
-                                },
-                                {
-                                    content: t('Выйти'),
-                                    onClick: handleLogout,
-                                },
-                            ]}
+                <HStack
+                    className={classNames(classes.navbar, {}, [className])}
+                    as="header"
+                    justify="between"
+                    fullWidth
+                >
+                    <HStack>
+                        <Text
+                            className={classes.appName}
+                            theme="inverted"
+                            title={t('navbar.app.appname.title')}
                         />
-                    </div>
-                </header>
+                        <AppLink
+                            theme="invertedSecondary"
+                            to={generatePath(ROUTES.ARTICLE_CREATE)}
+                        >
+                            {t('navbar.link.create.text')}
+                        </AppLink>
+                    </HStack>
+                    <HStack gap="16">
+                        <NotificationButton />
+                        <AvatarDropdown />
+                    </HStack>
+                </HStack>
             ) : (
-                <header className={classNames(classes.navbar, {}, [className])}>
-                    <div className={classes.links}>
+                <HStack
+                    as="header"
+                    className={classNames(classes.navbar, {}, [className])}
+                    justify="between"
+                    fullWidth
+                >
+                    <HStack />
+                    <HStack className={classes.links}>
                         <Button
                             theme="clearInverted"
                             onClick={handleAuthModalOpen}
                         >
                             {t('Войти')}
                         </Button>
-                    </div>
-                </header>
+                    </HStack>
+                </HStack>
             )}
             <LoginModal
                 isOpen={isAuthModalOpen}

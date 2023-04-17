@@ -1,0 +1,19 @@
+.popover {
+    position: relative;
+}
+
+.trigger {
+    padding: 0;
+    border: none;
+    margin: 0;
+    background: none;
+    outline: none;
+}
+
+.panel {
+    z-index: 10000;
+    padding: 16px;
+    border: 1px solid var(--primary-color);
+    border-radius: 8px;
+    background: var(--card-bg);
+}

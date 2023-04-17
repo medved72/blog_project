@@ -1,7 +1,7 @@
 import React, { Fragment, memo, type ReactNode } from 'react'
 import { Listbox as HListbox } from '@headlessui/react'
 import classes from './ListBox.module.scss'
-import { classNames } from 'shared/lib/classNames'
+import { classNames } from '../../../../lib/classNames'
 import {
     useFloating,
     flip,

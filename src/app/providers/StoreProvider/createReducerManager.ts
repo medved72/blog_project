@@ -25,15 +25,16 @@ export function createReducerManager(
             return combinedReducer(state, action)
         },
 
-        add: (key, reducer) => {
+        add: (key, reducer, dispatch) => {
             if (!key || reducers[key]) {
                 return
             }
             reducers[key] = reducer
             combinedReducer = combineReducers(reducers)
+            dispatch({ type: `@INIT ${key} reducer` })
         },
 
-        remove: (key) => {
+        remove: (key, dispatch) => {
             if (!key || !reducers[key]) {
                 return
             }
@@ -41,6 +42,7 @@ export function createReducerManager(
             delete reducers[key]
             keysToRemove.push(key)
             combinedReducer = combineReducers(reducers)
+            dispatch({ type: `@DESTROY ${key} reducer` })
         },
     }
 }

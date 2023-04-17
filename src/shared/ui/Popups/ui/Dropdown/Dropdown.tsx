@@ -1,11 +1,15 @@
 import { Menu } from '@headlessui/react'
 import { type FC, Fragment, type ReactNode } from 'react'
-import { classNames } from 'shared/lib/classNames'
+import { classNames } from '../../../../lib/classNames'
 import classes from './Dropdown.module.scss'
-import { type DropdownDirection } from 'shared/types/ui'
-import { capitalize } from '../../../../lib/capitalize'
 import { AppLink } from '../../../Link'
 import { Button } from '../../../Button'
+import {
+    flip,
+    offset,
+    type Placement,
+    useFloating,
+} from '@floating-ui/react-dom'
 
 export interface DropdownItem {
     disabled?: boolean
@@ -18,22 +22,34 @@ interface DropdownProps {
     className?: string
     items: DropdownItem[]
     trigger: ReactNode
-    direction?: DropdownDirection
+    direction?: Placement
 }
 
 export const Dropdown: FC<DropdownProps> = (props) => {
-    const { className, items, trigger, direction = 'bottomRight' } = props
+    const { className, items, trigger, direction } = props
+
+    const { x, y, strategy, refs } = useFloating({
+        placement: direction,
+        middleware: [offset(10), flip()],
+    })
 
     return (
         <Menu
             as="div"
             className={classNames(classes.dropdown, {}, [className])}
         >
-            <Menu.Button className={classes.button}>{trigger}</Menu.Button>
+            <Menu.Button ref={refs.setReference} className={classes.button}>
+                {trigger}
+            </Menu.Button>
             <Menu.Items
-                className={classNames(classes.menu, {}, [
-                    classes[`direction${capitalize(direction)}`],
-                ])}
+                className={classNames(classes.menu, {}, [])}
+                ref={refs.setFloating}
+                style={{
+                    position: strategy,
+                    top: y ?? 0,
+                    left: x ?? 0,
+                    width: 'max-content',
+                }}
             >
                 {items.map((item, index) => {
                     return (

@@ -52,6 +52,7 @@ module.exports = {
             files: ['**/**.test.ts', '**/**.test.tsx'],
             rules: {
                 'prefer-promise-reject-errors': ['off'],
+                'i18next/no-literal-string': ['off'],
             },
         },
     ],

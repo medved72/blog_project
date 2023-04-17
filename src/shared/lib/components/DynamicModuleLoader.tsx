@@ -26,23 +26,26 @@ export const DynamicModuleLoader: FC<
 
     useLayoutEffect(() => {
         Object.entries(reducers).forEach(([name, reducer]) => {
-            store.reducerManager.add(name as keyof GlbAppState, reducer)
-            dispatch({ type: `@INIT ${name} reducer` })
+            store.reducerManager.add(
+                name as keyof GlbAppState,
+                reducer,
+                dispatch
+            )
         })
-        // eslint-disable-next-line
-    }, [])
+    }, [dispatch, reducers, store])
 
     useEffect(() => {
         return () => {
             if (removeAfterUnmount) {
                 Object.entries(reducers).forEach(([name]) => {
-                    store.reducerManager.remove(name as keyof GlbAppState)
-                    dispatch({ type: `@DESTROY ${name} reducer` })
+                    store.reducerManager.remove(
+                        name as keyof GlbAppState,
+                        dispatch
+                    )
                 })
             }
         }
-        // eslint-disable-next-line
-    }, [])
+    }, [dispatch, reducers, removeAfterUnmount, store])
 
     return <>{children}</>
 })

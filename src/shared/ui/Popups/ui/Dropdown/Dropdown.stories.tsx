@@ -1,8 +1,8 @@
 import { Dropdown } from './Dropdown'
-import { generateAppStories } from 'shared/config/storybook/generateAppStories'
+import { generateAppStories } from '../../../../config/storybook/generateAppStories'
 import { Button } from '../../../Button'
 
-generateAppStories('shared/Dropdown/Dropdown', Dropdown, [
+generateAppStories('shared/Popups/Dropdown', Dropdown, [
     {
         key: 'primary',
         args: {
