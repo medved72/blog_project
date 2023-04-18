@@ -4,6 +4,13 @@ import { generateAppStories } from 'shared/config/storybook/generateAppStories'
 generateAppStories('shared/Notification/NotificationItem', NotificationItem, [
     {
         key: 'primary',
-        args: {},
+        args: {
+            notification: {
+                userId: '1',
+                title: 'title',
+                id: '1',
+                description: 'description',
+            },
+        },
     },
 ])

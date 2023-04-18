@@ -13,6 +13,7 @@ import { Portal } from '../Portal'
 import { useTheme } from 'shared/config/theme'
 
 import classes from './Modal.module.scss'
+import { Overlay } from '../Overlay'
 
 type RenderMode = 'default' | 'lazy' | 'destroyOnclose'
 
@@ -90,10 +91,6 @@ export const Modal: FC<PropsWithChildren<ModalProps>> = memo((props) => {
         [handleClose]
     )
 
-    const handleContentClick = useCallback((e: React.MouseEvent) => {
-        e.stopPropagation()
-    }, [])
-
     useEffect(() => {
         if (status === 'opened') {
             window.addEventListener('keydown', handleGlobalKeyDown)
@@ -137,18 +134,8 @@ export const Modal: FC<PropsWithChildren<ModalProps>> = memo((props) => {
     return (
         <Portal element={getModalContainer?.()}>
             <div data-testid="modal" className={rootClassname}>
-                <div
-                    data-testid="modal.overlay"
-                    className={classes.overlay}
-                    onClick={handleClose}
-                >
-                    <div
-                        className={classes.content}
-                        onClick={handleContentClick}
-                    >
-                        {children}
-                    </div>
-                </div>
+                <Overlay onClick={handleClose} />
+                <div className={classes.content}>{children}</div>
             </div>
         </Portal>
     )

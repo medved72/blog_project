@@ -1,9 +1,29 @@
-import { type FC, memo } from 'react'
+import { type FC, memo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
+import { Drawer } from 'shared/ui/Drawer'
+import { Button } from 'shared/ui/Button'
 
 const MainPage: FC = memo(() => {
     const { t } = useTranslation()
-    return <div>{t('Главная страница')}</div>
+    const [opened, setOpened] = useState(false)
+
+    return (
+        <div>
+            <Button
+                onClick={() => {
+                    setOpened((prev) => !prev)
+                }}
+            >
+                {t('Главная страница')}
+            </Button>
+            <Drawer
+                opened={opened}
+                onClose={() => {
+                    setOpened((prev) => !prev)
+                }}
+            />
+        </div>
+    )
 })
 
 MainPage.displayName = 'MainPage'
