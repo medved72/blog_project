@@ -1,4 +1,4 @@
-import { type FC, memo } from 'react'
+import { type FC, memo, useCallback, useState } from 'react'
 import { classNames } from 'shared/lib/classNames'
 import classes from './NotificationButton.module.scss'
 import { Button } from 'shared/ui/Button'
@@ -6,6 +6,8 @@ import { Icon } from 'shared/ui/Icon'
 import NotificationIcon from 'shared/assets/icons/notification-20-20.svg'
 import { NotificationList } from 'entities/Notification'
 import { Popover } from 'shared/ui/Popups'
+import { Drawer } from '../../../../shared/ui/Drawer'
+import { useIsMobile } from '../../../../shared/hooks/useIsMobile'
 
 interface NotificationButtonProps {
     className?: string
@@ -13,18 +15,47 @@ interface NotificationButtonProps {
 
 export const NotificationButton: FC<NotificationButtonProps> = memo((props) => {
     const { className } = props
+
+    const isMobile = useIsMobile()
+
+    const [isOpened, setIsOpened] = useState(false)
+
+    const openDrawer = useCallback(() => {
+        setIsOpened(true)
+    }, [])
+
+    const closeDrawer = useCallback(() => {
+        setIsOpened(false)
+    }, [])
+
+    const trigger = (
+        <Button onClick={openDrawer} theme="clear">
+            <Icon Svg={NotificationIcon} inverted />
+        </Button>
+    )
+
     return (
-        <Popover
-            className={classNames(classes.notificationButton, {}, [className])}
-            trigger={
-                <Button theme="clear">
-                    <Icon Svg={NotificationIcon} inverted />
-                </Button>
-            }
-            direction="bottom-end"
-        >
-            <NotificationList className={classes.notifications} />
-        </Popover>
+        <>
+            {!isMobile && (
+                <Popover
+                    className={classNames(classes.notificationButton, {}, [
+                        className,
+                    ])}
+                    trigger={trigger}
+                    direction="bottom-end"
+                >
+                    <NotificationList className={classes.notifications} />
+                </Popover>
+            )}
+            {isMobile && (
+                <>
+                    {trigger}
+                    <Drawer opened={isOpened} onClose={closeDrawer}>
+                        <NotificationList />
+                    </Drawer>
+                </>
+            )}
+        </>
     )
 })
 NotificationButton.displayName = 'NotificationButton'

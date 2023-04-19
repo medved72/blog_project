@@ -58,50 +58,22 @@ export function useTransitionGroup(
             direction === Direction.TO_END &&
             stepIndex === stepsRef.current.length - 1
         ) {
-            console.log({
-                returnToEnd: true,
-                stepIndex,
-                step: resolveStep(stepsRef.current[stepIndex], direction),
-                direction,
-                steps: stepsRef.current,
-            })
             return
         }
 
         if (direction === Direction.TO_START && stepIndex === 0) {
-            console.log({
-                returnToStart: true,
-                stepIndex,
-                step: resolveStep(stepsRef.current[stepIndex], direction),
-                direction,
-                steps: stepsRef.current,
-            })
             return
         }
 
         const step = resolveStep(stepsRef.current[stepIndex], direction)
 
         if (direction === Direction.TO_END) {
-            console.log({
-                toEnd: true,
-                stepIndex,
-                step: resolveStep(stepsRef.current[stepIndex], direction),
-                direction,
-                steps: stepsRef.current,
-            })
             timeoutRef.current = setTimeout(() => {
                 setStepIndex((prev) => prev + 1)
             }, step.delay)
         }
 
         if (direction === Direction.TO_START) {
-            console.log({
-                toEnd: true,
-                stepIndex,
-                step: resolveStep(stepsRef.current[stepIndex], direction),
-                direction,
-                steps: stepsRef.current,
-            })
             timeoutRef.current = setTimeout(() => {
                 setStepIndex((prev) => prev - 1)
             }, step.delay)

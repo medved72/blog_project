@@ -41,49 +41,45 @@ export const Navbar: FC<NavbarProps> = memo(({ className }) => {
 
     return (
         <>
-            {authData ? (
-                <HStack
-                    className={classNames(classes.navbar, {}, [className])}
-                    as="header"
-                    justify="between"
-                    fullWidth
-                >
-                    <HStack>
-                        <Text
-                            className={classes.appName}
-                            theme="inverted"
-                            title={t('navbar.app.appname.title')}
-                        />
-                        <AppLink
-                            theme="invertedSecondary"
-                            to={generatePath(ROUTES.ARTICLE_CREATE)}
-                        >
-                            {t('navbar.link.create.text')}
-                        </AppLink>
-                    </HStack>
-                    <HStack gap="16">
-                        <NotificationButton />
-                        <AvatarDropdown />
-                    </HStack>
+            <HStack
+                as="header"
+                className={classNames(classes.navbar, {}, [className])}
+                justify="between"
+                fullWidth
+            >
+                <HStack>
+                    {authData && (
+                        <>
+                            <Text
+                                className={classes.appName}
+                                theme="inverted"
+                                title={t('navbar.app.appname.title')}
+                            />
+                            <AppLink
+                                theme="invertedSecondary"
+                                to={generatePath(ROUTES.ARTICLE_CREATE)}
+                            >
+                                {t('navbar.link.create.text')}
+                            </AppLink>
+                        </>
+                    )}
                 </HStack>
-            ) : (
-                <HStack
-                    as="header"
-                    className={classNames(classes.navbar, {}, [className])}
-                    justify="between"
-                    fullWidth
-                >
-                    <HStack />
-                    <HStack className={classes.links}>
+                <HStack gap="16">
+                    {authData ? (
+                        <>
+                            <NotificationButton />
+                            <AvatarDropdown />
+                        </>
+                    ) : (
                         <Button
                             theme="clearInverted"
                             onClick={handleAuthModalOpen}
                         >
                             {t('Войти')}
                         </Button>
-                    </HStack>
+                    )}
                 </HStack>
-            )}
+            </HStack>
             <LoginModal
                 isOpen={isAuthModalOpen}
                 onClose={handleAuthModalClose}
