@@ -1,4 +1,4 @@
-import { screen, within } from '@testing-library/react'
+import { screen } from '@testing-library/react'
 import {
     renderWithProviders,
     mockedAxios,
@@ -17,20 +17,16 @@ describe('LoginForm', () => {
     it('should render with correct ru translations', () => {
         renderWithProviders(<LoginForm onLoginSuccess={jest.fn} />)
 
-        expect(screen.getByTestId('loginForm.title')).toHaveTextContent(
+        expect(screen.getByTestId('loginForm.title.title')).toHaveTextContent(
             'Авторизация'
         )
 
         expect(
-            within(screen.getByTestId('loginForm.username')).getByTestId(
-                'placeholder'
-            )
+            screen.getByTestId('loginForm.username.placeholder')
         ).toHaveTextContent('Введите логин >')
 
         expect(
-            within(screen.getByTestId('loginForm.password')).getByTestId(
-                'placeholder'
-            )
+            screen.getByTestId('loginForm.password.placeholder')
         ).toHaveTextContent('Введите пароль >')
 
         expect(screen.getByTestId('loginForm.submit')).toHaveTextContent(
@@ -43,18 +39,16 @@ describe('LoginForm', () => {
             language: 'en',
         })
 
-        expect(screen.getByTestId('loginForm.title')).toHaveTextContent('Login')
+        expect(screen.getByTestId('loginForm.title.title')).toHaveTextContent(
+            'Login'
+        )
 
         expect(
-            within(screen.getByTestId('loginForm.username')).getByTestId(
-                'placeholder'
-            )
+            screen.getByTestId('loginForm.username.placeholder')
         ).toHaveTextContent('Enter login >')
 
         expect(
-            within(screen.getByTestId('loginForm.password')).getByTestId(
-                'placeholder'
-            )
+            screen.getByTestId('loginForm.password.placeholder')
         ).toHaveTextContent('Enter password >')
 
         expect(screen.getByTestId('loginForm.submit')).toHaveTextContent(
@@ -189,7 +183,7 @@ describe('LoginForm', () => {
 })
 
 function getError() {
-    return screen.getByTestId('loginForm.profile')
+    return screen.getByTestId('loginForm.profile.text')
 }
 
 function getSubmit() {
@@ -197,9 +191,9 @@ function getSubmit() {
 }
 
 function getUsernameInput() {
-    return within(screen.getByTestId('loginForm.username')).getByTestId('input')
+    return screen.getByTestId('loginForm.username.input')
 }
 
 function getPasswordInput() {
-    return within(screen.getByTestId('loginForm.password')).getByTestId('input')
+    return screen.getByTestId('loginForm.password.input')
 }

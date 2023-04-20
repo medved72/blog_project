@@ -22,75 +22,98 @@ describe('Modal', () => {
     })
 
     it('should be valid render with renderMode default', async () => {
-        const { userEvent, rerender } = renderWithProviders(<Modal isOpen={false} />)
+        const { rerender } = renderWithProviders(<Modal isOpen={false} />)
+
         expect(getModal()).toBeInTheDocument()
-        expect(getModal()).not.toHaveClass('opened')
+
+        expect(getModal()).toHaveClass('closed')
 
         rerender(<Modal isOpen={true} />)
-        expect(getModal()).toBeInTheDocument()
-        expect(getModal()).toHaveClass('modal')
-        expect(getModal()).not.toHaveClass('opened')
-        await waitFor(() => {
-            expect(getModal()).toHaveClass('opened')
-        })
-
-        await userEvent.click(getOverlay())
 
         await waitFor(() => {
-            expect(getModal()).toHaveClass('isClosing')
+            expect(getModal()).not.toHaveClass('closed')
         })
+        expect(getModal()).toHaveClass('openInProgress')
 
+        await waitFor(() => {
+            expect(getModal()).not.toHaveClass('openInProgress')
+        })
+        expect(getModal()).toHaveClass('opened')
+
+        rerender(<Modal isOpen={false} />)
         await waitFor(() => {
             expect(getModal()).not.toHaveClass('opened')
         })
+        expect(getModal()).toHaveClass('closeInProgress')
+
+        await waitFor(() => {
+            expect(getModal()).not.toHaveClass('closeInProgress')
+        })
+        expect(getModal()).toHaveClass('closed')
+    })
+
+    it('should call onClose', async () => {
+        const onCloseMock = jest.fn()
+        const { userEvent } = renderWithProviders(
+            <Modal isOpen={true} onClose={onCloseMock} />
+        )
+
+        await userEvent.click(getOverlay())
+
+        expect(onCloseMock).toBeCalled()
     })
 
     it('should be valid render with renderMode destroyOnClose', async () => {
-        const { userEvent, rerender } = renderWithProviders(
+        const { rerender } = renderWithProviders(
             <Modal isOpen={false} renderMode="destroyOnclose" />
         )
+
         expect(queryModal()).not.toBeInTheDocument()
 
         rerender(<Modal isOpen={true} renderMode="destroyOnclose" />)
-        expect(getModal()).toBeInTheDocument()
-        expect(getModal()).toHaveClass('modal')
-        expect(getModal()).not.toHaveClass('opened')
-        await waitFor(() => {
-            expect(getModal()).toHaveClass('opened')
-        })
 
-        await userEvent.click(getOverlay())
         await waitFor(() => {
-            expect(getModal()).toHaveClass('isClosing')
+            expect(getModal()).not.toHaveClass('closed')
         })
+        expect(getModal()).toHaveClass('openInProgress')
 
+        await waitFor(() => {
+            expect(getModal()).not.toHaveClass('openInProgress')
+        })
+        expect(getModal()).toHaveClass('opened')
+
+        rerender(<Modal isOpen={false} renderMode="destroyOnclose" />)
         await waitFor(() => {
             expect(queryModal()).not.toBeInTheDocument()
         })
     })
 
     it('should be valid render with renderMode lazy', async () => {
-        const { userEvent, rerender } = renderWithProviders(
+        const { rerender } = renderWithProviders(
             <Modal isOpen={false} renderMode="lazy" />
         )
+
         expect(queryModal()).not.toBeInTheDocument()
 
         rerender(<Modal isOpen={true} renderMode="lazy" />)
-        expect(getModal()).toBeInTheDocument()
-        expect(getModal()).toHaveClass('modal')
-        expect(getModal()).not.toHaveClass('opened')
-        await waitFor(() => {
-            expect(getModal()).toHaveClass('opened')
-        })
 
-        await userEvent.click(getOverlay())
-        await waitFor(() => {
-            expect(getModal()).toHaveClass('isClosing')
-        })
+        expect(getModal()).toHaveClass('openInProgress')
 
+        await waitFor(() => {
+            expect(getModal()).not.toHaveClass('openInProgress')
+        })
+        expect(getModal()).toHaveClass('opened')
+
+        rerender(<Modal isOpen={false} renderMode="lazy" />)
         await waitFor(() => {
             expect(getModal()).not.toHaveClass('opened')
         })
+        expect(getModal()).toHaveClass('closeInProgress')
+
+        await waitFor(() => {
+            expect(getModal()).not.toHaveClass('closeInProgress')
+        })
+        expect(getModal()).toHaveClass('closed')
     })
 })
 

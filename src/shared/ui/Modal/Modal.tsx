@@ -1,19 +1,15 @@
-import React, {
-    type FC,
-    memo,
-    type PropsWithChildren,
-    useCallback,
-    useEffect,
-    useMemo,
-    useRef,
-    useState,
-} from 'react'
+import React, { type FC, memo, type PropsWithChildren } from 'react'
 import { classNames } from 'shared/lib/classNames/classNames'
 import { Portal } from '../Portal'
 import { useTheme } from 'shared/config/theme'
+import { Overlay } from '../Overlay'
+import {
+    PopupTransitionStep,
+    usePopupToggleWithTransition,
+} from 'shared/hooks/usePopupToggleWithTransition'
 
 import classes from './Modal.module.scss'
-import { Overlay } from '../Overlay'
+import { useWasTrue } from '../../hooks/useWasTrue'
 
 type RenderMode = 'default' | 'lazy' | 'destroyOnclose'
 
@@ -27,12 +23,12 @@ export interface ModalProps {
 
 const ANIMATION_DELAY = 300
 
-type ModalStatus =
-    | 'idle'
-    | 'closed'
-    | 'opened'
-    | 'open-in-progress'
-    | 'close-in-progress'
+const steps = {
+    [PopupTransitionStep.Closed]: classes.closed,
+    [PopupTransitionStep.CloseInProgress]: classes.closeInProgress,
+    [PopupTransitionStep.Opened]: classes.opened,
+    [PopupTransitionStep.OpenInProgress]: classes.openInProgress,
+}
 
 export const Modal: FC<PropsWithChildren<ModalProps>> = memo((props) => {
     const {
@@ -43,98 +39,37 @@ export const Modal: FC<PropsWithChildren<ModalProps>> = memo((props) => {
         getModalContainer,
         renderMode = 'default',
     } = props
-    const [status, setStatus] = useState<ModalStatus>('idle')
-
-    const openTimerRef = useRef<ReturnType<typeof setTimeout>>()
-    const closeTimerRef = useRef<ReturnType<typeof setTimeout>>()
-
     const { theme } = useTheme()
 
-    const handleOpen = useCallback(() => {
-        setStatus('open-in-progress')
-        openTimerRef.current = setTimeout(() => {
-            setStatus('opened')
-        })
-    }, [])
+    const wasOpened = useWasTrue(!!isOpen)
 
-    const handleClose = useCallback(() => {
-        setStatus('close-in-progress')
-        closeTimerRef.current = setTimeout(() => {
-            setStatus('closed')
-            onClose?.()
-        }, ANIMATION_DELAY)
-    }, [onClose])
+    const step = usePopupToggleWithTransition(!!isOpen, {
+        animationDelay: ANIMATION_DELAY,
+    })
 
-    useEffect(() => {
-        if (isOpen) {
-            handleOpen()
-        }
-    }, [handleOpen, isOpen])
-
-    useEffect(() => {
-        if (
-            !isOpen &&
-            status !== 'idle' &&
-            status !== 'close-in-progress' &&
-            status !== 'closed'
-        ) {
-            handleClose()
-        }
-    }, [handleClose, isOpen, status])
-
-    const handleGlobalKeyDown = useCallback(
-        (e: KeyboardEvent) => {
-            if (e.key === 'Escape') {
-                handleClose()
-            }
-        },
-        [handleClose]
-    )
-
-    useEffect(() => {
-        if (status === 'opened') {
-            window.addEventListener('keydown', handleGlobalKeyDown)
-        }
-
-        return () => {
-            window.removeEventListener('keydown', handleGlobalKeyDown)
-        }
-    }, [handleGlobalKeyDown, status])
-
-    useEffect(() => {
-        return () => {
-            clearTimeout(openTimerRef.current)
-            clearTimeout(closeTimerRef.current)
-        }
-    }, [])
-
-    const rootClassname = useMemo(() => {
-        const opened = status === 'opened' || status === 'close-in-progress'
-        return classNames(
-            classes.modal,
-            {
-                [classes.opened]: opened,
-                [classes.isClosing]: status === 'close-in-progress',
-            },
-            [className, `${theme}Theme`]
-        )
-    }, [className, status, theme])
-
-    if (
-        renderMode === 'destroyOnclose' &&
-        (status === 'closed' || status === 'idle')
-    ) {
+    if (renderMode === 'lazy' && !wasOpened) {
         return null
     }
 
-    if (renderMode === 'lazy' && status === 'idle') {
+    if (!isOpen && renderMode === 'destroyOnclose' && step === 'closed') {
         return null
     }
 
     return (
         <Portal element={getModalContainer?.()}>
-            <div data-testid="modal" className={rootClassname}>
-                <Overlay onClick={handleClose} />
+            <div
+                data-testid="modal"
+                className={classNames(classes.modal, {}, [
+                    className,
+                    `${theme}Theme`,
+                    steps[step],
+                ])}
+            >
+                <Overlay
+                    className={classes.overlay}
+                    onClick={onClose}
+                    data-testid="modal.overlay"
+                />
                 <div className={classes.content}>{children}</div>
             </div>
         </Portal>

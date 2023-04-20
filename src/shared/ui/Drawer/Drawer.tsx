@@ -1,10 +1,13 @@
-import { type FC, memo, type PropsWithChildren, useEffect } from 'react'
+import { type FC, memo, type PropsWithChildren } from 'react'
 import { classNames } from 'shared/lib/classNames'
-import classes from './Drawer.module.scss'
 import { Portal } from '../Portal'
-import { useTransitionGroup } from './useTransitionGroup'
-import { useTheme } from '../../config/theme'
+import { useTheme } from 'shared/config/theme'
 import { Overlay } from '../Overlay'
+import {
+    PopupTransitionStep,
+    usePopupToggleWithTransition,
+} from 'shared/hooks/usePopupToggleWithTransition'
+import classes from './Drawer.module.scss'
 
 interface DrawerProps extends PropsWithChildren {
     className?: string
@@ -13,10 +16,10 @@ interface DrawerProps extends PropsWithChildren {
 }
 
 const steps = {
-    closed: classes.closed,
-    closeInProgress: classes.closeInProgress,
-    opened: classes.opened,
-    openInProgress: classes.openInProgress,
+    [PopupTransitionStep.Closed]: classes.closed,
+    [PopupTransitionStep.CloseInProgress]: classes.closeInProgress,
+    [PopupTransitionStep.Opened]: classes.opened,
+    [PopupTransitionStep.OpenInProgress]: classes.openInProgress,
 }
 
 export const Drawer: FC<DrawerProps> = memo((props) => {
@@ -24,32 +27,7 @@ export const Drawer: FC<DrawerProps> = memo((props) => {
 
     const { theme } = useTheme()
 
-    const [step, toggle] = useTransitionGroup(
-        [
-            { name: steps.closed, delay: 200 },
-            [
-                { name: steps.openInProgress, delay: 200 },
-                { name: steps.closeInProgress, delay: 200 },
-            ],
-            { name: steps.opened, delay: 200 },
-        ],
-        {
-            startFromEnd: opened,
-        }
-    )
-
-    useEffect(() => {
-        const closeSteps = [steps.closed, steps.closeInProgress]
-        const openSteps = [steps.opened, steps.openInProgress]
-
-        if (opened && closeSteps.includes(step)) {
-            toggle()
-        }
-
-        if (!opened && openSteps.includes(step)) {
-            toggle()
-        }
-    }, [opened, step, toggle])
+    const step = usePopupToggleWithTransition(opened, { animationDelay: 200 })
 
     return (
         <div>
@@ -57,7 +35,7 @@ export const Drawer: FC<DrawerProps> = memo((props) => {
                 <div
                     className={classNames(classes.drawer, {}, [
                         className,
-                        step,
+                        steps[step],
                         `${theme}Theme`,
                     ])}
                 >

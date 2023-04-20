@@ -29,7 +29,7 @@ const profile: Required<Profile> = {
     avatar: 'https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/136.jpg',
 }
 
-describe.only('EditableProfileCard', () => {
+describe('EditableProfileCard', () => {
     it('should enable edit mode', async () => {
         mockedAxios.get.mockResolvedValue(Promise.resolve({ data: profile }))
 
@@ -206,7 +206,7 @@ describe.only('EditableProfileCard', () => {
         ).toHaveTextContent('Имя и фамилия обязательны')
     })
 
-    it.only('should send put request', async () => {
+    it('should send put request', async () => {
         mockedAxios.get.mockResolvedValue(Promise.resolve({ data: profile }))
         mockedAxios.put.mockResolvedValue(Promise.resolve({ data: profile }))
 

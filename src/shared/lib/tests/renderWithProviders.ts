@@ -5,8 +5,7 @@ import {
     TestsProvidersWrapperFactory,
     type TestsProvidersWrapperFactoryProps,
 } from './TestsProvidersWrapper'
-import userEvent from '@testing-library/user-event'
-import { type UserEvent } from '@testing-library/user-event/setup/setup'
+import rtlUserEvent from '@testing-library/user-event'
 
 export { mockedAxios }
 
@@ -14,23 +13,10 @@ export const renderWithProviders = (
     component: ReactElement,
     options?: TestsProvidersWrapperFactoryProps
 ) => {
-    const user = userEvent.setup()
-
-    const redefinedUserMethods: Partial<UserEvent> = {
-        // click: async (...args): Promise<void> => {
-        //     await act(async () => {
-        //         await user.click(...args)
-        //     })
-        // },
-        // type: async (...args): Promise<void> => {
-        //     await act(async () => {
-        //         await user.type(...args)
-        //     })
-        // },
-    }
+    const userEvent = rtlUserEvent.setup()
 
     return {
-        userEvent: { ...user, ...redefinedUserMethods },
+        userEvent,
         ...render(component, {
             wrapper: TestsProvidersWrapperFactory(options),
         }),
