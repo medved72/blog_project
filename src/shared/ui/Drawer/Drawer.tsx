@@ -3,16 +3,15 @@ import { classNames } from 'shared/lib/classNames'
 import { Portal } from '../Portal'
 import { useTheme } from 'shared/config/theme'
 import { Overlay } from '../Overlay'
-import {
-    PopupTransitionStep,
-    usePopupToggleWithTransition,
-} from 'shared/hooks/usePopupToggleWithTransition'
+import { PopupTransitionStep } from 'shared/hooks/usePopupToggleWithTransition'
 import classes from './Drawer.module.scss'
+import { type RenderMode, useModal } from 'shared/hooks/useModal'
 
 interface DrawerProps extends PropsWithChildren {
     className?: string
     opened: boolean
     onClose?: () => void
+    renderMode?: RenderMode
 }
 
 const steps = {
@@ -23,27 +22,34 @@ const steps = {
 }
 
 export const Drawer: FC<DrawerProps> = memo((props) => {
-    const { className, children, onClose, opened } = props
+    const { className, children, onClose, opened, renderMode } = props
 
     const { theme } = useTheme()
 
-    const step = usePopupToggleWithTransition(opened, { animationDelay: 200 })
+    const { step, shouldDestroy } = useModal({
+        isOpen: opened,
+        onClose,
+        animationDelay: 200,
+        renderMode,
+    })
+
+    if (shouldDestroy) {
+        return null
+    }
 
     return (
-        <div>
-            <Portal>
-                <div
-                    className={classNames(classes.drawer, {}, [
-                        className,
-                        steps[step],
-                        `${theme}Theme`,
-                    ])}
-                >
-                    <Overlay onClick={onClose} />
-                    <div className={classes.content}>{children}</div>
-                </div>
-            </Portal>
-        </div>
+        <Portal>
+            <div
+                className={classNames(classes.drawer, {}, [
+                    className,
+                    steps[step],
+                    `${theme}Theme`,
+                ])}
+            >
+                <Overlay onClick={onClose} />
+                <div className={classes.content}>{children}</div>
+            </div>
+        </Portal>
     )
 })
 Drawer.displayName = 'Drawer'

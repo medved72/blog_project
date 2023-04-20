@@ -19,6 +19,7 @@
     background: var(--bg-color);
     border-top-left-radius: 12px;
     border-top-right-radius: 12px;
+    overflow-y: scroll;
     transition: 200ms all;
 
     &::before {

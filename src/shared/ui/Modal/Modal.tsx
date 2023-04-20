@@ -3,13 +3,11 @@ import { classNames } from 'shared/lib/classNames/classNames'
 import { Portal } from '../Portal'
 import { useTheme } from 'shared/config/theme'
 import { Overlay } from '../Overlay'
-import {
-    PopupTransitionStep,
-    usePopupToggleWithTransition,
-} from 'shared/hooks/usePopupToggleWithTransition'
+import { PopupTransitionStep } from 'shared/hooks/usePopupToggleWithTransition'
 
 import classes from './Modal.module.scss'
-import { useWasTrue } from '../../hooks/useWasTrue'
+
+import { useModal } from 'shared/hooks/useModal'
 
 type RenderMode = 'default' | 'lazy' | 'destroyOnclose'
 
@@ -20,8 +18,6 @@ export interface ModalProps {
     getModalContainer?: () => HTMLElement
     renderMode?: RenderMode
 }
-
-const ANIMATION_DELAY = 300
 
 const steps = {
     [PopupTransitionStep.Closed]: classes.closed,
@@ -41,17 +37,14 @@ export const Modal: FC<PropsWithChildren<ModalProps>> = memo((props) => {
     } = props
     const { theme } = useTheme()
 
-    const wasOpened = useWasTrue(!!isOpen)
-
-    const step = usePopupToggleWithTransition(!!isOpen, {
-        animationDelay: ANIMATION_DELAY,
+    const { step, shouldDestroy } = useModal({
+        isOpen,
+        onClose,
+        animationDelay: 300,
+        renderMode,
     })
 
-    if (renderMode === 'lazy' && !wasOpened) {
-        return null
-    }
-
-    if (!isOpen && renderMode === 'destroyOnclose' && step === 'closed') {
+    if (shouldDestroy) {
         return null
     }
 
