@@ -10,6 +10,7 @@ interface NotificationListProps {
 
 export const NotificationList: FC<NotificationListProps> = memo((props) => {
     const { className } = props
+
     const { data, isLoading } = useNotificationsListQuery(undefined, {
         pollingInterval: 5000,
     })

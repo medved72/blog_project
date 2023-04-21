@@ -7,11 +7,12 @@ import { PopupTransitionStep } from 'shared/hooks/usePopupToggleWithTransition'
 import classes from './Drawer.module.scss'
 import { type RenderMode, useModal } from 'shared/hooks/useModal'
 
-interface DrawerProps extends PropsWithChildren {
+export interface DrawerProps extends PropsWithChildren {
     className?: string
     opened: boolean
     onClose?: () => void
     renderMode?: RenderMode
+    getContainer?: () => HTMLElement
 }
 
 const steps = {
@@ -22,7 +23,8 @@ const steps = {
 }
 
 export const Drawer: FC<DrawerProps> = memo((props) => {
-    const { className, children, onClose, opened, renderMode } = props
+    const { className, children, onClose, opened, renderMode, getContainer } =
+        props
 
     const { theme } = useTheme()
 
@@ -38,7 +40,7 @@ export const Drawer: FC<DrawerProps> = memo((props) => {
     }
 
     return (
-        <Portal>
+        <Portal element={getContainer?.()}>
             <div
                 className={classNames(classes.drawer, {}, [
                     className,
