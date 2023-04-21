@@ -1,10 +1,11 @@
-import { Drawer, type DrawerProps } from './Drawer'
+import { Drawer } from './Drawer'
 import { generateAppStories } from 'shared/config/storybook/generateAppStories'
 import { action } from '@storybook/addon-actions'
+import { type ComponentProps } from 'react'
 
 generateAppStories(
     'shared/Drawer',
-    (props: DrawerProps) => {
+    (props: ComponentProps<typeof Drawer>) => {
         return <Drawer {...props} />
     },
     [

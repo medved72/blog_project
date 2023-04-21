@@ -1,57 +1,150 @@
-import { type FC, memo, type PropsWithChildren } from 'react'
+import {
+    type FC,
+    memo,
+    type PropsWithChildren,
+    useCallback,
+    useEffect,
+} from 'react'
 import { classNames } from 'shared/lib/classNames'
 import { Portal } from '../Portal'
 import { useTheme } from 'shared/config/theme'
 import { Overlay } from '../Overlay'
-import { PopupTransitionStep } from 'shared/hooks/usePopupToggleWithTransition'
 import classes from './Drawer.module.scss'
-import { type RenderMode, useModal } from 'shared/hooks/useModal'
+import {
+    type AnimationContextLoaded,
+    AnimationProvider,
+    useAnimationModules,
+} from 'shared/lib/components/AnimationProvider'
 
-export interface DrawerProps extends PropsWithChildren {
+interface DrawerProps extends PropsWithChildren {
     className?: string
     opened: boolean
     onClose?: () => void
-    renderMode?: RenderMode
     getContainer?: () => HTMLElement
+    animationModules: AnimationContextLoaded
 }
 
-const steps = {
-    [PopupTransitionStep.Closed]: classes.closed,
-    [PopupTransitionStep.CloseInProgress]: classes.closeInProgress,
-    [PopupTransitionStep.Opened]: classes.opened,
-    [PopupTransitionStep.OpenInProgress]: classes.openInProgress,
-}
+const height = window.innerHeight - 100
 
-export const Drawer: FC<DrawerProps> = memo((props) => {
-    const { className, children, onClose, opened, renderMode, getContainer } =
-        props
+export const DrawerContent: FC<DrawerProps> = memo((props) => {
+    const {
+        className,
+        children,
+        onClose,
+        opened,
+        getContainer,
+        animationModules: {
+            Gesture: { useDrag },
+            Spring: { useSpring, config, a },
+        },
+    } = props
+
+    const [{ y }, api] = useSpring(() => ({ y: height }))
+
+    const openDrawer = useCallback(() => {
+        api.start({ y: 0, immediate: false })
+    }, [api])
 
     const { theme } = useTheme()
 
-    const { step, shouldDestroy } = useModal({
-        isOpen: opened,
-        onClose,
-        animationDelay: 200,
-        renderMode,
-    })
+    useEffect(() => {
+        if (opened) {
+            openDrawer()
+        }
+    }, [openDrawer, opened])
 
-    if (shouldDestroy) {
+    const close = useCallback(
+        (velocity = 0) => {
+            api.start({
+                y: height,
+                immediate: false,
+                config: { ...config.stiff, velocity },
+                onResolve: onClose,
+            })
+        },
+        [api, config.stiff, onClose]
+    )
+
+    const bind = useDrag(
+        ({
+            last,
+            velocity: [, vy],
+            direction: [, dy],
+            movement: [, my],
+            cancel,
+        }) => {
+            if (my < -70) {
+                cancel()
+            }
+
+            if (last) {
+                if (my > height * 0.5 || (vy > 0.5 && dy > 0)) {
+                    close()
+                } else {
+                    openDrawer()
+                }
+            } else {
+                api.start({ y: my, immediate: false })
+            }
+        },
+        {
+            from: () => [0, y.get()],
+            filterTaps: true,
+            bounds: { top: 0 },
+            rubberband: true,
+        }
+    )
+
+    if (!opened) {
         return null
     }
+
+    const display = y.to((py) => (py < height ? 'block' : 'none'))
 
     return (
         <Portal element={getContainer?.()}>
             <div
                 className={classNames(classes.drawer, {}, [
                     className,
-                    steps[step],
                     `${theme}Theme`,
                 ])}
             >
-                <Overlay onClick={onClose} />
-                <div className={classes.content}>{children}</div>
+                <Overlay
+                    onClick={() => {
+                        close(1)
+                    }}
+                />
+                <a.div
+                    className={classes.content}
+                    style={{
+                        display,
+                        bottom: `calc(-100vh + ${height - 100}px)`,
+                        y,
+                    }}
+                    {...bind()}
+                >
+                    {children}
+                </a.div>
             </div>
         </Portal>
     )
 })
-Drawer.displayName = 'Drawer'
+DrawerContent.displayName = 'DrawerContent'
+
+const DrawerLoader: FC<Omit<DrawerProps, 'animationModules'>> = (props) => {
+    const modules = useAnimationModules()
+
+    if (!modules?.isLoaded) {
+        return null
+    }
+
+    return <DrawerContent {...props} animationModules={modules} />
+}
+
+export const Drawer: FC<Omit<DrawerProps, 'animationModules'>> = (props) => {
+    return (
+        <AnimationProvider>
+            <DrawerLoader {...props} />
+        </AnimationProvider>
+    )
+}
