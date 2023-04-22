@@ -32,6 +32,7 @@ export const Popover: FC<PropsWithChildren<PopoverProps>> = memo((props) => {
         >
             <HUPopover.Button
                 ref={refs.setReference}
+                as="div"
                 className={classes.trigger}
             >
                 {trigger}

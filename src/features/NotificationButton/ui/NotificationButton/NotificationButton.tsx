@@ -6,8 +6,8 @@ import { Icon } from '@/shared/ui/Icon'
 import NotificationIcon from '@/shared/assets/icons/notification-20-20.svg'
 import { NotificationList } from '@/entities/Notification'
 import { Popover } from '@/shared/ui/Popups'
-import { Drawer } from '../../../../shared/ui/Drawer'
-import { useIsMobile } from '../../../../shared/hooks/useIsMobile'
+import { Drawer } from '@/shared/ui/Drawer'
+import { useIsMobile } from '@/shared/hooks/useIsMobile'
 
 interface NotificationButtonProps {
     className?: string
