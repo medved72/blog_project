@@ -22,7 +22,8 @@
     "./config",
     "./scripts",
     "./src",
-    "./webpack.config.ts"
+    "./webpack.config.ts",
+    "vite.config.ts"
   ],
   "ts-node": {
     "compilerOptions": {
