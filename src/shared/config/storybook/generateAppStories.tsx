@@ -1,6 +1,6 @@
 import { type Parameters as SbParameters, storiesOf } from '@storybook/react'
 import { type FC } from 'react'
-import { capitalize } from 'shared/lib/capitalize'
+import { capitalize } from '@/shared/lib/capitalize'
 import { ThemeDecorator } from './ThemeDecorator'
 import { THEME } from '../theme'
 

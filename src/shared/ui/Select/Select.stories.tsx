@@ -1,7 +1,7 @@
 import { type ComponentMeta, type ComponentStory } from '@storybook/react'
 import { Select } from './Select'
-import { ThemeDecorator } from 'shared/config/storybook/ThemeDecorator'
-import { THEME } from 'shared/config/theme'
+import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator'
+import { THEME } from '@/shared/config/theme'
 
 const meta: ComponentMeta<typeof Select> = {
     title: 'shared/Select',

@@ -4,7 +4,7 @@ import {
     memo,
     type SVGAttributes,
 } from 'react'
-import { classNames } from 'shared/lib/classNames'
+import { classNames } from '@/shared/lib/classNames'
 import classes from './Icon.module.scss'
 
 interface IconProps {

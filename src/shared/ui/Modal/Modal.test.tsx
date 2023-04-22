@@ -1,4 +1,4 @@
-import { renderWithProviders } from 'shared/lib/tests'
+import { renderWithProviders } from '@/shared/lib/tests'
 import { Modal } from './Modal'
 import { screen, waitFor } from '@testing-library/react'
 

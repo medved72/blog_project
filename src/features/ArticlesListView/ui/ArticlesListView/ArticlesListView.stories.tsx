@@ -1,8 +1,8 @@
 import { ArticlesListView } from './ArticlesListView'
-import { generateAppStories } from 'shared/config/storybook/generateAppStories'
-import { StoreDecorator } from 'shared/config/storybook/StoreDecorator'
+import { generateAppStories } from '@/shared/config/storybook/generateAppStories'
+import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator'
 import createAsyncCallback from '@loki/create-async-callback'
-import { type Article } from 'entities/Article'
+import { type Article } from '@/entities/Article'
 import { type ComponentStory } from '@storybook/react'
 import db from '../../../../../json-server/db.json'
 

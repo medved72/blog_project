@@ -1,4 +1,4 @@
-import { renderWithProviders } from 'shared/lib/tests'
+import { renderWithProviders } from '@/shared/lib/tests'
 import { CommentCard } from './CommentCard'
 import { type CommentDto } from '../../model/types/comment'
 

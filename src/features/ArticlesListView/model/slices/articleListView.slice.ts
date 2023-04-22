@@ -7,15 +7,15 @@ import {
     type Article,
     type ArticleListViewMode,
     type ArticleSortFieldValues,
-} from 'entities/Article'
+} from '@/entities/Article'
 import { type ArticlesListViewState } from '../types/ArticlesListViewState'
 import { fetchArticlesList } from '../services/fetchArticlesList'
-import { ARTICLE_VIEW_LOCALSTORAGE_KEY } from 'shared/const/localStorage'
+import { ARTICLE_VIEW_LOCALSTORAGE_KEY } from '@/shared/const/localStorage'
 import { isArticleListViewMode } from '../../lib/IsArticleListViewMode'
-import { type SortOrderValues } from 'shared/types'
+import { type SortOrderValues } from '@/shared/types'
 import { isSortOrder } from '../../lib/isSortOrder'
 import { isArticleSortField } from '../../lib/isArticleSortField'
-import { type ArticleType } from 'entities/Article/model'
+import { type ArticleType } from '@/entities/Article/model'
 import { isArticleType } from '../../lib/isArticleType'
 import { getArticleListViewInitialState } from './getArticleListViewInitialState'
 

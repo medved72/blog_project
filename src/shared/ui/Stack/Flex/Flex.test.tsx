@@ -1,4 +1,4 @@
-import { renderWithProviders } from 'shared/lib/tests'
+import { renderWithProviders } from '@/shared/lib/tests'
 import { Flex } from './Flex'
 
 describe('Flex', () => {

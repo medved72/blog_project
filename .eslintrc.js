@@ -12,7 +12,7 @@ module.exports = {
         'prettier',
     ],
     parserOptions: {
-        tsconfigRootDir: __dirname,
+        tsconfigRootDir: '.',
         ecmaVersion: 'latest',
         sourceType: 'module',
         project: ['./tsconfig.json'],

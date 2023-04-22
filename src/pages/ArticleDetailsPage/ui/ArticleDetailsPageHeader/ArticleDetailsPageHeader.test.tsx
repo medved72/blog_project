@@ -1,4 +1,4 @@
-import { renderWithProviders } from 'shared/lib/tests'
+import { renderWithProviders } from '@/shared/lib/tests'
 import { ArticleDetailsPageHeader } from './ArticleDetailsPageHeader'
 
 describe('ArticleDetailsPageHeader', () => {

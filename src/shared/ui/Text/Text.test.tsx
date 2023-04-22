@@ -1,4 +1,4 @@
-import { renderWithProviders } from 'shared/lib/tests'
+import { renderWithProviders } from '@/shared/lib/tests'
 import { Text } from './Text'
 import { screen } from '@testing-library/react'
 

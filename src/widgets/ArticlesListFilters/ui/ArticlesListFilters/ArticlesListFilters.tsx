@@ -1,8 +1,8 @@
 import { type FC, memo, useCallback } from 'react'
-import { classNames } from 'shared/lib/classNames'
+import { classNames } from '@/shared/lib/classNames'
 import classes from './ArticlesListFilters.module.scss'
-import { ArticleViewSelector } from 'features/ArticleViewSelector'
-import { useAppDispatch } from 'shared/hooks/useAppDispatch'
+import { ArticleViewSelector } from '@/features/ArticleViewSelector'
+import { useAppDispatch } from '@/shared/hooks/useAppDispatch'
 import { useSelector } from 'react-redux'
 import {
     articlesListViewActions,
@@ -12,19 +12,19 @@ import {
     getArticleListViewSearch,
     getArticleListViewSort,
     getArticleListViewType,
-} from 'features/ArticlesListView'
+} from '@/features/ArticlesListView'
 import {
     type ArticleListViewMode,
     type ArticleSortFieldValues,
     type ArticleType,
-} from 'entities/Article'
-import { ArticleListSorter } from 'features/ArticleListSorter'
-import { Card } from 'shared/ui/Card'
-import { ArticleListSearch } from 'features/ArticleListSearch'
-import { type SortOrderValues } from 'shared/types'
-import { useDebounce } from 'shared/hooks/useDebounce'
-import { ArticleListTabs } from 'features/ArticleListTabs'
-import { type TabItemValue } from 'shared/ui/Tabs'
+} from '@/entities/Article'
+import { ArticleListSorter } from '@/features/ArticleListSorter'
+import { Card } from '@/shared/ui/Card'
+import { ArticleListSearch } from '@/features/ArticleListSearch'
+import { type SortOrderValues } from '@/shared/types'
+import { useDebounce } from '@/shared/hooks/useDebounce'
+import { ArticleListTabs } from '@/features/ArticleListTabs'
+import { type TabItemValue } from '@/shared/ui/Tabs'
 
 interface ArticlesListFiltersProps {
     className?: string

@@ -1,6 +1,6 @@
 import { screen } from '@testing-library/react'
 import { Sidebar } from './Sidebar'
-import { renderWithProviders } from 'shared/lib/tests'
+import { renderWithProviders } from '@/shared/lib/tests'
 
 describe('Sidebar', () => {
     it('render', () => {

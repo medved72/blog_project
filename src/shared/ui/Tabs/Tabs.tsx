@@ -1,5 +1,5 @@
 import { memo, type ReactNode } from 'react'
-import { classNames } from 'shared/lib/classNames'
+import { classNames } from '@/shared/lib/classNames'
 import classes from './Tabs.module.scss'
 import { TabItem } from './TabItem'
 

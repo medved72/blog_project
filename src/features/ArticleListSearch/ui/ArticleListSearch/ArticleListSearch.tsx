@@ -1,5 +1,5 @@
 import { type FC, memo } from 'react'
-import { Input } from 'shared/ui/Input'
+import { Input } from '@/shared/ui/Input'
 import { useTranslation } from 'react-i18next'
 
 interface ArticleListSearchProps {

@@ -12,10 +12,15 @@ export default {
     testMatch: ['<rootDir>src/**/*(*.)@(spec|test).[tj]s?(x)'],
     setupFilesAfterEnv: ['<rootDir>config/jest/setupTests.ts'],
     moduleNameMapper: {
-        'entities/(.*)': '<rootDir>src/entities/$1',
         '^.+\\.(css|scss)$': 'identity-obj-proxy',
         '\\.svg': path.resolve(__dirname, 'jestEmptyComponent.tsx'),
         '\\.jpg': path.resolve(__dirname, 'jestRandomString.tsx'),
+        '@/app/(.*)': '<rootDir>src/app/$1',
+        '@/pages/(.*)': '<rootDir>src/pages/$1',
+        '@/widgets/(.*)': '<rootDir>src/widgets/$1',
+        '@/features/(.*)': '<rootDir>src/features/$1',
+        '@/entities/(.*)': '<rootDir>src/entities/$1',
+        '@/shared/(.*)': '<rootDir>src/shared/$1',
     },
     reporters: [
         'default',

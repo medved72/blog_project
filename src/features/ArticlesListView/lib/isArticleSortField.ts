@@ -1,4 +1,7 @@
-import { ArticleSortField, type ArticleSortFieldValues } from 'entities/Article'
+import {
+    ArticleSortField,
+    type ArticleSortFieldValues,
+} from '@/entities/Article'
 
 export const isArticleSortField = (
     value: unknown

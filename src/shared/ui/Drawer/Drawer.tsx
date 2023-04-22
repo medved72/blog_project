@@ -5,16 +5,16 @@ import {
     useCallback,
     useEffect,
 } from 'react'
-import { classNames } from 'shared/lib/classNames'
+import { classNames } from '@/shared/lib/classNames'
 import { Portal } from '../Portal'
-import { useTheme } from 'shared/config/theme'
+import { useTheme } from '@/shared/config/theme'
 import { Overlay } from '../Overlay'
 import classes from './Drawer.module.scss'
 import {
     type AnimationContextLoaded,
     AnimationProvider,
     useAnimationModules,
-} from 'shared/lib/components/AnimationProvider'
+} from '@/shared/lib/components/AnimationProvider'
 
 interface DrawerProps extends PropsWithChildren {
     className?: string

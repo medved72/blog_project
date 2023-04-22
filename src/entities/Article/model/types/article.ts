@@ -1,5 +1,5 @@
-import { type UserDto } from 'entities/User'
-import { type ValueOf } from 'shared/types'
+import { type UserDto } from '@/entities/User'
+import { type ValueOf } from '@/shared/types'
 
 export const articleTypes = [
     'All',

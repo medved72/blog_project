@@ -1,4 +1,4 @@
-import { type SortOrderValues, SortOrder } from 'shared/types'
+import { type SortOrderValues, SortOrder } from '@/shared/types'
 
 export const isSortOrder = (value: unknown): value is SortOrderValues => {
     const items = Object.values(SortOrder)

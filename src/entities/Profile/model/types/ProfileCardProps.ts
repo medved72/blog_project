@@ -1,7 +1,7 @@
 import { type Profile } from './profile'
-import { type Currency } from 'shared/const/currency'
-import { type Country } from 'shared/const/country'
-import { type ProfileErrors } from 'features/EditableProfileCard/model/types/EditableProfileCardState'
+import { type Currency } from '@/shared/const/currency'
+import { type Country } from '@/shared/const/country'
+import { type ProfileErrors } from '@/features/EditableProfileCard/model/types/EditableProfileCardState'
 
 export interface ProfileCardProps {
     className?: string

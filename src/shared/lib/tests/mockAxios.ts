@@ -1,5 +1,5 @@
 import axios from 'axios'
-import * as api from 'shared/api/api'
+import * as api from '@/shared/api/api'
 
 jest.mock('axios')
 const mockedAxios = jest.mocked(axios)

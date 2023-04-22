@@ -6,8 +6,8 @@ import {
     useEffect,
     useLayoutEffect,
 } from 'react'
-import { useAppStore } from 'shared/hooks/useAppStore'
-import { useAppDispatch } from 'shared/hooks/useAppDispatch'
+import { useAppStore } from '@/shared/hooks/useAppStore'
+import { useAppDispatch } from '@/shared/hooks/useAppDispatch'
 
 type ReducersList = {
     [name in keyof GlbAppState]?: Reducer<NonNullable<GlbAppState[name]>>

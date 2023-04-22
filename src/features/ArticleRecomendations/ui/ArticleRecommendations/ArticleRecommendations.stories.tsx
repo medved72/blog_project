@@ -1,7 +1,7 @@
 import { ArticleRecommendations } from './ArticleRecommendations'
-import { generateAppStories } from 'shared/config/storybook/generateAppStories'
-import { StoreDecorator } from 'shared/config/storybook/StoreDecorator'
-import { type Article } from 'entities/Article'
+import { generateAppStories } from '@/shared/config/storybook/generateAppStories'
+import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator'
+import { type Article } from '@/entities/Article'
 import db from '../../../../../json-server/db.json'
 
 const articles = db.articles.slice(0, 4).map(({ userId, ...article }) => ({

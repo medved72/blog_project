@@ -1,5 +1,5 @@
 import { type FC, memo } from 'react'
-import { classNames } from 'shared/lib/classNames'
+import { classNames } from '@/shared/lib/classNames'
 import classes from './ArticleList.module.scss'
 import { type ArticleListProps, type ArticleListViewMode } from '../../model'
 import { ArticleListItem, ArticleListItemSkeleton } from '../ArticleListItem'

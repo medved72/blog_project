@@ -7,14 +7,14 @@ import {
     useRef,
 } from 'react'
 import classes from './PageWrapper.module.scss'
-import { useAppDispatch } from 'shared/hooks/useAppDispatch'
+import { useAppDispatch } from '@/shared/hooks/useAppDispatch'
 import {
     getScrollRestoreByPath,
     setScrollRestorePosition,
-} from 'features/ScrollRestore'
+} from '@/features/ScrollRestore'
 import { useLocation } from 'react-router-dom'
 import { useSelector } from 'react-redux'
-import { useThrottle } from 'shared/hooks/useThrottle'
+import { useThrottle } from '@/shared/hooks/useThrottle'
 
 export const PageWrapper: FC<PropsWithChildren> = ({ children }) => {
     const dispatch = useAppDispatch()

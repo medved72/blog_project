@@ -1,5 +1,5 @@
 import { type FC, memo, type PropsWithChildren, type ReactNode } from 'react'
-import { classNames } from 'shared/lib/classNames'
+import { classNames } from '@/shared/lib/classNames'
 import { Popover as HUPopover } from '@headlessui/react'
 import classes from './Popover.module.scss'
 import {

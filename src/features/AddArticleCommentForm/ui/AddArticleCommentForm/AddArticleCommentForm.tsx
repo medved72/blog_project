@@ -1,13 +1,13 @@
 import { type FC, memo, useCallback } from 'react'
-import { classNames } from 'shared/lib/classNames'
+import { classNames } from '@/shared/lib/classNames'
 import classes from './AddArticleCommentForm.module.scss'
-import { withDynamicModuleLoader } from 'shared/lib/components'
+import { withDynamicModuleLoader } from '@/shared/lib/components'
 import {
     addArticleCommentFormReducer,
     setAddArticleCommentFormText,
 } from '../../model/slices/addCommentForm.slice'
-import { AddCommentForm } from 'entities/Comment'
-import { useAppDispatch } from 'shared/hooks/useAppDispatch'
+import { AddCommentForm } from '@/entities/Comment'
+import { useAppDispatch } from '@/shared/hooks/useAppDispatch'
 import { sendArticleComment } from '../../model/services/sendArticleComment'
 import { useSelector } from 'react-redux'
 import { getAddArticleCommentFormText } from '../../model/selectors'

@@ -1,12 +1,12 @@
 import { type FC, memo, useEffect } from 'react'
-import { ArticleList } from 'entities/Article'
-import { withDynamicModuleLoader } from 'shared/lib/components'
+import { ArticleList } from '@/entities/Article'
+import { withDynamicModuleLoader } from '@/shared/lib/components'
 import {
     articlesListViewActions,
     articlesListViewReducer,
     getArticlesList,
 } from '../../model/slices/articleListView.slice'
-import { useAppDispatch } from 'shared/hooks/useAppDispatch'
+import { useAppDispatch } from '@/shared/hooks/useAppDispatch'
 import { useSelector } from 'react-redux'
 import {
     getArticleListViewInitialized,
@@ -15,7 +15,7 @@ import {
 } from '../../model/selectors'
 import { ArticleListInfiniteLoader } from '../ArticleListInfiniteLoader'
 import { useSearchParams } from 'react-router-dom'
-import { Text } from 'shared/ui/Text'
+import { Text } from '@/shared/ui/Text'
 import { useTranslation } from 'react-i18next'
 
 interface ArticlesListViewProps {

@@ -4,7 +4,7 @@ import {
     memo,
     type PropsWithChildren,
 } from 'react'
-import { classNames } from 'shared/lib/classNames'
+import { classNames } from '@/shared/lib/classNames'
 import classes from './Card.module.scss'
 import { type ValueOf } from '../../../../types'
 export const CardTheme = {

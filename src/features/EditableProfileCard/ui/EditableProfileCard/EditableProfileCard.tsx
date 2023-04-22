@@ -1,13 +1,13 @@
 import { type FC, memo, useCallback, useEffect, useMemo } from 'react'
-import { Text } from 'shared/ui/Text'
-import { type Currency } from 'shared/const/currency'
-import { type Country } from 'shared/const/country'
-import { useAppDispatch } from 'shared/hooks/useAppDispatch'
+import { Text } from '@/shared/ui/Text'
+import { type Currency } from '@/shared/const/currency'
+import { type Country } from '@/shared/const/country'
+import { useAppDispatch } from '@/shared/hooks/useAppDispatch'
 import { useSelector } from 'react-redux'
-import { withDynamicModuleLoader } from 'shared/lib/components'
+import { withDynamicModuleLoader } from '@/shared/lib/components'
 import { useTranslation } from 'react-i18next'
-import { VStack } from 'shared/ui/Stack'
-import { ProfileCard } from 'entities/Profile'
+import { VStack } from '@/shared/ui/Stack'
+import { ProfileCard } from '@/entities/Profile'
 import {
     getEditableProfileCardError,
     getEditableProfileCardForm,

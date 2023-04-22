@@ -1,8 +1,8 @@
 import { type DeepPartial } from '@reduxjs/toolkit'
 import { getEditableProfileCardForm } from './getEditableProfileCardForm.selector'
-import { Currency } from 'shared/const/currency'
-import { Country } from 'shared/const/country'
-import avatar from 'shared/assets/tests/avatar.jpg'
+import { Currency } from '@/shared/const/currency'
+import { Country } from '@/shared/const/country'
+import avatar from '@/shared/assets/tests/avatar.jpg'
 
 describe('form', () => {
     it('should return validationErrors', () => {

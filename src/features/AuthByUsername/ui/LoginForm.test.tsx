@@ -2,7 +2,7 @@ import { screen } from '@testing-library/react'
 import {
     renderWithProviders,
     mockedAxios,
-} from 'shared/lib/tests/renderWithProviders'
+} from '@/shared/lib/tests/renderWithProviders'
 import { reducer } from '../model'
 import LoginForm from './LoginForm'
 

@@ -1,5 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
-import { type Profile } from 'entities/Profile'
+import { type Profile } from '@/entities/Profile'
 import { type ProfileErrors } from '../../types/EditableProfileCardState'
 
 export const fetchProfileData = createAsyncThunk<

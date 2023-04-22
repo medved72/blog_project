@@ -1,7 +1,7 @@
 import { type FC, memo } from 'react'
 
-import { classNames } from 'shared/lib/classNames/classNames'
-import { DotsSpinner } from 'shared/ui/Spinner'
+import { classNames } from '@/shared/lib/classNames/classNames'
+import { DotsSpinner } from '@/shared/ui/Spinner'
 
 import classes from './PageLoader.module.scss'
 

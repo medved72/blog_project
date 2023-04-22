@@ -1,7 +1,7 @@
-import { TestAsyncThunk } from 'shared/lib/tests'
+import { TestAsyncThunk } from '@/shared/lib/tests'
 import { updateProfileData } from './updateProfileData'
-import avatar from 'shared/assets/tests/avatar.jpg'
-import { type Profile } from 'entities/Profile'
+import avatar from '@/shared/assets/tests/avatar.jpg'
+import { type Profile } from '@/entities/Profile'
 
 const profile = {
     id: '1',

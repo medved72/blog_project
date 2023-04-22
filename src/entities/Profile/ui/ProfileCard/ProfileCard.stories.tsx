@@ -1,8 +1,8 @@
 import { ProfileCard } from './ProfileCard'
-import { StoreDecorator } from 'shared/config/storybook/StoreDecorator'
-import { Currency } from 'shared/const/currency'
-import { Country } from 'shared/const/country'
-import { generateAppStories } from 'shared/config/storybook/generateAppStories'
+import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator'
+import { Currency } from '@/shared/const/currency'
+import { Country } from '@/shared/const/country'
+import { generateAppStories } from '@/shared/config/storybook/generateAppStories'
 
 generateAppStories('entities/ProfileCard', ProfileCard, [
     {

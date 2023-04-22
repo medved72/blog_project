@@ -1,11 +1,11 @@
 import { type FC, memo, useCallback } from 'react'
-import { Text } from 'shared/ui/Text'
-import { AddArticleCommentForm } from 'features/AddArticleCommentForm'
+import { Text } from '@/shared/ui/Text'
+import { AddArticleCommentForm } from '@/features/AddArticleCommentForm'
 import {
     ArticleCommentsList,
     fetchCommentsListByArticleId,
-} from 'features/ArticleCommentsList'
-import { useAppDispatch } from 'shared/hooks/useAppDispatch'
+} from '@/features/ArticleCommentsList'
+import { useAppDispatch } from '@/shared/hooks/useAppDispatch'
 import { useTranslation } from 'react-i18next'
 
 interface ArticleDetailsCommentsProps {

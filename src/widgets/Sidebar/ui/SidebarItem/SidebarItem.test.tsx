@@ -1,8 +1,8 @@
-import { renderWithProviders } from 'shared/lib/tests'
+import { renderWithProviders } from '@/shared/lib/tests'
 import { SidebarItem } from './SidebarItem'
 import { generatePath } from 'react-router-dom'
-import { ROUTES } from 'shared/config/routes'
-import MainIcon from 'shared/assets/icons/main-20-20.svg'
+import { ROUTES } from '@/shared/config/routes'
+import MainIcon from '@/shared/assets/icons/main-20-20.svg'
 
 const item = {
     path: generatePath(ROUTES.MAIN),

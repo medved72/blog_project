@@ -1,24 +1,26 @@
 {
   "compilerOptions": {
-    "baseUrl": "src",
-    "paths": {
-      "*": ["*"]
-    },
+    "outDir": "./dist/",
+    "noImplicitAny": true,
     "module": "ESNext",
     "target": "ES5",
-    "allowSyntheticDefaultImports": true,
-    "esModuleInterop": true,
-    "forceConsistentCasingInFileNames": true,
-    "strict": true,
-    "noImplicitAny": true,
-    "skipLibCheck": true,
     "jsx": "react-jsx",
+    "strict": true,
     "moduleResolution": "node",
-    "resolveJsonModule": true,
-    "isolatedModules": true
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"]
+    },
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "isolatedModules": true,
+    "forceConsistentCasingInFileNames": true,
+    "skipLibCheck": true,
+    "resolveJsonModule": true
   },
   "include": [
     "./config",
+    "./scripts",
     "./src",
     "./webpack.config.ts"
   ],

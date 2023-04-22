@@ -1,6 +1,6 @@
 import { ArticleDetails } from './ArticleDetails'
-import { generateAppStories } from 'shared/config/storybook/generateAppStories'
-import { StoreDecorator } from 'shared/config/storybook/StoreDecorator'
+import { generateAppStories } from '@/shared/config/storybook/generateAppStories'
+import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator'
 import { articles } from '../../../../../json-server/db.json'
 
 generateAppStories(

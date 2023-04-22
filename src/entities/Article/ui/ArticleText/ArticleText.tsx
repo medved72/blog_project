@@ -1,5 +1,5 @@
 import { type FC, memo } from 'react'
-import { classNames } from 'shared/lib/classNames'
+import { classNames } from '@/shared/lib/classNames'
 import classes from './ArticleText.module.scss'
 import { type ArticleTextBlock } from '../../model'
 import { Text } from '../../../../shared/ui/Text'

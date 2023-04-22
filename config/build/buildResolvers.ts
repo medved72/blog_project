@@ -9,6 +9,8 @@ export function buildResolvers({
         modules: [paths.src, 'node_modules'],
         mainFiles: ['index'],
         preferAbsolute: true,
-        alias: {},
+        alias: {
+            '@': paths.src,
+        },
     }
 }

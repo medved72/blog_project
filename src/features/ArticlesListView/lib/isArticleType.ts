@@ -1,4 +1,4 @@
-import { type ArticleType, articleTypes } from 'entities/Article'
+import { type ArticleType, articleTypes } from '@/entities/Article'
 
 export const isArticleType = (value: unknown): value is ArticleType => {
     return (

@@ -1,13 +1,13 @@
 import { type FC, memo, useEffect } from 'react'
-import { CommentList } from 'entities/Comment'
-import { withDynamicModuleLoader } from 'shared/lib/components'
+import { CommentList } from '@/entities/Comment'
+import { withDynamicModuleLoader } from '@/shared/lib/components'
 import {
     articleCommentsListReducer,
     getArticleCommentsListAdapterSelectors,
 } from '../../model/slices/articleCommentsList.slice'
 import { useSelector } from 'react-redux'
 import { getArticleCommentListLoading } from '../../model/selectors'
-import { useAppDispatch } from 'shared/hooks/useAppDispatch'
+import { useAppDispatch } from '@/shared/hooks/useAppDispatch'
 import { fetchCommentsListByArticleId } from '../../model/services/fetchCommentsListByArticleId'
 
 interface ArticleCommentsListProps {

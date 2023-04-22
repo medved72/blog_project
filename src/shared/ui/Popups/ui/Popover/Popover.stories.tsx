@@ -1,5 +1,5 @@
 import { Popover } from './Popover'
-import { generateAppStories } from 'shared/config/storybook/generateAppStories'
+import { generateAppStories } from '@/shared/config/storybook/generateAppStories'
 
 generateAppStories('shared/Popups/Popover', Popover, [
     {

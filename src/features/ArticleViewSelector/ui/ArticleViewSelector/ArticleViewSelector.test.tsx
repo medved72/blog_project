@@ -1,4 +1,4 @@
-import { renderWithProviders } from 'shared/lib/tests'
+import { renderWithProviders } from '@/shared/lib/tests'
 import { ArticleViewSelector } from './ArticleViewSelector'
 
 describe('ArticleViewSelector', () => {
