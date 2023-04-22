@@ -13,7 +13,7 @@
 
 .options {
     position: absolute;
-    z-index: 10000;
+    z-index: var(--listbox-z-index);
     width: max-content;
     min-width: 100%;
     border-radius: 12px;

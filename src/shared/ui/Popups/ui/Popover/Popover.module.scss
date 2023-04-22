@@ -11,7 +11,7 @@
 }
 
 .panel {
-    z-index: 10000;
+    z-index: var(--popover-z-index);
     padding: 16px;
     border: 1px solid var(--primary-color);
     border-radius: 8px;

@@ -1,6 +1,6 @@
 .drawer {
     position: fixed;
-    z-index: 100;
+    z-index: var(--drawer-z-index);
     top: 0;
     right: 0;
     bottom: 0;
