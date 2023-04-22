@@ -3,11 +3,11 @@ type Mods = Record<string, string | boolean | undefined>
 type AdditionalItem = false | string | undefined
 
 export const classNames = (
-    root: string,
+    root?: string,
     mods: Mods = {},
     additional: AdditionalItem[] = []
 ): string => {
-    const classes = [root]
+    const classes: string[] = root ? [root] : []
 
     Object.entries(mods).forEach(([modClass, condition]) => {
         if (condition) {

@@ -7,7 +7,7 @@ import {
 import { classNames } from '@/shared/lib/classNames'
 import classes from './Icon.module.scss'
 
-interface IconProps {
+interface IconProps extends Omit<SVGAttributes<SVGElement>, 'stroke'> {
     className?: string
     Svg: FunctionComponent<SVGAttributes<SVGElement>>
     stroke?: boolean
@@ -15,7 +15,7 @@ interface IconProps {
 }
 
 export const Icon: FC<IconProps> = memo((props) => {
-    const { className, Svg, stroke, inverted } = props
+    const { className, Svg, stroke, inverted, ...restProps } = props
     return (
         <Svg
             className={classNames(
@@ -27,6 +27,7 @@ export const Icon: FC<IconProps> = memo((props) => {
                 },
                 [className]
             )}
+            {...restProps}
         />
     )
 })

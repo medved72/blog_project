@@ -25,5 +25,8 @@
     "navbar.link.create.text": "navbar.link.create.text",
     "navbar.item.profile": "navbar.item.profile",
     "navbar.item.adminPanel": "navbar.item.adminPanel",
-    "page.error.forbidden": "page.error.forbidden"
+    "page.error.forbidden": "page.error.forbidden",
+    "rating.feedback.input.placeholder": "rating.feedback.input.placeholder",
+    "rating.feedback.button.cancel": "Закрыть",
+    "rating.feedback.button.accept": "Отправить"
 }
