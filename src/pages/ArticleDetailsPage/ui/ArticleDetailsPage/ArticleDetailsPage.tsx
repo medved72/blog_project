@@ -7,6 +7,7 @@ import { ArticleRecommendations } from '@/features/ArticleRecomendations'
 import { ArticleDetailsPageHeader } from '../ArticleDetailsPageHeader'
 import { VStack } from '@/shared/ui/Stack'
 import { ArticleDetailsComments } from '../ArticleDetailsComments'
+import { ArticleRating } from '@/features/ArticleRating'
 
 interface ArticleDetailsPageProps {
     className?: string
@@ -29,6 +30,7 @@ const ArticleDetailsPage: FC<ArticleDetailsPageProps> = memo((props) => {
         <VStack gap="16" className={classNames('', {}, [className])} fullWidth>
             <ArticleDetailsPageHeader id={articleId} />
             <ArticleDetails id={articleId} />
+            <ArticleRating articleId={articleId} />
             <ArticleRecommendations />
             <ArticleDetailsComments articleId={articleId} />
         </VStack>

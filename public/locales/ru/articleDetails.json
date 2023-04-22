@@ -4,5 +4,9 @@
     "comments.title": "Комментарии",
     "button.text.goToBack": "Назад к списку",
     "article.recommendations.title.text": "Рекомендуем",
-    "button.edit.text": "Редактировать"
+    "button.edit.text": "Редактировать",
+    "articleDetails.rating.feedbackTitle": "Оставьте свой отзыв о статье, это поможет улучшить качество",
+    "articleDetails.rating.title": "Оцените статью",
+    "articleDetails.rating.title.rated": "Спасибо за оценку",
+    "articleDetails.rating.title.notRated": "Оцените статью"
 }

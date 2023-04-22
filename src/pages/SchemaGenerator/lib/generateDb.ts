@@ -4,6 +4,7 @@ import { generateUser } from './generateUser'
 import { generateComment } from './generateComment'
 import { generateNotification } from './generateNotification'
 import type db from '../../../../json-server/db.json'
+import { generateRating } from '@/pages/SchemaGenerator/lib/generateRating'
 
 export type GenerateDbReturn = typeof db
 
@@ -30,11 +31,20 @@ export const generateDb = (): GenerateDbReturn => {
         .fill(null)
         .map(() => generateNotification({ userIds }))
 
+    const articleRatings = userIds
+        .flatMap((userId) => {
+            return articleIds.flatMap((articleId) => {
+                return generateRating({ userId, articleId })
+            })
+        })
+        .filter(({ rate }) => rate !== 0)
+
     return {
         articles,
         profile: profiles,
         users,
         comments,
         notifications,
+        'article-ratings': articleRatings,
     }
 }

@@ -4,5 +4,8 @@
     "comments.title": "comments.title",
     "button.text.goToBack": "button.text.goToBack",
     "article.recommendations.title.text": "article.recommendations.title.text",
-    "button.edit.text": "button.edit.text"
+    "button.edit.text": "button.edit.text",
+    "articleDetails.rating.feedbackTitle": "articleDetails.rating.feedbackTitle",
+    "articleDetails.rating.title": "articleDetails.rating.title",
+    "articleDetails.rating.title.rated": "articleDetails.rating.title.rated"
 }

@@ -6,18 +6,20 @@ import articleDetails from '../../../../../public/locales/ru/articleDetails.json
 import articleList from '../../../../../public/locales/ru/articleList.json'
 import admin from '../../../../../public/locales/ru/admin.json'
 
+type AnyKey = Record<string, string>
+
 declare module 'i18next' {
     interface CustomTypeOptions {
         defaultNS: 'translation'
         nsSeparator: '~~~'
         returnNull: false
         resources: {
-            translation: typeof translation
-            about: typeof about
-            profile: typeof profile
-            articleDetails: typeof articleDetails
-            articleList: typeof articleList
-            admin: typeof admin
+            translation: typeof translation & AnyKey
+            about: typeof about & AnyKey
+            profile: typeof profile & AnyKey
+            articleDetails: typeof articleDetails & AnyKey
+            articleList: typeof articleList & AnyKey
+            admin: typeof admin & AnyKey
         }
     }
 }

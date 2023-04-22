@@ -1,5 +1,4 @@
 import { type FC, memo, useCallback, useState } from 'react'
-import { classNames } from '@/shared/lib/classNames'
 import { Card } from '@/shared/ui/Card'
 import { HStack, VStack } from '@/shared/ui/Stack'
 import { Text } from '@/shared/ui/Text'
@@ -14,21 +13,31 @@ import { Drawer } from '@/shared/ui/Drawer'
 interface RatingCardProps {
     className?: string
     title?: string
+    ratedTitle?: string
     feedbackTitle?: string
     hasFeedback?: boolean
     onCancel?: (starsCount: number) => void
     onAccept?: (starsCount: number, feedback?: string) => void
+    rate?: number
 }
 
 export const RatingCard: FC<RatingCardProps> = memo((props) => {
-    const { className, title, feedbackTitle, hasFeedback, onAccept, onCancel } =
-        props
+    const {
+        className,
+        title,
+        feedbackTitle,
+        hasFeedback,
+        onAccept,
+        onCancel,
+        rate,
+        ratedTitle,
+    } = props
 
     const isMobile = useIsMobile()
 
     const [isModalOpen, setIsModalOpen] = useState(false)
 
-    const [starsCount, setStarsCount] = useState(0)
+    const [starsCount, setStarsCount] = useState(rate ?? 0)
 
     const [feedback, setFeedback] = useState('')
 
@@ -70,10 +79,14 @@ export const RatingCard: FC<RatingCardProps> = memo((props) => {
     )
 
     return (
-        <Card className={classNames('', {}, [className])}>
+        <Card className={className} fullWidth>
             <VStack align="center" gap="8">
-                <Text title={title} />
-                <StarRating size={40} onSelect={handleSelectStars} />
+                <Text title={starsCount ? ratedTitle : title} />
+                <StarRating
+                    size={40}
+                    onSelect={handleSelectStars}
+                    selectedStars={starsCount}
+                />
             </VStack>
             {!isMobile && (
                 <Modal
