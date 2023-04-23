@@ -1,15 +1,14 @@
-import { EditableProfileCard } from './EditableProfileCard'
+import { screen, waitFor } from '@testing-library/react'
+import { type Profile } from '@/entities/Profile'
 import {
     renderWithProviders,
     mockedAxios,
 } from '@/shared/lib/tests/renderWithProviders'
-import { type Profile } from '@/entities/Profile'
 import { Currency } from '@/shared/const/currency'
 import { Country } from '@/shared/const/country'
-import { editableProfileCardReducer } from '../../model/slice/editableProfileCard.slice'
-import { screen, waitFor } from '@testing-library/react'
-
 import { type UserDto } from '@/shared/api/types'
+import { EditableProfileCard } from './EditableProfileCard'
+import { editableProfileCardReducer } from '../../model/slice/editableProfileCard.slice'
 
 const user: Required<UserDto> = {
     id: '5a9ce407-e95d-4308-b2af-1d0c9ae9b2f5',

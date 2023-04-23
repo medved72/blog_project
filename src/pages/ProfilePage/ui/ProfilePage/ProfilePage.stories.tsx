@@ -1,6 +1,6 @@
 import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator'
-import ProfilePage from './ProfilePage'
 import { generateAppStories } from '@/shared/config/storybook/generateAppStories'
+import ProfilePage from './ProfilePage'
 import { ROUTES } from '../../../../shared/config/routes'
 
 generateAppStories(

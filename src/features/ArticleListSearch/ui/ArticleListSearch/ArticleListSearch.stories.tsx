@@ -1,6 +1,6 @@
-import { ArticleListSearch } from './ArticleListSearch'
-import { generateAppStories } from '@/shared/config/storybook/generateAppStories'
 import { action } from '@storybook/addon-actions'
+import { generateAppStories } from '@/shared/config/storybook/generateAppStories'
+import { ArticleListSearch } from './ArticleListSearch'
 
 generateAppStories('features/ArticleListSearch', ArticleListSearch, [
     {

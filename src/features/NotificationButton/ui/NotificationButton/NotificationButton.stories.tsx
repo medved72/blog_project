@@ -1,5 +1,5 @@
-import { NotificationButton } from './NotificationButton'
 import { generateAppStories } from '@/shared/config/storybook/generateAppStories'
+import { NotificationButton } from './NotificationButton'
 
 generateAppStories(
     'features/NotificationButton/NotificationButton',

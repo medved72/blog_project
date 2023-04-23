@@ -1,6 +1,6 @@
-import { validateProfileData } from './validateProfileData'
-import avatar from '@/shared/assets/tests/avatar.jpg'
 import { type Profile } from '@/entities/Profile'
+import avatar from '@/shared/assets/tests/avatar.jpg'
+import { validateProfileData } from './validateProfileData'
 
 const profile = {
     first: 'Дмитрий',

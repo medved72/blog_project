@@ -1,7 +1,7 @@
 import { type ComponentMeta, type ComponentStory } from '@storybook/react'
-import MainPage from './MainPage'
 import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator'
 import { THEME } from '@/shared/config/theme'
+import MainPage from './MainPage'
 
 const meta: ComponentMeta<typeof MainPage> = {
     title: 'pages/MainPage',

@@ -1,9 +1,8 @@
 import { type FC, memo, useCallback } from 'react'
-import { classNames } from '@/shared/lib/classNames/classNames'
-
-import classes from './PageError.module.scss'
 import { useTranslation } from 'react-i18next'
+import { classNames } from '@/shared/lib/classNames/classNames'
 import { Button } from '@/shared/ui/Button'
+import classes from './PageError.module.scss'
 
 export interface PageErrorProps {
     className?: string

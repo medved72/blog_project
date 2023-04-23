@@ -1,7 +1,7 @@
 import { type ComponentMeta, type ComponentStory } from '@storybook/react'
-import { Link } from './Link'
 import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator'
 import { THEME } from '@/shared/config/theme'
+import { Link } from './Link'
 
 const meta: ComponentMeta<typeof Link> = {
     title: 'shared/Link',

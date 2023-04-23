@@ -1,4 +1,3 @@
-import { type Reducer } from '@reduxjs/toolkit'
 import {
     type FC,
     memo,
@@ -6,6 +5,7 @@ import {
     useEffect,
     useLayoutEffect,
 } from 'react'
+import { type Reducer } from '@reduxjs/toolkit'
 import { useAppStore } from '../../hooks/useAppStore'
 import { useAppDispatch } from '../../hooks/useAppDispatch'
 

@@ -9,11 +9,11 @@ import {
     type ArticleSortFieldValues,
     type ArticleType,
 } from '@/entities/Article'
+import { ARTICLE_VIEW_LOCALSTORAGE_KEY } from '@/shared/const/localStorage'
+import { type SortOrderValues } from '@/shared/types'
 import { type ArticlesListViewState } from '../types/ArticlesListViewState'
 import { fetchArticlesList } from '../services/fetchArticlesList'
-import { ARTICLE_VIEW_LOCALSTORAGE_KEY } from '@/shared/const/localStorage'
 import { isArticleListViewMode } from '../../lib/IsArticleListViewMode'
-import { type SortOrderValues } from '@/shared/types'
 import { isSortOrder } from '../../lib/isSortOrder'
 import { isArticleSortField } from '../../lib/isArticleSortField'
 import { isArticleType } from '../../lib/isArticleType'

@@ -1,8 +1,8 @@
 import { type FC, memo, Suspense } from 'react'
 import { classNames } from '@/shared/lib/classNames/classNames'
 import { Modal } from '@/shared/ui/Modal'
-import { LoginFormAsync as LoginForm } from './LoginForm.async'
 import { DotsSpinner } from '@/shared/ui/Spinner'
+import { LoginFormAsync as LoginForm } from './LoginForm.async'
 
 interface LoginModalProps {
     className?: string

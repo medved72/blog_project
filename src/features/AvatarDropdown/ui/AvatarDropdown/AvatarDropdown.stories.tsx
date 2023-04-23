@@ -1,6 +1,6 @@
-import { AvatarDropdown } from './AvatarDropdown'
 import { generateAppStories } from '@/shared/config/storybook/generateAppStories'
 import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator'
+import { AvatarDropdown } from './AvatarDropdown'
 
 generateAppStories(
     'features/AvatarDropdown/AvatarDropdown/AvatarDropdown',

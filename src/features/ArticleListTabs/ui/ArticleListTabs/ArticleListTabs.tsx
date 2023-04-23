@@ -1,10 +1,8 @@
 import { type FC, memo, useMemo } from 'react'
-import { classNames } from '@/shared/lib/classNames'
-import classes from './ArticleListTabs.module.scss'
+import { useTranslation } from 'react-i18next'
+import { type ArticleType, articleTypes } from '@/entities/Article'
 import { Tabs } from '@/shared/ui/Tabs'
 import { type TabItemValue } from '@/shared/ui/Tabs/Tabs'
-import { type ArticleType, articleTypes } from '@/entities/Article'
-import { useTranslation } from 'react-i18next'
 
 interface ArticleListTabsProps {
     className?: string
@@ -25,7 +23,7 @@ export const ArticleListTabs: FC<ArticleListTabsProps> = memo((props) => {
 
     return (
         <Tabs
-            className={classNames(classes.articleListTabs, {}, [className])}
+            className={className}
             value={value}
             tabs={articleTabs}
             onTabClick={onTabClick}

@@ -1,5 +1,5 @@
-import { App } from '@/app'
 import { createRoot } from 'react-dom/client'
+import { App } from '@/app'
 import '@/shared/config/i18n/i18nInit'
 
 const bootstrap = (): void => {

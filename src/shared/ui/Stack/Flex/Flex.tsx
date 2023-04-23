@@ -1,7 +1,7 @@
 import React, { type PropsWithChildren } from 'react'
 import { classNames } from '../../../lib/classNames'
-import classes from './Flex.module.scss'
 import { capitalize } from '../../../lib/capitalize'
+import classes from './Flex.module.scss'
 
 export type FlexJustify = 'start' | 'center' | 'end' | 'between'
 export type FlexAlign = 'start' | 'center' | 'end'

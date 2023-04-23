@@ -1,5 +1,5 @@
-import ArticleEditPage from './ArticleEditPage'
 import { generateAppStories } from '@/shared/config/storybook/generateAppStories'
+import ArticleEditPage from './ArticleEditPage'
 
 generateAppStories('pages/ArticleEditPage', ArticleEditPage, [
     {

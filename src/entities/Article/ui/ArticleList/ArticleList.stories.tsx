@@ -1,5 +1,5 @@
-import { ArticleList } from './ArticleList'
 import { generateAppStories } from '@/shared/config/storybook/generateAppStories'
+import { ArticleList } from './ArticleList'
 import db from '../../../../../json-server/db.json'
 import { type Article } from '../../model'
 

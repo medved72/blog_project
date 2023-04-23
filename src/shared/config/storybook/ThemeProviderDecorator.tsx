@@ -1,7 +1,7 @@
 import { type DecoratorFn } from '@storybook/react'
-import { type THEME, ThemeProvider, useTheme } from '../theme'
-import classes from '@/app/App.module.scss'
 import { type FC } from 'react'
+import classes from '@/app/App.module.scss'
+import { type THEME, ThemeProvider, useTheme } from '../theme'
 
 export const ThemeProviderDecorator = (theme: THEME): DecoratorFn => {
     const Decorated: FC<{ StoryComponent: Parameters<DecoratorFn>[0] }> = ({

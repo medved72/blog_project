@@ -1,6 +1,6 @@
-import { type Profile } from './profile'
 import { type Currency } from '@/shared/const/currency'
 import { type Country } from '@/shared/const/country'
+import { type Profile } from './profile'
 import { type ProfileErrors } from './profileErrors'
 
 export interface ProfileCardProps {

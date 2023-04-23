@@ -5,8 +5,8 @@ import {
     type PropsWithChildren,
 } from 'react'
 import { classNames } from '../../../../lib/classNames'
-import classes from './Card.module.scss'
 import { type ValueOf } from '../../../../types'
+import classes from './Card.module.scss'
 export const CardTheme = {
     normal: 'normal',
     outlined: 'outlined',

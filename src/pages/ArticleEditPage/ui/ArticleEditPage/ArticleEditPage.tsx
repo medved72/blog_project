@@ -1,6 +1,4 @@
 import { type FC, memo } from 'react'
-import { classNames } from '@/shared/lib/classNames'
-import classes from './ArticleEditPage.module.scss'
 
 interface ArticleEditPageProps {
     className?: string
@@ -9,7 +7,7 @@ interface ArticleEditPageProps {
 const ArticleEditPage: FC<ArticleEditPageProps> = memo((props) => {
     const { className } = props
     return (
-        <div className={classNames(classes.articleEditPage, {}, [className])}>
+        <div className={className}>
             {/* eslint-disable-next-line i18next/no-literal-string */}
             {/* eslint-disable-next-line i18next/no-literal-string */}
             ArticleEditPage

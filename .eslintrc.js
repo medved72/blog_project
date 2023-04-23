@@ -88,22 +88,47 @@ module.exports = {
                     },
                 ],
                 'blog-project-plugin/import-order': [
-                    'warn',
+                    'error',
                     {
                         groups: [
                             { name: 'react', match: 'react', order: 10 },
-                            { name: 'packages', match: '!(@/)**', order: 20 },
-                            { name: 'layers', match: '@/**', order: 30 },
+                            {
+                                name: 'shared layer',
+                                match: '@/shared/**',
+                                order: 35,
+                            },
+                            {
+                                name: 'entities layer',
+                                match: '@/entities/**',
+                                order: 34,
+                            },
+                            {
+                                name: 'features layer',
+                                match: '@/features/**',
+                                order: 33,
+                            },
+                            {
+                                name: 'widgets layer',
+                                match: '@/widgets/**',
+                                order: 32,
+                            },
+                            {
+                                name: 'processes layer',
+                                match: '@/processes/**',
+                                order: 31,
+                            },
+                            { name: 'app layer', match: '@/app/**', order: 30 },
+                            {
+                                name: 'styles',
+                                match: '**/*.scss',
+                                order: 50,
+                            },
                             {
                                 name: 'relative imports',
                                 match: '(..|.)/**',
                                 order: 40,
                             },
-                            {
-                                name: 'styles',
-                                match: '**/**.module.scss',
-                                order: 50,
-                            },
+                            { name: 'packages', match: '**', order: 20 },
                         ],
                     },
                 ],

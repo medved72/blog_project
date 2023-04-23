@@ -1,6 +1,6 @@
 import { type FC, memo } from 'react'
-import { classNames } from '../../lib/classNames'
 import { useTranslation } from 'react-i18next'
+import { classNames } from '../../lib/classNames'
 import { Currency } from '../../const/currency'
 import { ListBox } from '../Popups'
 

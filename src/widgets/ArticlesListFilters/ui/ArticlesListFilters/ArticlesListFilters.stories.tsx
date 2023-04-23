@@ -1,7 +1,7 @@
-import { ArticlesListFilters } from './ArticlesListFilters'
-import { generateAppStories } from '@/shared/config/storybook/generateAppStories'
 import { type Article } from '@/entities/Article'
+import { generateAppStories } from '@/shared/config/storybook/generateAppStories'
 import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator'
+import { ArticlesListFilters } from './ArticlesListFilters'
 import db from '../../../../../json-server/db.json'
 
 const articles = db.articles.slice(0, 8).map(({ userId, ...article }) => ({

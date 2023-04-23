@@ -1,7 +1,7 @@
 import { type ComponentMeta, type ComponentStory } from '@storybook/react'
-import { ThemeSwitcher } from './ThemeSwitcher'
 import { ThemeProviderDecorator } from '@/shared/config/storybook/ThemeProviderDecorator'
 import { THEME } from '@/shared/config/theme'
+import { ThemeSwitcher } from './ThemeSwitcher'
 
 const meta: ComponentMeta<typeof ThemeSwitcher> = {
     title: 'features/ThemeSwitcher',

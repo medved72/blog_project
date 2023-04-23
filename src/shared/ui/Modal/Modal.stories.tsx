@@ -1,7 +1,7 @@
 import { type ComponentMeta, type ComponentStory } from '@storybook/react'
-import { Modal } from './Modal'
 import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator'
 import { THEME } from '@/shared/config/theme'
+import { Modal } from './Modal'
 
 const meta: ComponentMeta<typeof Modal> = {
     title: 'shared/Modal',

@@ -1,15 +1,15 @@
 import React, { Fragment, memo, type ReactNode } from 'react'
 import { Listbox as HListbox } from '@headlessui/react'
-import classes from './ListBox.module.scss'
-import { classNames } from '../../../../lib/classNames'
 import {
     useFloating,
     flip,
     offset,
     type Placement,
 } from '@floating-ui/react-dom'
+import { classNames } from '../../../../lib/classNames'
 import { Button } from '../../../Button'
 import { HStack } from '../../../Stack'
+import classes from './ListBox.module.scss'
 
 export interface ListBoxItem<T extends string> {
     value: T

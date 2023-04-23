@@ -6,15 +6,15 @@ import {
     useEffect,
     useRef,
 } from 'react'
-import classes from './PageWrapper.module.scss'
-import { useAppDispatch } from '@/shared/hooks/useAppDispatch'
+import { useLocation } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 import {
     getScrollRestoreByPath,
     setScrollRestorePosition,
 } from '@/features/ScrollRestore'
-import { useLocation } from 'react-router-dom'
-import { useSelector } from 'react-redux'
+import { useAppDispatch } from '@/shared/hooks/useAppDispatch'
 import { useThrottle } from '@/shared/hooks/useThrottle'
+import classes from './PageWrapper.module.scss'
 
 export const PageWrapper: FC<PropsWithChildren> = ({ children }) => {
     const dispatch = useAppDispatch()

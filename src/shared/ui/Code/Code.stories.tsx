@@ -1,5 +1,5 @@
-import { Code } from './Code'
 import { generateAppStories } from '@/shared/config/storybook/generateAppStories'
+import { Code } from './Code'
 
 generateAppStories('shared/Code', Code, [
     {

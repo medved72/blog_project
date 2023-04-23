@@ -1,7 +1,7 @@
 import { type ComponentMeta, type ComponentStory } from '@storybook/react'
-import { DotsSpinner } from './DotsSpinner'
 import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator'
 import { THEME } from '@/shared/config/theme'
+import { DotsSpinner } from './DotsSpinner'
 
 const meta: ComponentMeta<typeof DotsSpinner> = {
     title: 'shared/DotsSpinner',

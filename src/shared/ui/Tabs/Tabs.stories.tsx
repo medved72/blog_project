@@ -1,6 +1,6 @@
-import { Tabs } from './Tabs'
-import { generateAppStories } from '@/shared/config/storybook/generateAppStories'
 import { action } from '@storybook/addon-actions'
+import { generateAppStories } from '@/shared/config/storybook/generateAppStories'
+import { Tabs } from './Tabs'
 
 generateAppStories('shared/Tabs', Tabs, [
     {

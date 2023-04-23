@@ -1,6 +1,6 @@
+import { type Profile } from '@/entities/Profile'
 import avatar from '@/shared/assets/tests/avatar.jpg'
 import { updateProfileData } from '../services/updateProfileData'
-import { type Profile } from '@/entities/Profile'
 import { type EditableProfileCardState } from '../types/EditableProfileCardState'
 import {
     editableProfileCardActions,

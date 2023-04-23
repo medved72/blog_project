@@ -1,12 +1,10 @@
-import i18n from 'i18next'
 import { initReactI18next } from 'react-i18next'
-
+import i18n from 'i18next'
 import ru from '../../../../public/locales/ru/translation.json'
 import ru_about from '../../../../public/locales/ru/about.json'
 import ru_profile from '../../../../public/locales/ru/profile.json'
 import ru_articleDetails from '../../../../public/locales/ru/articleDetails.json'
 import ru_articleList from '../../../../public/locales/ru/articleList.json'
-
 import en from '../../../../public/locales/en/translation.json'
 import en_about from '../../../../public/locales/en/about.json'
 import en_profile from '../../../../public/locales/en/profile.json'

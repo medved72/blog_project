@@ -1,6 +1,6 @@
-import { EditableProfileCard } from './EditableProfileCard'
 import { generateAppStories } from '@/shared/config/storybook/generateAppStories'
 import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator'
+import { EditableProfileCard } from './EditableProfileCard'
 import db from '../../../../../json-server/db.json'
 
 const profile = db.profile[0]

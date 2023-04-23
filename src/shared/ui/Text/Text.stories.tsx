@@ -1,10 +1,10 @@
-import { Text } from './Text'
+import { type ComponentProps } from 'react'
 import {
     type AppStoryItem,
     generateAppStories,
 } from '@/shared/config/storybook/generateAppStories'
-import { type ComponentProps } from 'react'
 import { capitalize } from '@/shared/lib/capitalize'
+import { Text } from './Text'
 
 const themes = ['primary', 'error', 'inverted'] as const
 const aligns = ['right', 'left', 'center'] as const

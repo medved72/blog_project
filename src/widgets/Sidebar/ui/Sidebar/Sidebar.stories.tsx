@@ -1,8 +1,8 @@
 import { type ComponentMeta, type ComponentStory } from '@storybook/react'
-import { Sidebar } from './Sidebar'
 import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator'
 import { THEME } from '@/shared/config/theme'
-import { StoreDecorator } from '../../../../shared/config/storybook/StoreDecorator'
+import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator'
+import { Sidebar } from './Sidebar'
 
 const meta: ComponentMeta<typeof Sidebar> = {
     title: 'widgets/Sidebar',

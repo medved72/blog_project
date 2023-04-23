@@ -1,3 +1,4 @@
+import { generateAppStories } from '@/shared/config/storybook/generateAppStories'
 import {
     Flex,
     type FlexAlign,
@@ -5,7 +6,6 @@ import {
     type FlexGap,
     type FlexJustify,
 } from './Flex'
-import { generateAppStories } from '@/shared/config/storybook/generateAppStories'
 import { capitalize } from '../../../lib/capitalize'
 
 const gaps: FlexGap[] = ['4', '8', '16', '32']

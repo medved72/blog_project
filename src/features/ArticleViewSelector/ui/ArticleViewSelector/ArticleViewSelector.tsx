@@ -4,13 +4,13 @@ import {
     memo,
     type SVGAttributes,
 } from 'react'
-import { classNames } from '@/shared/lib/classNames'
-import classes from './ArticleViewSelector.module.scss'
 import { type ArticleListViewMode } from '@/entities/Article'
+import { classNames } from '@/shared/lib/classNames'
 import TilledIcon from '@/shared/assets/icons/tiled-24-24.svg'
 import ListIcon from '@/shared/assets/icons/list-24-24.svg'
 import { Button } from '@/shared/ui/Button'
 import { Icon } from '@/shared/ui/Icon'
+import classes from './ArticleViewSelector.module.scss'
 
 interface ArticleViewSelectorProps {
     className?: string

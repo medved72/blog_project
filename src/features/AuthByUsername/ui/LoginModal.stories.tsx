@@ -1,10 +1,10 @@
 import { type ComponentMeta, type ComponentStory } from '@storybook/react'
-import { LoginModal } from './LoginModal'
+import { action } from '@storybook/addon-actions'
+import createAsyncCallback from '@loki/create-async-callback'
 import { THEME } from '@/shared/config/theme'
 import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator'
 import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator'
-import { action } from '@storybook/addon-actions'
-import createAsyncCallback from '@loki/create-async-callback'
+import { LoginModal } from './LoginModal'
 
 const meta: ComponentMeta<typeof LoginModal> = {
     title: 'features/LoginModal',

@@ -1,6 +1,6 @@
 import { type DecoratorFn } from '@storybook/react'
-import { StoreProvider } from '@/app/providers/StoreProvider'
 import { type DeepPartial } from '@reduxjs/toolkit'
+import { StoreProvider } from '@/app/providers/StoreProvider'
 
 export const StoreDecorator = (
     initialState: DeepPartial<GlbAppState>

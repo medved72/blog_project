@@ -1,9 +1,9 @@
-import { generateAppStories } from '@/shared/config/storybook/generateAppStories'
-import ArticlesPage from './ArticlesPage'
-import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator'
-import { type Article } from '@/entities/Article'
 import { type ComponentStory } from '@storybook/react'
 import createAsyncCallback from '@loki/create-async-callback'
+import { type Article } from '@/entities/Article'
+import { generateAppStories } from '@/shared/config/storybook/generateAppStories'
+import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator'
+import ArticlesPage from './ArticlesPage'
 import db from '../../../../../json-server/db.json'
 
 const articles = db.articles.slice(0, 8).map(({ userId, ...article }) => ({

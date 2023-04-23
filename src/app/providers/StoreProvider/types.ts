@@ -1,20 +1,20 @@
-import { type setupStore } from './setupStore'
 import {
     type AnyAction,
     type CombinedState,
     type Reducer,
     type ReducersMapObject,
 } from '@reduxjs/toolkit'
-import { type LoginState } from '@/features/AuthByUsername'
-import { type UserState } from '@/entities/User'
-import { type ArticleDetailsState } from '@/entities/Article'
 import { type AxiosInstance } from 'axios'
+import { type LoginState } from '@/features/AuthByUsername'
 import { type ArticleCommentListState } from '@/features/ArticleCommentsList'
 import { type AddArticleCommentFormState } from '@/features/AddArticleCommentForm'
 import { type ArticlesListViewState } from '@/features/ArticlesListView'
 import { type ScrollRestoreState } from '@/features/ScrollRestore'
 import { type EditableProfileCardState } from '@/features/EditableProfileCard'
+import { type UserState } from '@/entities/User'
+import { type ArticleDetailsState } from '@/entities/Article'
 import { type rtkApi } from '@/shared/api/rtkApi'
+import { type setupStore } from './setupStore'
 
 export interface AppState {
     user: UserState

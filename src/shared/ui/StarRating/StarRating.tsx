@@ -1,8 +1,8 @@
 import { type FC, memo, useCallback, useState } from 'react'
 import { classNames } from '../../lib/classNames'
-import classes from './StarRating.module.scss'
 import { Icon } from '../Icon'
 import StarIcon from '../../assets/icons/star.svg'
+import classes from './StarRating.module.scss'
 interface StarRatingProps {
     className?: string
     onSelect?: (starsCount: number) => void

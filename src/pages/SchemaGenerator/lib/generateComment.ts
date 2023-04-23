@@ -1,5 +1,5 @@
-import type db from '../../../../json-server/db.json'
 import { faker } from '@faker-js/faker'
+import type db from '../../../../json-server/db.json'
 
 export type GenerateCommentReturn = (typeof db.comments)[number]
 export interface GenerateCommentParams {

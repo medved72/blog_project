@@ -1,22 +1,22 @@
 import { type FC, memo, useEffect } from 'react'
+import { useSelector } from 'react-redux'
+import { useSearchParams } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 import { ArticleList } from '@/entities/Article'
 import { withDynamicModuleLoader } from '@/shared/lib/components'
+import { useAppDispatch } from '@/shared/hooks/useAppDispatch'
+import { Text } from '@/shared/ui/Text'
 import {
     articlesListViewActions,
     articlesListViewReducer,
     getArticlesList,
 } from '../../model/slices/articleListView.slice'
-import { useAppDispatch } from '@/shared/hooks/useAppDispatch'
-import { useSelector } from 'react-redux'
 import {
     getArticleListViewInitialized,
     getArticleListViewLoading,
     getArticleListViewMode,
 } from '../../model/selectors'
 import { ArticleListInfiniteLoader } from '../ArticleListInfiniteLoader'
-import { useSearchParams } from 'react-router-dom'
-import { Text } from '@/shared/ui/Text'
-import { useTranslation } from 'react-i18next'
 
 interface ArticlesListViewProps {
     className?: string

@@ -1,5 +1,5 @@
-import { useTransitionGroup } from './useTransitionGroup'
 import { useEffect } from 'react'
+import { useTransitionGroup } from './useTransitionGroup'
 
 export enum PopupTransitionStep {
     Closed = 'closed',

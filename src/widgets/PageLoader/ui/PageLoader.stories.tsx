@@ -1,7 +1,7 @@
 import { type ComponentMeta, type ComponentStory } from '@storybook/react'
-import { PageLoader } from './PageLoader'
 import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator'
 import { THEME } from '@/shared/config/theme'
+import { PageLoader } from './PageLoader'
 
 const meta: ComponentMeta<typeof PageLoader> = {
     title: 'widgets/PageLoader',

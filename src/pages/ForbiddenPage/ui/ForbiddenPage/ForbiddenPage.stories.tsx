@@ -1,5 +1,5 @@
-import ForbiddenPage from './ForbiddenPage'
 import { generateAppStories } from '@/shared/config/storybook/generateAppStories'
+import ForbiddenPage from './ForbiddenPage'
 
 generateAppStories('pages/ForbiddenPage', ForbiddenPage, [
     {

@@ -1,6 +1,6 @@
 import { TestAsyncThunk } from '@/shared/lib/tests'
-import { fetchProfileData } from './fetchProfileData'
 import avatar from '@/shared/assets/tests/avatar.jpg'
+import { fetchProfileData } from './fetchProfileData'
 
 const profile = {
     first: 'Дмитрий',

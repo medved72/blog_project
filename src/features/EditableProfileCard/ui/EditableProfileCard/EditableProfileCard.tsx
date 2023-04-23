@@ -1,13 +1,14 @@
 import { type FC, memo, useCallback, useEffect, useMemo } from 'react'
+import { useSelector } from 'react-redux'
+import { useTranslation } from 'react-i18next'
+import { ProfileCard } from '@/entities/Profile'
+import { type ValidateProfileError } from '@/entities/Profile'
 import { Text } from '@/shared/ui/Text'
 import { type Currency } from '@/shared/const/currency'
 import { type Country } from '@/shared/const/country'
 import { useAppDispatch } from '@/shared/hooks/useAppDispatch'
-import { useSelector } from 'react-redux'
 import { withDynamicModuleLoader } from '@/shared/lib/components'
-import { useTranslation } from 'react-i18next'
 import { VStack } from '@/shared/ui/Stack'
-import { ProfileCard } from '@/entities/Profile'
 import {
     getEditableProfileCardError,
     getEditableProfileCardForm,
@@ -15,7 +16,6 @@ import {
     getEditableProfileCardReadOnly,
     getProfileValidationErrors,
 } from '../../model/selectors'
-import { type ValidateProfileError } from '../../model/types/EditableProfileCardState'
 import {
     editableProfileCardActions,
     editableProfileCardReducer,

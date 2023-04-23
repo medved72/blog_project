@@ -1,5 +1,5 @@
-import { Card } from './Card'
 import { generateAppStories } from '@/shared/config/storybook/generateAppStories'
+import { Card } from './Card'
 import { Text } from '../../../Text'
 
 generateAppStories('shared/Card', Card, [

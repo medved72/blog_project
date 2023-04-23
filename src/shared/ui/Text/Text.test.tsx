@@ -1,6 +1,6 @@
+import { screen } from '@testing-library/react'
 import { renderWithProviders } from '@/shared/lib/tests'
 import { Text } from './Text'
-import { screen } from '@testing-library/react'
 
 describe('Text', () => {
     it('should render', () => {

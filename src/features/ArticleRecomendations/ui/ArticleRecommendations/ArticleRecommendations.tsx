@@ -1,7 +1,7 @@
 import { type FC, memo } from 'react'
 import { useTranslation } from 'react-i18next'
-import { Text } from '@/shared/ui/Text'
 import { type Article, ArticleList } from '@/entities/Article'
+import { Text } from '@/shared/ui/Text'
 import { VStack } from '@/shared/ui/Stack'
 import { useArticleRecommendationsListQuery } from '../../api/articleRecommendations.api'
 

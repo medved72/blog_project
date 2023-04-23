@@ -4,10 +4,8 @@ import { Portal } from '../Portal'
 import { useTheme } from '../../config/theme'
 import { Overlay } from '../Overlay'
 import { PopupTransitionStep } from '../../hooks/usePopupToggleWithTransition'
-
-import classes from './Modal.module.scss'
-
 import { useModal } from '../../hooks/useModal'
+import classes from './Modal.module.scss'
 
 type RenderMode = 'default' | 'lazy' | 'destroyOnclose'
 

@@ -1,5 +1,5 @@
-import { NotificationItem } from './NotificationItem'
 import { generateAppStories } from '@/shared/config/storybook/generateAppStories'
+import { NotificationItem } from './NotificationItem'
 
 generateAppStories('shared/Notification/NotificationItem', NotificationItem, [
     {

@@ -1,7 +1,7 @@
 import { type ComponentMeta, type ComponentStory } from '@storybook/react'
-import { CountrySelect } from './CountrySelect'
 import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator'
 import { THEME } from '@/shared/config/theme'
+import { CountrySelect } from './CountrySelect'
 
 const meta: ComponentMeta<typeof CountrySelect> = {
     title: 'shared/CountrySelect',

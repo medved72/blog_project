@@ -5,11 +5,11 @@ import {
     useCallback,
     useEffect,
 } from 'react'
+import { useSelector } from 'react-redux'
 import { classNames } from '@/shared/lib/classNames'
 import { useIntersectionObserver } from '@/shared/hooks/useIntersectionObserver'
 import { useAppDispatch } from '@/shared/hooks/useAppDispatch'
 import { fetchNextArticlesPage } from '../../model/services/fetchNextPage'
-import { useSelector } from 'react-redux'
 import { getArticlesList } from '../../model/slices/articleListView.slice'
 import { getArticleListViewHasMore } from '../../model/selectors'
 

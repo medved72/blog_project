@@ -1,17 +1,17 @@
 import { type FC, memo, useCallback } from 'react'
+import { useSelector } from 'react-redux'
+import { AddCommentForm } from '@/entities/Comment'
 import { classNames } from '@/shared/lib/classNames'
-import classes from './AddArticleCommentForm.module.scss'
 import { withDynamicModuleLoader } from '@/shared/lib/components'
+import { useAppDispatch } from '@/shared/hooks/useAppDispatch'
 import {
     addArticleCommentFormReducer,
     setAddArticleCommentFormText,
 } from '../../model/slices/addCommentForm.slice'
-import { AddCommentForm } from '@/entities/Comment'
-import { useAppDispatch } from '@/shared/hooks/useAppDispatch'
 import { sendArticleComment } from '../../model/services/sendArticleComment'
-import { useSelector } from 'react-redux'
 import { getAddArticleCommentFormText } from '../../model/selectors'
 import { getAddArticleCommentFormLoading } from '../../model/selectors/getAddArticleCommentFormLoading'
+import classes from './AddArticleCommentForm.module.scss'
 
 interface AddCommentFormProps {
     className?: string

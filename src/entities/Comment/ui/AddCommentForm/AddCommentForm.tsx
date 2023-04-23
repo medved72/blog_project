@@ -3,8 +3,8 @@ import { useTranslation } from 'react-i18next'
 import { Input } from '@/shared/ui/Input'
 import { Button } from '@/shared/ui/Button'
 import { classNames } from '@/shared/lib/classNames'
-import classes from './AddCommentForm.module.scss'
 import { HStack } from '../../../../shared/ui/Stack'
+import classes from './AddCommentForm.module.scss'
 
 interface AddCommentFormProps {
     className?: string

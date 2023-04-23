@@ -1,5 +1,5 @@
-import { StarRating } from './StarRating'
 import { generateAppStories } from '@/shared/config/storybook/generateAppStories'
+import { StarRating } from './StarRating'
 
 generateAppStories('shared/StarRating', StarRating, [
     {

@@ -9,12 +9,12 @@ import { classNames } from '../../lib/classNames'
 import { Portal } from '../Portal'
 import { useTheme } from '../../config/theme'
 import { Overlay } from '../Overlay'
-import classes from './Drawer.module.scss'
 import {
     type AnimationContextLoaded,
     AnimationProvider,
     useAnimationModules,
 } from '../../lib/components/AnimationProvider'
+import classes from './Drawer.module.scss'
 
 interface DrawerProps extends PropsWithChildren {
     className?: string

@@ -1,13 +1,13 @@
 import { type FC, memo, useCallback, useState } from 'react'
+import { NotificationList } from '@/entities/Notification'
 import { classNames } from '@/shared/lib/classNames'
-import classes from './NotificationButton.module.scss'
 import { Button } from '@/shared/ui/Button'
 import { Icon } from '@/shared/ui/Icon'
 import NotificationIcon from '@/shared/assets/icons/notification-20-20.svg'
-import { NotificationList } from '@/entities/Notification'
 import { Popover } from '@/shared/ui/Popups'
 import { Drawer } from '@/shared/ui/Drawer'
 import { useIsMobile } from '@/shared/hooks/useIsMobile'
+import classes from './NotificationButton.module.scss'
 
 interface NotificationButtonProps {
     className?: string

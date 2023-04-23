@@ -1,8 +1,8 @@
 import { type FC, memo } from 'react'
 import { classNames } from '@/shared/lib/classNames'
-import classes from './ArticleCode.module.scss'
-import { type ArticleCodeBlock } from '../../model'
 import { Code } from '@/shared/ui/Code'
+import { type ArticleCodeBlock } from '../../model'
+import classes from './ArticleCode.module.scss'
 
 interface ArticleCodeProps {
     className?: string

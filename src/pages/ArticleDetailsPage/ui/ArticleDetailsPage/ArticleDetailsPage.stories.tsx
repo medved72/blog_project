@@ -1,11 +1,11 @@
-import { generateAppStories } from '@/shared/config/storybook/generateAppStories'
-import ArticleDetailsPage from './ArticleDetailsPage'
-import { ROUTES } from '@/shared/config/routes'
-import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator'
-import { type Article } from '@/entities/Article'
-import { type CommentDto } from '@/entities/Comment'
 import { type ComponentStory } from '@storybook/react'
 import createAsyncCallback from '@loki/create-async-callback'
+import { type Article } from '@/entities/Article'
+import { type CommentDto } from '@/entities/Comment'
+import { generateAppStories } from '@/shared/config/storybook/generateAppStories'
+import { ROUTES } from '@/shared/config/routes'
+import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator'
+import ArticleDetailsPage from './ArticleDetailsPage'
 import db from '../../../../../json-server/db.json'
 
 const recommendations = db.articles

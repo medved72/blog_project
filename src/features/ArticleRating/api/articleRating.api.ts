@@ -1,5 +1,5 @@
-import { rtkApi } from '@/shared/api/rtkApi'
 import { type RatingDto } from '@/entities/Rating'
+import { rtkApi } from '@/shared/api/rtkApi'
 
 interface ArticleRatingByUserIdParams {
     articleId: string
