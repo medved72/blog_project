@@ -34,7 +34,7 @@ module.exports = {
         'n/no-callback-literal': ['off'],
         '@typescript-eslint/no-floating-promises': ['off'],
         '@typescript-eslint/no-redeclare': ['off'],
-        'blog-project-plugin/path-checker': ['error'],
+        'blog-project-plugin/path-checker': ['error', { alias: '@' }],
     },
     settings: {
         react: {

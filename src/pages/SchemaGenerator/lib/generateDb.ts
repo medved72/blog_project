@@ -3,8 +3,8 @@ import { generateArticle } from './generateArticle'
 import { generateUser } from './generateUser'
 import { generateComment } from './generateComment'
 import { generateNotification } from './generateNotification'
+import { generateRating } from './generateRating'
 import type db from '../../../../json-server/db.json'
-import { generateRating } from '@/pages/SchemaGenerator/lib/generateRating'
 
 export type GenerateDbReturn = typeof db
 

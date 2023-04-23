@@ -19,7 +19,7 @@ export default ({
     }
 
     config.resolve?.modules?.unshift(paths.src)
-    config.resolve!.alias = { '@': paths.src }
+    config.resolve!.alias = { ...config.resolve!.alias, '@': paths.src }
     config.resolve?.extensions?.push('.ts', '.tsx')
     config.module?.rules?.push(buildCssLoader(true))
 

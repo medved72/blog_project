@@ -29,13 +29,21 @@ module.exports = {
             url: null,
         },
         fixable: null,
-        schema: [],
+        schema: [
+            {
+                type: 'object',
+                properties: { alias: { type: 'string' } },
+            },
+        ],
     },
 
     create(context) {
+        const alias = context.options?.[0]?.alias ?? ''
+
         return {
             ImportDeclaration(node) {
-                const importTo = node.source.value
+                const value = node.source.value
+                const importTo = alias ? value.replace(`${alias}/`, '') : value
                 const fromFilename = context.getFilename()
                 if (shouldBeRelative(fromFilename, importTo)) {
                     context.report({
