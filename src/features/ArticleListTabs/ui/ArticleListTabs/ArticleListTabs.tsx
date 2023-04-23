@@ -3,10 +3,7 @@ import { classNames } from '@/shared/lib/classNames'
 import classes from './ArticleListTabs.module.scss'
 import { Tabs } from '@/shared/ui/Tabs'
 import { type TabItemValue } from '@/shared/ui/Tabs/Tabs'
-import {
-    type ArticleType,
-    articleTypes,
-} from '@/entities/Article/model/types/article'
+import { type ArticleType, articleTypes } from '@/entities/Article'
 import { useTranslation } from 'react-i18next'
 
 interface ArticleListTabsProps {

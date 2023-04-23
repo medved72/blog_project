@@ -7,6 +7,7 @@ import {
     type Article,
     type ArticleListViewMode,
     type ArticleSortFieldValues,
+    type ArticleType,
 } from '@/entities/Article'
 import { type ArticlesListViewState } from '../types/ArticlesListViewState'
 import { fetchArticlesList } from '../services/fetchArticlesList'
@@ -15,7 +16,6 @@ import { isArticleListViewMode } from '../../lib/IsArticleListViewMode'
 import { type SortOrderValues } from '@/shared/types'
 import { isSortOrder } from '../../lib/isSortOrder'
 import { isArticleSortField } from '../../lib/isArticleSortField'
-import { type ArticleType } from '@/entities/Article/model'
 import { isArticleType } from '../../lib/isArticleType'
 import { getArticleListViewInitialState } from './getArticleListViewInitialState'
 

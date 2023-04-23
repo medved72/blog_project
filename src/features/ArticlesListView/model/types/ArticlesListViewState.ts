@@ -3,9 +3,9 @@ import {
     type Article,
     type ArticleListViewMode,
     type ArticleSortFieldValues,
+    type ArticleType,
 } from '@/entities/Article'
 import { type SortOrderValues } from '@/shared/types'
-import { type ArticleType } from '@/entities/Article/model'
 
 export type ArticleListViewErrors = 'UNKNOWN_ERROR' | 'CANCELED_ERROR'
 

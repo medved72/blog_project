@@ -1,5 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
-import { getUserAuthData } from '@/entities/User/model/selectors'
+import { getUserAuthData } from '@/entities/User'
 import { getArticleDetailsData } from '@/entities/Article'
 import { type CommentDto } from '@/entities/Comment'
 import { type AddArticleCommentFormError } from '../types/AddArticleCommentFormState'

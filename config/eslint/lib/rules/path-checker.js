@@ -5,15 +5,8 @@
 'use strict'
 
 const path = require('path')
-
-const layers = {
-    entities: 'entities',
-    features: 'features',
-    shared: 'shared',
-    pages: 'pages',
-    processes: 'processes',
-    widgets: 'widgets',
-}
+const { isPathRelative } = require('../helpers')
+const { layers } = require('../constants')
 
 /** @type {import('eslint').Rule.RuleModule} */
 module.exports = {
@@ -54,10 +47,6 @@ module.exports = {
             },
         }
     },
-}
-
-function isPathRelative(path) {
-    return path === '.' || path.startsWith('./') || path.startsWith('../')
 }
 
 function shouldBeRelative(from, to) {

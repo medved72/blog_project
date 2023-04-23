@@ -35,6 +35,17 @@ module.exports = {
         '@typescript-eslint/no-floating-promises': ['off'],
         '@typescript-eslint/no-redeclare': ['off'],
         'blog-project-plugin/path-checker': ['error', { alias: '@' }],
+        'blog-project-plugin/public-api-imports': [
+            'error',
+            {
+                alias: '@',
+                testFilesPatterns: [
+                    '**/*.test.ts',
+                    '**/*.stories.ts',
+                    '**/StoreDecorator.tsx',
+                ],
+            },
+        ],
     },
     settings: {
         react: {
