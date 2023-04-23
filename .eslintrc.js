@@ -87,6 +87,26 @@ module.exports = {
                         ],
                     },
                 ],
+                'blog-project-plugin/import-order': [
+                    'warn',
+                    {
+                        groups: [
+                            { name: 'react', match: 'react', order: 10 },
+                            { name: 'packages', match: '!(@/)**', order: 20 },
+                            { name: 'layers', match: '@/**', order: 30 },
+                            {
+                                name: 'relative imports',
+                                match: '(..|.)/**',
+                                order: 40,
+                            },
+                            {
+                                name: 'styles',
+                                match: '**/**.module.scss',
+                                order: 50,
+                            },
+                        ],
+                    },
+                ],
             },
         },
     ],
