@@ -44,7 +44,12 @@ export const PageWrapper: FC<PropsWithChildren> = ({ children }) => {
     )
 
     return (
-        <main ref={ref} className={classes.pageWrapper} onScroll={handleScroll}>
+        <main
+            id="page-wrapper"
+            ref={ref}
+            className={classes.pageWrapper}
+            onScroll={handleScroll}
+        >
             {children}
         </main>
     )

@@ -14,8 +14,11 @@ export const fetchNextArticlesPage = createAsyncThunk<
     GlbThunkConfig<ArticleListViewErrors>
 >('articlesPage/fetchNextArticlesPage', async (_, thunkApi) => {
     const { getState, dispatch } = thunkApi
+
     const hasMore = getArticleListViewHasMore(getState())
+
     const page = getArticleListViewPage(getState())
+
     const isLoading = getArticleListViewLoading(getState())
 
     if (hasMore && !isLoading) {

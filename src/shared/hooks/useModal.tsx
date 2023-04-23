@@ -23,7 +23,7 @@ export const useModal = ({
         animationDelay,
     })
 
-    useEventHandler('keydown', (e: KeyboardEvent) => {
+    useEventHandler('keydown', (e) => {
         if (isOpen && e.key === 'Escape') {
             onClose?.()
         }

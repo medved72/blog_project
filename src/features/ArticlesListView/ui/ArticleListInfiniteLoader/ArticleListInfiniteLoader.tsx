@@ -32,15 +32,16 @@ export const ArticleListInfiniteLoader: FC<
         await dispatch(fetchNextArticlesPage())
     }, [dispatch])
 
-    const { trigger, intersectionRef } = useIntersectionObserver({
+    const { trigger, isIntersecting } = useIntersectionObserver({
+        root: document.getElementById('page-wrapper'),
         onIntersect: handleLoadNext,
     })
 
     useEffect(() => {
-        if (hasMore && intersectionRef.current) {
+        if (hasMore && isIntersecting) {
             handleLoadNext().catch(console.error)
         }
-    }, [articles.length, handleLoadNext, hasMore, intersectionRef])
+    }, [articles.length, handleLoadNext, hasMore, isIntersecting])
 
     return (
         <div className={classNames('', {}, [className])}>
