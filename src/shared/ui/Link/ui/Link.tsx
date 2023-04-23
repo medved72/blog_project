@@ -4,7 +4,7 @@ import {
     type LinkProps as RouterLinkProps,
 } from 'react-router-dom'
 
-import { classNames } from '@/shared/lib/classNames/classNames'
+import { classNames } from '../../../lib/classNames/classNames'
 
 import classes from './Link.module.scss'
 

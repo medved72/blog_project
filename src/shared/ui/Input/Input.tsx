@@ -8,9 +8,9 @@ import React, {
     useState,
     type FocusEvent,
 } from 'react'
-import { classNames } from '@/shared/lib/classNames'
+import { classNames } from '../../lib/classNames'
 import classes from './Input.module.scss'
-import { computeTextWidth } from '@/shared/lib/computeTextWidth'
+import { computeTextWidth } from '../../lib/computeTextWidth'
 
 type HTMLInputProps = Omit<
     InputHTMLAttributes<HTMLInputElement>,

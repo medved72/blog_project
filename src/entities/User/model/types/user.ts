@@ -1,11 +1,4 @@
-export type UserRoleDto = 'ADMIN' | 'USER' | 'MANAGER'
-
-export interface UserDto {
-    id: string
-    username: string
-    avatar?: string
-    roles: UserRoleDto[]
-}
+import { type UserDto } from '@/shared/api/types'
 
 export interface UserState {
     authData?: UserDto

@@ -1,4 +1,4 @@
-import { type UserDto } from '@/entities/User'
+import { type UserDto } from '@/shared/api/types'
 
 export interface CommentDto {
     id: string

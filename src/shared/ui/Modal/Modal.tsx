@@ -1,13 +1,13 @@
 import React, { type FC, memo, type PropsWithChildren } from 'react'
-import { classNames } from '@/shared/lib/classNames/classNames'
+import { classNames } from '../../lib/classNames/classNames'
 import { Portal } from '../Portal'
-import { useTheme } from '@/shared/config/theme'
+import { useTheme } from '../../config/theme'
 import { Overlay } from '../Overlay'
-import { PopupTransitionStep } from '@/shared/hooks/usePopupToggleWithTransition'
+import { PopupTransitionStep } from '../../hooks/usePopupToggleWithTransition'
 
 import classes from './Modal.module.scss'
 
-import { useModal } from '@/shared/hooks/useModal'
+import { useModal } from '../../hooks/useModal'
 
 type RenderMode = 'default' | 'lazy' | 'destroyOnclose'
 

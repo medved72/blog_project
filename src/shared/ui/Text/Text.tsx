@@ -1,5 +1,5 @@
 import { type FC, memo } from 'react'
-import { classNames } from '@/shared/lib/classNames/classNames'
+import { classNames } from '../../lib/classNames/classNames'
 import classes from './Text.module.scss'
 
 type TextTheme = 'primary' | 'error' | 'inverted'

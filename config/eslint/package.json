@@ -1,6 +1,6 @@
 {
   "name": "eslint-plugin-blog-project-plugin",
-  "version": "0.0.4",
+  "version": "0.0.7",
   "description": "fsd checks",
   "keywords": [
     "eslint",
@@ -15,7 +15,8 @@
     "lint:eslint-docs": "npm-run-all \"update:eslint-docs -- --check\"",
     "lint:js": "eslint .",
     "test": "mocha tests --recursive",
-    "update:eslint-docs": "eslint-doc-generator"
+    "update:eslint-docs": "eslint-doc-generator",
+    "generate-rule": "yo eslint:rule"
   },
   "dependencies": {
     "micromatch": "^4.0.5",

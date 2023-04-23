@@ -1,5 +1,5 @@
 import React, { type PropsWithChildren } from 'react'
-import { classNames } from '@/shared/lib/classNames'
+import { classNames } from '../../../lib/classNames'
 import classes from './Flex.module.scss'
 import { capitalize } from '../../../lib/capitalize'
 

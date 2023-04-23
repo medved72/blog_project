@@ -1,5 +1,5 @@
 export { actions, reducer } from './model/slice'
-export type { UserDto, UserState, UserRoleDto } from './model/types/user'
+export type { UserState } from './model/types/user'
 export {
     getUserAuthData,
     getUserInitialized,

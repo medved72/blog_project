@@ -34,18 +34,6 @@ module.exports = {
         'n/no-callback-literal': ['off'],
         '@typescript-eslint/no-floating-promises': ['off'],
         '@typescript-eslint/no-redeclare': ['off'],
-        'blog-project-plugin/path-checker': ['error', { alias: '@' }],
-        'blog-project-plugin/public-api-imports': [
-            'error',
-            {
-                alias: '@',
-                testFilesPatterns: [
-                    '**/*.test.ts',
-                    '**/*.stories.ts',
-                    '**/StoreDecorator.tsx',
-                ],
-            },
-        ],
     },
     settings: {
         react: {
@@ -64,6 +52,41 @@ module.exports = {
             rules: {
                 'prefer-promise-reject-errors': ['off'],
                 'i18next/no-literal-string': ['off'],
+            },
+        },
+        {
+            files: ['./src/**/**.ts', './src/**/**.tsx'],
+            rules: {
+                'blog-project-plugin/path-checker': ['error', { alias: '@' }],
+                'blog-project-plugin/public-api-imports': [
+                    'error',
+                    {
+                        alias: '@',
+                        testFilesPatterns: [
+                            '**/*.test.ts',
+                            '**/*.stories.ts',
+                            '**/StoreDecorator.tsx',
+                        ],
+                    },
+                ],
+                'blog-project-plugin/import-levels': [
+                    'error',
+                    {
+                        alias: '@',
+                        ignorePatterns: [
+                            '**/generateAppStories.tsx',
+                            '**/StoreDecorator.tsx',
+                            '**/StyleDecorator.ts',
+                            '**/ThemeDecorator.tsx',
+                            '**/ThemeProviderDecorator.tsx',
+                            '**/**.test.ts',
+                            '**/**.test.tsx',
+                            '**/**.stories.tsx',
+                            '**/TestsProvidersWrapper.tsx',
+                            '**/mockAxios.ts',
+                        ],
+                    },
+                ],
             },
         },
     ],

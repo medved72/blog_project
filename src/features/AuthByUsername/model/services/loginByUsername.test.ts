@@ -1,6 +1,7 @@
 import { TestAsyncThunk } from '@/shared/lib/tests'
 import { loginByUsername } from './loginByUsername'
-import { actions, type UserDto } from '@/entities/User'
+import { actions } from '@/entities/User'
+import { type UserDto } from '@/shared/api/types'
 
 describe('loginByUsername', () => {
     it('success login', async () => {

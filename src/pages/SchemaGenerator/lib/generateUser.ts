@@ -1,7 +1,8 @@
 import { faker } from '@faker-js/faker'
 import type db from '../../../../json-server/db.json'
 import { type GenerateProfileReturn } from './generateProfile'
-import { type UserRoleDto } from '@/entities/User'
+
+import { type UserRoleDto } from '@/shared/api/types'
 
 export type GenerateUserReturn = (typeof db.users)[number]
 
