@@ -1,5 +1,5 @@
-import { type DecoratorFn } from '@/@storybook/react/testing'
-import { type DeepPartial } from '@/@reduxjs/toolkit/testing'
+import { type DecoratorFn } from '@storybook/react'
+import { type DeepPartial } from '@reduxjs/toolkit'
 import { StoreProvider } from '@/app/providers/testing'
 
 export const StoreDecorator = (

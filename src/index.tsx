@@ -9,5 +9,3 @@ const bootstrap = (): void => {
 }
 
 bootstrap()
-export type { UserDto } from '@/shared/api/types'
-export type { UserRoleDto } from '@/shared/api/types'

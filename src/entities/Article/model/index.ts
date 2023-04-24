@@ -1,11 +1,5 @@
 export type {
     Article,
-    ArticleBlockType,
-    ArticleImageBlock,
-    ArticleTextBlock,
-    ArticleCodeBlock,
-    ArticleBlockBase,
-    ArticleBlock,
     ArticleType,
     ArticleSortFieldValues,
 } from './types/article'

@@ -1,28 +1,17 @@
 import { type ComponentStory } from '@storybook/react'
 import createAsyncCallback from '@loki/create-async-callback'
-import { type Article } from '@/entities/Article'
-import { type CommentDto } from '@/entities/Comment'
+import { articles } from '@/entities/Article/testing'
+import { getCommentsByArticleId } from '@/entities/Comment/testing'
 import { generateAppStories } from '@/shared/config/storybook/generateAppStories'
 import { ROUTES } from '@/shared/config/routes'
 import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator'
 import ArticleDetailsPage from './ArticleDetailsPage'
-import db from '../../../../../json-server/db.json'
 
-const recommendations = db.articles
-    .map(({ userId, ...article }) => ({
-        ...article,
-        user: db.users.find((user) => user.id === userId),
-    }))
-    .slice(0, 4) as Article[]
+const recommendationsMock = articles.slice(0, 4)
 
-const [article] = recommendations
+const [articleMock] = recommendationsMock
 
-const comments = db.comments
-    .filter((comment) => comment.articleId === article.id)
-    .map(({ userId, ...restComment }) => ({
-        ...restComment,
-        user: db.users.find((user) => user.id === userId),
-    })) as CommentDto[]
+const comments = getCommentsByArticleId(articleMock.id)
 
 const Template: ComponentStory<typeof ArticleDetailsPage> = (args) => {
     const resolve = createAsyncCallback()
@@ -61,13 +50,13 @@ generateAppStories(
                     url: '/articles/1?_expand=user',
                     method: 'GET',
                     status: 200,
-                    response: article,
+                    response: articleMock,
                 },
                 {
                     url: `${window.origin}/articles?_expand=user&_limit=4`,
                     method: 'GET',
                     status: 200,
-                    response: recommendations,
+                    response: recommendationsMock,
                 },
             ],
         },

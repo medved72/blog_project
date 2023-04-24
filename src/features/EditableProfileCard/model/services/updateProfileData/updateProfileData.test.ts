@@ -1,4 +1,4 @@
-import { type Profile } from '@/entities/Profile'
+import { type Profile } from '@/entities/Profile/testing'
 import { TestAsyncThunk } from '@/shared/lib/tests'
 import avatar from '@/shared/assets/tests/avatar.jpg'
 import { updateProfileData } from './updateProfileData'

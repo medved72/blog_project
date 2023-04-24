@@ -1,13 +1,9 @@
-import { type Article } from '@/entities/Article'
+import { articles } from '@/entities/Article/testing'
 import { generateAppStories } from '@/shared/config/storybook/generateAppStories'
 import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator'
 import { ArticleRecommendations } from './ArticleRecommendations'
-import db from '../../../../../json-server/db.json'
 
-const articles = db.articles.slice(0, 4).map(({ userId, ...article }) => ({
-    ...article,
-    user: db.users.find((user) => user.id === userId)!,
-})) as Article[]
+const articlesMock = articles.slice(0, 4)
 
 generateAppStories(
     'features/ArticleRecommendations',
@@ -26,7 +22,7 @@ generateAppStories(
                     url: `${window.origin}/articles?_expand=user&_limit=4`,
                     method: 'GET',
                     status: 200,
-                    response: articles,
+                    response: articlesMock,
                 },
             ],
         },

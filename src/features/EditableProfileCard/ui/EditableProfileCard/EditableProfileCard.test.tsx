@@ -1,5 +1,5 @@
 import { screen, waitFor } from '@testing-library/react'
-import { type Profile } from '@/entities/Profile'
+import { type Profile } from '@/entities/Profile/testing'
 import {
     renderWithProviders,
     mockedAxios,

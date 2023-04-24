@@ -1,12 +1,12 @@
 import { type FC, memo } from 'react'
 import { classNames } from '@/shared/lib/classNames'
 import { Text } from '@/shared/ui/Text'
-import { type ArticleImageBlock } from '../../model'
+import { type ArticleImageBlockDto } from '@/shared/api/types'
 import classes from './ArticleImage.module.scss'
 
 interface ArticleImageProps {
     className?: string
-    block: ArticleImageBlock
+    block: ArticleImageBlockDto
 }
 
 export const ArticleImage: FC<ArticleImageProps> = memo((props) => {

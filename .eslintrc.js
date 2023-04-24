@@ -66,6 +66,7 @@ module.exports = {
                             '**/*.test.ts',
                             '**/*.stories.ts',
                             '**/StoreDecorator.tsx',
+                            '**/TestsProvidersWrapper.tsx',
                         ],
                     },
                 ],

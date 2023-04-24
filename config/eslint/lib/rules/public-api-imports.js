@@ -58,7 +58,10 @@ module.exports = {
                 const [targetLayer, targetSlice, ...targetSegments] =
                     importTarget.split('/')
 
-                if (isPathRelative(importTarget) || !layers[targetLayer]) {
+                if (
+                    isPathRelative(importTarget) ||
+                    !checkingLayers[targetLayer]
+                ) {
                     return
                 }
 

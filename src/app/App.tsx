@@ -8,8 +8,8 @@ import { useTheme } from '@/shared/config/theme'
 import { classNames } from '@/shared/lib/classNames/classNames'
 import { withProviders } from './providers'
 import { AppRouter } from './router'
-import './styles/index.scss'
 import classes from './App.module.scss'
+import './styles/index.scss'
 
 export const App: FC = withProviders(() => {
     const { theme } = useTheme()

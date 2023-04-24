@@ -1,5 +1,5 @@
 import { type ValueOf } from '@/shared/types'
-import { type UserDto } from '@/shared/api/types'
+import { type ArticleDto } from '@/shared/api/types'
 
 export const articleTypes = [
     'All',
@@ -37,43 +37,6 @@ export const ArticleSortField = {
 } as const
 export type ArticleSortFieldValues = ValueOf<typeof ArticleSortField>
 
-export type ArticleBlockType = 'TEXT' | 'CODE' | 'IMAGE'
-
-export interface ArticleBlockBase {
-    id: string
-    type: ArticleBlockType
-}
-
-export interface ArticleTextBlock extends ArticleBlockBase {
-    type: 'TEXT'
-    title: string
-    paragraphs: string[]
-}
-
-export interface ArticleCodeBlock extends ArticleBlockBase {
-    type: 'CODE'
-    code: string
-}
-
-export interface ArticleImageBlock extends ArticleBlockBase {
-    type: 'IMAGE'
-    src: string
-    title?: string
-}
-
-export type ArticleBlock =
-    | ArticleTextBlock
-    | ArticleCodeBlock
-    | ArticleImageBlock
-
-export interface Article {
-    id: string
-    user: UserDto
-    title: string
-    subtitle: string
-    img: string
-    views: number
-    createdAt: string
+export interface Article extends Omit<ArticleDto, 'type'> {
     type: ArticleType[]
-    blocks: ArticleBlock[]
 }
