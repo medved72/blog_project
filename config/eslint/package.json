@@ -18,6 +18,7 @@
     "test:import-order": "mocha tests/lib/rules/import-order.js",
     "test:public-api-imports": "mocha tests/lib/rules/public-api-imports.js",
     "test:path-checker": "mocha tests/lib/rules/path-checker.js",
+    "test:import-levels": "mocha tests/lib/rules/import-levels.js",
     "update:eslint-docs": "eslint-doc-generator",
     "generate-rule": "yo eslint:rule"
   },

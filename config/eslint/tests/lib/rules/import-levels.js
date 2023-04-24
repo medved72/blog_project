@@ -68,6 +68,21 @@ ruleTester.run('import-levels', rule, {
                     },
                 ],
             },
+            {
+                filename: 'D:\\projects\\blog_project\\src\\index.tsx',
+                code: `
+                    import { createRoot } from 'react-dom/client'
+                    import { App } from '@/app'
+                    import '@/shared/config/i18n/i18nInit'
+                `,
+                errors: [],
+                options: [
+                    {
+                        alias: '@',
+                        ignorePatterns: ['**/generateAppStories.tsx'],
+                    },
+                ],
+            },
         ]),
 
     invalid: layers.flatMap((currentLayer, indexCurrent) => {

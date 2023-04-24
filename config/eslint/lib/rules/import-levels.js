@@ -84,7 +84,10 @@ module.exports = {
                 const [importLayer] = importTarget.split(path.posix.sep)
                 const [fromLayer] = fromFilename.split(path.posix.sep)
 
-                if (!allowedImports[importLayer]) {
+                if (
+                    !allowedImports[importLayer] ||
+                    !allowedImports[fromLayer]
+                ) {
                     return
                 }
 
