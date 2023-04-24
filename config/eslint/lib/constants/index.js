@@ -1,4 +1,4 @@
-const { layers } = require('./layers')
+const layers = require('./layers')
 
 module.exports = {
     layers,

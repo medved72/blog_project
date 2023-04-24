@@ -77,6 +77,7 @@ ruleTester.run('public-api-imports', rule, {
                 },
             ],
             options: aliasOptions,
+            output: "import { addCommentFormActions, addCommentFormReducer } from '@/entities/Article'",
         },
         {
             filename: 'C:\\project\\src\\entities\\StoreDecorator.tsx',
@@ -96,6 +97,7 @@ ruleTester.run('public-api-imports', rule, {
                     ],
                 },
             ],
+            output: "import { addCommentFormActions, addCommentFormReducer } from '@/entities/Article'",
         },
         {
             filename: 'C:\\project\\src\\entities\\forbidden.ts',
@@ -116,6 +118,7 @@ ruleTester.run('public-api-imports', rule, {
                     ],
                 },
             ],
+            output: null,
         },
     ],
 })

@@ -1,27 +1,18 @@
-/**
- * @fileoverview description
- * @author imxx
- */
 'use strict'
 
-//------------------------------------------------------------------------------
-// Rule Definition
-//------------------------------------------------------------------------------
-
-const micromatch = require('micromatch')
+const { getCodeByRange, isMatch } = require('../helpers')
 
 const INVALID_IMPORT_ORDER = 'INVALID_IMPORT_ORDER'
 
-/** @type {import('eslint').Rule.RuleModule} */
 module.exports = {
     meta: {
-        type: 'layout', // `problem`, `suggestion`, or `layout`
+        type: 'layout',
         docs: {
             description: 'description',
             recommended: false,
-            url: null, // URL to the documentation page for this rule
+            url: null,
         },
-        fixable: 'code', // Or `code` or `whitespace`
+        fixable: 'code',
         messages: {
             [INVALID_IMPORT_ORDER]: 'Порядок импортов неправильный',
         },
@@ -31,7 +22,7 @@ module.exports = {
                     type: 'array',
                 },
             },
-        ], // Add a schema if the rule has options
+        ],
     },
 
     create(context) {
@@ -87,11 +78,6 @@ function printFixedCode(context, importOrders, sortedImportOrders) {
     ]
 }
 
-function getCodeByRange(range, context) {
-    const sourceCode = context.getSourceCode()
-    return sourceCode.getText().slice(range[0], range[1])
-}
-
 function isInvalidOrder(importOrders) {
     return importOrders.some((order, index, values) => {
         if (index === 0) {
@@ -121,8 +107,4 @@ function calcOrders(importDeclarations, groups) {
             }, null),
         }
     })
-}
-
-function isMatch(value, pattern) {
-    return micromatch.isMatch(value, pattern, { contains: true })
 }

@@ -5,8 +5,7 @@ const layers = {
     pages: 'pages',
     processes: 'processes',
     widgets: 'widgets',
+    app: 'app',
 }
 
-module.exports = {
-    layers,
-}
+module.exports = layers

@@ -1,47 +1,61 @@
-/**
- * @fileoverview description
- * @author imxx
- */
 'use strict'
 
-//------------------------------------------------------------------------------
-// Rule Definition
-//------------------------------------------------------------------------------
-
 const path = require('path')
-const { isPathRelative } = require('../helpers')
-const micromatch = require('micromatch')
-/** @type {import('eslint').Rule.RuleModule} */
+const { isPathRelative, toPosixSep, isMatch } = require('../helpers')
+const { layers } = require('../constants')
+
+const defaultAllowedImports = {
+    [layers.shared]: [],
+    [layers.entities]: [layers.shared],
+    [layers.features]: [layers.shared, layers.entities],
+    [layers.widgets]: [layers.shared, layers.entities, layers.features],
+    [layers.pages]: [
+        layers.shared,
+        layers.entities,
+        layers.features,
+        layers.widgets,
+    ],
+    [layers.processes]: [
+        layers.shared,
+        layers.entities,
+        layers.features,
+        layers.widgets,
+        layers.pages,
+    ],
+    [layers.app]: [
+        layers.shared,
+        layers.entities,
+        layers.features,
+        layers.widgets,
+        layers.pages,
+        layers.processes,
+    ],
+}
+
 module.exports = {
     meta: {
-        type: null, // `problem`, `suggestion`, or `layout`
+        type: null,
         docs: {
             description: 'description',
             recommended: false,
-            url: null, // URL to the documentation page for this rule
+            url: null,
         },
-        fixable: null, // Or `code` or `whitespace`
+        fixable: null,
         schema: [
             {
                 alias: { type: 'string' },
-                ignorePatterns: {
-                    type: 'array',
-                },
+                ignorePatterns: { type: 'array' },
+                allowedImports: { type: 'array' },
             },
-        ], // Add a schema if the rule has options
+        ],
     },
 
     create(context) {
-        const { alias = '', ignorePatterns = [] } = context.options?.[0] ?? {}
-        const layers = [
-            'app',
-            'processes',
-            'pages',
-            'widgets',
-            'features',
-            'entities',
-            'shared',
-        ]
+        const {
+            alias = '',
+            ignorePatterns = [],
+            allowedImports = defaultAllowedImports,
+        } = context.options?.[0] ?? {}
 
         return {
             ImportDeclaration(node) {
@@ -51,20 +65,16 @@ module.exports = {
                     return
                 }
 
-                const importTarget = (
+                const importTarget = toPosixSep(
                     alias ? value.replace(`${alias}/`, '') : value
                 )
-                    .split(path.sep)
-                    .join(path.posix.sep)
 
-                const fromFilename = context
-                    .getFilename()
-                    .split(`${path.sep}src${path.sep}`)[1]
-                    .split(path.sep)
-                    .join(path.posix.sep)
+                const [, fromFilename] = toPosixSep(
+                    context.getFilename()
+                ).split(`${path.posix.sep}src${path.posix.sep}`)
 
                 const isIgnored = ignorePatterns.some((pattern) =>
-                    micromatch.isMatch(fromFilename, pattern)
+                    isMatch(fromFilename, pattern)
                 )
 
                 if (isIgnored) {
@@ -74,16 +84,12 @@ module.exports = {
                 const [importLayer] = importTarget.split(path.posix.sep)
                 const [fromLayer] = fromFilename.split(path.posix.sep)
 
-                const importLayerIndex = layers.indexOf(importLayer)
-
-                if (importLayerIndex === -1) {
+                if (!allowedImports[importLayer]) {
                     return
                 }
 
-                const fromLayerIndex = layers.indexOf(fromLayer)
                 const isAllowedImport =
-                    fromLayerIndex !== importLayerIndex &&
-                    fromLayerIndex < importLayerIndex
+                    allowedImports[fromLayer].indexOf(importLayer) !== -1
 
                 if (!isAllowedImport) {
                     return context.report(

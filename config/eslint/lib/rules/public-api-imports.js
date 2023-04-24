@@ -1,20 +1,15 @@
-/**
- * @fileoverview description
- * @author imxx
- */
 'use strict'
 
-//------------------------------------------------------------------------------
-// Rule Definition
-//------------------------------------------------------------------------------
-
 const { isPathRelative } = require('../helpers')
-// eslint-disable-next-line node/no-extraneous-require
 const micromatch = require('micromatch')
 
 const { layers } = require('../constants')
 const path = require('path')
-/** @type {import('eslint').Rule.RuleModule} */
+
+const PUBLIC_API = 'PUBLIC_API'
+
+const TESTING_PUBLIC_API = 'TESTING_PUBLIC_API'
+
 module.exports = {
     meta: {
         type: null,
@@ -23,7 +18,12 @@ module.exports = {
             recommended: false,
             url: null,
         },
-        fixable: null,
+        messages: {
+            [PUBLIC_API]: 'Абсолютный импорт разрешен только из Public API',
+            [TESTING_PUBLIC_API]:
+                'Тестовые данные необходимо импортировать из Public API (testing.ts)',
+        },
+        fixable: 'code',
         schema: [
             {
                 type: 'object',
@@ -52,7 +52,6 @@ module.exports = {
                     return
                 }
 
-                // [entities, article, model, types]
                 const segments = importTo.split('/')
                 const layer = segments[0]
 
@@ -61,15 +60,21 @@ module.exports = {
                 }
 
                 const isImportNotFromPublicApi = segments.length > 2
-                // [entities, article, testing]
+
                 const isTestingPublicApi =
                     segments[2] === 'testing' && segments.length < 4
 
                 if (isImportNotFromPublicApi && !isTestingPublicApi) {
-                    context.report(
+                    context.report({
                         node,
-                        'Абсолютный импорт разрешен только из Public API'
-                    )
+                        messageId: PUBLIC_API,
+                        fix: (fixer) => {
+                            return fixer.replaceText(
+                                node.source,
+                                `'${alias}/${segments[0]}/${segments[1]}'`
+                            )
+                        },
+                    })
                 }
 
                 if (isTestingPublicApi) {
@@ -82,10 +87,16 @@ module.exports = {
                     )
 
                     if (!isCurrentFileTesting) {
-                        context.report(
+                        context.report({
                             node,
-                            'Тестовые данные необходимо импортировать из Public API (testing.ts)'
-                        )
+                            messageId: TESTING_PUBLIC_API,
+                            fix: (fixer) => {
+                                return fixer.replaceText(
+                                    node.source,
+                                    `'${alias}/${segments[0]}/${segments[1]}/testing'`
+                                )
+                            },
+                        })
                     }
                 }
             },
