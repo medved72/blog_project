@@ -17,6 +17,7 @@
     "test": "mocha tests --recursive",
     "test:import-order": "mocha tests/lib/rules/import-order.js",
     "test:public-api-imports": "mocha tests/lib/rules/public-api-imports.js",
+    "test:path-checker": "mocha tests/lib/rules/path-checker.js",
     "update:eslint-docs": "eslint-doc-generator",
     "generate-rule": "yo eslint:rule"
   },

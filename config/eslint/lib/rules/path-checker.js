@@ -1,18 +1,15 @@
-/**
- * @fileoverview check relative paths in the module
- * @author imxx
- */
 'use strict'
 
 const path = require('path')
-const { isPathRelative } = require('../helpers')
+const { isPathRelative, toPosixSep } = require('../helpers')
 const { layers } = require('../constants')
 
-/** @type {import('eslint').Rule.RuleModule} */
+const SHOULD_BE_RELATIVE = 'SHOULD_BE_RELATIVE'
+
 module.exports = {
     meta: {
         messages: {
-            shouldRelativeImport:
+            [SHOULD_BE_RELATIVE]:
                 'В рамках одного слайса все пути должны быть относительными',
         },
         type: 'problem',
@@ -21,7 +18,7 @@ module.exports = {
             recommended: false,
             url: null,
         },
-        fixable: null,
+        fixable: 'code',
         schema: [
             {
                 type: 'object',
@@ -36,12 +33,20 @@ module.exports = {
         return {
             ImportDeclaration(node) {
                 const value = node.source.value
-                const importTo = alias ? value.replace(`${alias}/`, '') : value
+                const importTarget = alias
+                    ? value.replace(`${alias}/`, '')
+                    : value
                 const fromFilename = context.getFilename()
-                if (shouldBeRelative(fromFilename, importTo)) {
+                if (shouldBeRelative(fromFilename, importTarget)) {
                     context.report({
                         node: node,
-                        messageId: 'shouldRelativeImport',
+                        messageId: SHOULD_BE_RELATIVE,
+                        fix: (fixer) => {
+                            return fixer.replaceText(
+                                node.source,
+                                printFix(context, fromFilename, importTarget)
+                            )
+                        },
                     })
                 }
             },
@@ -49,28 +54,53 @@ module.exports = {
     },
 }
 
-function shouldBeRelative(from, to) {
-    const toArray = to.split('/')
+function printFix(context, importFrom, importTarget) {
+    const absolutePath = resolveAbsolutePathToSrc(context)
+    const absoluteImportTarget = path.join(absolutePath, importTarget)
+    const relativePath = path
+        .relative(importFrom, absoluteImportTarget)
+        .replaceAll(path.sep, '/')
 
-    if (isPathRelative(to)) {
+    if (!relativePath.startsWith('..')) {
+        return `'./${relativePath}'`
+    }
+
+    return `'${relativePath}'`
+}
+
+function shouldBeRelative(importFrom, importTarget) {
+    if (isPathRelative(importTarget)) {
         return false
     }
 
-    const [toLayer, toSlice] = toArray
+    const [targetLayer, targetSlice] = normalizeTargetFileName(importTarget)
 
-    if (!toLayer || !toSlice || !layers[toLayer]) {
+    if (!targetLayer || !targetSlice || !layers[targetLayer]) {
         return false
     }
 
-    const normalizedPath = path.toNamespacedPath(from)
-
-    const projectFrom = normalizedPath.split('src')[1]
-
-    const [, fromLayer, fromSlice] = projectFrom.split('\\')
+    const [fromLayer, fromSlice] = normalizeFromFileName(importFrom)
 
     if (!fromLayer || !fromSlice || !layers[fromLayer]) {
         return false
     }
 
-    return fromSlice === toSlice && toLayer === fromLayer
+    return fromLayer === targetLayer && fromSlice === targetSlice
+}
+
+function normalizeTargetFileName(value) {
+    return toPosixSep(value).split(path.posix.sep)
+}
+
+function normalizeFromFileName(value) {
+    return toPosixSep(value)
+        .split(`${path.posix.sep}src${path.posix.sep}`)[1]
+        .split(path.posix.sep)
+}
+
+function resolveAbsolutePathToSrc(context) {
+    const [absolutePath] = context
+        .getFilename()
+        .split(`${path.sep}src${path.sep}`)
+    return path.join(absolutePath, 'src')
 }
