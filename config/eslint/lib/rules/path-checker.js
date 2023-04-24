@@ -56,9 +56,12 @@ module.exports = {
 
 function printFix(context, importFrom, importTarget) {
     const absolutePath = resolveAbsolutePathToSrc(context)
+
     const absoluteImportTarget = path.join(absolutePath, importTarget)
+
     const relativePath = path
         .relative(importFrom, absoluteImportTarget)
+        .replace(`..${path.sep}`, '')
         .replaceAll(path.sep, '/')
 
     if (!relativePath.startsWith('..')) {

@@ -39,5 +39,18 @@ ruleTester.run('path-checker', rule, {
             ],
             output: "import {Something} from './model/slices/addCommentFormSlice'",
         },
+        {
+            filename:
+                'D:\\projects\\blog_project\\src\\features\\ArticlesListView\\ui\\ArticlesListView\\ArticlesListView.tsx',
+            code: "import { articlesListViewActions, articlesListViewReducer, getArticlesList } from '@/features/ArticlesListView/model/slices/articleListView.slice'",
+            errors: [
+                {
+                    message:
+                        'В рамках одного слайса все пути должны быть относительными',
+                },
+            ],
+            options: [{ alias: '@' }],
+            output: "import { articlesListViewActions, articlesListViewReducer, getArticlesList } from '../../model/slices/articleListView.slice'",
+        },
     ],
 })
