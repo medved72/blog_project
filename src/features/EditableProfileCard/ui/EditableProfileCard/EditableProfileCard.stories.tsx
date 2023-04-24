@@ -1,9 +1,9 @@
+import { profiles } from '@/entities/Profile/testing'
 import { generateAppStories } from '@/shared/config/storybook/generateAppStories'
 import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator'
 import { EditableProfileCard } from './EditableProfileCard'
-import db from '../../../../../json-server/db.json'
 
-const profile = db.profile[0]
+const [profileMock] = profiles
 
 generateAppStories(
     'features/EditableProfileCard',
@@ -24,7 +24,7 @@ generateAppStories(
                     url: `/profile/1`,
                     method: 'GET',
                     status: 200,
-                    response: profile,
+                    response: profileMock,
                 },
             ],
         },

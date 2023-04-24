@@ -1,26 +1,22 @@
 import { generateAppStories } from '@/shared/config/storybook/generateAppStories'
+import { articles } from '../../testing'
 import { ArticleList } from './ArticleList'
-import db from '../../../../../json-server/db.json'
-import { type Article } from '../../model'
 
-const articles = db.articles.slice(0, 3).map(({ userId, ...article }) => ({
-    ...article,
-    user: db.users.find((user) => user.id === userId)!,
-})) as Article[]
+const articlesMock = articles.slice(0, 3)
 
 generateAppStories('entities/ArticleList', ArticleList, [
     {
         key: 'tile',
         args: {
             view: 'tile',
-            articles,
+            articles: articlesMock,
         },
     },
     {
         key: 'list',
         args: {
             view: 'list',
-            articles,
+            articles: articlesMock,
         },
     },
 ])

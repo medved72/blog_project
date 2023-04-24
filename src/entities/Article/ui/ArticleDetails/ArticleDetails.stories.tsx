@@ -1,7 +1,9 @@
 import { generateAppStories } from '@/shared/config/storybook/generateAppStories'
 import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator'
+import { articles } from '../../testing'
 import { ArticleDetails } from './ArticleDetails'
-import { articles } from '../../../../../json-server/db.json'
+
+const [article] = articles
 
 generateAppStories(
     'entities/ArticleDetails',
@@ -20,7 +22,7 @@ generateAppStories(
                     url: '/articles/1?_expand=user',
                     method: 'GET',
                     status: 200,
-                    response: articles[0],
+                    response: article,
                 },
             ],
         },
