@@ -21,7 +21,7 @@ module.exports = {
         messages: {
             [PUBLIC_API]: 'Абсолютный импорт разрешен только из Public API',
             [TESTING_PUBLIC_API]:
-                'Тестовые данные необходимо импортировать из Public API (testing.ts)',
+                'Абсолютный импорт разрешен только из Public API (testing.ts)',
         },
         fixable: 'code',
         schema: [
@@ -46,58 +46,74 @@ module.exports = {
         return {
             ImportDeclaration(node) {
                 const value = node.source.value
-                const importTo = alias ? value.replace(`${alias}/`, '') : value
 
-                if (isPathRelative(importTo)) {
+                const importTarget = alias
+                    ? value.replace(`${alias}/`, '')
+                    : value
+
+                const importFrom = context
+                    .getFilename()
+                    .split(`${path.sep}src${path.sep}`)[1]
+
+                const [targetLayer, targetSlice, ...targetSegments] =
+                    importTarget.split('/')
+
+                if (isPathRelative(importTarget)) {
                     return
                 }
 
-                const segments = importTo.split('/')
-                const layer = segments[0]
+                const isShouldImportFromTestingPublicApi =
+                    testFilesPatterns.some((pattern) =>
+                        micromatch.isMatch(importFrom, pattern, {
+                            contains: true,
+                        })
+                    )
 
-                if (!checkingLayers[layer]) {
+                const isImportFromTestingPublicApi =
+                    targetSegments.length === 1 &&
+                    targetSegments[0] === 'testing'
+
+                const isValidImportFromTesting =
+                    isShouldImportFromTestingPublicApi &&
+                    isImportFromTestingPublicApi
+
+                const isValidImportFromPublic =
+                    !isShouldImportFromTestingPublicApi &&
+                    targetSegments.length === 0
+
+                const isValidImport =
+                    isValidImportFromPublic || isValidImportFromTesting
+
+                if (isValidImport) {
                     return
                 }
 
-                const isImportNotFromPublicApi = segments.length > 2
+                if (isShouldImportFromTestingPublicApi) {
+                    return context.report({
+                        node,
+                        messageId: TESTING_PUBLIC_API,
+                        fix: (fixer) => {
+                            return fixer.replaceText(
+                                node.source,
+                                `'${alias}/${targetLayer}/${targetSlice}/testing'`
+                            )
+                        },
+                    })
+                }
 
-                const isTestingPublicApi =
-                    segments[2] === 'testing' && segments.length < 4
+                const isImportFromPublicApi = targetSegments.length === 0
 
-                if (isImportNotFromPublicApi && !isTestingPublicApi) {
+                if (!isImportFromPublicApi) {
                     context.report({
                         node,
                         messageId: PUBLIC_API,
                         fix: (fixer) => {
                             return fixer.replaceText(
                                 node.source,
-                                `'${alias}/${segments[0]}/${segments[1]}'`
+                                `'${alias}/${targetLayer}/${targetSlice}'`
                             )
                         },
                     })
-                }
-
-                if (isTestingPublicApi) {
-                    const currentFilePath = context.getFilename()
-                    const normalizedPath =
-                        path.toNamespacedPath(currentFilePath)
-
-                    const isCurrentFileTesting = testFilesPatterns.some(
-                        (pattern) => micromatch.isMatch(normalizedPath, pattern)
-                    )
-
-                    if (!isCurrentFileTesting) {
-                        context.report({
-                            node,
-                            messageId: TESTING_PUBLIC_API,
-                            fix: (fixer) => {
-                                return fixer.replaceText(
-                                    node.source,
-                                    `'${alias}/${segments[0]}/${segments[1]}/testing'`
-                                )
-                            },
-                        })
-                    }
                 }
             },
         }

@@ -28,18 +28,14 @@ const ruleTester = new RuleTester({
 ruleTester.run('public-api-imports', rule, {
     valid: [
         {
-            code: "import { addCommentFormActions, addCommentFormReducer } from '../../model/slices/addCommentFormSlice'",
-            errors: [],
-        },
-        {
-            code: "import { addCommentFormActions, addCommentFormReducer } from '@/entities/Article'",
-            errors: [],
-            options: aliasOptions,
-        },
-        {
-            filename: 'C:\\project\\src\\entities\\file.test.ts',
+            filename: 'C:\\project\\src\\entities\\Article\\file.test.ts',
             code: "import { addCommentFormActions, addCommentFormReducer } from '@/entities/Article/testing'",
-            errors: [],
+            errors: [
+                {
+                    message:
+                        'Абсолютный импорт разрешен только из Public API (testing.ts)',
+                },
+            ],
             options: [
                 {
                     alias: '@',
@@ -51,6 +47,17 @@ ruleTester.run('public-api-imports', rule, {
                 },
             ],
         },
+        {
+            code: "import { addCommentFormActions, addCommentFormReducer } from '../../model/slices/addCommentFormSlice'",
+            errors: [],
+        },
+        {
+            filename: 'C:\\project\\src\\widgets\\ui\\Widget.tsx',
+            code: "import { addCommentFormActions, addCommentFormReducer } from '@/entities/Article'",
+            errors: [],
+            options: aliasOptions,
+        },
+
         {
             filename: 'C:\\project\\src\\entities\\StoreDecorator.tsx',
             code: "import { addCommentFormActions, addCommentFormReducer } from '@/entities/Article/testing'",
@@ -70,6 +77,7 @@ ruleTester.run('public-api-imports', rule, {
 
     invalid: [
         {
+            filename: 'C:\\project\\src\\widgets\\ui\\Widget.tsx',
             code: "import { addCommentFormActions, addCommentFormReducer } from '@/entities/Article/model/file.ts'",
             errors: [
                 {
@@ -80,8 +88,29 @@ ruleTester.run('public-api-imports', rule, {
             output: "import { addCommentFormActions, addCommentFormReducer } from '@/entities/Article'",
         },
         {
-            filename: 'C:\\project\\src\\entities\\StoreDecorator.tsx',
+            filename: 'C:\\project\\src\\widgets\\widget\\StoreDecorator.tsx',
             code: "import { addCommentFormActions, addCommentFormReducer } from '@/entities/Article/testing/file.tsx'",
+            errors: [
+                {
+                    message:
+                        'Абсолютный импорт разрешен только из Public API (testing.ts)',
+                },
+            ],
+            options: [
+                {
+                    alias: '@',
+                    testFilesPatterns: [
+                        '**/*.test.ts',
+                        '**/*.test.ts',
+                        '**/StoreDecorator.tsx',
+                    ],
+                },
+            ],
+            output: "import { addCommentFormActions, addCommentFormReducer } from '@/entities/Article/testing'",
+        },
+        {
+            filename: 'C:\\project\\src\\entities\\forbidden.ts',
+            code: "import { addCommentFormActions, addCommentFormReducer } from '@/entities/Article/testing'",
             errors: [
                 {
                     message: 'Абсолютный импорт разрешен только из Public API',
@@ -98,27 +127,6 @@ ruleTester.run('public-api-imports', rule, {
                 },
             ],
             output: "import { addCommentFormActions, addCommentFormReducer } from '@/entities/Article'",
-        },
-        {
-            filename: 'C:\\project\\src\\entities\\forbidden.ts',
-            code: "import { addCommentFormActions, addCommentFormReducer } from '@/entities/Article/testing'",
-            errors: [
-                {
-                    message:
-                        'Тестовые данные необходимо импортировать из Public API (testing.ts)',
-                },
-            ],
-            options: [
-                {
-                    alias: '@',
-                    testFilesPatterns: [
-                        '**/*.test.ts',
-                        '**/*.test.ts',
-                        '**/StoreDecorator.tsx',
-                    ],
-                },
-            ],
-            output: null,
         },
     ],
 })
