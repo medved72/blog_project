@@ -1,8 +1,11 @@
 import { type FC, memo, type PropsWithChildren } from 'react'
-import { useSelector } from 'react-redux'
+
 import { generatePath, Navigate, useLocation } from 'react-router-dom'
-import { getUserAuthData } from '../../entities/User'
-import { ROUTES } from '../../shared/config/routes'
+import { useSelector } from 'react-redux'
+
+import { getUserAuthData } from '@/entities/User'
+
+import { ROUTES } from '@/shared/config/routes'
 
 export const ProtectedAuthRoute: FC<PropsWithChildren> = memo(
     ({ children }) => {

@@ -1,6 +1,7 @@
 import { generateAppStories } from '@/shared/config/storybook/generateAppStories'
-import { articles } from '../../testing'
+
 import { ArticleList } from './ArticleList'
+import { articles } from '../../testing'
 
 const articlesMock = articles.slice(0, 3)
 

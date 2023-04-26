@@ -1,8 +1,11 @@
-import { type ComponentStory } from '@storybook/react'
 import createAsyncCallback from '@loki/create-async-callback'
+import { type ComponentStory } from '@storybook/react'
+
 import { articles } from '@/entities/Article/testing'
-import { generateAppStories } from '@/shared/config/storybook/generateAppStories'
+
 import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator'
+import { generateAppStories } from '@/shared/config/storybook/generateAppStories'
+
 import { ArticlesListView } from './ArticlesListView'
 
 const articlesMock = articles.slice(0, 8)

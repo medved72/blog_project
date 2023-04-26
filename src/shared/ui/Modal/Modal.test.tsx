@@ -1,5 +1,7 @@
 import { screen, waitFor } from '@testing-library/react'
+
 import { renderWithProviders } from '@/shared/lib/tests'
+
 import { Modal } from './Modal'
 
 describe('Modal', () => {

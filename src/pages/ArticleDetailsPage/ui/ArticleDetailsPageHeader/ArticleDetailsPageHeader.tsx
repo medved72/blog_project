@@ -1,11 +1,14 @@
 import { type FC, memo, useCallback } from 'react'
-import { useTranslation } from 'react-i18next'
+
 import { generatePath, useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
-import { classNames } from '@/shared/lib/classNames'
+import { useTranslation } from 'react-i18next'
+
 import { Button } from '@/shared/ui/Button'
-import { ROUTES } from '@/shared/config/routes'
 import { HStack } from '@/shared/ui/Stack'
+import { ROUTES } from '@/shared/config/routes'
+import { classNames } from '@/shared/lib/classNames'
+
 import { getCanEditArticle } from '../../model/selectors/getCanEditArticle'
 
 interface ArticleDetailsPageHeaderProps {

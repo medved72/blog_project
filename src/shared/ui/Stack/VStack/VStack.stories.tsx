@@ -1,4 +1,5 @@
 import { generateAppStories } from '@/shared/config/storybook/generateAppStories'
+
 import { VStack } from './VStack'
 
 generateAppStories('shared/Stack/VStack', VStack, [

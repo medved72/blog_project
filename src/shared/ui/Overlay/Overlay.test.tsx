@@ -1,4 +1,5 @@
 import { renderWithProviders } from '@/shared/lib/tests'
+
 import { Overlay } from './Overlay'
 
 describe('Overlay', () => {

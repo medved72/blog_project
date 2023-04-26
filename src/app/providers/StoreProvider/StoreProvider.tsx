@@ -1,6 +1,8 @@
 import { type FC, memo, type PropsWithChildren, useMemo } from 'react'
+
 import { Provider } from 'react-redux'
 import { type ReducersMapObject } from '@reduxjs/toolkit'
+
 import { setupStore } from './setupStore'
 import { type AppState } from './types'
 

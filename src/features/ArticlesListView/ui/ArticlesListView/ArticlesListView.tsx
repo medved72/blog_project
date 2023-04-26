@@ -1,11 +1,15 @@
 import { type FC, memo, useEffect } from 'react'
-import { useSelector } from 'react-redux'
+
 import { useSearchParams } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 import { useTranslation } from 'react-i18next'
+
 import { ArticleList } from '@/entities/Article'
-import { withDynamicModuleLoader } from '@/shared/lib/components'
-import { useAppDispatch } from '@/shared/hooks/useAppDispatch'
+
 import { Text } from '@/shared/ui/Text'
+import { useAppDispatch } from '@/shared/hooks/useAppDispatch'
+import { withDynamicModuleLoader } from '@/shared/lib/components'
+
 import {
     articlesListViewActions,
     articlesListViewReducer,

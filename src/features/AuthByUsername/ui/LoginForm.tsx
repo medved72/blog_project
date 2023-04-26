@@ -1,14 +1,18 @@
 import { type FC, type FormEventHandler, memo, useCallback } from 'react'
+
 import { useSelector } from 'react-redux'
 import { useTranslation } from 'react-i18next'
-import { classNames } from '@/shared/lib/classNames/classNames'
+
 import { Button } from '@/shared/ui/Button'
 import { Input } from '@/shared/ui/Input'
 import { Text } from '@/shared/ui/Text'
+import { classNames } from '@/shared/lib/classNames/classNames'
 import { useAppDispatch } from '@/shared/hooks/useAppDispatch'
 import { withDynamicModuleLoader } from '@/shared/lib/components'
+
 import { actions, reducer, selectors } from '../model'
 import { loginByUsername } from '../model/services/loginByUsername'
+
 import classes from './LoginForm.module.scss'
 
 interface LoginFormProps {

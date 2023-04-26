@@ -1,11 +1,13 @@
 import { type Profile } from '@/entities/Profile/testing'
+
 import avatar from '@/shared/assets/tests/avatar.jpg'
-import { updateProfileData } from '../services/updateProfileData'
-import { type EditableProfileCardState } from '../types/EditableProfileCardState'
+
 import {
     editableProfileCardActions,
     editableProfileCardReducer,
 } from './editableProfileCard.slice'
+import { type EditableProfileCardState } from '../types/EditableProfileCardState'
+import { updateProfileData } from '../services/updateProfileData'
 
 const profile = {
     first: 'Дмитрий',

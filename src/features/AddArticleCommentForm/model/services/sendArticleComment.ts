@@ -1,7 +1,9 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
-import { getUserAuthData } from '@/entities/User'
+
 import { getArticleDetailsData } from '@/entities/Article'
+import { getUserAuthData } from '@/entities/User'
 import { type CommentDto } from '@/entities/Comment'
+
 import { type AddArticleCommentFormError } from '../types/AddArticleCommentFormState'
 
 export const sendArticleComment = createAsyncThunk<

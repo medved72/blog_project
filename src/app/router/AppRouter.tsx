@@ -1,20 +1,26 @@
 import { type FC, memo, Suspense, useMemo } from 'react'
+
 import { type RouteObject, useRoutes } from 'react-router-dom'
 import { useSelector } from 'react-redux'
+
 import { AboutPage } from '@/pages/AboutPage'
+import { AdminPanelPage } from '@/pages/AdminPanelPage'
+import { ArticleCreatePage } from '@/pages/ArticleCreatePage'
+import { ArticleDetailsPage } from '@/pages/ArticleDetailsPage'
+import { ArticleEditPage } from '@/pages/ArticleEditPage'
+import { ArticlesPage } from '@/pages/ArticlesPage'
+import { ForbiddenPage } from '@/pages/ForbiddenPage'
 import { MainPage } from '@/pages/MainPage'
 import { NotFound } from '@/pages/NotFound'
 import { ProfilePage } from '@/pages/ProfilePage'
-import { ArticlesPage } from '@/pages/ArticlesPage'
-import { ArticleDetailsPage } from '@/pages/ArticleDetailsPage'
 import { SchemaGenerator } from '@/pages/SchemaGenerator'
-import { ArticleEditPage } from '@/pages/ArticleEditPage'
-import { ArticleCreatePage } from '@/pages/ArticleCreatePage'
-import { AdminPanelPage } from '@/pages/AdminPanelPage'
-import { ForbiddenPage } from '@/pages/ForbiddenPage'
+
 import { PageLoader } from '@/widgets/PageLoader'
+
 import { getCanViewAdminPanel, getUserInitialized } from '@/entities/User'
+
 import { ROUTES } from '@/shared/config/routes'
+
 import { ProtectedAuthRoute } from './ProtectedAuthRoute'
 import { ProtectedByRoleRoute } from './ProtectedByRoleRoute'
 

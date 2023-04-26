@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { type ArticleDetailsState } from '../types/articleDetailsState'
+
 import { fetchArticleById } from '../services/fetchArticleById'
+import { type ArticleDetailsState } from '../types/articleDetailsState'
 
 const initialState: ArticleDetailsState = {
     isLoading: false,

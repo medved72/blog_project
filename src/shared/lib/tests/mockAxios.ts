@@ -1,4 +1,5 @@
 import axios from 'axios'
+
 import * as api from '@/shared/api/api'
 
 jest.mock('axios')

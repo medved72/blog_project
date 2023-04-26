@@ -1,4 +1,5 @@
 import { type HTMLAttributeAnchorTarget } from 'react'
+
 import { type Article } from './article'
 
 export type ArticleListViewMode = 'tile' | 'list'

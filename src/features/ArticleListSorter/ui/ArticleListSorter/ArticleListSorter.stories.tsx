@@ -1,5 +1,7 @@
 import { action } from '@storybook/addon-actions'
+
 import { generateAppStories } from '@/shared/config/storybook/generateAppStories'
+
 import { ArticleListSorter } from './ArticleListSorter'
 
 generateAppStories('features/ArticleListSorter', ArticleListSorter, [

@@ -5,15 +5,19 @@ import {
     type ReducersMapObject,
 } from '@reduxjs/toolkit'
 import { type AxiosInstance } from 'axios'
-import { type LoginState } from '@/features/AuthByUsername'
-import { type ArticleCommentListState } from '@/features/ArticleCommentsList'
+
 import { type AddArticleCommentFormState } from '@/features/AddArticleCommentForm'
+import { type ArticleCommentListState } from '@/features/ArticleCommentsList'
 import { type ArticlesListViewState } from '@/features/ArticlesListView'
-import { type ScrollRestoreState } from '@/features/ScrollRestore'
 import { type EditableProfileCardState } from '@/features/EditableProfileCard'
-import { type UserState } from '@/entities/User'
+import { type LoginState } from '@/features/AuthByUsername'
+import { type ScrollRestoreState } from '@/features/ScrollRestore'
+
 import { type ArticleDetailsState } from '@/entities/Article'
+import { type UserState } from '@/entities/User'
+
 import { type rtkApi } from '@/shared/api/rtkApi'
+
 import { type setupStore } from './setupStore'
 
 export interface AppState {

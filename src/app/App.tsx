@@ -1,15 +1,21 @@
 import { type FC, useEffect } from 'react'
+
 import { useDispatch } from 'react-redux'
+
 import { AppNavbar } from '@/widgets/Navbar'
-import { Sidebar } from '@/widgets/Sidebar'
 import { PageWrapper } from '@/widgets/PageWrapper'
+import { Sidebar } from '@/widgets/Sidebar'
+
 import { actions as userActions } from '@/entities/User'
-import { useTheme } from '@/shared/config/theme'
+
 import { classNames } from '@/shared/lib/classNames/classNames'
-import { withProviders } from './providers'
+import { useTheme } from '@/shared/config/theme'
+
 import { AppRouter } from './router'
-import classes from './App.module.scss'
+import { withProviders } from './providers'
+
 import './styles/index.scss'
+import classes from './App.module.scss'
 
 export const App: FC = withProviders(() => {
     const { theme } = useTheme()

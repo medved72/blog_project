@@ -1,4 +1,5 @@
 import { type DeepPartial } from '@reduxjs/toolkit'
+
 import { getEditableProfileCardFirstName } from './getEditableProfileCardFirstName.selector'
 
 describe('firstName', () => {

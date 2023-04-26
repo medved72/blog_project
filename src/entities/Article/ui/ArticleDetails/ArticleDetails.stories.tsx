@@ -1,7 +1,8 @@
-import { generateAppStories } from '@/shared/config/storybook/generateAppStories'
 import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator'
-import { articles } from '../../testing'
+import { generateAppStories } from '@/shared/config/storybook/generateAppStories'
+
 import { ArticleDetails } from './ArticleDetails'
+import { articles } from '../../testing'
 
 const [article] = articles
 

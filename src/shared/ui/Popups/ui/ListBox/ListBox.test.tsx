@@ -1,5 +1,5 @@
-import { renderWithProviders } from '../../../../lib/tests'
 import { ListBox } from './ListBox'
+import { renderWithProviders } from '../../../../lib/tests'
 
 describe('ListBox', () => {
     it('should render', () => {

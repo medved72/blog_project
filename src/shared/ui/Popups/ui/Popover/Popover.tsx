@@ -1,5 +1,5 @@
 import { type FC, memo, type PropsWithChildren, type ReactNode } from 'react'
-import { Popover as HUPopover } from '@headlessui/react'
+
 import {
     autoUpdate,
     flip,
@@ -7,7 +7,10 @@ import {
     type Placement,
     useFloating,
 } from '@floating-ui/react-dom'
+import { Popover as HUPopover } from '@headlessui/react'
+
 import { classNames } from '../../../../lib/classNames'
+
 import classes from './Popover.module.scss'
 
 interface PopoverProps {

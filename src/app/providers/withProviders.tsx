@@ -1,4 +1,5 @@
 import { type FC } from 'react'
+
 import { AppProvider } from './AppProvider'
 
 export const withProviders = <T extends Record<string, unknown>>(

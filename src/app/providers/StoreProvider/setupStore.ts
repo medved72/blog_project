@@ -1,8 +1,12 @@
 import { configureStore, type ReducersMapObject } from '@reduxjs/toolkit'
+
 import { scrollRestoreReducer as scrollRestore } from '@/features/ScrollRestore'
+
 import { reducer as user } from '@/entities/User'
+
 import { $api } from '@/shared/api/api'
 import { rtkApi } from '@/shared/api/rtkApi'
+
 import { createReducerManager } from './createReducerManager'
 import { type AppState, type ThunkExtraArg } from './types'
 

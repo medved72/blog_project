@@ -1,10 +1,12 @@
 import React, { type FC, memo, type PropsWithChildren } from 'react'
-import { classNames } from '../../lib/classNames/classNames'
-import { Portal } from '../Portal'
-import { useTheme } from '../../config/theme'
+
 import { Overlay } from '../Overlay'
 import { PopupTransitionStep } from '../../hooks/usePopupToggleWithTransition'
+import { Portal } from '../Portal'
+import { classNames } from '../../lib/classNames/classNames'
 import { useModal } from '../../hooks/useModal'
+import { useTheme } from '../../config/theme'
+
 import classes from './Modal.module.scss'
 
 type RenderMode = 'default' | 'lazy' | 'destroyOnclose'

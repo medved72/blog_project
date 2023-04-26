@@ -1,11 +1,13 @@
 import { type ReactElement } from 'react'
-import { render } from '@testing-library/react'
+
 import rtlUserEvent from '@testing-library/user-event'
-import { mockedAxios } from './mockAxios'
+import { render } from '@testing-library/react'
+
 import {
     TestsProvidersWrapperFactory,
     type TestsProvidersWrapperFactoryProps,
 } from './TestsProvidersWrapper'
+import { mockedAxios } from './mockAxios'
 
 export { mockedAxios }
 

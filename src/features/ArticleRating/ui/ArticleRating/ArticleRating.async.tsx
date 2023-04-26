@@ -1,5 +1,7 @@
 import { lazy, Suspense } from 'react'
+
 import { Skeleton } from '@/shared/ui/Skeleton'
+
 import { type ArticleRatingProps } from './ArticleRating'
 
 const ArticleRatingLazy = lazy(async () => await import('./ArticleRating'))

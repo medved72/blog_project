@@ -1,6 +1,8 @@
 import { type ComponentMeta, type ComponentStory } from '@storybook/react'
-import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator'
+
 import { THEME } from '@/shared/config/theme'
+import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator'
+
 import { CurrencySelect } from './CurrencySelect'
 
 const meta: ComponentMeta<typeof CurrencySelect> = {

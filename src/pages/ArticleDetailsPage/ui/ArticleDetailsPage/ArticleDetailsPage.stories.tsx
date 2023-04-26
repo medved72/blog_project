@@ -1,10 +1,13 @@
-import { type ComponentStory } from '@storybook/react'
 import createAsyncCallback from '@loki/create-async-callback'
+import { type ComponentStory } from '@storybook/react'
+
 import { articles } from '@/entities/Article/testing'
 import { getCommentsByArticleId } from '@/entities/Comment/testing'
-import { generateAppStories } from '@/shared/config/storybook/generateAppStories'
+
 import { ROUTES } from '@/shared/config/routes'
 import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator'
+import { generateAppStories } from '@/shared/config/storybook/generateAppStories'
+
 import ArticleDetailsPage from './ArticleDetailsPage'
 
 const recommendationsMock = articles.slice(0, 4)

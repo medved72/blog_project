@@ -1,5 +1,5 @@
-import { renderWithProviders } from '../../../../shared/lib/tests'
 import { EditableProfileCardHeader } from './EditableProfileCardHeader'
+import { renderWithProviders } from '../../../../shared/lib/tests'
 
 describe('ProfilePageHeader', () => {
     it('should render', () => {

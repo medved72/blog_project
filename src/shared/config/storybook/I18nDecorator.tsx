@@ -1,6 +1,8 @@
-import { type DecoratorFn } from '@storybook/react'
 import { Suspense, useEffect } from 'react'
+
 import { I18nextProvider } from 'react-i18next'
+import { type DecoratorFn } from '@storybook/react'
+
 import { i18n } from '../i18n/i18nInit.static'
 
 export const I18nDecorator: DecoratorFn = (Story, context) => {

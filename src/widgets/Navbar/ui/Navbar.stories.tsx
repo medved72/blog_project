@@ -1,6 +1,8 @@
 import { type ComponentMeta, type ComponentStory } from '@storybook/react'
-import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator'
+
 import { THEME } from '@/shared/config/theme'
+import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator'
+
 import { Navbar } from './Navbar'
 import { StoreDecorator } from '../../../shared/config/storybook/StoreDecorator'
 

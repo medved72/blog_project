@@ -1,12 +1,17 @@
 import { type FC, memo, useCallback, useState } from 'react'
+
 import { useSelector } from 'react-redux'
-import { ThemeSwitcher } from '@/features/ThemeSwitcher'
+
 import { LanguageSwitcher } from '@/features/LanguageSwitcher'
+import { ThemeSwitcher } from '@/features/ThemeSwitcher'
+
 import { Button } from '@/shared/ui/Button'
-import { classNames } from '@/shared/lib/classNames/classNames'
 import { VStack } from '@/shared/ui/Stack'
-import { getSidebarItems } from '../../model/selectors/getSidebarItems'
+import { classNames } from '@/shared/lib/classNames/classNames'
+
 import { SidebarItem } from '../SidebarItem'
+import { getSidebarItems } from '../../model/selectors/getSidebarItems'
+
 import classes from './Sidebar.module.scss'
 
 export interface SidebarProps {

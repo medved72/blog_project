@@ -1,4 +1,5 @@
 import { type DeepPartial } from '@reduxjs/toolkit'
+
 import { getEditableProfileCardReadOnly } from './getEditableProfileCardReadOnly.selector'
 
 describe('readOnly', () => {

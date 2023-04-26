@@ -1,8 +1,10 @@
 import { type FC, memo } from 'react'
+
 import { useTranslation } from 'react-i18next'
-import { classNames } from '../../lib/classNames'
+
 import { Country } from '../../const/country'
 import { ListBox } from '../Popups'
+import { classNames } from '../../lib/classNames'
 
 interface CountrySelectProps {
     className?: string

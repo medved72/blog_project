@@ -1,9 +1,11 @@
 import { type ComponentProps } from 'react'
+
 import {
     type AppStoryItem,
     generateAppStories,
 } from '@/shared/config/storybook/generateAppStories'
 import { capitalize } from '@/shared/lib/capitalize'
+
 import { Text } from './Text'
 
 const themes = ['primary', 'error', 'inverted'] as const

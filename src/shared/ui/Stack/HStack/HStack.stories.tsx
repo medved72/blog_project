@@ -1,4 +1,5 @@
 import { generateAppStories } from '@/shared/config/storybook/generateAppStories'
+
 import { HStack } from './HStack'
 
 generateAppStories('shared/Stack/HStack', HStack, [

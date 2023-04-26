@@ -1,7 +1,9 @@
 import { type ComponentStory, storiesOf } from '@storybook/react'
-import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator'
+
 import { THEME } from '@/shared/config/theme'
+import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator'
 import { capitalize } from '@/shared/lib/capitalize/capitalize'
+
 import { Button, type ButtonTheme } from './Button'
 
 const stories = storiesOf('shared/Button', module)

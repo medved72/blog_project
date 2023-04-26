@@ -1,14 +1,16 @@
 import { type FC, memo, useCallback, useState } from 'react'
+
 import { useTranslation } from 'react-i18next'
-import { Card } from '@/shared/ui/Card'
-import { HStack, VStack } from '@/shared/ui/Stack'
-import { Text } from '@/shared/ui/Text'
-import { StarRating } from '@/shared/ui/StarRating'
-import { Modal } from '@/shared/ui/Modal'
-import { Input } from '@/shared/ui/Input'
+
 import { Button } from '@/shared/ui/Button'
-import { useIsMobile } from '@/shared/hooks/useIsMobile'
+import { Card } from '@/shared/ui/Card'
 import { Drawer } from '@/shared/ui/Drawer'
+import { HStack, VStack } from '@/shared/ui/Stack'
+import { Input } from '@/shared/ui/Input'
+import { Modal } from '@/shared/ui/Modal'
+import { StarRating } from '@/shared/ui/StarRating'
+import { Text } from '@/shared/ui/Text'
+import { useIsMobile } from '@/shared/hooks/useIsMobile'
 
 interface RatingCardProps {
     className?: string

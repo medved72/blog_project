@@ -1,5 +1,7 @@
 import { screen } from '@testing-library/react'
+
 import { renderWithProviders } from '@/shared/lib/tests'
+
 import { LoginModal } from './LoginModal'
 
 describe('LoginModal', () => {

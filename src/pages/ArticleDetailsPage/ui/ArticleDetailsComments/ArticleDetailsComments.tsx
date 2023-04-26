@@ -1,10 +1,13 @@
 import { type FC, memo, useCallback } from 'react'
+
 import { useTranslation } from 'react-i18next'
-import { AddArticleCommentForm } from '@/features/AddArticleCommentForm'
+
 import {
     ArticleCommentsList,
     fetchCommentsListByArticleId,
 } from '@/features/ArticleCommentsList'
+import { AddArticleCommentForm } from '@/features/AddArticleCommentForm'
+
 import { Text } from '@/shared/ui/Text'
 import { useAppDispatch } from '@/shared/hooks/useAppDispatch'
 

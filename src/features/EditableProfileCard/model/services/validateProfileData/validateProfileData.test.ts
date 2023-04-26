@@ -1,5 +1,7 @@
 import { type Profile } from '@/entities/Profile/testing'
+
 import avatar from '@/shared/assets/tests/avatar.jpg'
+
 import { validateProfileData } from './validateProfileData'
 
 const profile = {

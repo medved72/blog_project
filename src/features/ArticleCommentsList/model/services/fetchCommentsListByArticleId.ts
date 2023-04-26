@@ -1,5 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
+
 import { type CommentDto } from '@/entities/Comment'
+
 import { type ArticleCommentListError } from '../types/ArticleCommentListState'
 
 export const fetchCommentsListByArticleId = createAsyncThunk<

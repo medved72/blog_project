@@ -1,5 +1,5 @@
-import { renderWithProviders } from '../../../../lib/tests'
 import { Dropdown } from './Dropdown'
+import { renderWithProviders } from '../../../../lib/tests'
 
 describe('Dropdown', () => {
     it('should render', () => {

@@ -1,4 +1,5 @@
 import { type FC, memo, type PropsWithChildren } from 'react'
+
 import {
     Link as RouterLink,
     type LinkProps as RouterLinkProps,

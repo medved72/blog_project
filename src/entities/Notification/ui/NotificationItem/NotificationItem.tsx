@@ -1,8 +1,11 @@
 import { type FC, memo } from 'react'
-import { classNames } from '@/shared/lib/classNames'
+
 import { Card } from '@/shared/ui/Card'
 import { Text } from '@/shared/ui/Text'
+import { classNames } from '@/shared/lib/classNames'
+
 import { type NotificationDto } from '../../model/types/notification.dto'
+
 import classes from './NotificationItem.module.scss'
 
 interface NotificationItemProps {

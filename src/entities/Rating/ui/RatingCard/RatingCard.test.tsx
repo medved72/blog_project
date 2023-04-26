@@ -1,4 +1,5 @@
 import { renderWithProviders } from '@/shared/lib/tests'
+
 import { RatingCard } from './RatingCard'
 
 describe('RatingCard', () => {

@@ -1,4 +1,5 @@
 import { type DeepPartial } from '@reduxjs/toolkit'
+
 import { getEditableProfileCardError } from './getEditableProfileCardError.selector'
 
 describe('error', () => {

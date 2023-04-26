@@ -1,6 +1,7 @@
-import { generateAppStories } from '@/shared/config/storybook/generateAppStories'
 import { ROUTES } from '@/shared/config/routes'
 import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator'
+import { generateAppStories } from '@/shared/config/storybook/generateAppStories'
+
 import { NotificationList } from './NotificationList'
 
 generateAppStories(

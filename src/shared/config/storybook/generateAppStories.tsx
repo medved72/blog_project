@@ -1,8 +1,11 @@
-import { type Parameters as SbParameters, storiesOf } from '@storybook/react'
 import { type FC } from 'react'
+
+import { type Parameters as SbParameters, storiesOf } from '@storybook/react'
+
 import { capitalize } from '@/shared/lib/capitalize'
-import { ThemeDecorator } from './ThemeDecorator'
+
 import { THEME } from '../theme'
+import { ThemeDecorator } from './ThemeDecorator'
 
 export interface AppStoryItem<T extends Record<string, any>> {
     key: string

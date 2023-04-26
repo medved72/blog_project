@@ -1,6 +1,8 @@
 import { type Profile } from '@/entities/Profile/testing'
-import { TestAsyncThunk } from '@/shared/lib/tests'
+
 import avatar from '@/shared/assets/tests/avatar.jpg'
+import { TestAsyncThunk } from '@/shared/lib/tests'
+
 import { updateProfileData } from './updateProfileData'
 
 const profile = {

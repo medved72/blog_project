@@ -1,10 +1,11 @@
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit'
+
 import { type Profile } from '@/entities/Profile'
 
 import { fetchProfileData } from '../services/fetchProfileData'
-import { updateProfileData } from '../services/updateProfileData'
-import { type EditableProfileCardState } from '../types/EditableProfileCardState'
 import { getEditableProfileCardInitialState } from './getEditableProfileCardInitialState'
+import { type EditableProfileCardState } from '../types/EditableProfileCardState'
+import { updateProfileData } from '../services/updateProfileData'
 
 const initialState: EditableProfileCardState =
     getEditableProfileCardInitialState()

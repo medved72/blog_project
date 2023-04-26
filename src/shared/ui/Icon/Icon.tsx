@@ -4,7 +4,9 @@ import {
     memo,
     type SVGAttributes,
 } from 'react'
+
 import { classNames } from '../../lib/classNames'
+
 import classes from './Icon.module.scss'
 
 interface IconProps extends Omit<SVGAttributes<SVGElement>, 'stroke'> {

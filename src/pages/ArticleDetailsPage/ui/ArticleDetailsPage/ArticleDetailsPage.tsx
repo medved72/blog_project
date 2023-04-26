@@ -1,13 +1,18 @@
 import { type FC, memo } from 'react'
+
 import { useParams } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
+
 import { ArticleRating } from '@/features/ArticleRating'
 import { ArticleRecommendations } from '@/features/ArticleRecomendations'
+
 import { ArticleDetails } from '@/entities/Article'
-import { classNames } from '@/shared/lib/classNames'
+
 import { VStack } from '@/shared/ui/Stack'
-import { ArticleDetailsPageHeader } from '../ArticleDetailsPageHeader'
+import { classNames } from '@/shared/lib/classNames'
+
 import { ArticleDetailsComments } from '../ArticleDetailsComments'
+import { ArticleDetailsPageHeader } from '../ArticleDetailsPageHeader'
 
 interface ArticleDetailsPageProps {
     className?: string

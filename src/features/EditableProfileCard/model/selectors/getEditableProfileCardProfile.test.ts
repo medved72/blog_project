@@ -1,7 +1,9 @@
 import { type DeepPartial } from '@reduxjs/toolkit'
-import { Currency } from '@/shared/const/currency'
-import { Country } from '@/shared/const/country'
+
 import avatar from '@/shared/assets/tests/avatar.jpg'
+import { Country } from '@/shared/const/country'
+import { Currency } from '@/shared/const/currency'
+
 import { getEditableProfileCardProfile } from './getEditableProfileCardProfile.selector'
 
 describe('profile', () => {

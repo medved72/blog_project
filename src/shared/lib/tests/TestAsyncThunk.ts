@@ -1,6 +1,5 @@
-import { type AsyncThunk } from '@reduxjs/toolkit/src/createAsyncThunk'
-
 import axios, { type AxiosStatic } from 'axios'
+import { type AsyncThunk } from '@reduxjs/toolkit/src/createAsyncThunk'
 import { type DeepPartial } from '@reduxjs/toolkit'
 jest.mock('axios')
 const mockedAxios = jest.mocked(axios)

@@ -1,6 +1,6 @@
+import { Button } from '../../../Button'
 import { Dropdown } from './Dropdown'
 import { generateAppStories } from '../../../../config/storybook/generateAppStories'
-import { Button } from '../../../Button'
 
 generateAppStories('shared/Popups/Dropdown', Dropdown, [
     {

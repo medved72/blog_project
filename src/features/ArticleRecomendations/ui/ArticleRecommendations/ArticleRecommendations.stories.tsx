@@ -1,6 +1,8 @@
 import { articles } from '@/entities/Article/testing'
-import { generateAppStories } from '@/shared/config/storybook/generateAppStories'
+
 import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator'
+import { generateAppStories } from '@/shared/config/storybook/generateAppStories'
+
 import { ArticleRecommendations } from './ArticleRecommendations'
 
 const articlesMock = articles.slice(0, 4)

@@ -1,5 +1,7 @@
 import { faker } from '@faker-js/faker'
+
 import { type UserRoleDto } from '@/shared/api/types'
+
 import type db from '../../../../json-server/db.json'
 import { type GenerateProfileReturn } from './generateProfile'
 

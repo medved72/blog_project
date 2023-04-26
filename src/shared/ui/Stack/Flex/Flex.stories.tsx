@@ -1,4 +1,5 @@
 import { generateAppStories } from '@/shared/config/storybook/generateAppStories'
+
 import {
     Flex,
     type FlexAlign,

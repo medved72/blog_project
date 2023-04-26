@@ -1,4 +1,5 @@
 import { type FC, memo } from 'react'
+
 import { classNames } from '../../../lib/classNames/classNames'
 
 import classes from './DotsSpinner.module.scss'

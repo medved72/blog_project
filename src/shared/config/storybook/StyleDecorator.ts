@@ -1,6 +1,6 @@
 import { type DecoratorFn } from '@storybook/react'
-// eslint-disable-next-line blog-project-plugin/public-api-imports
-import '@/app/styles/index.scss'
+
+import '@/app/styles'
 
 export const StyleDecorator: DecoratorFn = (story) => {
     return story()

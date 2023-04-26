@@ -5,9 +5,11 @@ import {
     useEffect,
     useLayoutEffect,
 } from 'react'
+
 import { type Reducer } from '@reduxjs/toolkit'
-import { useAppStore } from '../../hooks/useAppStore'
+
 import { useAppDispatch } from '../../hooks/useAppDispatch'
+import { useAppStore } from '../../hooks/useAppStore'
 
 type ReducersList = {
     [name in keyof GlbAppState]?: Reducer<NonNullable<GlbAppState[name]>>

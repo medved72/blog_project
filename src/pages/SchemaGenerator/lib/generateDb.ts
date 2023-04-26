@@ -1,10 +1,10 @@
-import { generateProfile } from './generateProfile'
+import type db from '../../../../json-server/db.json'
 import { generateArticle } from './generateArticle'
-import { generateUser } from './generateUser'
 import { generateComment } from './generateComment'
 import { generateNotification } from './generateNotification'
+import { generateProfile } from './generateProfile'
 import { generateRating } from './generateRating'
-import type db from '../../../../json-server/db.json'
+import { generateUser } from './generateUser'
 
 export type GenerateDbReturn = typeof db
 

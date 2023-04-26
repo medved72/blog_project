@@ -1,12 +1,16 @@
 import { type FC, memo, useCallback } from 'react'
-import { useTranslation } from 'react-i18next'
+
 import { useSelector } from 'react-redux'
+import { useTranslation } from 'react-i18next'
+
 import { getUserAuthData } from '@/entities/User'
-import { useAppDispatch } from '@/shared/hooks/useAppDispatch'
-import { classNames } from '@/shared/lib/classNames'
-import { HStack } from '@/shared/ui/Stack'
+
 import { Button } from '@/shared/ui/Button'
+import { HStack } from '@/shared/ui/Stack'
 import { Text } from '@/shared/ui/Text'
+import { classNames } from '@/shared/lib/classNames'
+import { useAppDispatch } from '@/shared/hooks/useAppDispatch'
+
 import {
     getEditableProfileCardProfile,
     getEditableProfileCardReadOnly,

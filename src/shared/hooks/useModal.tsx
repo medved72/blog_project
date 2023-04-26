@@ -1,5 +1,5 @@
-import { usePopupToggleWithTransition } from './usePopupToggleWithTransition'
 import { useEventHandler } from './useEventHandler'
+import { usePopupToggleWithTransition } from './usePopupToggleWithTransition'
 import { useWasTrue } from './useWasTrue'
 
 export type RenderMode = 'default' | 'lazy' | 'destroyOnclose'

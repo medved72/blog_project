@@ -1,7 +1,9 @@
 import { type FC, useCallback, useMemo } from 'react'
+
+import CopyIcon from '@/shared/assets/icons/copy-20-20.svg'
 import { Button } from '@/shared/ui/Button'
 import { Icon } from '@/shared/ui/Icon'
-import CopyIcon from '@/shared/assets/icons/copy-20-20.svg'
+
 import { generateDb } from '../lib/generateDb'
 
 const SchemaGenerator: FC = () => {

@@ -1,6 +1,8 @@
 import { profiles } from '@/entities/Profile/testing'
-import { generateAppStories } from '@/shared/config/storybook/generateAppStories'
+
 import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator'
+import { generateAppStories } from '@/shared/config/storybook/generateAppStories'
+
 import { EditableProfileCard } from './EditableProfileCard'
 
 const [profileMock] = profiles

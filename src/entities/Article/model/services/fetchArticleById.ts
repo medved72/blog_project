@@ -1,4 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
+
 import { type Article } from '../types/article'
 import { type ArticleDetailsStateError } from '../types/articleDetailsState'
 

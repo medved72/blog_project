@@ -1,7 +1,9 @@
 import { type FC, memo, useCallback, useState } from 'react'
-import { classNames } from '../../lib/classNames'
-import { Icon } from '../Icon'
+
 import StarIcon from '../../assets/icons/star.svg'
+import { Icon } from '../Icon'
+import { classNames } from '../../lib/classNames'
+
 import classes from './StarRating.module.scss'
 interface StarRatingProps {
     className?: string

@@ -1,4 +1,5 @@
 import { combineReducers, type ReducersMapObject } from '@reduxjs/toolkit'
+
 import { type AppState, type ReducerManager } from './types'
 
 export function createReducerManager(

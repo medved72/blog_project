@@ -1,6 +1,7 @@
 import { type FC, memo, useCallback } from 'react'
+
 import { useSelector } from 'react-redux'
-import { ArticleViewSelector } from '@/features/ArticleViewSelector'
+
 import {
     articlesListViewActions,
     fetchArticlesList,
@@ -10,20 +11,24 @@ import {
     getArticleListViewSort,
     getArticleListViewType,
 } from '@/features/ArticlesListView'
-import { ArticleListSorter } from '@/features/ArticleListSorter'
 import { ArticleListSearch } from '@/features/ArticleListSearch'
+import { ArticleListSorter } from '@/features/ArticleListSorter'
 import { ArticleListTabs } from '@/features/ArticleListTabs'
+import { ArticleViewSelector } from '@/features/ArticleViewSelector'
+
 import {
     type ArticleListViewMode,
     type ArticleSortFieldValues,
     type ArticleType,
 } from '@/entities/Article'
-import { classNames } from '@/shared/lib/classNames'
-import { useAppDispatch } from '@/shared/hooks/useAppDispatch'
+
 import { Card } from '@/shared/ui/Card'
+import { classNames } from '@/shared/lib/classNames'
 import { type SortOrderValues } from '@/shared/types'
-import { useDebounce } from '@/shared/hooks/useDebounce'
 import { type TabItemValue } from '@/shared/ui/Tabs'
+import { useAppDispatch } from '@/shared/hooks/useAppDispatch'
+import { useDebounce } from '@/shared/hooks/useDebounce'
+
 import classes from './ArticlesListFilters.module.scss'
 
 interface ArticlesListFiltersProps {

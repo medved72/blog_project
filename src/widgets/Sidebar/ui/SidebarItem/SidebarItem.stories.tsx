@@ -1,10 +1,12 @@
-import { type ComponentMeta, type ComponentStory } from '@storybook/react'
 import { generatePath } from 'react-router-dom'
-import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator'
-import { THEME } from '@/shared/config/theme'
-import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator'
-import { ROUTES } from '@/shared/config/routes'
+import { type ComponentMeta, type ComponentStory } from '@storybook/react'
+
 import MainIcon from '@/shared/assets/icons/main-20-20.svg'
+import { ROUTES } from '@/shared/config/routes'
+import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator'
+import { THEME } from '@/shared/config/theme'
+import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator'
+
 import { SidebarItem } from './SidebarItem'
 
 const item = {

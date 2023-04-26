@@ -1,17 +1,21 @@
 import { type FC, type HTMLAttributeAnchorTarget, memo } from 'react'
-import { useTranslation } from 'react-i18next'
+
 import { generatePath } from 'react-router-dom'
-import { classNames } from '@/shared/lib/classNames'
-import { Text } from '@/shared/ui/Text'
-import { Icon } from '@/shared/ui/Icon'
+import { useTranslation } from 'react-i18next'
+
 import EyeIcon from '@/shared/assets/icons/eye-20-20.svg'
-import { Card } from '@/shared/ui/Card'
+import { AppLink } from '@/shared/ui/Link'
 import { Avatar } from '@/shared/ui/Avatar'
 import { Button } from '@/shared/ui/Button'
+import { Card } from '@/shared/ui/Card'
+import { Icon } from '@/shared/ui/Icon'
 import { ROUTES } from '@/shared/config/routes'
-import { AppLink } from '@/shared/ui/Link'
-import { type Article, type ArticleListViewMode } from '../../model'
+import { Text } from '@/shared/ui/Text'
+import { classNames } from '@/shared/lib/classNames'
+
 import { ArticleText } from '../ArticleText'
+import { type Article, type ArticleListViewMode } from '../../model'
+
 import classes from './ArticleListItem.module.scss'
 
 interface ArticleListItemProps {

@@ -1,7 +1,10 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
+
 import { actions } from '@/entities/User'
+
 import { USER_LOCALSTORAGE_KEY } from '@/shared/const/localStorage'
 import { type UserDto } from '@/shared/api/types'
+
 import { type LoginStateError } from '../types'
 
 interface LoginByUsernameBody {

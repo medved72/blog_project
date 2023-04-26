@@ -1,4 +1,5 @@
 import { createSelector } from '@reduxjs/toolkit'
+
 import { getUserIsAdmin } from './getUserIsAdmin.selector'
 import { getUserIsManager } from './getUserIsManager.selector'
 

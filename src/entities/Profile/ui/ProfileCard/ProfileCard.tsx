@@ -1,14 +1,18 @@
 import { type FC, memo } from 'react'
+
 import { useTranslation } from 'react-i18next'
-import { classNames } from '@/shared/lib/classNames'
-import { Text } from '@/shared/ui/Text'
-import { Input } from '@/shared/ui/Input'
-import { CurrencySelect } from '@/shared/ui/CurrencySelect'
-import { CountrySelect } from '@/shared/ui/CountrySelect'
-import { DotsSpinner } from '@/shared/ui/Spinner'
+
 import { Avatar } from '@/shared/ui/Avatar'
+import { CountrySelect } from '@/shared/ui/CountrySelect'
+import { CurrencySelect } from '@/shared/ui/CurrencySelect'
+import { DotsSpinner } from '@/shared/ui/Spinner'
 import { HStack, VStack } from '@/shared/ui/Stack'
+import { Input } from '@/shared/ui/Input'
+import { Text } from '@/shared/ui/Text'
+import { classNames } from '@/shared/lib/classNames'
+
 import { type ProfileCardProps } from '../../model/types/ProfileCardProps'
+
 import classes from './ProfileCard.module.scss'
 
 export const ProfileCard: FC<ProfileCardProps> = memo((props) => {

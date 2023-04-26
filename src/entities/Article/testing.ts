@@ -1,5 +1,5 @@
-import { type Article } from './model'
 import db from '../../../json-server/db.json'
+import { type Article } from './model'
 
 export type { Article, ArticleType } from './model/types/article'
 

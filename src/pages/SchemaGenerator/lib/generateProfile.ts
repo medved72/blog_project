@@ -1,6 +1,8 @@
 import { faker } from '@faker-js/faker/locale/ru'
-import { Currency } from '@/shared/const/currency'
+
 import { Country } from '@/shared/const/country'
+import { Currency } from '@/shared/const/currency'
+
 import type db from '../../../../json-server/db.json'
 
 export type GenerateProfileReturn = (typeof db.profile)[number]

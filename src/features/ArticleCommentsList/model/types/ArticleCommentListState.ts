@@ -1,4 +1,5 @@
 import { type EntityState } from '@reduxjs/toolkit'
+
 import { type CommentDto } from '@/entities/Comment'
 
 export type ArticleCommentListError = 'UNKNOWN_ERROR'

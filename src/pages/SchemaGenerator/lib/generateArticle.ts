@@ -1,6 +1,7 @@
 import { faker } from '@faker-js/faker'
-import { capitalize } from '../../../shared/lib/capitalize'
+
 import type db from '../../../../json-server/db.json'
+import { capitalize } from '../../../shared/lib/capitalize'
 
 export interface GenerateArticleParams {
     userIds: Array<(typeof db.users)[number]['id']>

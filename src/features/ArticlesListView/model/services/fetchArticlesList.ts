@@ -1,8 +1,10 @@
-import { createAsyncThunk } from '@reduxjs/toolkit'
 import axios, { type CancelTokenSource } from 'axios'
+import { createAsyncThunk } from '@reduxjs/toolkit'
+
 import { type Article } from '@/entities/Article'
+
 import { addQueryParams } from '@/shared/lib/url/addQueryParams/addQueryParams'
-import { type ArticleListViewErrors } from '../types/ArticlesListViewState'
+
 import {
     getArticleListViewLimit,
     getArticleListViewOrder,
@@ -11,6 +13,7 @@ import {
     getArticleListViewSort,
     getArticleListViewType,
 } from '../selectors'
+import { type ArticleListViewErrors } from '../types/ArticlesListViewState'
 
 interface FetchArticlesListParams {
     replace?: boolean

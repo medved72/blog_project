@@ -1,14 +1,22 @@
 import { type FC, memo, useCallback, useEffect, useMemo } from 'react'
+
 import { useSelector } from 'react-redux'
 import { useTranslation } from 'react-i18next'
+
 import { ProfileCard } from '@/entities/Profile'
 import { type ValidateProfileError } from '@/entities/Profile'
+
 import { Text } from '@/shared/ui/Text'
-import { type Currency } from '@/shared/const/currency'
+import { VStack } from '@/shared/ui/Stack'
 import { type Country } from '@/shared/const/country'
+import { type Currency } from '@/shared/const/currency'
 import { useAppDispatch } from '@/shared/hooks/useAppDispatch'
 import { withDynamicModuleLoader } from '@/shared/lib/components'
-import { VStack } from '@/shared/ui/Stack'
+
+import {
+    editableProfileCardActions,
+    editableProfileCardReducer,
+} from '../../model/slice/editableProfileCard.slice'
 import {
     getEditableProfileCardError,
     getEditableProfileCardForm,
@@ -16,12 +24,8 @@ import {
     getEditableProfileCardReadOnly,
     getProfileValidationErrors,
 } from '../../model/selectors'
-import {
-    editableProfileCardActions,
-    editableProfileCardReducer,
-} from '../../model/slice/editableProfileCard.slice'
-import { fetchProfileData } from '../../model/services/fetchProfileData'
 import { EditableProfileCardHeader } from '../EditableProfileCardHeader'
+import { fetchProfileData } from '../../model/services/fetchProfileData'
 
 interface EditableProfileCardProps {
     className?: string

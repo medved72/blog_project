@@ -1,5 +1,5 @@
-import { type ValueOf } from '@/shared/types'
 import { type ArticleDto } from '@/shared/api/types'
+import { type ValueOf } from '@/shared/types'
 
 export const articleTypes = [
     'All',

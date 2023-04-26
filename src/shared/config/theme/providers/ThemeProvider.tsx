@@ -1,4 +1,5 @@
 import { type FC, type PropsWithChildren, useState } from 'react'
+
 import { LOCAL_STORAGE_THEME_KEY, THEME } from '../config'
 import { ThemeContext } from '../model/ThemeContext'
 

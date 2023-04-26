@@ -1,14 +1,17 @@
-import { Menu } from '@headlessui/react'
 import { type FC, Fragment, type ReactNode } from 'react'
+
 import {
     flip,
     offset,
     type Placement,
     useFloating,
 } from '@floating-ui/react-dom'
-import { classNames } from '../../../../lib/classNames'
+import { Menu } from '@headlessui/react'
+
 import { AppLink } from '../../../Link'
 import { Button } from '../../../Button'
+import { classNames } from '../../../../lib/classNames'
+
 import classes from './Dropdown.module.scss'
 
 export interface DropdownItem {

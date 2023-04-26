@@ -1,4 +1,5 @@
 import { type DeepPartial } from '@reduxjs/toolkit'
+
 import { getProfileValidationErrors } from './getProfileValidationErrors.selector'
 
 describe('getProfileValidationErrors', () => {

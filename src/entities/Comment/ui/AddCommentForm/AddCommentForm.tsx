@@ -1,9 +1,13 @@
 import { type FC, type FormEvent, memo, useCallback } from 'react'
+
 import { useTranslation } from 'react-i18next'
-import { Input } from '@/shared/ui/Input'
+
 import { Button } from '@/shared/ui/Button'
+import { Input } from '@/shared/ui/Input'
 import { classNames } from '@/shared/lib/classNames'
+
 import { HStack } from '../../../../shared/ui/Stack'
+
 import classes from './AddCommentForm.module.scss'
 
 interface AddCommentFormProps {

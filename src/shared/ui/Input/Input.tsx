@@ -8,8 +8,10 @@ import React, {
     useState,
     type FocusEvent,
 } from 'react'
+
 import { classNames } from '../../lib/classNames'
 import { computeTextWidth } from '../../lib/computeTextWidth'
+
 import classes from './Input.module.scss'
 
 type HTMLInputProps = Omit<

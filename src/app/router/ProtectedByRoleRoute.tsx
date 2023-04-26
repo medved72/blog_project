@@ -1,7 +1,10 @@
 import { type FC, memo, type PropsWithChildren } from 'react'
-import { useSelector } from 'react-redux'
+
 import { generatePath, Navigate, useLocation } from 'react-router-dom'
-import { ROUTES } from '../../shared/config/routes'
+import { useSelector } from 'react-redux'
+
+import { ROUTES } from '@/shared/config/routes'
+
 import { type AppState } from '../providers/StoreProvider/types'
 
 interface ProtectedByRoleRouteProps {

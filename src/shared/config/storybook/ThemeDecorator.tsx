@@ -1,5 +1,7 @@
 import { type DecoratorFn } from '@storybook/react'
+
 import classes from '@/app/App.module.scss'
+
 import { type THEME, ThemeProvider } from '../theme'
 
 export const ThemeDecorator = (theme: THEME): DecoratorFn => {

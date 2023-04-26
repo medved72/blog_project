@@ -1,6 +1,9 @@
 import { type FC, memo, useMemo } from 'react'
+
 import { useTranslation } from 'react-i18next'
+
 import { type ArticleType, articleTypes } from '@/entities/Article'
+
 import { Tabs } from '@/shared/ui/Tabs'
 import { type TabItemValue } from '@/shared/ui/Tabs/Tabs'
 

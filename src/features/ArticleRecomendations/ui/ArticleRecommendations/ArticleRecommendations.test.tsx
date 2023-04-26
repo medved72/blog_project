@@ -1,4 +1,5 @@
 import { renderWithProviders } from '@/shared/lib/tests'
+
 import { ArticleRecommendations } from './ArticleRecommendations'
 
 describe('ArticleRecommendations', () => {

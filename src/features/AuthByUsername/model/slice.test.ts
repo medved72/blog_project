@@ -1,6 +1,7 @@
 import { type DeepPartial } from '@reduxjs/toolkit'
-import { type LoginState } from './types'
+
 import { actions, reducer } from './slice'
+import { type LoginState } from './types'
 
 describe('slice', () => {
     it('testSetUsername', () => {

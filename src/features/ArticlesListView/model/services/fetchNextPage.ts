@@ -1,5 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
-import { type ArticleListViewErrors } from '../types/ArticlesListViewState'
+
 import {
     getArticleListViewHasMore,
     getArticleListViewLoading,
@@ -7,6 +7,7 @@ import {
 } from '../selectors'
 import { articlesListViewActions } from '../slices/articleListView.slice'
 import { fetchArticlesList } from './fetchArticlesList'
+import { type ArticleListViewErrors } from '../types/ArticlesListViewState'
 
 export const fetchNextArticlesPage = createAsyncThunk<
     void,

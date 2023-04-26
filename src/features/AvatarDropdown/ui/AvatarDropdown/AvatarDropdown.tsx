@@ -1,15 +1,18 @@
 import { type FC, memo, useCallback } from 'react'
+
 import { generatePath } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { useTranslation } from 'react-i18next'
+
 import {
     actions as userActions,
     getCanViewAdminPanel,
     getUserAuthData,
 } from '@/entities/User'
+
 import { Avatar } from '@/shared/ui/Avatar'
-import { ROUTES } from '@/shared/config/routes'
 import { Dropdown } from '@/shared/ui/Popups'
+import { ROUTES } from '@/shared/config/routes'
 import { useAppDispatch } from '@/shared/hooks/useAppDispatch'
 
 interface AvatarDropdownProps {

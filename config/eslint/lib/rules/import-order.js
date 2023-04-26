@@ -1,6 +1,6 @@
 'use strict'
 
-const { getCodeByRange, isMatch } = require('../helpers')
+const { getCodeByRange, isMatchRegexp } = require('../helpers')
 
 const INVALID_IMPORT_ORDER = 'INVALID_IMPORT_ORDER'
 
@@ -36,26 +36,28 @@ module.exports = {
                     ({ type }) => type === 'ImportDeclaration'
                 )
 
+                if (importDeclarations.length === 0) {
+                    return
+                }
+
                 const importOrders = calcOrders(importDeclarations, groups)
 
-                const sortedImportOrders = importOrders
-                    .slice()
-                    .sort(
-                        ({ order: orderA }, { order: orderB }) =>
-                            orderA - orderB
-                    )
+                const [replaceRange, fixedCode] = printFixedCode(
+                    context,
+                    importOrders
+                )
 
-                if (isInvalidOrder(importOrders.map(({ order }) => order))) {
+                const originalCode = getCodeByRange(replaceRange, context)
+
+                if (fixedCode !== originalCode) {
                     return context.report({
                         node,
                         messageId: INVALID_IMPORT_ORDER,
                         fix: (fixer) => {
-                            const [range, fixedCode] = printFixedCode(
-                                context,
-                                importOrders,
-                                sortedImportOrders
+                            return fixer.replaceTextRange(
+                                replaceRange,
+                                fixedCode
                             )
-                            return fixer.replaceTextRange(range, fixedCode)
                         },
                     })
                 }
@@ -64,29 +66,44 @@ module.exports = {
     },
 }
 
-function printFixedCode(context, importOrders, sortedImportOrders) {
+function printFixedCode(context, importOrders) {
+    const possiblesOrders = new Set(importOrders.map(({ order }) => order))
+
+    const groups = importOrders.reduce((acc, { node, order }) => {
+        acc[order] = [].concat(acc[order] ?? [], [
+            getCodeByRange(node.range, context),
+        ])
+
+        return acc
+    }, {})
+
+    const sortedOrders = Array.from(possiblesOrders).sort()
+
+    const sortedGroups = Array.from(possiblesOrders).reduce((acc, order) => {
+        acc[order] = [].concat(acc[order] ?? [], groups[order].slice().sort())
+        return acc
+    }, {})
+
     const [start, end] = [
         importOrders[0].node.range[0],
         importOrders[importOrders.length - 1].node.range[1],
     ]
 
-    return [
-        [start, end],
-        sortedImportOrders
-            .map(({ node }) => getCodeByRange(node.range, context))
-            .join('\n'),
-    ]
-}
+    const fixedCode = sortedOrders
+        .reduce((acc, order, index, values) => {
+            sortedGroups[order].forEach((code) => {
+                acc.push(code)
+            })
 
-function isInvalidOrder(importOrders) {
-    return importOrders.some((order, index, values) => {
-        if (index === 0) {
-            return false
-        }
-        const prevOrder = values[index - 1]
+            if (index !== values.length - 1) {
+                acc.push('')
+            }
 
-        return prevOrder > order
-    })
+            return acc
+        }, [])
+        .join('\n')
+
+    return [[start, end], fixedCode]
 }
 
 function calcOrders(importDeclarations, groups) {
@@ -99,7 +116,7 @@ function calcOrders(importDeclarations, groups) {
                     return acc
                 }
 
-                if (isMatch(value, match)) {
+                if (isMatchRegexp(value, match)) {
                     return order
                 }
 

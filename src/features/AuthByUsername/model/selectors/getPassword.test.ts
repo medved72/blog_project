@@ -1,4 +1,5 @@
 import { type DeepPartial } from '@reduxjs/toolkit'
+
 import { getPassword } from './getPassword'
 
 describe('getPassword', () => {

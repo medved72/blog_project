@@ -1,13 +1,17 @@
 import { type FC, memo } from 'react'
+
 import { generatePath } from 'react-router-dom'
-import { classNames } from '@/shared/lib/classNames'
+
 import { Avatar } from '@/shared/ui/Avatar'
-import { Text } from '@/shared/ui/Text'
 import { Skeleton } from '@/shared/ui/Skeleton'
-import { type CommentDto } from '../../model/types/comment'
+import { Text } from '@/shared/ui/Text'
+import { classNames } from '@/shared/lib/classNames'
+
 import { AppLink } from '../../../../shared/ui/Link'
-import { ROUTES } from '../../../../shared/config/routes'
 import { HStack, VStack } from '../../../../shared/ui/Stack'
+import { ROUTES } from '../../../../shared/config/routes'
+import { type CommentDto } from '../../model/types/comment'
+
 import classes from './CommentCard.module.scss'
 
 interface CommentCardProps {

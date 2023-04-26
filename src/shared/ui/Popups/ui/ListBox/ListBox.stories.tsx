@@ -1,4 +1,5 @@
 import { action } from '@storybook/addon-actions'
+
 import { ListBox } from './ListBox'
 import { generateAppStories } from '../../../../config/storybook/generateAppStories'
 

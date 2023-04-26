@@ -1,24 +1,28 @@
 import { type FC, memo, useEffect } from 'react'
+
 import { useSelector } from 'react-redux'
 import { useTranslation } from 'react-i18next'
-import { classNames } from '@/shared/lib/classNames'
-import { withDynamicModuleLoader } from '@/shared/lib/components'
-import { useAppDispatch } from '@/shared/hooks/useAppDispatch'
-import { Text } from '@/shared/ui/Text'
-import { Skeleton } from '@/shared/ui/Skeleton'
-import { Avatar } from '@/shared/ui/Avatar'
-import EyeIcon from '@/shared/assets/icons/eye-20-20.svg'
+
 import CalendarIcon from '@/shared/assets/icons/calendar-20-20.svg'
-import { Icon } from '@/shared/ui/Icon'
+import EyeIcon from '@/shared/assets/icons/eye-20-20.svg'
+import { Avatar } from '@/shared/ui/Avatar'
 import { HStack, VStack } from '@/shared/ui/Stack'
-import { reducer as articleDetailsReducer } from '../../model/slices/articleDetailsSlice'
-import { fetchArticleById } from '../../model/services/fetchArticleById'
+import { Icon } from '@/shared/ui/Icon'
+import { Skeleton } from '@/shared/ui/Skeleton'
+import { Text } from '@/shared/ui/Text'
+import { classNames } from '@/shared/lib/classNames'
+import { useAppDispatch } from '@/shared/hooks/useAppDispatch'
+import { withDynamicModuleLoader } from '@/shared/lib/components'
+
 import {
     getArticleDetailsData,
     getArticleDetailsError,
     getArticleDetailsLoading,
 } from '../../model/selectors'
 import { ArticleBlock } from '../ArticleBlock'
+import { fetchArticleById } from '../../model/services/fetchArticleById'
+import { reducer as articleDetailsReducer } from '../../model/slices/articleDetailsSlice'
+
 import classes from './ArticleDetails.module.scss'
 
 interface ArticleDetailsProps {

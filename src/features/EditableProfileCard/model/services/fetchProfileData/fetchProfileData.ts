@@ -1,4 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
+
 import { type Profile, type ProfileErrors } from '@/entities/Profile'
 
 export const fetchProfileData = createAsyncThunk<

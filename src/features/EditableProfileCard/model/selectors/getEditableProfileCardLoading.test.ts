@@ -1,4 +1,5 @@
 import { type DeepPartial } from '@reduxjs/toolkit'
+
 import { getEditableProfileCardLoading } from './getEditableProfileCardLoading.selector'
 
 describe('loading', () => {

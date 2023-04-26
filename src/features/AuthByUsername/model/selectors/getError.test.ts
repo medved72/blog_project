@@ -1,4 +1,5 @@
 import { type DeepPartial } from '@reduxjs/toolkit'
+
 import { getError } from './getError'
 
 describe('getError', () => {

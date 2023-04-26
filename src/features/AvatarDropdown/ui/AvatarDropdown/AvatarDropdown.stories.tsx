@@ -1,5 +1,6 @@
-import { generateAppStories } from '@/shared/config/storybook/generateAppStories'
 import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator'
+import { generateAppStories } from '@/shared/config/storybook/generateAppStories'
+
 import { AvatarDropdown } from './AvatarDropdown'
 
 generateAppStories(

@@ -1,12 +1,15 @@
 import { screen, waitFor } from '@testing-library/react'
+
 import { type Profile } from '@/entities/Profile/testing'
+
 import {
     renderWithProviders,
     mockedAxios,
 } from '@/shared/lib/tests/renderWithProviders'
-import { Currency } from '@/shared/const/currency'
 import { Country } from '@/shared/const/country'
+import { Currency } from '@/shared/const/currency'
 import { type UserDto } from '@/shared/api/types'
+
 import { EditableProfileCard } from './EditableProfileCard'
 import { editableProfileCardReducer } from '../../model/slice/editableProfileCard.slice'
 

@@ -1,6 +1,7 @@
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit'
-import { type AddArticleCommentFormState } from '../types/AddArticleCommentFormState'
+
 import { sendArticleComment } from '../services/sendArticleComment'
+import { type AddArticleCommentFormState } from '../types/AddArticleCommentFormState'
 
 export const initialState: AddArticleCommentFormState = {
     error: undefined,

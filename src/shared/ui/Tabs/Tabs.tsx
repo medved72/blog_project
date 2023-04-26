@@ -1,6 +1,8 @@
 import { memo, type ReactNode } from 'react'
-import { classNames } from '../../lib/classNames'
+
 import { TabItem } from './TabItem'
+import { classNames } from '../../lib/classNames'
+
 import classes from './Tabs.module.scss'
 
 export interface TabItemValue<T extends string = string> {

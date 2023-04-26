@@ -1,7 +1,9 @@
 import { memo, useCallback } from 'react'
+
 import { Card } from '../Card'
 import { CardTheme } from '../Card/ui/Card/Card'
 import { type TabItemValue } from './Tabs'
+
 import classes from './Tabs.module.scss'
 
 export interface TabItemProps<T extends string> {
