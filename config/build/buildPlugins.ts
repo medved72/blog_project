@@ -14,21 +14,25 @@ export function buildPlugins({
     analyzerMode = 'disabled',
     apiUrl,
 }: BuildConfigOptions): webpack.WebpackPluginInstance[] {
-    const plugins: webpack.WebpackPluginInstance[] = [
+    const isProd = !isDev
+
+    return [
         new HtmlWebpackPlugin({ template: paths.html }),
         new webpack.ProgressPlugin(),
-        new MiniCssExtractPlugin({
-            filename: 'css/[name].[contenthash:8].css',
-            chunkFilename: 'css/[name].[contenthash:8].css',
-        }),
+        isProd &&
+            new MiniCssExtractPlugin({
+                filename: 'css/[name].[contenthash:8].css',
+                chunkFilename: 'css/[name].[contenthash:8].css',
+            }),
         new webpack.DefinePlugin({
             _IS_DEV_: isDev,
             _API_: JSON.stringify(apiUrl),
         }),
         new BundleAnalyzerPlugin({ analyzerMode }),
-        new CopyPlugin({
-            patterns: [{ from: paths.locales, to: paths.buildLocales }],
-        }),
+        isProd &&
+            new CopyPlugin({
+                patterns: [{ from: paths.locales, to: paths.buildLocales }],
+            }),
         new CircularDependencyPlugin({
             exclude: /node_modules/,
             failOnError: true,
@@ -44,11 +48,6 @@ export function buildPlugins({
                 mode: 'write-references',
             },
         }),
-    ]
-
-    if (isDev) {
-        plugins.push(new ReactRefreshWebpackPlugin({ overlay: true }))
-    }
-
-    return plugins
+        isDev && new ReactRefreshWebpackPlugin({ overlay: true }),
+    ].filter(<T>(value: T | boolean): value is T => !!value)
 }
