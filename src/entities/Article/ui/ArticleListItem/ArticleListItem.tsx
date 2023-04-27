@@ -1,6 +1,5 @@
 import { type FC, type HTMLAttributeAnchorTarget, memo } from 'react'
 
-import { generatePath } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 
 import EyeIcon from '@/shared/assets/icons/eye-20-20.svg'
@@ -9,9 +8,9 @@ import { Avatar } from '@/shared/ui/Avatar'
 import { Button } from '@/shared/ui/Button'
 import { Card } from '@/shared/ui/Card'
 import { Icon } from '@/shared/ui/Icon'
-import { ROUTES } from '@/shared/config/routes'
 import { Text } from '@/shared/ui/Text'
 import { classNames } from '@/shared/lib/classNames'
+import { getArticleDetailsRoute } from '@/shared/config/routes'
 
 import { ArticleText } from '../ArticleText'
 import { type Article, type ArticleListViewMode } from '../../model'
@@ -39,9 +38,7 @@ export const ArticleListItem: FC<ArticleListItemProps> = memo((props) => {
                         className,
                         classes[view],
                     ])}
-                    to={generatePath(ROUTES.ARTICLE_DETAILS, {
-                        articleId: article.id,
-                    })}
+                    to={getArticleDetailsRoute(article.id)}
                 >
                     <Card>
                         <div className={classes.imageWrapper}>
@@ -109,9 +106,7 @@ export const ArticleListItem: FC<ArticleListItemProps> = memo((props) => {
                         <div className={classes.footer}>
                             <AppLink
                                 target={target}
-                                to={generatePath(ROUTES.ARTICLE_DETAILS, {
-                                    articleId: article.id,
-                                })}
+                                to={getArticleDetailsRoute(article.id)}
                             >
                                 <Button theme="outline">
                                     {t('button.text.readMore')}

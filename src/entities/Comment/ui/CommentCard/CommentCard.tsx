@@ -1,15 +1,13 @@
 import { type FC, memo } from 'react'
 
-import { generatePath } from 'react-router-dom'
-
+import { AppLink } from '@/shared/ui/Link'
 import { Avatar } from '@/shared/ui/Avatar'
+import { HStack, VStack } from '@/shared/ui/Stack'
 import { Skeleton } from '@/shared/ui/Skeleton'
 import { Text } from '@/shared/ui/Text'
 import { classNames } from '@/shared/lib/classNames'
+import { getProfileRoute } from '@/shared/config/routes'
 
-import { AppLink } from '../../../../shared/ui/Link'
-import { HStack, VStack } from '../../../../shared/ui/Stack'
-import { ROUTES } from '../../../../shared/config/routes'
 import { type CommentDto } from '../../model/types/comment'
 
 import classes from './CommentCard.module.scss'
@@ -51,9 +49,7 @@ export const CommentCard: FC<CommentCardProps> = memo((props) => {
         >
             <AppLink
                 className={classes.header}
-                to={generatePath(ROUTES.PROFILE, {
-                    profileId: comment.user.id,
-                })}
+                to={getProfileRoute(comment.user.id)}
             >
                 <HStack gap="8">
                     {comment.user.avatar && (

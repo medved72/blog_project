@@ -1,11 +1,11 @@
 import { type FC, memo, type PropsWithChildren } from 'react'
 
-import { generatePath, Navigate, useLocation } from 'react-router-dom'
+import { Navigate, useLocation } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 
 import { getUserAuthData } from '@/entities/User'
 
-import { ROUTES } from '@/shared/config/routes'
+import { getMainRoute } from '@/shared/config/routes'
 
 export const ProtectedAuthRoute: FC<PropsWithChildren> = memo(
     ({ children }) => {
@@ -15,7 +15,7 @@ export const ProtectedAuthRoute: FC<PropsWithChildren> = memo(
         if (!authData) {
             return (
                 <Navigate
-                    to={generatePath(ROUTES.MAIN)}
+                    to={getMainRoute()}
                     state={{ from: location }}
                     replace
                 />

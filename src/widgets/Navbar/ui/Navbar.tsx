@@ -1,6 +1,5 @@
 import { type FC, memo, useCallback, useState } from 'react'
 
-import { generatePath } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { useTranslation } from 'react-i18next'
 
@@ -13,9 +12,9 @@ import { getUserAuthData } from '@/entities/User'
 import { AppLink } from '@/shared/ui/Link'
 import { Button } from '@/shared/ui/Button'
 import { HStack } from '@/shared/ui/Stack'
-import { ROUTES } from '@/shared/config/routes'
 import { Text } from '@/shared/ui/Text'
 import { classNames } from '@/shared/lib/classNames/classNames'
+import { getArticleCreateRoute } from '@/shared/config/routes'
 
 import classes from './Navbar.module.scss'
 
@@ -60,7 +59,7 @@ export const Navbar: FC<NavbarProps> = memo(({ className }) => {
                             />
                             <AppLink
                                 theme="invertedSecondary"
-                                to={generatePath(ROUTES.ARTICLE_CREATE)}
+                                to={getArticleCreateRoute()}
                             >
                                 {t('navbar.link.create.text')}
                             </AppLink>

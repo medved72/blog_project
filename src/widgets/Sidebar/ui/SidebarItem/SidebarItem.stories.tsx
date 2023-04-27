@@ -1,16 +1,15 @@
-import { generatePath } from 'react-router-dom'
 import { type ComponentMeta, type ComponentStory } from '@storybook/react'
 
 import MainIcon from '@/shared/assets/icons/main-20-20.svg'
-import { ROUTES } from '@/shared/config/routes'
 import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator'
 import { THEME } from '@/shared/config/theme'
 import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator'
+import { getMainRoute } from '@/shared/config/routes'
 
 import { SidebarItem } from './SidebarItem'
 
 const item = {
-    path: generatePath(ROUTES.MAIN),
+    path: getMainRoute(),
     icon: MainIcon,
     i18nKey: 'Главная',
 } as const

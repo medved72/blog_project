@@ -1,12 +1,15 @@
 import { type FC, memo, useCallback } from 'react'
 
-import { generatePath, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { useTranslation } from 'react-i18next'
 
+import {
+    getArticleEditRoute,
+    getArticleListRoute,
+} from '@/shared/config/routes'
 import { Button } from '@/shared/ui/Button'
 import { HStack } from '@/shared/ui/Stack'
-import { ROUTES } from '@/shared/config/routes'
 import { classNames } from '@/shared/lib/classNames'
 
 import { getCanEditArticle } from '../../model/selectors/getCanEditArticle'
@@ -27,11 +30,11 @@ export const ArticleDetailsPageHeader: FC<ArticleDetailsPageHeaderProps> = memo(
         const canEdit = useSelector(getCanEditArticle)
 
         const handleBackToList = useCallback(() => {
-            navigate(generatePath(ROUTES.ARTICLES, {}))
+            navigate(getArticleListRoute())
         }, [navigate])
 
         const handleEditClick = useCallback(() => {
-            navigate(generatePath(ROUTES.ARTICLE_EDIT, { articleId: id }))
+            navigate(getArticleEditRoute(id))
         }, [id, navigate])
 
         return (

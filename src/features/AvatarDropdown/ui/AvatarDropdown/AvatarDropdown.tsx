@@ -1,6 +1,5 @@
 import { type FC, memo, useCallback } from 'react'
 
-import { generatePath } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { useTranslation } from 'react-i18next'
 
@@ -12,7 +11,7 @@ import {
 
 import { Avatar } from '@/shared/ui/Avatar'
 import { Dropdown } from '@/shared/ui/Popups'
-import { ROUTES } from '@/shared/config/routes'
+import { getAdminPanelRoute, getProfileRoute } from '@/shared/config/routes'
 import { useAppDispatch } from '@/shared/hooks/useAppDispatch'
 
 interface AvatarDropdownProps {
@@ -47,15 +46,13 @@ export const AvatarDropdown: FC<AvatarDropdownProps> = memo((props) => {
                     ? [
                           {
                               content: t('navbar.item.adminPanel'),
-                              href: generatePath(ROUTES.ADMIN_PANEL, {}),
+                              href: getAdminPanelRoute(),
                           },
                       ]
                     : []),
                 {
                     content: t('navbar.item.profile'),
-                    href: generatePath(ROUTES.PROFILE, {
-                        profileId: authData.id,
-                    }),
+                    href: getProfileRoute(authData.id),
                 },
                 {
                     content: t('Выйти'),

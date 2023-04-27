@@ -1,7 +1,6 @@
 import { type FC, type SVGAttributes } from 'react'
 
 import { createSelector } from '@reduxjs/toolkit'
-import { generatePath } from 'react-router-dom'
 import { type TFuncKey } from 'i18next'
 
 import { getUserAuthData } from '@/entities/User'
@@ -10,7 +9,12 @@ import AboutIcon from '@/shared/assets/icons/about-20-20.svg'
 import ArticleIcon from '@/shared/assets/icons/article-20-20.svg'
 import MainIcon from '@/shared/assets/icons/main-20-20.svg'
 import ProfileIcon from '@/shared/assets/icons/profile-20-20.svg'
-import { ROUTES } from '@/shared/config/routes'
+import {
+    getAboutRoute,
+    getArticleListRoute,
+    getMainRoute,
+    getProfileRoute,
+} from '@/shared/config/routes'
 export interface Item {
     path: string
     i18nKey: TFuncKey<'translation'>
@@ -23,12 +27,12 @@ export const getSidebarItems = createSelector(
     (user): Item[] => {
         const items: Item[] = [
             {
-                path: generatePath(ROUTES.MAIN),
+                path: getMainRoute(),
                 icon: MainIcon,
                 i18nKey: 'Главная',
             },
             {
-                path: generatePath(ROUTES.ABOUT),
+                path: getAboutRoute(),
                 icon: AboutIcon,
                 i18nKey: 'О нас',
             },
@@ -36,13 +40,13 @@ export const getSidebarItems = createSelector(
 
         if (user?.id) {
             items.push({
-                path: generatePath(ROUTES.PROFILE, { profileId: user.id }),
+                path: getProfileRoute(user.id),
                 icon: ProfileIcon,
                 i18nKey: 'Профиль',
                 authOnly: true,
             })
             items.push({
-                path: generatePath(ROUTES.ARTICLES),
+                path: getArticleListRoute(),
                 icon: ArticleIcon,
                 i18nKey: 'Статьи',
                 authOnly: true,

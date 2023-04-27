@@ -1,9 +1,9 @@
 import { type FC, memo, type PropsWithChildren } from 'react'
 
-import { generatePath, Navigate, useLocation } from 'react-router-dom'
+import { Navigate, useLocation } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 
-import { ROUTES } from '@/shared/config/routes'
+import { getForbiddenRoute } from '@/shared/config/routes'
 
 import { type AppState } from '../providers/StoreProvider/types'
 
@@ -20,7 +20,7 @@ export const ProtectedByRoleRoute: FC<
     if (!canView) {
         return (
             <Navigate
-                to={generatePath(ROUTES.FORBIDDEN)}
+                to={getForbiddenRoute()}
                 state={{ from: location }}
                 replace
             />
