@@ -62,7 +62,7 @@ function printFix(context, importFrom, importTarget) {
     const relativePath = path
         .relative(importFrom, absoluteImportTarget)
         .replace(`..${path.sep}`, '')
-        .replaceAll(path.sep, '/')
+        .replace(new RegExp('\\\\', 'g'), '/')
 
     if (!relativePath.startsWith('..')) {
         return `'./${relativePath}'`
