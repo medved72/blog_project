@@ -21,10 +21,11 @@ import classes from './AddArticleCommentForm.module.scss'
 interface AddCommentFormProps {
     className?: string
     onCommentAdded?: () => void
+    articleId: string
 }
 
 const AddArticleCommentFormPlain: FC<AddCommentFormProps> = memo((props) => {
-    const { className, onCommentAdded } = props
+    const { className, onCommentAdded, articleId } = props
 
     const dispatch = useAppDispatch()
 
@@ -41,12 +42,14 @@ const AddArticleCommentFormPlain: FC<AddCommentFormProps> = memo((props) => {
 
     const handleSendClick = useCallback(
         async (value: string) => {
-            const result = await dispatch(sendArticleComment(value))
+            const result = await dispatch(
+                sendArticleComment({ articleId, text: value })
+            )
             if (result.meta.requestStatus === 'fulfilled') {
                 onCommentAdded?.()
             }
         },
-        [dispatch, onCommentAdded]
+        [articleId, dispatch, onCommentAdded]
     )
 
     return (

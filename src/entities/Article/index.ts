@@ -7,5 +7,5 @@ export type {
 } from './model'
 export { articleTypes } from './model/types/article'
 export { ArticleSortField } from './model'
-export { getArticleDetailsData } from './model/selectors'
+export { selectArticleById } from './api/articleDetails.api'
 export { ArticleDetails, ArticleList } from './ui'

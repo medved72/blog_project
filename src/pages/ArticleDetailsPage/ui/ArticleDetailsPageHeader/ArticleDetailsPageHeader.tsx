@@ -1,4 +1,4 @@
-import { type FC, memo, useCallback } from 'react'
+import { type FC, memo, useCallback, useMemo } from 'react'
 
 import { useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
@@ -27,7 +27,11 @@ export const ArticleDetailsPageHeader: FC<ArticleDetailsPageHeaderProps> = memo(
 
         const { t } = useTranslation('articleDetails')
 
-        const canEdit = useSelector(getCanEditArticle)
+        const canEditArticleSelector = useMemo(() => {
+            return getCanEditArticle(id)
+        }, [id])
+
+        const canEdit = useSelector(canEditArticleSelector)
 
         const handleBackToList = useCallback(() => {
             navigate(getArticleListRoute())

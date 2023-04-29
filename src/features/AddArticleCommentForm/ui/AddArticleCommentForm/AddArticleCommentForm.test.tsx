@@ -4,7 +4,9 @@ import { AddArticleCommentForm } from './AddArticleCommentForm'
 
 describe('AddCommentForm', () => {
     it('should render', () => {
-        const { baseElement } = renderWithProviders(<AddArticleCommentForm />)
+        const { baseElement } = renderWithProviders(
+            <AddArticleCommentForm articleId={'1'} />
+        )
         expect(baseElement).toBeInTheDocument()
     })
 })

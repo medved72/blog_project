@@ -1,6 +1,5 @@
-import { type FC, memo, useEffect } from 'react'
+import { type FC, memo } from 'react'
 
-import { useSelector } from 'react-redux'
 import { useTranslation } from 'react-i18next'
 
 import CalendarIcon from '@/shared/assets/icons/calendar-20-20.svg'
@@ -11,17 +10,9 @@ import { Icon } from '@/shared/ui/Icon'
 import { Skeleton } from '@/shared/ui/Skeleton'
 import { Text } from '@/shared/ui/Text'
 import { classNames } from '@/shared/lib/classNames'
-import { useAppDispatch } from '@/shared/hooks/useAppDispatch'
-import { withDynamicModuleLoader } from '@/shared/lib/components'
 
-import {
-    getArticleDetailsData,
-    getArticleDetailsError,
-    getArticleDetailsLoading,
-} from '../../model/selectors'
 import { ArticleBlock } from '../ArticleBlock'
-import { fetchArticleById } from '../../model/services/fetchArticleById'
-import { reducer as articleDetailsReducer } from '../../model/slices/articleDetailsSlice'
+import { useArticleByIdQuery } from '../../api/articleDetails.api'
 
 import classes from './ArticleDetails.module.scss'
 
@@ -30,19 +21,12 @@ interface ArticleDetailsProps {
     id: string
 }
 
-const ArticleDetailsPlain: FC<ArticleDetailsProps> = memo((props) => {
+export const ArticleDetails: FC<ArticleDetailsProps> = memo((props) => {
     const { className, id } = props
     const { t } = useTranslation('articleDetails')
-    const dispatch = useAppDispatch()
-    const loading = useSelector(getArticleDetailsLoading)
-    const error = useSelector(getArticleDetailsError)
-    const article = useSelector(getArticleDetailsData)
+    const { data: article, error, isLoading } = useArticleByIdQuery(id)
 
-    useEffect(() => {
-        dispatch(fetchArticleById(id)).catch(console.error)
-    }, [dispatch, id])
-
-    if (loading) {
+    if (isLoading) {
         return (
             <VStack
                 className={classNames(classes.articleDetails, {}, [className])}
@@ -69,7 +53,7 @@ const ArticleDetailsPlain: FC<ArticleDetailsProps> = memo((props) => {
                 className={classNames(classes.articleDetails, {}, [className])}
             >
                 <Text
-                    text={t(`articleDetails.errors.${error}`)}
+                    text={t(`articleDetails.errors.UNKNOWN_ERROR}`)}
                     align="center"
                 />
             </div>
@@ -119,11 +103,4 @@ const ArticleDetailsPlain: FC<ArticleDetailsProps> = memo((props) => {
         </VStack>
     )
 })
-ArticleDetailsPlain.displayName = 'ArticleDetails'
-
-export const ArticleDetails = withDynamicModuleLoader(ArticleDetailsPlain, {
-    removeAfterUnmount: true,
-    reducers: {
-        articleDetails: articleDetailsReducer,
-    },
-})
+ArticleDetails.displayName = 'ArticleDetails'

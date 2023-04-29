@@ -30,7 +30,10 @@ export const ArticleDetailsComments: FC<ArticleDetailsCommentsProps> = memo(
         return (
             <>
                 <Text size="L" className={''} title={t('comments.title')} />
-                <AddArticleCommentForm onCommentAdded={handleCommentAdded} />
+                <AddArticleCommentForm
+                    articleId={articleId}
+                    onCommentAdded={handleCommentAdded}
+                />
                 <ArticleCommentsList articleId={articleId} />
             </>
         )

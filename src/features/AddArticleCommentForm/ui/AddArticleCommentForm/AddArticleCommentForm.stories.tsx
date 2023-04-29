@@ -6,7 +6,7 @@ import { AddArticleCommentForm } from './AddArticleCommentForm'
 generateAppStories('features/AddCommentForm', AddArticleCommentForm, [
     {
         key: 'primary',
-        args: {},
+        args: { articleId: '1' },
         decorators: [StoreDecorator({})],
     },
 ])
