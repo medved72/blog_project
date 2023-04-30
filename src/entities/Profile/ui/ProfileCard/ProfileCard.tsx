@@ -84,6 +84,7 @@ export const ProfileCard: FC<ProfileCardProps> = memo((props) => {
                         className={classes.avatar}
                         src={profile.avatar}
                         alt=""
+                        firstName={profile.first}
                     />
                 </HStack>
             )}

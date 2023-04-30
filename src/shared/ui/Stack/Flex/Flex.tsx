@@ -1,4 +1,4 @@
-import React, { type PropsWithChildren } from 'react'
+import React, { type CSSProperties, type PropsWithChildren } from 'react'
 
 import { capitalize } from '../../../lib/capitalize'
 import { classNames } from '../../../lib/classNames'
@@ -25,6 +25,7 @@ export type FlexProps<T extends FlexElements | React.ComponentType> = {
     gap?: FlexGap
     as?: T
     fullWidth?: boolean
+    style?: CSSProperties
     'data-testid'?: string
 } & FlexAdditionalProps<T>
 

@@ -53,7 +53,11 @@ export const CommentCard: FC<CommentCardProps> = memo((props) => {
             >
                 <HStack gap="8">
                     {comment.user.avatar && (
-                        <Avatar size={30} src={comment.user.avatar} />
+                        <Avatar
+                            size={30}
+                            src={comment.user.avatar}
+                            firstName={comment.user.username}
+                        />
                     )}
                     <Text title={comment.user.username} />
                 </HStack>

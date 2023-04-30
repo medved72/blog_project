@@ -40,7 +40,13 @@ export const AvatarDropdown: FC<AvatarDropdownProps> = memo((props) => {
         <Dropdown
             className={className}
             direction="bottom-end"
-            trigger={<Avatar size={30} src={authData.avatar} />}
+            trigger={
+                <Avatar
+                    size={30}
+                    src={authData.avatar}
+                    firstName={authData.username}
+                />
+            }
             items={[
                 ...(isCanViewAdminPanel
                     ? [

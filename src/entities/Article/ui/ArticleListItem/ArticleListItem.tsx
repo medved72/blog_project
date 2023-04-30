@@ -3,11 +3,13 @@ import { type FC, type HTMLAttributeAnchorTarget, memo } from 'react'
 import { useTranslation } from 'react-i18next'
 
 import EyeIcon from '@/shared/assets/icons/eye-20-20.svg'
+import { AppImage } from '@/shared/ui/AppImage'
 import { AppLink } from '@/shared/ui/Link'
 import { Avatar } from '@/shared/ui/Avatar'
 import { Button } from '@/shared/ui/Button'
 import { Card } from '@/shared/ui/Card'
 import { Icon } from '@/shared/ui/Icon'
+import { Skeleton } from '@/shared/ui/Skeleton'
 import { Text } from '@/shared/ui/Text'
 import { classNames } from '@/shared/lib/classNames'
 import { getArticleDetailsRoute } from '@/shared/config/routes'
@@ -42,10 +44,13 @@ export const ArticleListItem: FC<ArticleListItemProps> = memo((props) => {
                 >
                     <Card>
                         <div className={classes.imageWrapper}>
-                            <img
+                            <AppImage
                                 className={classes.image}
                                 src={article.img}
                                 alt={article.title}
+                                fallback={
+                                    <Skeleton width="200px" height="200px" />
+                                }
                             />
                             <Text
                                 className={classes.date}
@@ -77,7 +82,11 @@ export const ArticleListItem: FC<ArticleListItemProps> = memo((props) => {
                 >
                     <Card className={classes.card}>
                         <div className={classes.header}>
-                            <Avatar size={30} src={article.user.avatar} />
+                            <Avatar
+                                size={30}
+                                src={article.user.avatar}
+                                firstName={article.user.username}
+                            />
                             <Text
                                 className={classes.username}
                                 text={article.user.username}
@@ -92,10 +101,11 @@ export const ArticleListItem: FC<ArticleListItemProps> = memo((props) => {
                             className={classes.types}
                             text={article.type.join(', ')}
                         />
-                        <img
+                        <AppImage
                             className={classes.image}
                             src={article.img}
                             alt={article.title}
+                            fallback={<Skeleton width="100%" height={250} />}
                         />
                         {firstTextBlock?.type === 'TEXT' && (
                             <ArticleText
