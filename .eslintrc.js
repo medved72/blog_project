@@ -131,6 +131,7 @@ module.exports = {
                 './vite.config.ts',
                 './webpack.config.ts',
                 '**/**.js',
+                '**/StyleDecorator.ts',
             ],
             rules: {
                 'blog-project-plugin/import-order': ['off'],
