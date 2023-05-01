@@ -81,6 +81,11 @@ jobs:
 
       - uses: actions/cache@v3
         with:
+          path: '**/reports/unit'
+          key: ${{ runner.os }}-modules-${{ hashFiles('**/reports/unit') }}
+
+      - uses: actions/cache@v3
+        with:
           path: '**/node_modules'
           key: ${{ runner.os }}-modules-${{ hashFiles('**/package-lock.json') }}
 
@@ -99,6 +104,11 @@ jobs:
 
       - uses: actions/cache@v3
         with:
+          path: '**/reports/loki'
+          key: ${{ runner.os }}-modules-${{ hashFiles('**/reports/loki') }}
+
+      - uses: actions/cache@v3
+        with:
           path: '**/node_modules'
           key: ${{ runner.os }}-modules-${{ hashFiles('**/package-lock.json') }}
 
@@ -111,6 +121,22 @@ jobs:
       - name: generate html report
         run: npm run test:ui:report
         if: always()
+
+  deploy:
+    needs: [screenshot-test, unit-test]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: actions/cache@v3
+        with:
+          path: '**/reports/unit'
+          key: ${{ runner.os }}-modules-${{ hashFiles('**/reports/unit') }}
+
+      - uses: actions/cache@v3
+        with:
+          path: '**/reports/loki'
+          key: ${{ runner.os }}-modules-${{ hashFiles('**/reports/loki') }}
 
       - name: setup pages
         uses: actions/configure-pages@v2
