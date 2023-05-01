@@ -21,7 +21,7 @@
     "test:ui:ci": "loki --requireReference --reactUri file:./storybook-static",
     "test:ui:json": "node scripts/generate-visual-json-report.js",
     "test:ui:html": "reg-cli --from .loki/report.json --report ./reports/loki/index.html",
-    "test:ui:report": "npm run test:ui:json && npm run test:ui:html && copyfiles .loki/difference/** ./reports/loki/difference",
+    "test:ui:report": "rimraf reports/loki && npm run test:ui:json && npm run test:ui:html && copyfiles -f .loki/difference/** ./reports/loki/difference/",
     "storybook": "start-storybook -p 6006 --config-dir ./config/storybook",
     "storybook:build": "build-storybook --config-dir ./config/storybook",
     "prepare": "husky install",
