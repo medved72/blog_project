@@ -1,5 +1,9 @@
 name: CI/CD Pipeline
 run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
+permissions:
+  contents: read
+  pages: write
+  id-token: write
 on:
   push:
     branches: [main]
