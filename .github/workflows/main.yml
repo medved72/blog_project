@@ -103,3 +103,22 @@ jobs:
 
       - name: screenshot testing
         run: npm run test:ui:ci
+
+      - name: generate html report
+        run: npm run test:ui:report
+        if: always()
+
+      - name: setup pages
+        uses: actions/configure-pages@v2
+        if: always()
+
+      - name: upload artifact
+        uses: actions/upload-pages-artifact@v1
+        if: always()
+        with:
+          path: ./reports/loki
+
+      - name: deploy github pages
+        id: deployment
+        if: always()
+        uses: actions/deploy-pages@v1
