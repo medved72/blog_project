@@ -122,9 +122,10 @@ jobs:
         run: npm run test:ui:report
         if: always()
 
-  deploy:
+  deploy-gh-pages:
     needs: [screenshot-test, unit-test]
     runs-on: ubuntu-latest
+    if: always()
     steps:
       - uses: actions/checkout@v3
 
