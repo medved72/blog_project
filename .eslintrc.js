@@ -141,4 +141,5 @@ module.exports = {
             },
         },
     ],
+    ignorePatterns: ['node_modules/**', 'config/eslint/**'],
 }
