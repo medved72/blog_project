@@ -1,9 +1,8 @@
 import { type FC, memo } from 'react'
 
+import { Text } from '@/shared/ui/Text'
 import { classNames } from '@/shared/lib/classNames'
 import { type ArticleTextBlockDto } from '@/shared/api/types'
-
-import { Text } from '../../../../shared/ui/Text'
 
 import classes from './ArticleText.module.scss'
 
