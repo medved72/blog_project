@@ -120,7 +120,7 @@ jobs:
         uses: actions/upload-pages-artifact@v1
         if: always()
         with:
-          path: ./reports/loki
+          path: ./reports/
 
       - name: deploy github pages
         id: deployment
