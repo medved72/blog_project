@@ -81,6 +81,7 @@ jobs:
           node-version-file: '.nvmrc'
 
       - uses: actions/cache@v3
+        if: always()
         with:
           path: '**/reports/unit'
           key: ${{ runner.os }}-reports-unit
@@ -104,6 +105,7 @@ jobs:
           node-version-file: '.nvmrc'
 
       - uses: actions/cache@v3
+        if: always()
         with:
           path: '**/reports/loki'
           key: ${{ runner.os }}-reports-loki
