@@ -137,10 +137,12 @@ jobs:
       - uses: actions/download-artifact@v2
         with:
           name: reports-unit
+          path: ./reports/unit/
 
       - uses: actions/download-artifact@v2
         with:
           name: reports-loki
+          path: ./reports/loki
 
       - name: ls
         run: ls -lah
