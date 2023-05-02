@@ -89,7 +89,7 @@ jobs:
         run: npm run test:unit
 
       - name: upload artifact
-        uses: actions/upload-pages-artifact@v2
+        uses: actions/upload-artifact@v2
         if: always()
         with:
           path: ./reports/unit
@@ -121,7 +121,7 @@ jobs:
         if: always()
 
       - name: upload artifact
-        uses: actions/upload-pages-artifact@v2
+        uses: actions/upload-artifact@v2
         if: always()
         with:
           path: ./reports/loki
