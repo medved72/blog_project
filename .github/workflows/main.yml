@@ -81,18 +81,19 @@ jobs:
           node-version-file: '.nvmrc'
 
       - uses: actions/cache@v3
-        if: always()
-        with:
-          path: '**/reports/unit'
-          key: ${{ runner.os }}-reports-unit
-
-      - uses: actions/cache@v3
         with:
           path: '**/node_modules'
           key: ${{ runner.os }}-modules-${{ hashFiles('**/package-lock.json') }}
 
       - name: unit testing
         run: npm run test:unit
+
+      - name: upload artifact
+        uses: actions/upload-pages-artifact@v2
+        if: always()
+        with:
+          path: ./reports/unit
+          name: reports-unit
 
   screenshot-test:
     needs: install_modules
@@ -103,12 +104,6 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version-file: '.nvmrc'
-
-      - uses: actions/cache@v3
-        if: always()
-        with:
-          path: '**/reports/loki'
-          key: ${{ runner.os }}-reports-loki
 
       - uses: actions/cache@v3
         with:
@@ -125,6 +120,13 @@ jobs:
         run: npm run test:ui:report
         if: always()
 
+      - name: upload artifact
+        uses: actions/upload-pages-artifact@v2
+        if: always()
+        with:
+          path: ./reports/loki
+          name: reports-loki
+
   deploy-gh-pages:
     needs: [screenshot-test, unit-test]
     runs-on: ubuntu-latest
@@ -132,15 +134,13 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - uses: actions/cache@v3
+      - uses: actions/download-artifact@v2
         with:
-          path: '**/reports/unit'
-          key: ${{ runner.os }}-reports-unit
+          name: reports-unit
 
-      - uses: actions/cache@v3
+      - uses: actions/download-artifact@v2
         with:
-          path: '**/reports/loki'
-          key: ${{ runner.os }}-reports-loki
+          name: reports-loki
 
       - name: setup pages
         uses: actions/configure-pages@v2
