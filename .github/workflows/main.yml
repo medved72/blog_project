@@ -144,9 +144,6 @@ jobs:
           name: reports-loki
           path: ./reports/loki
 
-      - name: ls
-        run: ls -lah
-
       - name: setup pages
         uses: actions/configure-pages@v2
         if: always()
