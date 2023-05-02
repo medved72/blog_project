@@ -145,7 +145,7 @@ jobs:
           path: ./reports/loki
 
       - name: setup pages
-        uses: actions/configure-pages@v2
+        uses: actions/configure-pages@v3
         if: always()
 
       - name: upload artifact
