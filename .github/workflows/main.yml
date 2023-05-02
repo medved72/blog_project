@@ -152,4 +152,4 @@ jobs:
       - name: deploy github pages
         id: deployment
         if: always()
-        uses: actions/deploy-pages@v1
+        uses: actions/deploy-pages@v2
