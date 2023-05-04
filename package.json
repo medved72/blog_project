@@ -74,7 +74,7 @@
     "@types/circular-dependency-plugin": "^5.0.5",
     "@types/jest": "^29.5.0",
     "@types/node": "18.11.18",
-    "@types/react": "18.0.28",
+    "@types/react": "18.2.2",
     "@types/react-dom": "18.0.11",
     "@types/webpack": "5.28.0",
     "@types/webpack-bundle-analyzer": "^4.6.0",
