@@ -1,22 +1,24 @@
-import { useCallback, useRef } from 'react'
+import { useEffect, useMemo } from 'react'
 
-export const useThrottle = <Arg>(
-    callback: (...args: Arg[]) => void,
+import { throttle } from '../lib/throttle'
+import { useRefFn } from './useRefFn'
+
+export const useThrottle = <Fn extends (...args: any[]) => any>(
+    callback: Fn,
     delay: number
 ) => {
-    const throttleRef = useRef(false)
+    const memoizedFn = useRefFn(callback)
 
-    return useCallback(
-        (...args: Arg[]) => {
-            if (!throttleRef.current) {
-                callback(...args)
-                throttleRef.current = true
+    const throttledFn = useMemo(() => {
+        return throttle(memoizedFn, delay)
+    }, [memoizedFn, delay])
 
-                setTimeout(() => {
-                    throttleRef.current = false
-                }, delay)
-            }
+    useEffect(
+        () => () => {
+            throttledFn.cancel()
         },
-        [callback, delay]
+        [throttledFn]
     )
+
+    return throttledFn
 }

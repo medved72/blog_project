@@ -1,20 +1,24 @@
-import { useCallback, useRef } from 'react'
+import { useEffect, useMemo } from 'react'
 
-export const useDebounce = <U>(
-    callback: (...args: U[]) => void,
+import { debounce } from '../lib/debounce'
+import { useRefFn } from './useRefFn'
+
+export const useDebounce = <Fn extends (...args: any[]) => any>(
+    callback: Fn,
     delay: number
 ) => {
-    const timer = useRef<ReturnType<typeof setTimeout>>()
+    const memoizedFn = useRefFn(callback)
 
-    return useCallback(
-        (...args: U[]) => {
-            if (timer.current) {
-                clearTimeout(timer.current)
-            }
-            timer.current = setTimeout(() => {
-                callback(...args)
-            }, delay)
+    const debouncedFn = useMemo(() => {
+        return debounce(memoizedFn, delay)
+    }, [memoizedFn, delay])
+
+    useEffect(
+        () => () => {
+            debouncedFn.cancel()
         },
-        [callback, delay]
+        [debouncedFn]
     )
+
+    return debouncedFn
 }

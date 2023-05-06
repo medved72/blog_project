@@ -2,7 +2,6 @@ import {
     type FC,
     type PropsWithChildren,
     type UIEvent,
-    useCallback,
     useEffect,
     useRef,
 } from 'react'
@@ -32,20 +31,14 @@ export const PageWrapper: FC<PropsWithChildren> = ({ children }) => {
         }
     }, [scrollPosition])
 
-    const handleScroll = useThrottle(
-        useCallback(
-            (e: UIEvent<HTMLDivElement>) => {
-                dispatch(
-                    setScrollRestorePosition({
-                        path: pathname,
-                        position: e.currentTarget.scrollTop,
-                    })
-                )
-            },
-            [dispatch, pathname]
-        ),
-        500
-    )
+    const handleScroll = useThrottle((e: UIEvent<HTMLDivElement>) => {
+        dispatch(
+            setScrollRestorePosition({
+                path: pathname,
+                position: (e.target as HTMLDivElement).scrollTop,
+            })
+        )
+    }, 300)
 
     return (
         <main
