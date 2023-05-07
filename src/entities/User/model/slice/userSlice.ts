@@ -1,8 +1,10 @@
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit'
 
 import { USER_LOCALSTORAGE_KEY } from '@/shared/const/localStorage'
+import { setFeatureFlags } from '@/shared/lib/featureFlags'
 import { type UserDto } from '@/shared/api/types'
 
+import { isUserDto } from '../../lib/isUserDto'
 import { type UserState } from '../types/user'
 
 const initialState: UserState = {}
@@ -17,7 +19,11 @@ export const userSlice = createSlice({
         initAuthData: (state) => {
             const user = localStorage.getItem(USER_LOCALSTORAGE_KEY)
             if (user) {
-                state.authData = JSON.parse(user)
+                const userDto = JSON.parse(user)
+                if (!isUserDto(userDto)) return
+
+                state.authData = userDto
+                setFeatureFlags(userDto.featureFlags)
             }
             state.__initialized = true
         },

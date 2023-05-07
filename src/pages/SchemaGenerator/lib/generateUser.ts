@@ -1,9 +1,8 @@
 import { faker } from '@faker-js/faker'
 
-import { type UserRoleDto } from '@/shared/api/types'
-
 import type db from '../../../../json-server/db.json'
 import { type GenerateProfileReturn } from './generateProfile'
+import { type UserRoleDto } from '../../../shared/api/types'
 
 export type GenerateUserReturn = (typeof db.users)[number]
 
@@ -20,5 +19,9 @@ export const generateUser = (
             roles[faker.datatype.number({ min: 0, max: roles.length - 1 })],
         ],
         avatar: profile.avatar,
+        features: {
+            isArticleRatingEnabled: faker.datatype.boolean(),
+            isCounterEnabled: faker.datatype.boolean(),
+        },
     }
 }

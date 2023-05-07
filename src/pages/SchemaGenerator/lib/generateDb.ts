@@ -48,3 +48,5 @@ export const generateDb = (): GenerateDbReturn => {
         'article-ratings': articleRatings,
     }
 }
+
+console.log(JSON.stringify(generateDb()))
