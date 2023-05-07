@@ -23,7 +23,8 @@
     "./scripts",
     "./src",
     "./webpack.config.ts",
-    "vite.config.ts"
+    "vite.config.ts",
+    "./cypress"
   ],
   "ts-node": {
     "compilerOptions": {

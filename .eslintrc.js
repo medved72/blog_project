@@ -141,5 +141,10 @@ module.exports = {
             },
         },
     ],
-    ignorePatterns: ['node_modules/**', 'config/eslint/**'],
+    ignorePatterns: [
+        'node_modules/**',
+        'config/eslint/**',
+        'cypress.config.ts',
+        'cypress/**',
+    ],
 }
