@@ -1,12 +1,14 @@
 import { useSelector } from 'react-redux'
 
-type Selector<T> = (state: GlbAppState) => T
+type Selector<T, Args extends any[]> = (state: GlbAppState, ...args: Args) => T
 
-type Result<T> = [() => T, Selector<T>]
+type Result<T, Args extends any[]> = [(...args: Args) => T, Selector<T, Args>]
 
-export function buildSelector<T>(selector: Selector<T>): Result<T> {
-    const useSelectorHook = () => {
-        return useSelector(selector)
+export function buildSelector<T, Args extends any[]>(
+    selector: Selector<T, Args>
+): Result<T, Args> {
+    const useSelectorHook = (...args: Args) => {
+        return useSelector((state: GlbAppState) => selector(state, ...args))
     }
 
     return [useSelectorHook, selector]
