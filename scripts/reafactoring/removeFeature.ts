@@ -1,4 +1,4 @@
-import { type Node, Project, SyntaxKind } from 'ts-morph'
+import { type JsxAttribute, type Node, Project, SyntaxKind } from 'ts-morph'
 
 const featureNameToRemove = process.argv[2] // example isArticleEnabled
 
@@ -12,6 +12,9 @@ if (!featureState || !['on', 'off'].includes(featureState)) {
     throw new Error('Укажите состояние фичи off/onn')
 }
 
+const toggleFunctionName = 'toggleFeatures'
+const toggleComponentName = 'ToggleFeature'
+
 const project = new Project({})
 
 project.addSourceFilesAtPaths('src/**/*.ts')
@@ -23,58 +26,128 @@ function isToggleFeaturesFunction(node: Node): boolean {
     return !!node.getChildren().find((child) => {
         return (
             child.isKind(SyntaxKind.Identifier) &&
-            child.getText() === 'toggleFeatures'
+            child.getText() === toggleFunctionName
         )
     })
 }
 
+function isToggleFeaturesComponent(node: Node): boolean {
+    return !!node.getChildren().find((child) => {
+        return (
+            child.isKind(SyntaxKind.Identifier) &&
+            child.getText() === toggleComponentName
+        )
+    })
+}
+
+function replaceToggleFunction(node: Node): void {
+    const objectOptions = node.getFirstDescendantByKind(
+        SyntaxKind.ObjectLiteralExpression
+    )
+
+    if (!objectOptions) {
+        return
+    }
+
+    const nameProperty = objectOptions
+        .getProperty('name')
+        ?.getFirstDescendantByKind(SyntaxKind.StringLiteral)
+        ?.getText()
+        .slice(1, -1)
+
+    const onFunction = objectOptions
+        .getProperty('on')
+        ?.getFirstDescendantByKind(SyntaxKind.ArrowFunction)
+
+    const offFunction = objectOptions
+        .getProperty('off')
+        ?.getFirstDescendantByKind(SyntaxKind.ArrowFunction)
+
+    if (
+        !nameProperty ||
+        !onFunction ||
+        !offFunction ||
+        nameProperty !== featureNameToRemove
+    ) {
+        return
+    }
+
+    if (featureState === 'on') {
+        node.replaceWithText(onFunction.getBody().getText())
+    }
+
+    if (featureState === 'off') {
+        node.replaceWithText(offFunction.getBody().getText())
+    }
+}
+
+function getAttributeNodeByName(attributes: JsxAttribute[], name: string) {
+    return attributes.find((node) => node.getName() === name)
+}
+
+function getReplacedComponent(attribute: JsxAttribute): string {
+    const value = attribute
+        ?.getFirstDescendantByKind(SyntaxKind.JsxExpression)
+        ?.getExpression()
+        ?.getText()
+        .trim()
+
+    if (!value) return ''
+
+    if (value === '<></>') {
+        return ''
+    }
+
+    if (value.startsWith('(')) {
+        return value.slice(1, -1)
+    }
+
+    return value
+}
+
+function replaceToggleComponent(node: Node): void {
+    const attributes = node.getDescendantsOfKind(SyntaxKind.JsxAttribute)
+
+    const name = getAttributeNodeByName(attributes, 'name')
+        ?.getFirstDescendantByKind(SyntaxKind.StringLiteral)
+        ?.getText()
+        ?.slice(1, -1)
+
+    if (!name || name !== featureNameToRemove) {
+        return
+    }
+
+    const onAttribute = getAttributeNodeByName(attributes, 'on')
+
+    const offAttribute = getAttributeNodeByName(attributes, 'off')
+
+    if (!onAttribute || !offAttribute) {
+        return
+    }
+
+    if (featureState === 'on') {
+        node.replaceWithText(getReplacedComponent(onAttribute))
+    }
+
+    if (featureState === 'off') {
+        node.replaceWithText(getReplacedComponent(offAttribute))
+    }
+}
+
 files.forEach((sourceFile) => {
     sourceFile.forEachDescendant((node) => {
-        const isToggleFeaturesNode =
+        if (
             node.isKind(SyntaxKind.CallExpression) &&
             isToggleFeaturesFunction(node)
-
-        if (!isToggleFeaturesNode) {
-            return
+        ) {
+            replaceToggleFunction(node)
         }
-
-        const objectOptions = node.getFirstDescendantByKind(
-            SyntaxKind.ObjectLiteralExpression
-        )
-
-        if (!objectOptions) {
-            return
-        }
-
-        const nameProperty = objectOptions
-            .getProperty('name')
-            ?.getFirstDescendantByKind(SyntaxKind.StringLiteral)
-            ?.getText()
-            .slice(1, -1)
-
-        const onFunction = objectOptions
-            .getProperty('on')
-            ?.getFirstDescendantByKind(SyntaxKind.ArrowFunction)
-
-        const offFunction = objectOptions
-            .getProperty('off')
-            ?.getFirstDescendantByKind(SyntaxKind.ArrowFunction)
 
         if (
-            !nameProperty ||
-            !onFunction ||
-            !offFunction ||
-            nameProperty !== featureNameToRemove
+            node.isKind(SyntaxKind.JsxSelfClosingElement) &&
+            isToggleFeaturesComponent(node)
         ) {
-            return
-        }
-
-        if (featureState === 'on') {
-            node.replaceWithText(onFunction.getBody().getText())
-        }
-
-        if (featureState === 'off') {
-            node.replaceWithText(offFunction.getBody().getText())
+            replaceToggleComponent(node)
         }
     })
 })

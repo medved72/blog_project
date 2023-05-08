@@ -30,6 +30,7 @@
     "storybook": "start-storybook -p 6006 --config-dir ./config/storybook",
     "storybook:build": "build-storybook --config-dir ./config/storybook",
     "prepare": "husky install",
+    "remove-feature": "ts-node ./scripts/reafactoring/removeFeature.ts",
     "postinstall": "rimraf ./node_modules/.cache"
   },
   "dependencies": {
