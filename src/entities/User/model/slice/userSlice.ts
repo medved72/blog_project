@@ -4,7 +4,7 @@ import { USER_LOCALSTORAGE_KEY } from '@/shared/const/localStorage'
 import { setFeatureFlags } from '@/shared/lib/featureFlags'
 import { type UserDto } from '@/shared/api/types'
 
-import { isUserDto } from '../../lib/isUserDto'
+import { initAuthData } from '../services/initAuthData'
 import { saveJsonSettings } from '../services/saveJsonSettings'
 import { type UserState } from '../types/user'
 
@@ -17,31 +17,29 @@ export const userSlice = createSlice({
         setAuthData: (state, { payload }: PayloadAction<UserDto>) => {
             state.authData = payload
         },
-        initAuthData: (state) => {
-            const user = localStorage.getItem(USER_LOCALSTORAGE_KEY)
-            if (user) {
-                const userDto = JSON.parse(user)
-
-                if (!isUserDto(userDto)) return
-
-                state.authData = userDto
-                setFeatureFlags(userDto.features)
-            }
-            state.__initialized = true
-        },
         logout: (state) => {
-            localStorage.removeItem(USER_LOCALSTORAGE_KEY)
             state.authData = undefined
+            localStorage.removeItem(USER_LOCALSTORAGE_KEY)
         },
     },
     extraReducers: (builder) =>
-        builder.addCase(saveJsonSettings.fulfilled, (state, { payload }) => {
-            if (!state.authData) {
-                return
-            }
+        builder
+            .addCase(saveJsonSettings.fulfilled, (state, { payload }) => {
+                if (!state.authData) {
+                    return
+                }
 
-            state.authData.jsonSettings = payload
-        }),
+                state.authData.jsonSettings = payload
+            })
+            .addCase(initAuthData.fulfilled, (state, { payload }) => {
+                localStorage.setItem(USER_LOCALSTORAGE_KEY, payload.id)
+                state.authData = payload
+                setFeatureFlags(payload.features)
+                state.__initialized = true
+            })
+            .addCase(initAuthData.rejected, (state) => {
+                state.__initialized = true
+            }),
 })
 
 export const { actions, reducer } = userSlice

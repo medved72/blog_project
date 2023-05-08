@@ -24,10 +24,7 @@ export const loginByUsername = createAsyncThunk<
             return thunkAPI.rejectWithValue('ERROR_UNKNOWN_ERROR')
         }
 
-        localStorage.setItem(
-            USER_LOCALSTORAGE_KEY,
-            JSON.stringify(response.data)
-        )
+        localStorage.setItem(USER_LOCALSTORAGE_KEY, response.data.id)
 
         thunkAPI.dispatch(actions.setAuthData(response.data))
 

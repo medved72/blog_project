@@ -1,14 +1,16 @@
 import { type FC, useEffect } from 'react'
 
-import { useDispatch } from 'react-redux'
+import { useSelector } from 'react-redux'
 
 import { AppNavbar } from '@/widgets/Navbar'
+import { PageLoader } from '@/widgets/PageLoader'
 import { PageWrapper } from '@/widgets/PageWrapper'
 import { Sidebar } from '@/widgets/Sidebar'
 
-import { actions as userActions } from '@/entities/User'
+import { getUserInitialized, initAuthData } from '@/entities/User'
 
 import { classNames } from '@/shared/lib/classNames/classNames'
+import { useAppDispatch } from '@/shared/hooks/useAppDispatch'
 import { useTheme } from '@/shared/config/theme'
 
 import { AppRouter } from './router'
@@ -20,11 +22,21 @@ import classes from './App.module.scss'
 export const App: FC = withProviders(() => {
     const { theme } = useTheme()
 
-    const dispatch = useDispatch()
+    const userInitialized = useSelector(getUserInitialized)
+
+    const dispatch = useAppDispatch()
 
     useEffect(() => {
-        dispatch(userActions.initAuthData())
+        dispatch(initAuthData())
     }, [dispatch])
+
+    if (!userInitialized) {
+        return (
+            <PageLoader
+                className={classNames(classes.app, {}, [`${theme}Theme`])}
+            />
+        )
+    }
 
     return (
         <div className={classNames(classes.app, {}, [`${theme}Theme`])}>
