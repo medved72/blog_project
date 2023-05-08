@@ -3,8 +3,8 @@ import { type FC, type PropsWithChildren, Suspense } from 'react'
 import { BrowserRouter } from 'react-router-dom'
 
 import { DotsSpinner } from '@/shared/ui/Spinner'
-import { ThemeProvider } from '@/shared/config/theme'
 
+import { AppThemeProvider } from './AppThemeProvider'
 import { ErrorBoundary } from './ErrorBoundary'
 import { StoreProvider } from './StoreProvider'
 
@@ -13,11 +13,11 @@ export const AppProvider: FC<PropsWithChildren> = ({ children }) => {
         <BrowserRouter>
             <StoreProvider>
                 <ErrorBoundary>
-                    <ThemeProvider>
+                    <AppThemeProvider>
                         <Suspense fallback={<DotsSpinner />}>
                             {children}
                         </Suspense>
-                    </ThemeProvider>
+                    </AppThemeProvider>
                 </ErrorBoundary>
             </StoreProvider>
         </BrowserRouter>

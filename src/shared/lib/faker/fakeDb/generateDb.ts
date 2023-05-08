@@ -50,3 +50,5 @@ export const generateDb = (): DatabaseDto => {
         'article-ratings': articleRatings,
     }
 }
+
+console.log(JSON.stringify(generateDb()))

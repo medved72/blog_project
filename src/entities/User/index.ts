@@ -8,4 +8,6 @@ export {
     getUserIsAdmin,
     getUserRoles,
     getCanViewAdminPanel,
+    useUserJsonSettings,
 } from './model/selectors'
+export { saveJsonSettings } from './model/services/saveJsonSettings'

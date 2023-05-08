@@ -7,7 +7,7 @@ import { type THEME, ThemeProvider } from '../theme'
 export const ThemeDecorator = (theme: THEME): DecoratorFn => {
     return function ThemeDecorator(StoryComponent) {
         return (
-            <ThemeProvider defaultTheme={theme}>
+            <ThemeProvider theme={theme}>
                 <div
                     className={`${classes.app} ${theme}Theme`}
                     style={{ minHeight: 'auto' }}

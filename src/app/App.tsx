@@ -19,6 +19,7 @@ import classes from './App.module.scss'
 
 export const App: FC = withProviders(() => {
     const { theme } = useTheme()
+
     const dispatch = useDispatch()
 
     useEffect(() => {

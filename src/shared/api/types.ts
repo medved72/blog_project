@@ -14,6 +14,13 @@ export interface UserDto {
     avatar?: string
     roles: UserRoleDto[]
     features: FeatureFlags
+    jsonSettings?: UserJsonSettingsDto
+}
+
+export interface UserJsonSettingsDto {
+    theme?: string
+    isFirstVisit?: boolean
+    settingsPageHasBeenOpen?: boolean
 }
 
 export type ArticleBlockType = 'TEXT' | 'CODE' | 'IMAGE'

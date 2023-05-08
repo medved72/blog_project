@@ -46,7 +46,14 @@ export interface DatabaseUser {
     password: string
     roles: string[]
     avatar: string
+    jsonSettings?: DatabaseUserJsonSettings
     features: DatabaseUserFeatures
+}
+
+export interface DatabaseUserJsonSettings {
+    theme: string
+    isFirstVisit: boolean
+    settingsPageHasBeenOpen: boolean
 }
 
 export interface DatabaseUserFeatures {

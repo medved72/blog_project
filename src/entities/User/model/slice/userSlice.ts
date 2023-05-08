@@ -5,6 +5,7 @@ import { setFeatureFlags } from '@/shared/lib/featureFlags'
 import { type UserDto } from '@/shared/api/types'
 
 import { isUserDto } from '../../lib/isUserDto'
+import { saveJsonSettings } from '../services/saveJsonSettings'
 import { type UserState } from '../types/user'
 
 const initialState: UserState = {}
@@ -33,6 +34,14 @@ export const userSlice = createSlice({
             state.authData = undefined
         },
     },
+    extraReducers: (builder) =>
+        builder.addCase(saveJsonSettings.fulfilled, (state, { payload }) => {
+            if (!state.authData) {
+                return
+            }
+
+            state.authData.jsonSettings = payload
+        }),
 })
 
 export const { actions, reducer } = userSlice

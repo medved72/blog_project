@@ -26,6 +26,6 @@ export const generateProfile = (): DatabaseProfile => {
             ],
         city: faker.address.cityName(),
         username,
-        avatar: faker.image.avatar(),
+        avatar: faker.image.dataUri(100, 100, faker.color.rgb()),
     }
 }

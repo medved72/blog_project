@@ -20,7 +20,7 @@ export const ThemeProviderDecorator = (theme: THEME): DecoratorFn => {
 
     return function ThemeProviderDecorator(StoryComponent) {
         return (
-            <ThemeProvider defaultTheme={theme}>
+            <ThemeProvider theme={theme}>
                 <Decorated StoryComponent={StoryComponent} />
             </ThemeProvider>
         )
