@@ -21,6 +21,7 @@ export const generateUser = (profile: DatabaseProfile): DatabaseUser => {
             ],
             settingsPageHasBeenOpen: faker.datatype.boolean(),
             isFirstVisit: faker.datatype.boolean(),
+            isArticlesPageWasOpened: faker.datatype.boolean(),
         },
         features: {
             isArticleRatingEnabled: faker.datatype.boolean(),

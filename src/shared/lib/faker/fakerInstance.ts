@@ -1,5 +1,9 @@
 import { faker } from '@faker-js/faker'
 
-faker.seed(1)
+const resetFaker = () => {
+    faker.seed(1)
+}
 
-export { faker }
+resetFaker()
+
+export { faker, resetFaker }

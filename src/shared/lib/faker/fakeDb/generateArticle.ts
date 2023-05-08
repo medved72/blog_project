@@ -36,21 +36,27 @@ const blocksSchema = {
 
 export const generateArticle = ({
     userIds,
-}: GenerateArticleParams): DatabaseArticle => ({
-    id: faker.datatype.uuid(),
-    title: faker.name.jobTitle(),
-    subtitle: faker.name.jobDescriptor(),
-    img: faker.image.dataUri(640, 480, faker.color.rgb()),
-    views: faker.datatype.number({ min: 10, max: 100 }),
-    createdAt: formatDate(faker.datatype.datetime()),
-    userId: userIds[faker.datatype.number({ min: 0, max: userIds.length - 1 })],
-    type: faker.datatype.array(3).map(() => capitalize(faker.hacker.noun())),
-    blocks: faker.datatype.array(5).map(() => {
-        const type = faker.datatype.number({
-            min: 1,
-            max: 3,
-        }) as keyof typeof blocksSchema
-        const generator = blocksSchema[type]
-        return generator()
-    }),
-})
+}: GenerateArticleParams): DatabaseArticle => {
+    return {
+        id: faker.datatype.uuid(),
+        title: faker.name.jobTitle(),
+        subtitle: faker.name.jobDescriptor(),
+        img: faker.image.dataUri(640, 480, faker.color.rgb()),
+        views: faker.datatype.number({ min: 10, max: 100 }),
+        createdAt: formatDate(faker.datatype.datetime()),
+        userId: userIds[
+            faker.datatype.number({ min: 0, max: userIds.length - 1 })
+        ],
+        type: faker.datatype
+            .array(3)
+            .map(() => capitalize(faker.hacker.noun())),
+        blocks: faker.datatype.array(5).map(() => {
+            const type = faker.datatype.number({
+                min: 1,
+                max: 3,
+            }) as keyof typeof blocksSchema
+            const generator = blocksSchema[type]
+            return generator()
+        }),
+    }
+}

@@ -4,9 +4,12 @@ import { generateNotification } from './generateNotification'
 import { generateProfile } from './generateProfile'
 import { generateRating } from './generateRating'
 import { generateUser } from './generateUser'
+import { resetFaker } from '../fakerInstance'
 import { type DatabaseDto } from './db.dto'
 
 export const generateDb = (): DatabaseDto => {
+    resetFaker()
+
     const profiles = new Array(3).fill(null).map(generateProfile)
     profiles[0].username = 'admin'
     profiles[1].username = 'user'

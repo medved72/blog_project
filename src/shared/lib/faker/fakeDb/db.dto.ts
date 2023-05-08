@@ -54,6 +54,7 @@ export interface DatabaseUserJsonSettings {
     theme: string
     isFirstVisit: boolean
     settingsPageHasBeenOpen: boolean
+    isArticlesPageWasOpened: boolean
 }
 
 export interface DatabaseUserFeatures {

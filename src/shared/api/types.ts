@@ -21,6 +21,7 @@ export interface UserJsonSettingsDto {
     theme?: string
     isFirstVisit?: boolean
     settingsPageHasBeenOpen?: boolean
+    isArticlesPageWasOpened?: boolean
 }
 
 export type ArticleBlockType = 'TEXT' | 'CODE' | 'IMAGE'
