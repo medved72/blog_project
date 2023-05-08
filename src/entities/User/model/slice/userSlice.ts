@@ -21,7 +21,6 @@ export const userSlice = createSlice({
             if (user) {
                 const userDto = JSON.parse(user)
                 if (!isUserDto(userDto)) return
-
                 state.authData = userDto
                 setFeatureFlags(userDto.featureFlags)
             }

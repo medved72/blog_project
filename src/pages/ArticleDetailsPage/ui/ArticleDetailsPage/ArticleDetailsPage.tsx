@@ -10,6 +10,7 @@ import { ArticleDetails } from '@/entities/Article'
 
 import { VStack } from '@/shared/ui/Stack'
 import { classNames } from '@/shared/lib/classNames'
+import { getFeatureFlag } from '@/shared/lib/featureFlags'
 
 import { ArticleDetailsComments } from '../ArticleDetailsComments'
 import { ArticleDetailsPageHeader } from '../ArticleDetailsPageHeader'
@@ -22,6 +23,7 @@ const ArticleDetailsPage: FC<ArticleDetailsPageProps> = memo((props) => {
     const { className } = props
     const { articleId } = useParams<{ articleId: string }>()
     const { t } = useTranslation('articleDetails')
+    const isArticleRatingEnabled = getFeatureFlag('isArticleRatingEnabled')
 
     if (!articleId) {
         return (
@@ -35,7 +37,7 @@ const ArticleDetailsPage: FC<ArticleDetailsPageProps> = memo((props) => {
         <VStack gap="16" className={classNames('', {}, [className])} fullWidth>
             <ArticleDetailsPageHeader id={articleId} />
             <ArticleDetails id={articleId} />
-            <ArticleRating articleId={articleId} />
+            {isArticleRatingEnabled && <ArticleRating articleId={articleId} />}
             <ArticleRecommendations />
             <ArticleDetailsComments articleId={articleId} />
         </VStack>

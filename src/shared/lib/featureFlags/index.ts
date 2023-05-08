@@ -1,1 +1,1 @@
-export { getFeatureFlags, setFeatureFlags } from './featureFlags'
+export { getFeatureFlag, setFeatureFlags } from './featureFlags'

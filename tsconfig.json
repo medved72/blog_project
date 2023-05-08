@@ -24,8 +24,8 @@
     "./src",
     "./webpack.config.ts",
     "vite.config.ts",
-    "./cypress"
   ],
+  "exclude": ["./cypress"],
   "ts-node": {
     "compilerOptions": {
       "module": "CommonJS"
