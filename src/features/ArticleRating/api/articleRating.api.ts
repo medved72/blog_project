@@ -1,6 +1,5 @@
-import { type RatingDto } from '@/entities/Rating'
-
 import { rtkApi } from '@/shared/api/rtkApi'
+import { type RatingDto } from '@/shared/api/types'
 
 interface ArticleRatingByUserIdParams {
     articleId: string

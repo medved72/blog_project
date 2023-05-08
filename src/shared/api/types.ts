@@ -1,3 +1,6 @@
+import { type Country } from '../const/country'
+import { type Currency } from '../const/currency'
+
 export type UserRoleDto = 'ADMIN' | 'USER' | 'MANAGER'
 
 export interface FeatureFlags {
@@ -10,7 +13,7 @@ export interface UserDto {
     username: string
     avatar?: string
     roles: UserRoleDto[]
-    featureFlags: FeatureFlags
+    features: FeatureFlags
 }
 
 export type ArticleBlockType = 'TEXT' | 'CODE' | 'IMAGE'
@@ -52,4 +55,29 @@ export interface ArticleDto {
     createdAt: string
     type: string[]
     blocks: ArticleBlockDto[]
+}
+
+export interface ProfileDto {
+    id: string
+    first?: string
+    lastname?: string
+    age?: number
+    currency?: Currency
+    country?: Country
+    city?: string
+    username: string
+    avatar?: string
+}
+
+export interface RatingDto {
+    rate: number
+    feedback: string
+}
+
+export interface NotificationDto {
+    id: string
+    title: string
+    description: string
+    userId: string
+    href?: string
 }

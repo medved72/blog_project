@@ -1,6 +1,6 @@
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit'
 
-import { type Profile } from '@/entities/Profile'
+import { type ProfileDto } from '@/shared/api/types'
 
 import { fetchProfileData } from '../services/fetchProfileData'
 import { getEditableProfileCardInitialState } from './getEditableProfileCardInitialState'
@@ -17,7 +17,7 @@ export const editableProfileCardSlice = createSlice({
         setReadOnly: (state, action: PayloadAction<boolean>) => {
             state.readonly = action.payload
         },
-        updateProfile: (state, action: PayloadAction<Profile>) => {
+        updateProfile: (state, action: PayloadAction<Partial<ProfileDto>>) => {
             state.form = {
                 ...state.form,
                 ...action.payload,

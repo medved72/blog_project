@@ -1,5 +1,5 @@
-import db from '../../../json-server/db.json'
-import { type Profile } from './model/types/profile'
+import { fakeDb } from '@/shared/lib/faker'
+import { type ProfileDto } from '@/shared/api/types'
 
-export type { Profile } from './model/types/profile'
-export const profiles: Profile[] = db.profile as Profile[]
+export type { ProfileDto } from '@/shared/api/types'
+export const profilesMock: ProfileDto[] = fakeDb.profile as ProfileDto[]

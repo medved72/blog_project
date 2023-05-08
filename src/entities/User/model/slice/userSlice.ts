@@ -20,9 +20,11 @@ export const userSlice = createSlice({
             const user = localStorage.getItem(USER_LOCALSTORAGE_KEY)
             if (user) {
                 const userDto = JSON.parse(user)
+
                 if (!isUserDto(userDto)) return
+
                 state.authData = userDto
-                setFeatureFlags(userDto.featureFlags)
+                setFeatureFlags(userDto.features)
             }
             state.__initialized = true
         },

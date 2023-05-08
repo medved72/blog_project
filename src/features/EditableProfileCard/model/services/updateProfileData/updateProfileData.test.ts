@@ -1,4 +1,4 @@
-import { type Profile } from '@/entities/Profile/testing'
+import { type ProfileDto } from '@/entities/Profile/testing'
 
 import avatar from '@/shared/assets/tests/avatar.jpg'
 import { TestAsyncThunk } from '@/shared/lib/tests'
@@ -15,7 +15,7 @@ const profile = {
     city: 'Tyumen',
     username: 'admin',
     avatar,
-} as Profile
+} as ProfileDto
 
 describe('updateProfileData', () => {
     it('success', async () => {

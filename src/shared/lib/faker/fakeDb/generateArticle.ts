@@ -1,13 +1,10 @@
-import { faker } from '@faker-js/faker'
-
-import type db from '../../../../json-server/db.json'
-import { capitalize } from '../../../shared/lib/capitalize'
+import { capitalize } from '../../capitalize'
+import { faker } from '../fakerInstance'
+import { type DatabaseArticle, type DatabaseUser } from './db.dto'
 
 export interface GenerateArticleParams {
-    userIds: Array<(typeof db.users)[number]['id']>
+    userIds: Array<DatabaseUser['id']>
 }
-
-export type GenerateArticleReturn = (typeof db.articles)[number]
 
 const formatDate = (date: Date) => {
     const day = date.getDate().toString().padStart(2, '0')
@@ -39,7 +36,7 @@ const blocksSchema = {
 
 export const generateArticle = ({
     userIds,
-}: GenerateArticleParams): GenerateArticleReturn => ({
+}: GenerateArticleParams): DatabaseArticle => ({
     id: faker.datatype.uuid(),
     title: faker.name.jobTitle(),
     subtitle: faker.name.jobDescriptor(),

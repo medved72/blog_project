@@ -1,15 +1,19 @@
-import db from '../../../json-server/db.json'
+import { fakeDb } from '@/shared/lib/faker'
+
 import { type CommentDto } from './model/types/comment'
 
 export type { CommentDto } from './model/types/comment'
+
 export const getCommentsByArticleId = (articleId: string): CommentDto[] => {
-    return db.comments
+    return fakeDb.comments
         .filter((comment) => comment.articleId === articleId)
         .map(
-            ({ userId, ...restComment }) =>
+            (comment) =>
                 ({
-                    ...restComment,
-                    user: db.users.find((user) => user.id === userId),
+                    ...comment,
+                    user: fakeDb.users.find(
+                        (user) => user.id === comment.userId
+                    ),
                 } as CommentDto)
         )
 }

@@ -1,10 +1,14 @@
 import { type ComponentMeta, type ComponentStory } from '@storybook/react'
 
+import { usersMock } from '@/entities/User/testing'
+
 import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator'
 import { THEME } from '@/shared/config/theme'
 import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator'
 
 import { Sidebar } from './Sidebar'
+
+const [authData] = usersMock
 
 const meta: ComponentMeta<typeof Sidebar> = {
     title: 'widgets/Sidebar',
@@ -20,7 +24,7 @@ export const Primary = Template.bind({})
 Primary.args = {}
 Primary.decorators = [
     StoreDecorator({
-        user: { authData: { id: '1', username: 'username', roles: ['ADMIN'] } },
+        user: { authData },
     }),
 ]
 export const NoAuth = Template.bind({})
@@ -32,7 +36,7 @@ Dark.args = {}
 Dark.decorators = [
     ThemeDecorator(THEME.DARK),
     StoreDecorator({
-        user: { authData: { id: '1', username: 'username', roles: ['ADMIN'] } },
+        user: { authData },
     }),
 ]
 

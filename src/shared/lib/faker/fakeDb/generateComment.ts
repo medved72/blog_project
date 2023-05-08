@@ -1,17 +1,19 @@
-import { faker } from '@faker-js/faker'
+import {
+    type DatabaseArticle,
+    type DatabaseArticleComment,
+    type DatabaseUser,
+} from './db.dto'
+import { faker } from '../fakerInstance'
 
-import type db from '../../../../json-server/db.json'
-
-export type GenerateCommentReturn = (typeof db.comments)[number]
 export interface GenerateCommentParams {
-    userIds: Array<(typeof db.users)[number]['id']>
-    articleIds: Array<(typeof db.articles)[number]['id']>
+    userIds: Array<DatabaseUser['id']>
+    articleIds: Array<DatabaseArticle['id']>
 }
 
 export const generateComment = ({
     articleIds,
     userIds,
-}: GenerateCommentParams): GenerateCommentReturn => {
+}: GenerateCommentParams): DatabaseArticleComment => {
     return {
         id: faker.datatype.uuid(),
         userId: userIds[

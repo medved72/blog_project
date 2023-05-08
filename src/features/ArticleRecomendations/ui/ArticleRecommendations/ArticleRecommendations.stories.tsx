@@ -1,11 +1,11 @@
-import { articles } from '@/entities/Article/testing'
+import { articlesMock } from '@/entities/Article/testing'
 
 import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator'
 import { generateAppStories } from '@/shared/config/storybook/generateAppStories'
 
 import { ArticleRecommendations } from './ArticleRecommendations'
 
-const articlesMock = articles.slice(0, 4)
+const articles = articlesMock.slice(0, 4)
 
 generateAppStories(
     'features/ArticleRecommendations',
@@ -24,7 +24,7 @@ generateAppStories(
                     url: `${window.origin}/articles?_expand=user&_limit=4`,
                     method: 'GET',
                     status: 200,
-                    response: articlesMock,
+                    response: articles,
                 },
             ],
         },

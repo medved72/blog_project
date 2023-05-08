@@ -1,12 +1,12 @@
 import { type Country } from '@/shared/const/country'
 import { type Currency } from '@/shared/const/currency'
+import { type ProfileDto } from '@/shared/api/types'
 
-import { type Profile } from './profile'
 import { type ProfileErrors } from './profileErrors'
 
 export interface ProfileCardProps {
     className?: string
-    profile?: Profile
+    profile?: Partial<ProfileDto>
     loading?: boolean
     error?: ProfileErrors
     readonly?: boolean

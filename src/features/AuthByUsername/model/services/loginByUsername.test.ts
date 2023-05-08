@@ -1,19 +1,13 @@
-import { actions } from '@/entities/User/testing'
+import { actions, usersMock } from '@/entities/User/testing'
 
 import { TestAsyncThunk } from '@/shared/lib/tests'
-import { type UserDto } from '@/shared/api/types'
 
 import { loginByUsername } from './loginByUsername'
 
 describe('loginByUsername', () => {
     it('success login', async () => {
         const thunk = new TestAsyncThunk(loginByUsername)
-        const user: Required<UserDto> = {
-            id: '1',
-            username: 'username',
-            roles: ['ADMIN'],
-            avatar: '',
-        }
+        const user = usersMock[0]
         thunk.api.post.mockResolvedValue({ data: user })
 
         const result = await thunk.callThunk({

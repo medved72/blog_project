@@ -1,13 +1,14 @@
 import {
-    type Profile,
     type ProfileErrors,
     type ValidateProfileError,
 } from '@/entities/Profile'
 
+import { type ProfileDto } from '@/shared/api/types'
+
 export interface EditableProfileCardState {
     status: 'idle' | 'loading' | 'fulfilled' | 'error'
-    data?: Profile
-    form?: Profile
+    data?: ProfileDto
+    form?: Partial<ProfileDto>
     error?: ProfileErrors
     readonly?: boolean
     validateError: ValidateProfileError[]

@@ -3,8 +3,7 @@ import { type FC, memo } from 'react'
 import { Card } from '@/shared/ui/Card'
 import { Text } from '@/shared/ui/Text'
 import { classNames } from '@/shared/lib/classNames'
-
-import { type NotificationDto } from '../../model/types/notification.dto'
+import { type NotificationDto } from '@/shared/api/types'
 
 import classes from './NotificationItem.module.scss'
 

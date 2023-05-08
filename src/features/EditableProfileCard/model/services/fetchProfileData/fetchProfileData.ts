@@ -1,9 +1,11 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
 
-import { type Profile, type ProfileErrors } from '@/entities/Profile'
+import { type ProfileErrors } from '@/entities/Profile'
+
+import { type ProfileDto } from '@/shared/api/types'
 
 export const fetchProfileData = createAsyncThunk<
-    Profile,
+    ProfileDto,
     string,
     GlbThunkConfig<ProfileErrors>
 >('editableProfileCard/fetchProfileData', async (id, thunkAPI) => {

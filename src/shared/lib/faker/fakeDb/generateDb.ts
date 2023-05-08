@@ -1,14 +1,12 @@
-import type db from '../../../../json-server/db.json'
 import { generateArticle } from './generateArticle'
 import { generateComment } from './generateComment'
 import { generateNotification } from './generateNotification'
 import { generateProfile } from './generateProfile'
 import { generateRating } from './generateRating'
 import { generateUser } from './generateUser'
+import { type DatabaseDto } from './db.dto'
 
-export type GenerateDbReturn = typeof db
-
-export const generateDb = (): GenerateDbReturn => {
+export const generateDb = (): DatabaseDto => {
     const profiles = new Array(3).fill(null).map(generateProfile)
     profiles[0].username = 'admin'
     profiles[1].username = 'user'
@@ -20,13 +18,17 @@ export const generateDb = (): GenerateDbReturn => {
     users[2].roles = ['MANAGER']
 
     const userIds = profiles.map(({ id }) => id)
+
     const articles = new Array(100)
         .fill(null)
         .map(() => generateArticle({ userIds }))
+
     const articleIds = articles.map(({ id }) => id)
+
     const comments = new Array(articles.length * 2)
         .fill(null)
         .map(() => generateComment({ userIds, articleIds }))
+
     const notifications = new Array(5)
         .fill(null)
         .map(() => generateNotification({ userIds }))
@@ -48,5 +50,3 @@ export const generateDb = (): GenerateDbReturn => {
         'article-ratings': articleRatings,
     }
 }
-
-console.log(JSON.stringify(generateDb()))

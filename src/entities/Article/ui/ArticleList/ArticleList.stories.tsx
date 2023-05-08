@@ -1,23 +1,23 @@
 import { generateAppStories } from '@/shared/config/storybook/generateAppStories'
 
 import { ArticleList } from './ArticleList'
-import { articles } from '../../testing'
+import { type Article, articlesMock } from '../../testing'
 
-const articlesMock = articles.slice(0, 3)
+const articles = articlesMock.slice(0, 3) as Article[]
 
 generateAppStories('entities/ArticleList', ArticleList, [
     {
         key: 'tile',
         args: {
             view: 'tile',
-            articles: articlesMock,
+            articles,
         },
     },
     {
         key: 'list',
         args: {
             view: 'list',
-            articles: articlesMock,
+            articles,
         },
     },
 ])

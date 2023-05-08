@@ -1,12 +1,11 @@
-import db from '../../../json-server/db.json'
-import { type Article } from './model'
+import { fakeDb } from '@/shared/lib/faker'
+import { type ArticleDto } from '@/shared/api/types'
 
 export type { Article, ArticleType } from './model/types/article'
 
-export const articles = db.articles.map(
-    (article) =>
-        ({
-            ...article,
-            user: db.users.find((user) => user.id === article.userId)!,
-        } as Article)
-)
+export const articlesMock: ArticleDto[] = fakeDb.articles.map((article) => {
+    return {
+        ...article,
+        user: fakeDb.users.find((user) => article.userId === user.id)!,
+    } as ArticleDto
+})

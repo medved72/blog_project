@@ -10,3 +10,5 @@ const bootstrap = (): void => {
 }
 
 bootstrap()
+export type { ProfileDto } from '@/shared/api/types'
+export type { RatingDto } from '@/shared/api/types'

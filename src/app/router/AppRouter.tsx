@@ -13,7 +13,6 @@ import { ForbiddenPage } from '@/pages/ForbiddenPage'
 import { MainPage } from '@/pages/MainPage'
 import { NotFound } from '@/pages/NotFound'
 import { ProfilePage } from '@/pages/ProfilePage'
-import { SchemaGenerator } from '@/pages/SchemaGenerator'
 
 import { PageLoader } from '@/widgets/PageLoader'
 
@@ -83,7 +82,6 @@ export const AppRouter: FC = memo(() => {
                     </ProtectedAuthRoute>
                 ),
             },
-            { path: 'schema-generator', element: <SchemaGenerator /> },
             { path: ROUTES.NOT_FOUND, element: <NotFound /> },
         ]
     }, [])

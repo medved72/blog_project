@@ -2,9 +2,9 @@ import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator'
 import { generateAppStories } from '@/shared/config/storybook/generateAppStories'
 
 import { ArticleDetails } from './ArticleDetails'
-import { articles } from '../../testing'
+import { articlesMock } from '../../testing'
 
-const [article] = articles
+const [article] = articlesMock
 
 generateAppStories(
     'entities/ArticleDetails',

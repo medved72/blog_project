@@ -1,12 +1,14 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
 
-import { type Profile, type ProfileErrors } from '@/entities/Profile'
+import { type ProfileErrors } from '@/entities/Profile'
+
+import { type ProfileDto } from '@/shared/api/types'
 
 import { getEditableProfileCardForm } from '../../selectors'
 import { validateProfileData } from '../validateProfileData'
 
 export const updateProfileData = createAsyncThunk<
-    Profile,
+    ProfileDto,
     void,
     GlbThunkConfig<ProfileErrors>
 >('profile/updateProfileData', async (_, thunkAPI) => {
@@ -24,7 +26,7 @@ export const updateProfileData = createAsyncThunk<
             )
         }
 
-        const response = await thunkAPI.extra.api.put<Profile>(
+        const response = await thunkAPI.extra.api.put<ProfileDto>(
             `/profile/${formData.id}`,
             formData
         )

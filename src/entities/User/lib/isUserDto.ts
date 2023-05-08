@@ -6,7 +6,7 @@ const schema = {
     username: 'string',
     avatar: 'string',
     roles: 'array',
-    featureFlags: 'object',
+    features: 'object',
 } as const
 
 export const isUserDto = (value: unknown): value is UserDto => {
@@ -24,10 +24,10 @@ export const isUserDto = (value: unknown): value is UserDto => {
                 return typeof value[key] === 'string'
 
             case 'object':
-                return typeof value === 'object'
+                return typeof value[key] === 'object'
 
             case 'array':
-                return Array.isArray(value)
+                return Array.isArray(value[key])
 
             default:
                 return false

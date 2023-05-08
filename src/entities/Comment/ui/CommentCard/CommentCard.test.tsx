@@ -1,13 +1,11 @@
+import { articlesMock } from '@/entities/Article/testing'
+
 import { renderWithProviders } from '@/shared/lib/tests'
 
 import { CommentCard } from './CommentCard'
-import { type CommentDto } from '../../model/types/comment'
+import { getCommentsByArticleId } from '../../testing'
 
-const comment: CommentDto = {
-    id: '1',
-    text: 'text',
-    user: { id: '1', username: 'username', roles: ['ADMIN'] },
-}
+const [comment] = getCommentsByArticleId(articlesMock[0].id)
 
 describe('CommentCard', () => {
     it('should render', () => {

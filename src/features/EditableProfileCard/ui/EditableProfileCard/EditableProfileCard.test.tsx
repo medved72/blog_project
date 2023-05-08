@@ -1,36 +1,19 @@
 import { screen, waitFor } from '@testing-library/react'
 
-import { type Profile } from '@/entities/Profile/testing'
+import { profilesMock } from '@/entities/Profile/testing'
+import { usersMock } from '@/entities/User/testing'
 
 import {
     renderWithProviders,
     mockedAxios,
 } from '@/shared/lib/tests/renderWithProviders'
-import { Country } from '@/shared/const/country'
-import { Currency } from '@/shared/const/currency'
-import { type UserDto } from '@/shared/api/types'
 
 import { EditableProfileCard } from './EditableProfileCard'
 import { editableProfileCardReducer } from '../../model/slice/editableProfileCard.slice'
 
-const user: Required<UserDto> = {
-    id: '5a9ce407-e95d-4308-b2af-1d0c9ae9b2f5',
-    username: 'admin',
-    avatar: 'https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/136.jpg',
-    roles: ['ADMIN'],
-}
+const [user] = usersMock
 
-const profile: Required<Profile> = {
-    id: '5a9ce407-e95d-4308-b2af-1d0c9ae9b2f5',
-    first: 'Taya',
-    lastname: 'Nolan',
-    age: 53,
-    currency: Currency.EUR,
-    country: Country.Kazakhstan,
-    city: 'Санкт-Петербург',
-    username: 'admin',
-    avatar: 'https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/136.jpg',
-}
+const [profile] = profilesMock
 
 describe('EditableProfileCard', () => {
     it('should enable edit mode', async () => {

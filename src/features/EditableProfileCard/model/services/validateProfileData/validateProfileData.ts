@@ -1,7 +1,9 @@
-import { type Profile, type ValidateProfileError } from '@/entities/Profile'
+import { type ValidateProfileError } from '@/entities/Profile'
+
+import { type ProfileDto } from '@/shared/api/types'
 
 export const validateProfileData = (
-    profile?: Profile
+    profile?: Partial<ProfileDto>
 ): ValidateProfileError[] => {
     if (!profile) {
         return ['NO_DATA']

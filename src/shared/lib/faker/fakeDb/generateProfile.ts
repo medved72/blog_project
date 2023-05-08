@@ -1,14 +1,12 @@
-import { faker } from '@faker-js/faker/locale/ru'
-
-import type db from '../../../../json-server/db.json'
-import { Country } from '../../../shared/const/country'
-import { Currency } from '../../../shared/const/currency'
-
-export type GenerateProfileReturn = (typeof db.profile)[number]
+import { Country } from '../../../const/country'
+import { Currency } from '../../../const/currency'
+import { faker } from '../fakerInstance'
+import { type DatabaseProfile } from './db.dto'
 
 const currencies = Object.values(Currency)
 const countries = Object.values(Country)
-export const generateProfile = (): GenerateProfileReturn => {
+
+export const generateProfile = (): DatabaseProfile => {
     const firstName = faker.name.firstName()
     const lastName = faker.name.lastName()
     const username = `${firstName}.${lastName}`.toLowerCase()

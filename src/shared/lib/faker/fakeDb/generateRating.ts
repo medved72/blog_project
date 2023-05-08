@@ -1,22 +1,19 @@
-import { faker } from '@faker-js/faker'
+import {
+    type DatabaseArticle,
+    type DatabaseArticleRating,
+    type DatabaseUser,
+} from './db.dto'
+import { faker } from '../fakerInstance'
 
 interface GenerateRatingParams {
-    userId: string
-    articleId: string
-}
-
-interface GenerateRatingReturn {
-    id: string
-    rate: number
-    feedback: string
-    userId: string
-    articleId: string
+    userId: DatabaseUser['id']
+    articleId: DatabaseArticle['id']
 }
 
 export const generateRating = ({
     userId,
     articleId,
-}: GenerateRatingParams): GenerateRatingReturn => {
+}: GenerateRatingParams): DatabaseArticleRating => {
     return {
         articleId,
         userId,

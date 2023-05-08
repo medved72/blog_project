@@ -1,19 +1,8 @@
-import { type Profile } from '@/entities/Profile/testing'
-
-import avatar from '@/shared/assets/tests/avatar.jpg'
+import { profilesMock } from '@/entities/Profile/testing'
 
 import { validateProfileData } from './validateProfileData'
 
-const profile = {
-    first: 'Дмитрий',
-    lastname: 'Бобырев',
-    age: 24,
-    currency: 'RUB',
-    country: 'Russia',
-    city: 'Tyumen',
-    username: 'admin',
-    avatar,
-} as Profile
+const [profile] = profilesMock
 
 describe('validateProfileData', () => {
     it('success', async () => {
@@ -42,7 +31,10 @@ describe('validateProfileData', () => {
     })
 
     it('without all', async () => {
-        const result = validateProfileData({})
+        const result = validateProfileData({
+            id: profile.id,
+            username: profile.username,
+        })
         expect(result).toEqual([
             'INCORRECT_USER_DATA',
             'INCORRECT_AGE',

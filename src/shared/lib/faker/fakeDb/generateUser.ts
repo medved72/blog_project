@@ -1,16 +1,10 @@
-import { faker } from '@faker-js/faker'
-
-import type db from '../../../../json-server/db.json'
-import { type GenerateProfileReturn } from './generateProfile'
-import { type UserRoleDto } from '../../../shared/api/types'
-
-export type GenerateUserReturn = (typeof db.users)[number]
+import { faker } from '../fakerInstance'
+import { type DatabaseProfile, type DatabaseUser } from './db.dto'
+import { type UserRoleDto } from '../../../api/types'
 
 const roles: UserRoleDto[] = ['ADMIN', 'USER', 'MANAGER']
 
-export const generateUser = (
-    profile: GenerateProfileReturn
-): GenerateUserReturn => {
+export const generateUser = (profile: DatabaseProfile): DatabaseUser => {
     return {
         id: profile.id,
         username: profile.username,
