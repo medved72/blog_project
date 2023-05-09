@@ -8,7 +8,6 @@ import { ArticleRecommendations } from '@/features/ArticleRecomendations'
 
 import { ArticleDetails } from '@/entities/Article'
 
-import { ToggleFeature } from '@/shared/lib/featureFlags'
 import { VStack } from '@/shared/ui/Stack'
 import { classNames } from '@/shared/lib/classNames'
 
@@ -36,11 +35,7 @@ const ArticleDetailsPage: FC<ArticleDetailsPageProps> = memo((props) => {
         <VStack gap="16" className={classNames('', {}, [className])} fullWidth>
             <ArticleDetailsPageHeader id={articleId} />
             <ArticleDetails id={articleId} />
-            <ToggleFeature
-                name="isArticleRatingEnabled"
-                on={<ArticleRating articleId={articleId} />}
-                off={<></>}
-            />
+            <ArticleRating articleId={articleId} />
             <ArticleRecommendations />
             <ArticleDetailsComments articleId={articleId} />
         </VStack>

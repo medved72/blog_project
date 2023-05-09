@@ -23,6 +23,10 @@ project.addSourceFilesAtPaths('src/**/*.tsx')
 const files = project.getSourceFiles()
 
 function isToggleFeaturesFunction(node: Node): boolean {
+    if (!node.isKind(SyntaxKind.CallExpression)) {
+        return false
+    }
+
     return !!node.getChildren().find((child) => {
         return (
             child.isKind(SyntaxKind.Identifier) &&
@@ -32,6 +36,10 @@ function isToggleFeaturesFunction(node: Node): boolean {
 }
 
 function isToggleFeaturesComponent(node: Node): boolean {
+    if (!node.isKind(SyntaxKind.JsxSelfClosingElement)) {
+        return false
+    }
+
     return !!node.getChildren().find((child) => {
         return (
             child.isKind(SyntaxKind.Identifier) &&
@@ -136,17 +144,11 @@ function replaceToggleComponent(node: Node): void {
 
 files.forEach((sourceFile) => {
     sourceFile.forEachDescendant((node) => {
-        if (
-            node.isKind(SyntaxKind.CallExpression) &&
-            isToggleFeaturesFunction(node)
-        ) {
+        if (isToggleFeaturesFunction(node)) {
             replaceToggleFunction(node)
         }
 
-        if (
-            node.isKind(SyntaxKind.JsxSelfClosingElement) &&
-            isToggleFeaturesComponent(node)
-        ) {
+        if (isToggleFeaturesComponent(node)) {
             replaceToggleComponent(node)
         }
     })
